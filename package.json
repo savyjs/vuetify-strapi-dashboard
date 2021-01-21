@@ -1,6 +1,7 @@
 {
+  "name": "vuetify-strapi-dashboard",
   "description": "vuetify dashboard panel matched to strapi last version",
-  "version": "1.0.0",
+  "version": "v1.0.3",
   "author": "Ehsan Afshari @savyir <savvyversa@gmail.com>",
   "license": "MIT",
   "keywords": [
@@ -56,7 +57,6 @@
     "url": "https://github.com/savyir/vuetfiy-strapi-dashboard/issues"
   },
   "homepage": "https://github.com/savyir/vuetfiy-strapi-dashboard#readme",
-  "name": "vuetify-strapi-dashboard",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/savyir/vuetfiy-strapi-dashboard.git"
