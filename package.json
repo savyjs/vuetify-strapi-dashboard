@@ -1,0 +1,68 @@
+{
+  "name": "vuetify-strapi-admin",
+  "description": "vuetify dashboard panel matched to strapi last version",
+  "version": "1.0.0",
+  "author": {
+    "name": "Ehsan Afshari @savyir",
+    "email": "savvyversa@gmail.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/savyir/vuetfiy-strapi-dashboard.git",
+    "directory": "packages/vuetify"
+  },
+  "keywords": [
+    "vuetify",
+    "ui framework",
+    "component framework",
+    "ui library",
+    "component library",
+    "material components",
+    "vue framework",
+    "dashboard panel",
+    "dashboard",
+    "strapi",
+    "strapi admin ui",
+    "strapi crm",
+  ],
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/savyir"
+  },
+  "main": "dist/dashboard.js",
+  "module": "dist/dashboard.js",
+  "jsdelivr": "dist/dashboard.js",
+  "unpkg": "dist/dashboard.js",
+  "types": "types/index.d.ts",
+  "sideEffects": [
+    "*.sass",
+    "*.scss",
+    "*.css"
+  ],
+  "files": [
+    "src/",
+    "dist/",
+    "lib/",
+    "es5/",
+    "types/"
+  ],
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.dev.config.js --hot",
+   },
+  "devDependencies": {
+    "vuetify-loader": "^1.2.2",
+    "webpack-dev-server": "^3.7.2"
+  },
+  "peerDependencies": {
+    "vue": "^2.6.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "vetur": {
+    "tags": "dist/json/tags.json",
+    "attributes": "dist/json/attributes.json"
+  },
+  "web-types": "dist/json/web-types.json"
+}
