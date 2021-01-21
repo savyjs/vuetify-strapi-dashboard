@@ -48,7 +48,7 @@
     "types/"
   ],
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.dev.config.js --hot",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.dev.config.js --hot"
    },
   "devDependencies": {
     "vuetify-loader": "^1.2.2",
