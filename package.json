@@ -1,17 +1,8 @@
 {
-  "name": "vuetify-strapi-admin",
   "description": "vuetify dashboard panel matched to strapi last version",
   "version": "1.0.0",
-  "author": {
-    "name": "Ehsan Afshari @savyir",
-    "email": "savvyversa@gmail.com"
-  },
+  "author": "Ehsan Afshari @savyir <savvyversa@gmail.com>",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/savyir/vuetfiy-strapi-dashboard.git",
-    "directory": "packages/vuetify"
-  },
   "keywords": [
     "vuetify",
     "ui framework",
@@ -26,10 +17,6 @@
     "strapi admin ui",
     "strapi crm"
   ],
-  "funding": {
-    "type": "github",
-    "url": "https://github.com/savyir"
-  },
   "main": "dist/dashboard.js",
   "module": "dist/dashboard.js",
   "jsdelivr": "dist/dashboard.js",
@@ -49,7 +36,7 @@
   ],
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.dev.config.js --hot"
-   },
+  },
   "devDependencies": {
     "vuetify-loader": "^1.2.2",
     "webpack-dev-server": "^3.7.2"
@@ -64,5 +51,14 @@
     "tags": "dist/json/tags.json",
     "attributes": "dist/json/attributes.json"
   },
-  "web-types": "dist/json/web-types.json"
+  "web-types": "dist/json/web-types.json",
+  "bugs": {
+    "url": "https://github.com/savyir/vuetfiy-strapi-dashboard/issues"
+  },
+  "homepage": "https://github.com/savyir/vuetfiy-strapi-dashboard#readme",
+  "name": "vuetify-strapi-dashboard",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/savyir/vuetfiy-strapi-dashboard.git"
+  }
 }
