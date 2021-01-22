@@ -29,6 +29,7 @@
 
 <script>
   export default {
+    name: 'VCardHeader',
     props: ['value', 'icon', 'color', 'left', 'loading', 'paddingRight', 'align', 'justify', 'classes', 'dark', 'width', 'elevation', 'tile', 'marginRight', 'marginLeft'],
     data() {
       return {}

@@ -1,17 +1,35 @@
-import Helper from './assets/helper'
+import Helper from '~/modules/core/src/assets/helper'
 import Vue from 'vue'
 
-import * as components from "./components";
+import * as components from "~/modules/core/src/components/index";
 
-for (let component of components) {
-    Vue.component(component);
-}
 
 // Vue.component('CommonTypesShow', CommonTypesShow);
+const ComponentLibrary = {
+  install(Vue, options = {}) {
+    try {
+      for (const componentName in components.default) {
+        console.log({component, componentName})
+        const component = components.default[componentName]
+        Vue.component(componentName, component)
+      }
+    } catch (e) {
+      console.error({e})
+    }
+  }
+}
 
 export default function (ctx, inject) {
-    // Options
-    // Inject it to nuxt context
-    inject('$Helper', Helper)
-    ctx.$Helper = Helper
+  // Options
+  // Inject it to nuxt context
+  // components
+
+  ComponentLibrary.install(Vue);
+  inject('$Helper', Helper)
+  ctx.$Helper = Helper
+}
+
+
+if (typeof window !== 'undefined' && window.Vue) {
+  window.Vue.use(ComponentLibrary)
 }

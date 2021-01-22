@@ -114,7 +114,6 @@
   </section>
 </template>
 <script>
-  import VCardHeader from "~/components/admin/ui/VCardHeader";
 
   import Filters from "./Filters";
   import TableList from "./TableList";
@@ -123,6 +122,7 @@
   //import formHelper from "~/components/admin/common-ssr/laravel";
 
   export default {
+    name: 'ListPage',
     props: ['value'],
     ...formHelper,
     data() {
@@ -131,6 +131,6 @@
         ...formHelper.data,
       }
     },
-    components: {Report, VCardHeader, TableList, Filters},
+    components: {Report, TableList, Filters},
   }
 </script>

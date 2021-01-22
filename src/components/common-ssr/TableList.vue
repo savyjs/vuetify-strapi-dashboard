@@ -248,6 +248,7 @@
   import CommonTypesExpand from "./CommonTypesExpand";
 
   export default {
+    name: 'TableList',
     components: {CommonTypesExpand, CommonTypesShow, PopUp},
     props: ['items', 'search', 'main', 'hasSort', 'hasFilter', 'hasSearch', 'itemKey', 'length', 'showSelect', 'options', 'loading', 'name', 'fields', 'resource'],
     data() {

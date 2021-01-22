@@ -16,6 +16,7 @@
   import Vue from 'vue'
 
   export default {
+    name: 'Snackbar',
     props: ['value'],
     data() {
       return {

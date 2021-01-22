@@ -43,12 +43,12 @@
   </div>
 </template>
 <script>
-  import TextEditor from "~/components/admin/elements/TextEditor";
-  import SelectPhoto from "~/components/admin/elements/SelectPhoto";
+  import TextEditor from "../elements/TextEditor";
+  import SelectPhoto from "../elements/SelectPhoto";
   import DateTimePicker from "../elements/dateTimePicker";
   import DatePicker from "../elements/DatePicker";
-  import CommonSelectRelation from "~/components/admin/elements/SelectRelation";
-  import CommonSelectEnum from "~/components/admin/elements/SelectEnum";
+  import CommonSelectRelation from "../elements/SelectRelation";
+  import CommonSelectEnum from "../elements/SelectEnum";
 
   /**
    * @value: any - this property value

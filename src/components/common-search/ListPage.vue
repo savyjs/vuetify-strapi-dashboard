@@ -88,7 +88,7 @@
   </section>
 </template>
 <script>
-  import VCardHeader from "~/components/admin/ui/VCardHeader";
+  // import VCardHeader from "~/components/admin/ui/VCardHeader";
 
   import Filters from "./Filters";
   import TableList from "./TableList";
@@ -105,6 +105,6 @@
         ...this.value,
       }
     },
-    components: {VCardHeader, TableList, Filters},
+    //components: {VCardHeader, TableList, Filters},
   }
 </script>
