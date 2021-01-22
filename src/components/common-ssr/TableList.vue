@@ -43,7 +43,7 @@
             style="max-width:100px"
             :items="length > 1 ? $Helper.range(1,totalPages) : [1]"
             class="font-11 px-2"
-            v-model="options.page"
+            v-model="_.get(doOptions,'page',1)"
           />
         </v-row>
       </template>
@@ -263,15 +263,23 @@
     computed: {
       getHeaders() {
         let items = [];
-        for (let item of this.fields) {
-          if (item.header === undefined || item.header === true) items.push(item)
+        try {
+          for (let item of this.fields) {
+            if (item.header === undefined || item.header === true) items.push(item)
+          }
+        } catch (e) {
+          console.error({e})
         }
         return items;
       },
       getTableFields() {
         let items = [];
-        for (let item of this.fields) {
-          if (item.header === undefined || item.expand === true || item.header === true) items.push(item)
+        try {
+          for (let item of this.fields) {
+            if (item.header === undefined || item.expand === true || item.header === true) items.push(item)
+          }
+        } catch (e) {
+          console.error({e})
         }
         return items;
       },

@@ -1,10 +1,8 @@
-import strapi from "./strapi";
-
 export default {
-  getCommonMounted() {
-
+  mounted() {
+    alert('hi from cryptojs');
   },
-  getMethods: {
+  methods: {
     loadData() {
       let apiName = _.get(this, 'api', undefined)
       if (_.includes(['users', 'critics', 'fee', 'wages', 'orders', 'deposits', 'withdraws', 'tickets'], apiName)) {

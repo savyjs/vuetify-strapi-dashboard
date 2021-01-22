@@ -5,7 +5,7 @@
         <v-card-header :color="_.get(value,'color','primary')" margin-right="1%" width="98%" classes="pl-5">
           <h3 class="pr-5">
             <v-icon small>{{_.get(value,'icon','archive')}}</v-icon>
-            {{title}}
+            {{ title }}
           </h3>
           <v-spacer/>
           <v-btn v-if="_.get(value,'deleteAll',true)" elevation="5" small class="red--text mx-3" color="white"
@@ -124,11 +124,10 @@
   export default {
     name: 'ListPage',
     props: ['value'],
-    ...formHelper,
+    mixins: [formHelper],
     data() {
       return {
         ...this.value,
-        ...formHelper.data,
       }
     },
     components: {Report, TableList, Filters},

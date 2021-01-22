@@ -1,8 +1,13 @@
 const perPage = 30
+import strapi from './strapi'
 
 export default {
+  mixins: [strapi],
   head: {},
   data: {
+    search: '',
+    report: null,
+    filter: {},
     perPage,
     selected: [],
     loading: false,
@@ -14,7 +19,7 @@ export default {
     length: 0,
     options: {},
   },
-  getCommonComputed: {
+  computed: {
     fields() {
       return this.Fields
     },
@@ -43,10 +48,7 @@ export default {
       return final;
     }
   },
-  getCommonMounted() {
-
-  },
-  getMethods: {
+  methods: {
     processExcelData(value, field, item = {}) {
       let type = _.get(field, 'type', 'text');
       if (_.includes(['custom'], type)) return value;

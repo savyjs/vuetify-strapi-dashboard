@@ -1,4 +1,3 @@
-
 /**
  * DO OT CHANGE THIS FILE!
  * For better understanding of this architecture, look at './strapi.js'
@@ -7,7 +6,7 @@
  */
 import common from './common.js'
 
-const envName = process.env.envName;
+const envName = _.get(process,'env.envName',{});
 let envModule = {};
 try {
   envModule = require(`./${envName}`).default || {};
@@ -15,43 +14,11 @@ try {
   envModule = require(`./strapi`).default || {};
 }
 
-let apiHelper = {
-  getMethods: {},
-  head: {},
-  data: {},
-  getCommonComputed: {},
-  getCommonMounted() {
-  },
-  ...envModule
-};
 export default {
-  ...common,
-  ...apiHelper,
-  head: {
-    ...common.head,
-    ...apiHelper.head,
-  },
-  data: {
-    ...common.data,
-    search: '',
-    report: null,
-    filter: {},
-    ...apiHelper.data,
-  },
+  mixins: [common, envModule],
   // alernative
-  computed: {
-    ...common.getCommonComputed,
-    ...apiHelper.getCommonComputed,
-  },
   mounted() {
     let name = _.get(this, 'api', undefined);
-    common.getCommonMounted();
-    apiHelper.getCommonMounted();
     this.loadData();
-  },
-  methods: {
-    ...common.getMethods,
-    ...apiHelper.getMethods,
   }
-
 }

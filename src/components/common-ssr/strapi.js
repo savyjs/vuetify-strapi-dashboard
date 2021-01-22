@@ -2,10 +2,7 @@
  * you can copy this file for your custom API server and change it to fit your need.
  */
 export default {
-  getCommonMounted() {
-
-  },
-  getMethods: {
+  methods: {
     loadData() {
       this.loading = true;
 
