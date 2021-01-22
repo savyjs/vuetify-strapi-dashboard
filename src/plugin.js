@@ -7,19 +7,20 @@ import CommonSelectStore from '~/modules/core/src/store/commonSelect'
 
 import * as components from "~/modules/core/src/components/index";
 
-// Vue.component('Comadmin/updateTokenmonTypesShow', CommonTypesShow);
 const ComponentLibrary = {
   install(Vue, options = {}) {
-
-    Vue.component("downloadExcel", JsonExcel);
-
-    Vue.set(Vue.prototype, 'Helper', Helper);
-    //Vue.set(Vue.prototype, '$Helper', Helper);
     try {
+      Vue.component("downloadExcel", JsonExcel);
+      Vue.set(Vue.prototype, 'Helper', Helper);
+      //Vue.set(Vue.prototype, '$Helper', Helper);
       for (const componentName in components.default) {
         const component = components.default[componentName]
         // console.log({component, componentName})
-        Vue.component(componentName, component)
+        try {
+          Vue.component(componentName, component)
+        } catch (e) {
+          console.error({componentName})
+        }
       }
     } catch (e) {
       console.error({e})
