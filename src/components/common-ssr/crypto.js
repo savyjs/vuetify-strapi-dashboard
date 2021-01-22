@@ -4,6 +4,7 @@ export default {
   },
   methods: {
     loadData() {
+      alert('load from crypto.js');
       let apiName = _.get(this, 'api', undefined)
       if (_.includes(['users', 'critics', 'fee', 'wages', 'orders', 'deposits', 'withdraws', 'tickets'], apiName)) {
         this.loading = true;

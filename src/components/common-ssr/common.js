@@ -4,20 +4,22 @@ import strapi from './strapi'
 export default {
   mixins: [strapi],
   head: {},
-  data: {
-    search: '',
-    report: null,
-    filter: {},
-    perPage,
-    selected: [],
-    loading: false,
-    searchText: '',
-    page: 1,
-    list: [],
-    allItems: [],
-    count: 0,
-    length: 0,
-    options: {},
+  data() {
+    return {
+      search: '',
+      report: null,
+      filter: {},
+      perPage,
+      selected: [],
+      loading: false,
+      searchText: '',
+      page: 1,
+      list: [],
+      allItems: [],
+      count: 0,
+      length: 0,
+      options: {},
+    }
   },
   computed: {
     fields() {
