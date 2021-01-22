@@ -22,7 +22,10 @@ import Breadcrumb from './Breadcrumb'
 import Alert from './Alert'
 import Account from './Account'
 
+import AccessAlert from './role/AccessAlert'
+
 export default {
+  AccessAlert,
   ListPage,
   CommonTypesExpand,
   CommonTypesField,

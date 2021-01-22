@@ -3,7 +3,6 @@ import Vue from 'vue'
 
 import * as components from "~/modules/core/src/components/index";
 
-
 // Vue.component('CommonTypesShow', CommonTypesShow);
 const ComponentLibrary = {
   install(Vue, options = {}) {

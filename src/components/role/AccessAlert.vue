@@ -8,7 +8,7 @@
 <script>
   import Vue from 'vue';
   import MENU from '~/assets/js/menu';
-
+  _.mixin(require("lodash-deep"));
   const resource = 'users-permissions/roles';
   const usersPermissionsResource = 'users-permissions/permissions';
   export default {
