@@ -210,8 +210,8 @@
       },
     },
     components: {
-      CommonTypesShow: () => import("~/components/admin/common-ssr/CommonTypesShow"),
-      CommonTypesField: () => import("~/components/admin/common-ssr/CommonTypesField")
+      // CommonTypesShow: () => import("~/components/admin/common-ssr/CommonTypesShow"),
+      // CommonTypesField: () => import("~/components/admin/common-ssr/CommonTypesField")
     },
   }
 </script>

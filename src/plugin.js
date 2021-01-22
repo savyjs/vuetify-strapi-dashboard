@@ -9,8 +9,8 @@ const ComponentLibrary = {
   install(Vue, options = {}) {
     try {
       for (const componentName in components.default) {
-        console.log({component, componentName})
         const component = components.default[componentName]
+        console.log({component, componentName})
         Vue.component(componentName, component)
       }
     } catch (e) {
@@ -25,7 +25,9 @@ export default function (ctx, inject) {
   // components
 
   ComponentLibrary.install(Vue);
+  inject('Helper', Helper)
   inject('$Helper', Helper)
+  ctx.Helper = Helper
   ctx.$Helper = Helper
 }
 

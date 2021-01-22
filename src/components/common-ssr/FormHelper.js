@@ -12,7 +12,7 @@ let envModule = {};
 try {
   envModule = require(`./${envName}`).default || {};
 } catch (e) {
-  envModule = require(`components/admin/core/common-ssr/strapi`).default || {};
+  envModule = require(`./strapi`).default || {};
 }
 
 let apiHelper = {

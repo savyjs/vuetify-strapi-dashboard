@@ -125,16 +125,16 @@
   </div>
 </template>
 <script>
-  import TextEditor from "~/components/admin/elements/TextEditor";
-  import SelectPhoto from "~/components/admin/elements/SelectPhoto";
-  import DateTimePicker from "~/components/admin/elements/dateTimePicker";
-  import DatePicker from "~/components/admin/elements/DatePicker";
-  import CommonSelectRelation from "~/components/admin/elements/SelectRelation";
-  import CommonSelectEnum from "~/components/admin/elements/SelectEnum";
-  import CRUD from "~/components/admin/elements/CRUD";
-  import LinearCRUD from "~/components/admin/elements/LinearCRUD";
-  import Calc from "~/components/admin/elements/Calc";
-  import Counter from "~/components/admin/elements/Counter";
+  import TextEditor from "../elements/TextEditor";
+  import SelectPhoto from "../elements/SelectPhoto";
+  import DateTimePicker from "../elements/dateTimePicker";
+  import DatePicker from "../elements/DatePicker";
+  import CommonSelectRelation from "../elements/SelectRelation";
+  import CommonSelectEnum from "../elements/SelectEnum";
+  import CRUD from "../elements/CRUD";
+  import LinearCRUD from "../elements/LinearCRUD";
+  import Calc from "../elements/Calc";
+  import Counter from "../elements/Counter";
 
   /**
    * @value: any - this property value

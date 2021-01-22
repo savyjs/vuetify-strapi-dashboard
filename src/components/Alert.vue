@@ -10,7 +10,7 @@
   </v-alert>
 </template>
 <script>
-  import Helper from '~/assets/js/helper.js'
+  // import Helper from '~/assets/js/helper.js'
   import Vue from 'vue'
 
   export default {

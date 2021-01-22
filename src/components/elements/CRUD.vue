@@ -129,7 +129,7 @@
 
 
 <script>
-  import CommonTypesField from "~/components/admin/common-ssr/CommonTypesField";
+  import CommonTypesField from "../common-ssr/CommonTypesField";
 
   export default {
     components: {'common-types-field': CommonTypesField},
