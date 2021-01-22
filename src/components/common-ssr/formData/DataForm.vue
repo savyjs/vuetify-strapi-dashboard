@@ -28,6 +28,7 @@
   import CommonTypesField from "../CommonTypesField";
 
   export default {
+    name: ['DataForm'],
     props: ['value', 'name', 'type', 'fields', 'title'],
     data() {
       return {
