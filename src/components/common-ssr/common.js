@@ -3,7 +3,6 @@ import strapi from './strapi'
 
 export default {
   mixins: [strapi],
-  head: {},
   data() {
     return {
       search: '',
@@ -180,5 +179,8 @@ export default {
       this.options = val
       this.loadData();
     },
+    loadData() {
+      console.log('hi from commonjs');
+    }
   }
 }

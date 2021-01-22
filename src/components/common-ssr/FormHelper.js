@@ -6,9 +6,9 @@
  */
 import common from './common.js'
 
-const envName = _.get(process,'env.envName',{});
 let envModule = {};
 try {
+  const envName = process.env.envName;
   envModule = require(`./${envName}`).default || {};
 } catch (e) {
   envModule = require(`./strapi`).default || {};

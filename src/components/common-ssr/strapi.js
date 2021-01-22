@@ -4,6 +4,7 @@
 export default {
   methods: {
     loadData() {
+      console.log('hi from strapi');
       this.loading = true;
 
       let filters = this.filter || {};
