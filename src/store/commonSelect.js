@@ -1,4 +1,5 @@
 export default {
+  namespaced: true,
   state: () => {
     return {
       server: {},
@@ -44,32 +45,44 @@ export default {
         //console.log({item})
         state.currencies.push({value: item.id, text: item.name_fa})
       })
+    },
+    setCurrenciesInitiated(state, data) {
+        state.currenciesInitiated = data
+    },
+    setRolesInitiated(state, data) {
+        state.rolesInitiated = data
+    },
+    setCategoriesInitiated(state, data) {
+        state.categoriesInitiated = data
+    },
+    setMarketInitiated(state, data) {
+        state.marketInitiated = data
     }
   },
   actions: {
-    roles: function ({commit}) {
+    roles: function ({commit, state}) {
       if (!state.rolesInitiated) {
         this.$axios.$get('users-permissions/roles').then(res => {
           commit('updateRoles', res)
         }).catch(err => {
           console.log({err})
-          state.rolesInitiated = false;
+          commit('setRolesInitiated', false);
         })
-        state.rolesInitiated = true;
+        commit('setRolesInitiated', true);
       }
     },
-    categories: function ({commit}) {
-      if (!state.rolesInitiated) {
+    categories: function ({commit, state}) {
+      if (!state.categoriesInitiated) {
         this.$axios.$get('categories').then(res => {
           commit('updateCategories', res)
         }).catch(err => {
           console.log({err})
-          state.categoriesInitiated = false;
+          commit('setCategoriesInitiated', false);
         })
-        state.categoriesInitiated = true;
+        commit('setCategoriesInitiated', true);
       }
     },
-    server: function ({commit}, field) {
+    server: function ({commit, state}, field) {
       if (!_.has(state.server[field.server]) || !state.server[field.server]) {
         this.$axios.$get(field.server).then(res => {
           commit('updateServer', {res, field});
@@ -86,9 +99,9 @@ export default {
           //console.log({res}, field.server)
           commit('updateMarkets', {res: _.get(res, 'data', res), field});
         }).catch(err => {
-          state.marketInitiated = false;
+          commit('setMarketInitiated', false);
         })
-        state.marketInitiated = true;
+        commit('setMarketInitiated', true);
       }
     },
     currencies: function ({commit, state}, field) {
@@ -97,9 +110,9 @@ export default {
           //console.log({res}, field.server)
           commit('updateCurrencies', {res: _.get(res, 'data', res), field});
         }).catch(err => {
-          state.currenciesInitiated = false;
+          commit('setCurrenciesInitiated', false);
         })
-        state.currenciesInitiated = true;
+        commit('setCurrenciesInitiated', true);
       }
     }
   }
