@@ -18,8 +18,8 @@
             <v-icon>note_add</v-icon>
             <b>ثبت جدید</b>
           </v-btn>
-          <download-excel :data="excelData" :name="title+'.xls'" :title="title">
-            <v-btn :disabled="!_.has(excelData,0)" v-if="_.get(value,'excel',true)" elevation="5" small
+          <download-excel :fetch="excelData" :name="title+'.xls'" :title="title">
+            <v-btn :disabled="!_.has(list,0)" v-if="_.get(value,'excel',true)" elevation="5" small
                    class="white--text mx-1" color="success">
               دانلود اکسل
               <v-icon>move_to_inbox</v-icon>

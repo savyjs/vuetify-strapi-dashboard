@@ -1,7 +1,7 @@
 export default {
   methods: {
-    loadData() {
-      console.log('load from crypto.js');
+    async loadData(customMeta = {}) {
+      // console.log('load from crypto.js');
       let apiName = _.get(this, 'api', undefined)
       if (_.includes(['users', 'critics', 'fee', 'wages', 'orders', 'deposits', 'withdraws', 'tickets'], apiName)) {
         this.loading = true;
@@ -31,27 +31,27 @@ export default {
           data = report;
           url = this.resource + '/report'
         }
-
-        this.$axios.$request({url, method, params: meta, data}).then(res => {
-          let pascalCase = this.$Helper.pascalCase(apiName);
-          this.list = _.get(res, `data.${apiName}`, _.get(res, `data.${pascalCase}`, _.get(res, `data`, [])));
-          //console.log({pascalCase}, this.list);
-          let length = _.has(res, `data.pagination_info.all_count`) ? _.get(res, `data.pagination_info.all_count`, _.get(res, `data.paginationInfo.all_count`, this.list.length || perPage)) : this.list.length || perPage;
-          if (length) {
-            this.length = length;
-          }
-
-          if (!_.has(data, 'pagination_info.per_page') && _.isArray(this.list) && (this.list.length > perPage)) {
-            _.set(this.options, 'itemsPerPage', this.list.length);
-            _.set(this.options, 'customPagination', true);
-          }
-
-        }).catch(error => {
+        meta = {...meta, ...customMeta};
+        let res = await this.$axios.$request({url, method, params: meta, data}).catch(error => {
           this.$notifWarning('داده ای یافت نشد');
           console.log({error});
-        }).finally((res) => {
-          this.loading = false;
         })
+
+        let pascalCase = this.$Helper.pascalCase(apiName);
+        this.list = _.get(res, `data.${apiName}`, _.get(res, `data.${pascalCase}`, _.get(res, `data`, [])));
+        //console.log({pascalCase}, this.list);
+        let length = _.has(res, `data.pagination_info.all_count`) ? _.get(res, `data.pagination_info.all_count`, _.get(res, `data.paginationInfo.all_count`, this.list.length || perPage)) : this.list.length || perPage;
+        if (length) {
+          this.length = length;
+        }
+
+        if (!_.has(data, 'pagination_info.per_page') && _.isArray(this.list) && (this.list.length > perPage)) {
+          _.set(this.options, 'itemsPerPage', this.list.length);
+          _.set(this.options, 'customPagination', true);
+        }
+
+        this.loading = false;
+
       } else {
         this.loading = true;
 

@@ -43,7 +43,7 @@
             style="max-width:100px"
             :items="length > 1 ? $Helper.range(1,totalPages) : [1]"
             class="font-11 px-2"
-            v-model="_.get(doOptions,'page',1)"
+            v-model="doOptions.page"
           />
         </v-row>
       </template>

@@ -24,8 +24,22 @@ export default {
     fields() {
       return this.Fields
     },
-    excelData() {
+  },
+  methods: {
+
+    async getAllDataBeforeMakeExcel() {
+      // this.options.itemsPerPage = 10000;
+      this.loading = true;
+      try {
+        await this.loadData({per_page:100});
+        this.loading = false;
+      } catch (e) {
+        console.error({e})
+      }
+    },
+    async excelData() {
       let fields = this.fields;
+      await this.getAllDataBeforeMakeExcel();
       let data = this.list;
       //console.log({data, fields});
       if (!_.isArray(data) || !_.isArray(fields)) {
@@ -47,9 +61,7 @@ export default {
         }
       }
       return final;
-    }
-  },
-  methods: {
+    },
     processExcelData(value, field, item = {}) {
       let type = _.get(field, 'type', 'text');
       if (_.includes(['custom'], type)) return value;
@@ -178,9 +190,6 @@ export default {
     setOptions(val) {
       this.options = val
       this.loadData();
-    },
-    loadData() {
-      console.log('hi from commonjs');
     }
   }
 }
