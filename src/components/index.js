@@ -19,16 +19,18 @@ import VCardHeader from './ui/VCardHeader'
 import Icons8 from './ui/Icons8'
 import loader from './ui/loader'
 
-import Snackbar from './Snackbar'
+// import AccessAlert from './role/AccessAlert'
+// import Notifications from './Notifications'
+// import Alert from './Alert'
+// import Snackbar from './Snackbar'
+
 import SideMenu from './SideMenu'
 import Settings from './Settings'
-import Notifications from './Notifications'
 import DashboardMenu from './DashboardMenu'
 import Breadcrumb from './Breadcrumb'
-import Alert from './Alert'
+
 import Account from './Account'
 
-// import AccessAlert from './role/AccessAlert'
 
 import videoUploader from './elements/old/videoUploader'
 import audioUploader from './elements/old/audioUploader'
@@ -73,13 +75,13 @@ export default {
   Report,
   Icons8,
   loader,
-  Snackbar,
+  // Snackbar,
   SideMenu,
   Settings,
-  Notifications,
+  // Notifications,
   DashboardMenu,
   Breadcrumb,
-  Alert,
+  // Alert,
   TextEditor,
   Sum,
   StrapiMediaVideoList,
