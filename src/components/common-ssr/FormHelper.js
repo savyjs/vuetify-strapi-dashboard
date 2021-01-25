@@ -6,16 +6,19 @@
  */
 import common from './common.js'
 
-let envModule = {};
+let customListPageHelper = {};
 try {
-  const envName = process.env.envName;
-  envModule = require(`./${envName}`).default || {};
+  const schemeHelper = '../../../../crypto/cryptoApiHelper';//process.env.schemeHelper;
+  // console.log(9, {schemeHelper}, __dirname)
+  customListPageHelper = require('../../../../crypto/cryptoApiHelperAddNote').default || {};
+  // console.log(7, {schemeHelper});
 } catch (e) {
-  envModule = require(`./strapi`).default || {};
+  console.error(8, {e})
+  customListPageHelper = require(`./strapi`).default || {};
 }
 
 export default {
-  mixins: [common, envModule],
+  mixins: [common, customListPageHelper],
   // alernative
   mounted() {
     let name = _.get(this, 'api', undefined);

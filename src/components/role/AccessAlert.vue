@@ -100,7 +100,7 @@
           })
           return map;
         } else {
-          console.log({roleId});
+          // console.log({roleId});
           let res = await this.$axios.$get(resource + '/' + roleId);
           let application = _.get(res, 'role.permissions.application.controllers', {})
           let users = _.get(res, 'role.permissions.users-permissions.controllers', {})
