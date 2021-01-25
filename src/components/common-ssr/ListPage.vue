@@ -26,7 +26,7 @@
             </v-btn>
           </download-excel>
           <v-btn fab icon v-if="_.get(value,'refresh',true)" small class="success--text mx-1" color="white"
-                 @click="loadData">
+                 @click="loadData({},{})">
             <v-icon>refresh</v-icon>
           </v-btn>
         </v-card-header>
