@@ -15,7 +15,6 @@ import DataForm from './common-ssr/formData/DataForm'
 import DataFormPage from './common-ssr/formData/DataFormPage'
 import PrintPage from './common-ssr/print/PrintPage'
 
-
 import VCardHeader from './ui/VCardHeader'
 import Icons8 from './ui/Icons8'
 import loader from './ui/loader'
@@ -29,7 +28,7 @@ import Breadcrumb from './Breadcrumb'
 import Alert from './Alert'
 import Account from './Account'
 
-import AccessAlert from './role/AccessAlert'
+// import AccessAlert from './role/AccessAlert'
 
 import videoUploader from './elements/old/videoUploader'
 import audioUploader from './elements/old/audioUploader'
@@ -62,7 +61,7 @@ import BoolBtn from './elements/BoolBtn'
 import TimePicker from './elements/TimePicker'
 
 export default {
-  AccessAlert,
+  // AccessAlert,
   ListPage,
   CommonTypesExpand,
   CommonTypesField,

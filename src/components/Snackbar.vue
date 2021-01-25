@@ -52,7 +52,7 @@
       }
     },
     created: function () {
-
+      console.log('created snackbar')
       const notifError = (msg) => {
         console.log({error: msg})
         let error = msg;

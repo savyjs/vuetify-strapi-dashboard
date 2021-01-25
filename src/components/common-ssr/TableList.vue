@@ -246,7 +246,7 @@
   import PopUp from "./PopUp";
   import CommonTypesShow from "./CommonTypesShow";
   import CommonTypesExpand from "./CommonTypesExpand";
-
+  _.mixin(require("lodash-deep"));
   export default {
     name: 'TableList',
     components: {CommonTypesExpand, CommonTypesShow, PopUp},

@@ -13,23 +13,12 @@ const ComponentLibrary = {
     try {
       Vue.component("downloadExcel", JsonExcel);
       Vue.set(Vue.prototype, 'Helper', Helper);
-      //Vue.set(Vue.prototype, '$Helper', Helper);
+      // Vue.set(Vue.prototype, '$Helper', Helper);
       for (const componentName in components.default) {
         let component = components.default[componentName]
         // console.log({component, componentName})
         try {
-          if (componentName == 'ListPage') {
-            try {
-              // component.mixins = [...component.mixins,mixins];
-              // console.log({moduleOptions,mixins})
-              Vue.component(componentName, component)
-            } catch (e) {
-              console.error({componentName, e})
-              Vue.component(componentName, component);
-            }
-          } else {
-            Vue.component(componentName, component);
-          }
+          Vue.component(componentName, component);
         } catch (e) {
           console.error({componentName, e})
         }
@@ -52,8 +41,9 @@ export default function (ctx, inject) {
 
   ctx.store.registerModule('common', CommonStore)
   ctx.store.registerModule('commonSelect', CommonSelectStore)
-  ComponentLibrary.install(Vue);
 
+  // Vue.use(ComponentLibrary)
+  ComponentLibrary.install(Vue);
 }
 
 
