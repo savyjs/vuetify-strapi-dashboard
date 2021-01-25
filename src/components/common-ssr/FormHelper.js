@@ -10,7 +10,7 @@ let customListPageHelper = {};
 try {
   const schemeHelper = '../../../../crypto/cryptoApiHelper';//process.env.schemeHelper;
   // console.log(9, {schemeHelper}, __dirname)
-  customListPageHelper = require('../../../../crypto/cryptoApiHelperAddNote').default || {};
+  customListPageHelper = require('../../../../crypto/cryptoApiHelper').default || {};
   // console.log(7, {schemeHelper});
 } catch (e) {
   console.error(8, {e})
