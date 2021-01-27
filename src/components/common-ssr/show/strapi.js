@@ -1,10 +1,11 @@
 import common from './common'
 
 export default {
-  ...common,
-  getData: {
-    ...common.getCommonData,
-    loader: false,
+  mixins: [common],
+  data() {
+    return {
+      loader: false,
+    }
   },
   mounted() {
     this.loadData();
@@ -24,7 +25,6 @@ export default {
     }
   },
   methods: {
-    ...common.getMethods,
     hasPermission(field) {
       if (_.has(field, 'permission')) return this.can(_.get(field, 'permission', null))
       return true;
@@ -35,7 +35,7 @@ export default {
       this.loader = true;
       this.$axios.$get(this.resource + '/' + id).then(res => {
         //console.log({res})
-        this.formData = {id,...res};
+        this.formData = {id, ...res};
       }).catch(err => {
         this.$notifError(err);
       }).finally(() => {

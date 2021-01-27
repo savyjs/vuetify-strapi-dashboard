@@ -13,10 +13,9 @@
             <v-icon>delete</v-icon>
             <b>حذف</b>
           </v-btn>
-          <v-btn v-if="_.get(value,'newItem',true)" elevation="5" small class="success--text" color="white"
-                 :to="`/admin/${name}/create`">
-            <v-icon>note_add</v-icon>
-            <b>ثبت جدید</b>
+          <v-btn v-if="_.get(value,'backBtn',true)" elevation="5" small class="warning--text" color="white" @click="$router.go(-1)" >
+            <b>بازگشت</b>
+            <v-icon class="mx-1" small>arrow_back_ios</v-icon>
           </v-btn>
           <download-excel :fetch="excelData" :name="title+'.xls'" :title="title">
             <v-btn :disabled="!_.has(list,0)" v-if="_.get(value,'excel',true)" elevation="5" small
@@ -125,11 +124,6 @@
     name: 'ListPage',
     props: ['value'],
     mixins: [formHelper],
-    data() {
-      return {
-        ...this.value,
-      }
-    },
     components: {Report, TableList, Filters},
   }
 </script>

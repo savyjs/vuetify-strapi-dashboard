@@ -1,5 +1,4 @@
 export default {
-  getCommonData: {},
   computed: {
     getHeaders() {
       let headers = [];
@@ -15,7 +14,7 @@ export default {
       return this.name ? '/admin/' + this.name : './.'
     }
   },
-  getMethods: {
+  methods: {
     canShow(field) {
       //console.log(_.get(field, 'show', undefined) !== false, {field})
       return _.get(field, 'show', undefined) !== false;

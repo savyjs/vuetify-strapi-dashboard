@@ -55,11 +55,10 @@
   import CommonTypesShow from "../CommonTypesShow";
 
   export default {
+    mixins:[formHelper],
     props: ['value', 'main', 'name', 'fields', 'title', 'resource'],
-    ...formHelper,
     data() {
       return {
-        ...formHelper.getData,
         formData: {
           ...this.value
         }

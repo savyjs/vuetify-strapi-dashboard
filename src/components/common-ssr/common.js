@@ -18,6 +18,7 @@ export default {
       count: 0,
       length: 0,
       options: {},
+      ...this.value,
     }
   },
   computed: {
@@ -31,7 +32,7 @@ export default {
       // this.options.itemsPerPage = 10000;
       this.loading = true;
       try {
-        await this.loadData({per_page:100});
+        await this.loadData({per_page: 100});
         this.loading = false;
       } catch (e) {
         console.error({e})
