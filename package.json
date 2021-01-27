@@ -1,7 +1,7 @@
 {
   "name": "vuetify-strapi-dashboard",
   "description": "vuetify dashboard panel matched to strapi last version",
-  "version": "1.1.32",
+  "version": "1.1.33",
   "author": "Ehsan Afshari @savyir <savvyversa@gmail.com>",
   "license": "MIT",
   "keywords": [
@@ -18,11 +18,8 @@
     "strapi admin ui",
     "strapi crm"
   ],
-  "main": "dist/dashboard.js",
-  "module": "dist/dashboard.js",
-  "jsdelivr": "dist/dashboard.js",
-  "unpkg": "dist/dashboard.js",
-  "types": "types/index.d.ts",
+  "main": "src/index.js",
+  "module": "src/index.js",
   "sideEffects": [
     "*.sass",
     "*.scss",
