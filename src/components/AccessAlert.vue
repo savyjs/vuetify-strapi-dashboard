@@ -7,7 +7,13 @@
 </template>
 <script>
   import Vue from 'vue';
-  import MENU from '~/assets/js/menu';
+
+  let MENU;
+  try {
+    MENU = require('~/assets/js/menu').default;
+  } catch (e) {
+    console.warn('add menu file in module settings');
+  }
   _.mixin(require("lodash-deep"));
   const resource = 'users-permissions/roles';
   const usersPermissionsResource = 'users-permissions/permissions';

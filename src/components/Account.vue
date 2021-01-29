@@ -46,14 +46,16 @@
            </v-list-item-title>
          </v-list-item>
         </v-list>
-
     </v-menu>
-
   </span>
 </template>
 <script>
-  import CONSTANTS from '~/assets/js/constants'
-
+  let CONSTANTS;
+  try {
+    CONSTANTS = require('~/assets/js/constants').default;
+  } catch (e) {
+    console.warn('add constant file in module settings');
+  }
   const DEFAULT_PHOTO = CONSTANTS.DEFAULT_PHOTO
 
   export default {

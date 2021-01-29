@@ -4,7 +4,12 @@
   </div>
 </template>
 <script>
-  import MENU from '~/assets/js/menu'
+  let MENU;
+  try {
+    MENU = require('~/assets/js/menu').default;
+  } catch (e) {
+    console.warn('add menu file in module settings');
+  }
 
   export default {
     props: ['value'],

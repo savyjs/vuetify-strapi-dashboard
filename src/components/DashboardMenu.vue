@@ -15,8 +15,13 @@
   </v-container>
 </template>
 <script>
-  import CONSTANTS from '~/assets/js/constants.js'
 
+  let CONSTANTS;
+  try {
+    CONSTANTS = require('~/assets/js/constants').default;
+  } catch (e) {
+    console.warn('add constant file in module settings');
+  }
   const ITEMS = CONSTANTS.ADMIN_DASHBOARD
 
   export default {
