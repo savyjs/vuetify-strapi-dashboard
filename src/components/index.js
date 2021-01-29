@@ -1,4 +1,3 @@
-
 import ListPage from './common-ssr/ListPage'
 import TableList from './common-ssr/TableList'
 import CommonTypesExpand from './common-ssr/CommonTypesExpand'
@@ -19,10 +18,10 @@ import VCardHeader from './ui/VCardHeader'
 import Icons8 from './ui/Icons8'
 import loader from './ui/loader'
 
-// import AccessAlert from './role/AccessAlert'
-// import Notifications from './Notifications'
-// import Alert from './Alert'
-// import Snackbar from './Snackbar'
+import AccessAlert from './role/AccessAlert'
+import Notifications from './Notifications'
+import Alert from './Alert'
+import Snackbar from './Snackbar'
 
 import SideMenu from './SideMenu'
 import Settings from './Settings'
@@ -63,7 +62,7 @@ import BoolBtn from './elements/BoolBtn'
 import TimePicker from './elements/TimePicker'
 
 export default {
-  // AccessAlert,
+  AccessAlert,
   ListPage,
   CommonTypesExpand,
   CommonTypesField,
@@ -75,13 +74,13 @@ export default {
   Report,
   Icons8,
   loader,
-  // Snackbar,
+  Snackbar,
   SideMenu,
   Settings,
-  // Notifications,
+  Notifications,
   DashboardMenu,
   Breadcrumb,
-  // Alert,
+  Alert,
   TextEditor,
   Sum,
   StrapiMediaVideoList,
