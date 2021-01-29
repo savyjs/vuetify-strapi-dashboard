@@ -1,7 +1,7 @@
 {
   "name": "vuetify-strapi-dashboard",
   "description": "vuetify dashboard panel matched to strapi last version",
-  "version": "1.1.35",
+  "version": "1.1.36",
   "author": "Ehsan Afshari @savyir <savvyversa@gmail.com>",
   "license": "MIT",
   "keywords": [
@@ -65,9 +65,11 @@
     "vuetify-loader": "^1.2.2",
     "webpack-dev-server": "^3.7.2"
   },
-  "peerDependencies": {
-    "vue": "^2.6.4",
+  "dependencies": {
     "vue-json-excel": "^0.3.0"
+  },
+  "peerDependencies": {
+    "vue": "^2.6.4"
   },
   "publishConfig": {
     "access": "public"
