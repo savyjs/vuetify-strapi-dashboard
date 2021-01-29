@@ -1,7 +1,7 @@
 {
   "name": "vuetify-strapi-dashboard",
   "description": "vuetify dashboard panel matched to strapi last version",
-  "version": "1.1.36",
+  "version": "1.1.37",
   "author": "Ehsan Afshari @savyir <savvyversa@gmail.com>",
   "license": "MIT",
   "keywords": [
