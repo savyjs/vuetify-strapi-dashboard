@@ -4,13 +4,6 @@
   </div>
 </template>
 <script>
-  let MENU;
-  try {
-    MENU = require('~/assets/js/menu').default;
-  } catch (e) {
-    console.warn('add menu file in module settings');
-  }
-
   export default {
     props: ['value'],
     data() {
@@ -34,6 +27,7 @@
     },
     methods: {
       handle() {
+        let MENU = _.get(this.$vsd, 'MENU', '');
         this.menu = _.get(MENU, 'ADMIN_DRAWER', []);
         this.search(this.path);
       },

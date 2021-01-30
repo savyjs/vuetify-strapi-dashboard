@@ -6,6 +6,13 @@ import CommonSelectStore from 'vuetify-strapi-dashboard/src/store/commonSelect'
 import * as components from "vuetify-strapi-dashboard/src/components/index";
 // const moduleOptions = <%= JSON.stringify(options) %>;
 // const mixins = require(`${moduleOptions.scheme}`).default || [];
+let CONSTANTS, MENU;
+try {
+  CONSTANTS = require('~/assets/js/constants').default;
+  MENU = require('~/assets/js/menu').default;
+} catch (e) {
+  console.warn('please register valid menu and constants options')
+}
 
 const ComponentLibrary = {
   install(Vue, options = {}) {
@@ -33,6 +40,17 @@ export default function (ctx, inject) {
   // Options
   // Inject it to nuxt context
   // components
+
+  let vsd = {
+    helper: Helper,
+    menu: MENU,
+    constants: CONSTANTS,
+  }
+
+  inject('vsd', vsd)
+  inject('$vsd', vsd)
+  ctx.vsd = vsd;
+  ctx.$vsd = vsd;
 
   inject('Helper', Helper)
   inject('$Helper', Helper)

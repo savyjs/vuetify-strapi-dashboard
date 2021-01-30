@@ -8,12 +8,6 @@
 <script>
   import Vue from 'vue';
 
-  let MENU;
-  try {
-    MENU = require('~/assets/js/menu').default;
-  } catch (e) {
-    console.warn('add menu file in module settings');
-  }
   _.mixin(require("lodash-deep"));
   const resource = 'users-permissions/roles';
   const usersPermissionsResource = 'users-permissions/permissions';
@@ -45,6 +39,7 @@
       canSeeThisPage() {
 
         let path = this.$route.path;
+        let MENU = _.get(this.$vsd, 'menu', '');
         let menuItems = MENU.ADMIN_DRAWER;
         let menuItem = _.get(menuItems, _.deepFindKey(menuItems, {link: path}), undefined);
         let access = this.isAllowedMenu(menuItem);

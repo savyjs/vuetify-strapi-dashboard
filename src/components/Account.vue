@@ -50,13 +50,7 @@
   </span>
 </template>
 <script>
-  let CONSTANTS;
-  try {
-    CONSTANTS = require('~/assets/js/constants').default;
-  } catch (e) {
-    console.warn('add constant file in module settings');
-  }
-  const DEFAULT_PHOTO = CONSTANTS.DEFAULT_PHOTO
+
 
   export default {
     components: {},
@@ -64,13 +58,15 @@
       return {
         menu: false,
         sms: "",
-        count: 1,
-        defaultPhoto: DEFAULT_PHOTO
+        count: 1
       }
     },
     computed: {
       user() {
         return this.$auth.user;
+      },
+      defaultPhoto() {
+        return _.get(this.$vsd, 'constants.DEFAULT_PHOTO', '');
       }
     },
     methods: {
