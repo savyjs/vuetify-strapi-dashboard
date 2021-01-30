@@ -18,7 +18,7 @@ import VCardHeader from './ui/VCardHeader'
 import Icons8 from './ui/Icons8'
 import loader from './ui/loader'
 
-import AccessAlert from './role/AccessAlert'
+import AccessAlert from './AccessAlert'
 import Notifications from './Notifications'
 import Alert from './Alert'
 import Snackbar from './Snackbar'
