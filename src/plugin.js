@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import JsonExcel from "vue-json-excel";
-import Helper from '~/modules/core/src/assets/helper'
-import CommonStore from '~/modules/core/src/store/common'
-import CommonSelectStore from '~/modules/core/src/store/commonSelect'
-import * as components from "~/modules/core/src/components/index";
+import Helper from 'vuetify-strapi-dashboard/src/assets/helper'
+import CommonStore from 'vuetify-strapi-dashboard/src/store/common'
+import CommonSelectStore from 'vuetify-strapi-dashboard/src/store/commonSelect'
+import * as components from "vuetify-strapi-dashboard/src/components/index";
 // const moduleOptions = <%= JSON.stringify(options) %>;
 // const mixins = require(`${moduleOptions.scheme}`).default || [];
 
