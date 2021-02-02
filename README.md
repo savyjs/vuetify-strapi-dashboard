@@ -1,9 +1,13 @@
 
-# NuxtJs Module (not ready yet!)
-please watch github repo until LTS version or contact me [savvyversa (@) gmail.com]
+#VSD (Vuetify Strapi Dashboard)
+
+[![nuxt vuetify strapi dashboard](http://vsd.savy.ir/banner.png)](https://vsd.savy.ir)
+
+- [Documentation](http://vsd.savy.ir)
+- [Demo](http://vsd-demo.savy.ir)
 
 #### SSR-CRUD matched with Strapi Framework
-dashboard module for nuxtjs using Vuetify and strapi or your custom API server.
+dashboard module for Nuxtjs using Vuetify and Strapi.
 
 #### advanced CRUD System with one JSON file
 - Table List 
@@ -31,15 +35,3 @@ there is a lot of elements that make it easy to create flexible and advanced CRU
 - advanced report maker
 - advanced search system
 - ...
-
-
-### if you really want to use it before LTS version copy git files into your nuxt project:
-copy git files to:  
-
-``` ~/modules/core ```
-
-and add this line:
-
-``` ~/modules/core/src/index ```
-
-to nuxt.config.js file, modules section.

@@ -36,10 +36,10 @@
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.dev.config.js --hot"
   },
   "devDependencies": {
-    "fs": "^0.0.1-security",
-    "path": "^0.12.7"
+    "fs": "^0.0.1-security"
   },
   "dependencies": {
+    "path": "^0.12.7",
     "@mdi/font": "^5.9.55",
     "@mdi/js": "^5.9.55",
     "@fortawesome/fontawesome-free": "^5.15.2",
