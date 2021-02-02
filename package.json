@@ -1,0 +1,70 @@
+{
+  "name": "vuetify-strapi-dashboard",
+  "description": "vuetify dashboard panel matched to strapi last version",
+  "version": "1.1.49",
+  "author": "Ehsan Afshari @savyir <savvyversa@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "vuetify",
+    "ui framework",
+    "component framework",
+    "ui library",
+    "component library",
+    "material components",
+    "vue framework",
+    "dashboard panel",
+    "dashboard",
+    "strapi",
+    "strapi admin ui",
+    "strapi crm"
+  ],
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "sideEffects": [
+    "*.sass",
+    "*.scss",
+    "*.css"
+  ],
+  "files": [
+    "src/",
+    "dist/",
+    "lib/",
+    "es5/",
+    "types/"
+  ],
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.dev.config.js --hot"
+  },
+  "devDependencies": {
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
+  },
+  "dependencies": {
+    "@mdi/font": "^5.9.55",
+    "@mdi/js": "^5.9.55",
+    "@fortawesome/fontawesome-free": "^5.15.2",
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
+    "@fortawesome/vue-fontawesome": "^2.0.2",
+    "material-design-icons-iconfont": "^5.0.1",
+    "material-icons": "^0.3.1",
+    "font-awesome": "4.7.0",
+    "lodash": "^4.17.20",
+    "lodash-deep": "^1.6.0",
+    "markdown": "^0.5.0",
+    "moment-jalaali": "^0.9.2",
+    "vue-json-excel": "^0.3.0",
+    "vue-wysiwyg": "^1.7.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bugs": {
+    "url": "https://github.com/savyir/vuetfiy-strapi-dashboard/issues"
+  },
+  "homepage": "https://github.com/savyir/vuetfiy-strapi-dashboard#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/savyir/vuetfiy-strapi-dashboard.git"
+  }
+}

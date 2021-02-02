@@ -1,0 +1,370 @@
+<template>
+  <i>
+    <span :class="`v-icon notranslate theme--light icons8 icons8-${name}`" :style="`width:${size}px`"/>
+  </i>
+</template>
+<script>
+  /*
+      don't forget to import
+      don't forget to import
+      import '~/static/assets/icons8/icons.scss';
+   */
+  // https://icons8.github.io/flat-color-icons/
+  export default {
+    props: {
+      value: {
+        type: String,
+        default: ""
+      },
+      size: {
+        type: [Number, String],
+        default: 32
+      },
+      color: {
+        type: [Number, String],
+        default: 'primary'
+      },
+    },
+    data() {
+      return {}
+    },
+    computed: {
+      name() {
+        return this.$slots.default[0].text.trim()
+      }
+    }
+  }
+  /*
+
+  str-replace
+about
+accept-database
+address-book
+add-column
+add-database
+add-image
+add-row
+advance
+advertising
+alarm-clock
+alphabetical-sorting-az
+alphabetical-sorting-za
+android-os
+answers
+approval
+approve
+area-chart
+assistant
+audio-file
+automatic
+automotive
+bad-decision
+bar-chart
+bbc
+bearish
+binoculars
+biohazard
+biomass
+biotech
+bookmark
+briefcase
+broken-link
+bullish
+business
+businessman
+businesswoman
+business-contact
+butting-in
+cable-release
+calculator
+calendar
+callback
+call-transfer
+camcorder
+camcorder-pro
+camera
+camera-addon
+camera-identification
+cancel
+candle-sticks
+capacitor
+cd-logo
+cell-phone
+charge-battery
+checkmark
+circuit
+clapperboard
+clear-filters
+clock
+close-up-mode
+cloth
+collaboration
+collapse
+collect
+combo-chart
+command-line
+comments
+compact-camera
+conference-call
+contacts
+copyleft
+copyright
+crystal-oscillator
+currency-exchange
+cursor
+customer-support
+dam
+database
+data-backup
+data-configuration
+data-encryption
+data-protection
+data-recovery
+data-sheet
+debian
+debt
+decision
+delete-column
+delete-database
+delete-row
+department
+deployment
+diploma-1
+diploma-2
+disapprove
+disclaimer
+dislike
+display
+document
+donate
+doughnut-chart
+down
+download
+down-left
+down-right
+do-not-inhale
+do-not-insert
+do-not-mix
+dribbble
+dvd-logo
+edit-image
+electrical-sensor
+electrical-threshold
+electricity
+electronics
+electro-devices
+empty-battery
+empty-filter
+empty-trash
+end-call
+engineering
+entering-heaven-alive
+expand
+expired
+export
+external
+factory
+factory-breakdown
+faq
+feedback
+feed-in
+file
+filing-cabinet
+filled-filter
+film
+film-reel
+fine-print
+flash-auto
+flash-off
+flash-on
+flow-chart
+folder
+frame
+full-battery
+full-trash
+gallery
+genealogy
+generic-sorting-asc
+generic-sorting-desc
+globe
+good-decision
+google
+graduation-cap
+grid
+headset
+heat-map
+high-battery
+high-priority
+home
+icons8-cup
+idea
+image-file
+import
+info
+inspection
+integrated-webcam
+internal
+invite
+in-transit
+ipad
+iphone
+key
+kindle
+landscape
+leave
+left
+left-down
+left-down2
+left-up
+left-up2
+library
+light-at-the-end-of-tunnel
+like
+like-placeholder
+line-chart
+link
+linux
+list
+lock
+lock-landscape
+lock-portrait
+low-battery
+low-priority
+make-decision
+manager
+medium-priority
+menu
+middle-battery
+mind-map
+minus
+missed-call
+mms
+money-transfer
+multiple-cameras
+multiple-devices
+multiple-inputs
+multiple-smartphones
+music
+negative-dynamic
+neutral-decision
+neutral-trading
+news
+next
+nfc-sign
+night-landscape
+night-portrait
+nook
+no-idea
+no-video
+numerical-sorting-12
+numerical-sorting-21
+ok
+old-time-camera
+online-support
+opened-folder
+organization
+org-unit
+overtime
+package
+paid
+panorama
+parallel-tasks
+phone
+phone-android
+photo-reel
+picture
+pie-chart
+planner
+plus
+podium-without-speaker
+podium-with-audience
+podium-with-speaker
+portrait-mode
+positive-dynamic
+previous
+print
+privacy
+process
+puzzle
+questions
+radar-plot
+rating
+ratings
+reading
+reading-ebook
+reddit
+redo
+refresh
+registered-trademark
+remove-image
+reuse
+right
+right-down
+right-down2
+right-up
+right-up2
+rotate-camera
+rotate-to-landscape
+rotate-to-portrait
+ruler
+rules
+safe
+sales-performance
+scatter-plot
+search
+selfie
+self-service-kiosk
+serial-tasks
+services
+service-mark
+settings
+share
+shipped
+shop
+signature
+sim-card
+sim-card-chip
+slr-back-side
+smartphone-tablet
+sms
+sound-recording-copyright
+speaker
+sports-mode
+stack-of-photos
+start
+statistics
+steam
+stumbleupon
+support
+survey
+switch-camera
+synchronize
+tablet-android
+template
+timeline
+todo-list
+touchscreen-smartphone
+trademark
+tree-structure
+two-smartphones
+undo
+unlock
+up
+upload
+up-left
+up-right
+usb
+video-call
+video-file
+video-projector
+view-details
+vip
+vlc
+voicemail
+voice-presentation
+webcam
+wi-fi-logo
+wikipedia
+workflow
+   */
+</script>
