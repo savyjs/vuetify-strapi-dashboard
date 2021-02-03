@@ -31,8 +31,12 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
         src: path.resolve(__dirname, pName),
         options
       })
+      // console.log({pName})
     }
 
+    this.addModule({
+      src: "nuxt-sweetalert2"
+    });
     this.addTemplate({
       fileName: 'components/index.js',
       src: path.resolve(__dirname, 'components/index.js'),
@@ -48,6 +52,12 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
     this.addTemplate({
       fileName: 'store/common.js',
       src: path.resolve(__dirname, 'store/common.js'),
+      options
+    })
+
+    this.addTemplate({
+      fileName: 'store/navigation.js',
+      src: path.resolve(__dirname, 'store/navigation.js'),
       options
     })
 

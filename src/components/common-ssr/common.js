@@ -23,12 +23,12 @@ export default {
     }
   },
   created() {
+    if (_.has(this, 'Fields')) {
+      this.fields = {...this.fields, ...this.Fields};
+    }else if (_.has(this, 'fields')) {
+      this.Fields = {...this.fields, ...this.Fields};
+    }
     this._ = _;
-  },
-  computed: {
-    fields() {
-      return this.Fields
-    },
   },
   methods: {
     async getAllDataBeforeMakeExcel() {

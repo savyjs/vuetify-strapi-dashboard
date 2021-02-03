@@ -14,6 +14,7 @@
 </template>
 <script>
   import Vue from 'vue'
+  import _ from 'lodash'
 
   export default {
     name: 'Snackbar',
@@ -51,8 +52,9 @@
         }
       }
     },
-    created () {
-      console.log('created snackbar')
+    created() {
+      this._ = _;
+      // console.log('created snackbar')
       const notifError = (msg) => {
         console.log({error: msg})
         let error = msg;
@@ -91,7 +93,6 @@
 
       Vue.set(Vue.prototype, 'notifInfo', notifInfo);
       Vue.set(Vue.prototype, '$notifInfo', notifInfo);
-
 
     }
   }

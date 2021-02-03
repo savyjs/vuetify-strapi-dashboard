@@ -1,3 +1,16 @@
+
+import AccessAlert from './AccessAlert'
+import Notifications from './Notifications'
+import Alert from './Alert'
+import Snackbar from './Snackbar'
+
+import SideMenu from './SideMenu'
+import Settings from './Settings'
+import DashboardMenu from './DashboardMenu'
+import Breadcrumb from './Breadcrumb'
+
+import Account from './Account'
+
 import ListPage from './common-ssr/ListPage'
 import TableList from './common-ssr/TableList'
 import CommonTypesExpand from './common-ssr/CommonTypesExpand'
@@ -18,17 +31,6 @@ import VCardHeader from './ui/VCardHeader'
 import Icons8 from './ui/Icons8'
 import loader from './ui/loader'
 
-import AccessAlert from './AccessAlert'
-import Notifications from './Notifications'
-import Alert from './Alert'
-import Snackbar from './Snackbar'
-
-import SideMenu from './SideMenu'
-import Settings from './Settings'
-import DashboardMenu from './DashboardMenu'
-import Breadcrumb from './Breadcrumb'
-
-import Account from './Account'
 
 
 import videoUploader from './elements/old/videoUploader'
@@ -62,6 +64,13 @@ import BoolBtn from './elements/BoolBtn'
 import TimePicker from './elements/TimePicker'
 
 export default {
+  Snackbar,
+  SideMenu,
+  Settings,
+  Notifications,
+  DashboardMenu,
+  Breadcrumb,
+  Alert,
   AccessAlert,
   ListPage,
   CommonTypesExpand,
@@ -74,13 +83,6 @@ export default {
   Report,
   Icons8,
   loader,
-  Snackbar,
-  SideMenu,
-  Settings,
-  Notifications,
-  DashboardMenu,
-  Breadcrumb,
-  Alert,
   TextEditor,
   Sum,
   StrapiMediaVideoList,

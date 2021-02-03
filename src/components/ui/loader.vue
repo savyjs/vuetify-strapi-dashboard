@@ -37,7 +37,7 @@
         return this.$store.state.navigation.loading;
       },
       isEnabled() {
-        return this.C.LOADER
+        return _.get(this,'C.LOADER',true)
       },
       page() {
         return this.$route.path;
