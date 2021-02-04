@@ -1,4 +1,6 @@
+import _ from 'lodash'
 import Vue from 'vue'
+import moduleOptions from './options'
 import JsonExcel from "vue-json-excel";
 import Helper from './assets/helper'
 import CommonStore from './store/common'
@@ -14,15 +16,7 @@ import 'material-icons/iconfont/material-icons.css';
 
 // const moduleOptions = <%= JSON.stringify(options) %>;
 // const mixins = require(`${moduleOptions.scheme}`).default || [];
-
-let CONSTANTS, MENU;
-try {
-  CONSTANTS = require('~/assets/js/constants').default;
-  MENU = require('~/assets/js/menu').default;
-} catch (e) {
-  console.warn('please register valid menu and constants options')
-}
-
+const t = (val) => _.isString(val) ? val.replace(/_/g, ' ') : val
 const ComponentLibrary = {
   install(Vue, options = {}) {
 
@@ -30,6 +24,8 @@ const ComponentLibrary = {
     try {
       Vue.component("downloadExcel", JsonExcel);
       Vue.set(Vue.prototype, '$Helper', Helper);
+      Vue.set(Vue.prototype, '$t', t);
+      Vue.set(Vue.prototype, 'vsd', moduleOptions);
       for (const componentName in components.default) {
         let component = components.default[componentName]
         // console.log({componentName})
@@ -51,6 +47,12 @@ export default async (ctx, inject) => {
   // Options
   // Inject it to nuxt context
   // components
+
+  inject('$t', moduleOptions)
+  ctx.$t = moduleOptions
+
+  inject('vsd', moduleOptions)
+  ctx.vsd = moduleOptions
 
   inject('$Helper', Helper)
   ctx.$Helper = Helper

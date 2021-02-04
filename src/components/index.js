@@ -1,4 +1,3 @@
-
 import AccessAlert from './AccessAlert'
 import Notifications from './Notifications'
 import Alert from './Alert'
@@ -32,7 +31,6 @@ import Icons8 from './ui/Icons8'
 import loader from './ui/loader'
 
 
-
 import videoUploader from './elements/old/videoUploader'
 import audioUploader from './elements/old/audioUploader'
 import Uploader from './elements/old/Uploader'
@@ -62,6 +60,7 @@ import Counter from './elements/Counter'
 import Calc from './elements/Calc'
 import BoolBtn from './elements/BoolBtn'
 import TimePicker from './elements/TimePicker'
+import VsdLogin from './auth/VsdLogin'
 
 export default {
   Snackbar,
@@ -117,5 +116,6 @@ export default {
   photoUploader,
   ImageUploader,
   PrintPage,
-  VCardHeader
+  VCardHeader,
+  VsdLogin
 }

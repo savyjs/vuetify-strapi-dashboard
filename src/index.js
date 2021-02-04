@@ -15,8 +15,6 @@ const getFiles = path => {
 
 export default async function VuetifyStrapiDashboardModule(moduleOptions) {
 
-  // Register `plugin.js` template
-  // console.log({moduleOptions})
   try {
     let listOfFiles = getFiles(path.resolve(__dirname, './components'));
 
@@ -24,14 +22,12 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
       ...moduleOptions
     }
 
-
     this.addPlugin({
       fileName: 'options.js',
       src: path.resolve(__dirname, 'options.js'),
       options
     })
 
-    // console.log(1, {options})
     for (const componentName of listOfFiles) {
       let pName = 'components/' + componentName;
       this.addTemplate({
@@ -88,13 +84,13 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
     })
 
     this.addLayout({
-      name: "admin",
-      src: path.resolve(__dirname, 'layout/admin.vue'),
+      name: "vsdDashboard",
+      src: path.resolve(__dirname, 'layout/vsdDashboard.vue'),
     })
 
     this.addLayout({
-      name: "adminAuth",
-      src: path.resolve(__dirname, 'layout/adminAuth.vue'),
+      name: "vsdAuth",
+      src: path.resolve(__dirname, 'layout/vsdAuth.vue'),
     })
 
   } catch (e) {
