@@ -1,1 +1,1 @@
-// export default <%= serializeFunction(options) %>
+ export default <%= serialize(options) %>

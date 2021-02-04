@@ -24,6 +24,14 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
       ...moduleOptions
     }
 
+
+    this.addPlugin({
+      fileName: 'options.js',
+      src: path.resolve(__dirname, 'options.js'),
+      options
+    })
+
+    // console.log(1, {options})
     for (const componentName of listOfFiles) {
       let pName = 'components/' + componentName;
       this.addTemplate({
@@ -37,6 +45,12 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
     this.addModule({
       src: "nuxt-sweetalert2"
     });
+
+    this.addModule({
+      src: "@nuxtjs/auth"
+    });
+
+
     this.addTemplate({
       fileName: 'components/index.js',
       src: path.resolve(__dirname, 'components/index.js'),
@@ -68,8 +82,19 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
     })
 
     this.addPlugin({
+      fileName: 'plugin.js',
       src: path.resolve(__dirname, 'plugin.js'),
       options
+    })
+
+    this.addLayout({
+      name: "admin",
+      src: path.resolve(__dirname, 'layout/admin.vue'),
+    })
+
+    this.addLayout({
+      name: "adminAuth",
+      src: path.resolve(__dirname, 'layout/adminAuth.vue'),
     })
 
   } catch (e) {

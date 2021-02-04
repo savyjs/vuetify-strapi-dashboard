@@ -32,7 +32,7 @@ const ComponentLibrary = {
       Vue.set(Vue.prototype, '$Helper', Helper);
       for (const componentName in components.default) {
         let component = components.default[componentName]
-        console.log({componentName})
+        // console.log({componentName})
         try {
           Vue.component(componentName, component);
         } catch (e) {
@@ -51,17 +51,6 @@ export default async (ctx, inject) => {
   // Options
   // Inject it to nuxt context
   // components
-
-  let vsd = {
-    helper: Helper,
-    menu: MENU,
-    constants: CONSTANTS,
-  }
-
-  inject('vsd', vsd)
-  inject('$vsd', vsd)
-  ctx.vsd = vsd;
-  ctx.$vsd = vsd;
 
   inject('$Helper', Helper)
   ctx.$Helper = Helper

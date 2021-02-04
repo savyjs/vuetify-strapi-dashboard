@@ -1,7 +1,7 @@
 {
   "name": "vuetify-strapi-dashboard",
   "description": "vuetify dashboard panel matched to strapi last version",
-  "version": "1.1.52",
+  "version": "1.1.53",
   "author": "Ehsan Afshari @savyir <savvyversa@gmail.com>",
   "license": "MIT",
   "keywords": [
@@ -45,6 +45,8 @@
     "@fortawesome/vue-fontawesome": "^2.0.2",
     "@mdi/font": "^5.9.55",
     "@mdi/js": "^5.9.55",
+    "@nuxtjs/auth": "^4.9.1",
+    "@nuxtjs/axios": "^5.13.0",
     "font-awesome": "4.7.0",
     "lodash": "^4.17.20",
     "lodash-deep": "^1.6.0",
@@ -63,7 +65,7 @@
   "bugs": {
     "url": "https://github.com/savyir/vuetfiy-strapi-dashboard/issues"
   },
-  "homepage": "https://github.com/savyir/vuetfiy-strapi-dashboard#readme",
+  "homepage": "http://vsd.savyir.ir",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/savyir/vuetfiy-strapi-dashboard.git"

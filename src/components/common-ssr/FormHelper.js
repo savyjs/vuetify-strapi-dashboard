@@ -5,10 +5,13 @@
  * @type {{head: {}, data: {}, getCommonMounted(), getMethods: {}, getCommonComputed: {}}}
  */
 import common from './common.js'
+import options from './../../options'
 
 let customListPageHelper = require(`./strapi`).default || {};
 try {
-  customListPageHelper = {};
+  const ApiHelper = options.apiHelper;
+  console.log(1, {ApiHelper})
+  customListPageHelper = ApiHelper;
 } catch (e) {
   console.error({e})
 }
