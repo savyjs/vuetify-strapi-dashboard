@@ -50,6 +50,8 @@
   </span>
 </template>
 <script>
+  import _ from 'lodash'
+
   let CONSTANTS;
   try {
     CONSTANTS = require('~/assets/js/constants').default;
@@ -67,6 +69,9 @@
         count: 1,
         defaultPhoto: DEFAULT_PHOTO
       }
+    },
+    created() {
+      this._ = _;
     },
     computed: {
       user() {

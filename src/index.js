@@ -84,8 +84,8 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
     })
 
     this.addLayout({
-      name: "vsdDashboard",
-      src: path.resolve(__dirname, 'layout/vsdDashboard.vue'),
+      name: "vsd",
+      src: path.resolve(__dirname, 'layout/vsd.vue'),
     })
 
     this.addLayout({

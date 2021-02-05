@@ -9,7 +9,7 @@
       <Account/>
     </v-app-bar>
 
-    <v-navigation-drawer class="drawer" color="white" v-model="drawer" fixed :temporary="isMobile" right app>
+    <v-navigation-drawer class="drawer" color="white" v-model="drawer" fixed :temporary="isMobile"  app>
       <v-list style="display: flex;flex-wrap: wrap;" dense>
         <v-list-item>
           <v-row>
@@ -82,6 +82,8 @@
 </template>
 
 <script>
+  import _ from 'lodash'
+
   import CONSTANTS from '~/assets/js/constants'
 
   const SYSTEM_LOGO = process.env.SYSTEM_LOGO;
@@ -89,7 +91,6 @@
   const SINGLE_TITLE = process.env.SINGLE_TITLE;
   const FOOTER_TITLE = process.env.FOOTER_TITLE;
   const envName = process.env.envName;
-
   const ITEMS = CONSTANTS.ADMIN_DRAWER
   const DEFAULT_PHOTO = CONSTANTS.DEFAULT_PHOTO
 
@@ -99,6 +100,9 @@
         titleTemplate: '%s - ' + process.env.title,
         title: 'داشبورد',
       }
+    },
+    created() {
+      this._ = _;
     },
     data() {
       return {

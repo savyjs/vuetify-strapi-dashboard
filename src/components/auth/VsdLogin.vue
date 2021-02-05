@@ -55,7 +55,7 @@
                   </v-flex>
                 </v-layout>
               </v-card-text>
-              <v-card-actions>
+              <v-card-actions class="pb-5">
                 <v-row justify="center">
                   <v-col xs="10" sm="6" lg="4">
                     <v-btn :disabled="!validityLogin"
@@ -162,7 +162,7 @@
               this.$swal({type: 'error', title: 'login error', text: msg})
               return this.$notifError('login error');
             }
-            this.$router.push('/admin')
+            /* this.$router.push('/admin') */
           }
         ).catch(err => {
 
