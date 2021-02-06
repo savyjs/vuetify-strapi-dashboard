@@ -43,6 +43,13 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
     });
 
     this.addModule({
+      src: "nuxt-i18n",
+      options: {
+        vueI18nLoader: true
+      }
+    });
+
+    this.addModule({
       src: "@nuxtjs/auth"
     });
 

@@ -24,7 +24,6 @@ const ComponentLibrary = {
     try {
       Vue.component("downloadExcel", JsonExcel);
       Vue.set(Vue.prototype, '$Helper', Helper);
-      Vue.set(Vue.prototype, '$t', t);
       Vue.set(Vue.prototype, 'vsd', moduleOptions);
       for (const componentName in components.default) {
         let component = components.default[componentName]
@@ -48,8 +47,6 @@ export default async (ctx, inject) => {
   // Inject it to nuxt context
   // components
 
-  inject('$t', moduleOptions)
-  ctx.$t = moduleOptions
 
   inject('vsd', moduleOptions)
   ctx.vsd = moduleOptions

@@ -38,7 +38,9 @@
       </template>
       <template v-slot:footer.page-text="{text}">
         <v-row class="d-flex flex-row align-center justify-center">
-          <span>برو به صفحه: </span>
+          <span>
+            {{$t('goToPage')}}
+            : </span>
           <v-select
             style="max-width:100px"
             :items="length > 1 ? $Helper.range(1,totalPages) : [1]"
@@ -241,7 +243,16 @@
     </v-dialog>
   </div>
 </template>
-
+<i18n>
+  {
+    en:{
+      goToPage:"go to page"
+    },
+    fa:{
+      goToPage: 'برو به صفحه'
+    }
+  }
+</i18n>
 <script>
   import PopUp from "./PopUp";
   import _ from "lodash";

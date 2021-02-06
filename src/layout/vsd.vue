@@ -2,7 +2,7 @@
   <v-app dark>
     <v-app-bar dark color="blue darken-3" elevation="1" app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title style="cursor: pointer" @click="$router.push('/admin')">داشبورد مدیریت</v-toolbar-title>
+      <v-toolbar-title style="cursor: pointer" @click="$router.push('/admin')">Dashboard</v-toolbar-title>
       <v-spacer></v-spacer>
       <Notifications/>
       <Settings/>
@@ -26,7 +26,7 @@
               <v-col cols="7" class="pt-0 mt-0">
                 <v-list-item-content>
                   <v-list-item-title class="pt-5">
-                    <small> سیستم مدیریت </small>
+                    <small> Control Panel </small>
                     <p><b>{{SINGLE_TITLE}}</b></p>
                   </v-list-item-title>
                 </v-list-item-content>
@@ -48,8 +48,8 @@
               <v-col cols="9" class="pt-0 mt-0">
                 <v-list-item-content>
                   <v-list-item-title>
-                    <p>{{_.get(user, 'role.name', 'مدیر سیستم')}}</p>
-                    <small>{{_.get(user, 'username', 'نام کاربر')}} ، خوش آمدید</small>
+                    <p>{{_.get(user, 'role.name', 'user')}}</p>
+                    <small>{{_.get(user, 'username', 'name')}} ، welcome</small>
                   </v-list-item-title>
                 </v-list-item-content>
               </v-col>
@@ -71,8 +71,8 @@
     <v-footer app dense color="blue darken-4" dark class="py-0" inset>
       <v-row class="py-0">
         <v-col cols="12" class="py-0 text-right px-1 pt-1">
-          <small class="font-10 pull-right pt-2 ">سامانه ی یکپارچه ی مدیریت {{FOOTER_TITLE}}</small>
-          <v-btn x-small outlined class="pull-left mb-1 mx-1 pa-1 mt-1 white--text font-10">ورژن ۰.۵</v-btn>
+          <small class="font-10 pull-right pt-2 ">VSD {{FOOTER_TITLE}}</small>
+          <v-btn x-small outlined class="pull-left mb-1 mx-1 pa-1 mt-1 white--text font-10">version ۰.۵</v-btn>
         </v-col>
       </v-row>
       <loader/>
@@ -98,7 +98,7 @@
     head() {
       return {
         titleTemplate: '%s - ' + process.env.title,
-        title: 'داشبورد',
+        title: 'Dashboard',
       }
     },
     created() {
@@ -123,7 +123,7 @@
         return this.$vuetify.breakpoint.smAndDown;
       },
       today() {
-        return _.get(this.$store.state, 'date.today', '8 آبان 98');
+        return _.get(this.$store.state, 'date.today', new Date().toUTCString());
       },
       user() {
         return this.$auth.user
