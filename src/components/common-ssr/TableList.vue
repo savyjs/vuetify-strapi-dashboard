@@ -245,11 +245,11 @@
 </template>
 <i18n>
   {
-    en:{
-      goToPage:"go to page"
+    "en":{
+      "goToPage":"go to page"
     },
-    fa:{
-      goToPage: 'برو به صفحه'
+    "fa":{
+      "goToPage": "برو به صفحه"
     }
   }
 </i18n>
