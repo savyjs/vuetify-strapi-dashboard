@@ -10,7 +10,7 @@
         <v-card-title>
           <span>
             <v-icon>photo</v-icon>
-            مشاهده تصویر
+            {{$t('view')}}
             </span>
           <v-spacer/>
           <v-btn fab color="error" @click="modalImg=false" small><v-icon x-small>close</v-icon></v-btn>
@@ -24,7 +24,7 @@
                 :style="`transform: rotate(${rotation}deg);`"
                 eager
                 class="originCenter"
-                :alt="_.get(field,'text','تصویر')"
+                :alt="_.get(field,'text',$t('image'))"
                 :sizes="`${_.get(field,'sizes','150')}`"
                 :src="data"
                 width="100%"
@@ -39,14 +39,14 @@
       @click="openModal"
       style="cursor: pointer !important;"
       eager
-      :alt="_.get(field,'text','تصویر')"
+      :alt="_.get(field,'text',$t('image'))"
       :sizes="_.get(field,'sizes','150')"
       :max-height="_.get(field,'height','100')"
       :max-width="_.get(field,'width','100')"
       :src="data"
       contain
     />
-    <span v-else>بدون تصویر</span>
+    <span v-else>{{$t("no_image")}}</span>
   </span>
   <span v-else-if="_.includes(['bool'],type)">
     <v-icon dense color="success" v-if="data===true">check</v-icon>
@@ -59,7 +59,7 @@
     <BoolBtn :field="field" v-model="data" @update="update"/>
   </span>
   <span v-else-if="_.includes(['price'],type)">
-    {{$Helper.numberFormat(data)}} ریال
+    {{$Helper.numberFormat(data)}} {{$t("$")}}
   </span>
   <span v-else-if="_.includes(['combobox'],type)">
     {{data}}
@@ -92,8 +92,8 @@
       :items-per-page="1000"
       :headers="_.get(field,'meta',[])"
       :items="data"
-      no-data-text="خالی"
-      no-results-text="بدون نتیجه"
+      :no-data-text="$('empty')"
+      :no-results-text="$t('no_result')"
     >
       <template v-for="subField in _.get(field,'meta',[])" #[getField(subField)]="{header,value,item}">
         <small>
@@ -117,6 +117,29 @@
     {{data}}
   </span>
 </template>
+
+<i18n>
+  {
+  "en":{
+  "view":"view",
+  "report":"report",
+  "image":"image",
+  "no_image":"no image",
+  "$":"$",
+  "empty":"empty",
+  "no_result":"no result"
+  },
+  "fa":{
+  "view":"مشاهده",
+  "report":"گزارش",
+  "image":"تصویر",
+  "no_image":"بدون تصویر",
+  "$":"ریال",
+  "empty":"خالی",
+  "no_result":"بدون نتیجه"
+  }
+  }
+</i18n>
 <script>
 
   import BoolBtn from "../elements/BoolBtn";
@@ -141,9 +164,6 @@
         if (this.id) return this.id;
         let idPath = _.get(this.main, 'idPath', 'id');
         let value = _.get(this.item, idPath, undefined);
-        if (value === undefined) {
-          //console.log('مقدار idPath را در فایل کانفیگ ست کنید.')
-        }
         return value;
       },
       data() {
@@ -168,7 +188,7 @@
           data = _.isArray(data) ? data.toString() : data;
         }
         data = data === undefined ? '' : data;
-        data = (_.get(this.field, 'isPrice', false) && _.get(this.field, 'type', 'number') != 'price') ? (this.$Helper.numberFormat(data) + 'ریال') : data;
+        data = (_.get(this.field, 'isPrice', false) && _.get(this.field, 'type', 'number') != 'price') ? (this.$Helper.numberFormat(data) + this.$t("$")) : data;
 
         return data;
       },

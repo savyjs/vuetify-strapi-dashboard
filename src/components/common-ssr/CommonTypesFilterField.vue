@@ -7,13 +7,13 @@
     <common-select-relation v-model="data" :outlined="outlined" :type="type" :field="field" :label="undefined"/>
   </div>
   <div v-else-if="_.includes(['enum'],type)">
-    <common-select-enum  v-model="data" :outlined="outlined" :type="type" :field="field" :label="undefined"/>
+    <common-select-enum v-model="data" :outlined="outlined" :type="type" :field="field" :label="undefined"/>
   </div>
 
   <div v-else-if="_.includes(['price'],type)">
     <v-text-field
       v-model="data"
-      :hint="$Helper.numberFormat(value) + ' ریال'"
+      :hint="$Helper.numberFormat(value) + $t('$')"
       :label="label"
       dense
       ref="data"
@@ -42,6 +42,17 @@
                   :label="hasLabel ? label : undefined"/>
   </div>
 </template>
+
+<i18n>
+  {
+  "en":{
+  "$t":"$"
+  },
+  "fa":{
+  "$t":"ریال"
+  }
+  }
+</i18n>
 <script>
   import TextEditor from "../elements/TextEditor";
   import SelectPhoto from "../elements/SelectPhoto";

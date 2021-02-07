@@ -124,6 +124,17 @@
                   :label="label"/>
   </div>
 </template>
+
+<i18n>
+  {
+  "en":{
+  "$t":"$"
+  },
+  "fa":{
+  "$t":"ریال"
+  }
+  }
+</i18n>
 <script>
   import TextEditor from "../elements/TextEditor";
   import SelectPhoto from "../elements/SelectPhoto";
@@ -172,7 +183,7 @@
         let isNumber = _.includes(['number'], _.get(this.field, 'type', undefined));
         let isPrice = (_.get(this.field, 'isPrice', false) || _.includes(['price'], _.get(this.field, 'type', undefined)));
         hint = isNumber ? `${this.$Helper.numberFormat(this.data) || 0}` : hint;
-        hint = isPrice ? ((this.$Helper.numberFormat(this.data) || 0) + 'ریال') : hint;
+        hint = isPrice ? ((this.$Helper.numberFormat(this.data) || 0) + this.$t("$")) : hint;
         hint = unit ? (((this.data) || '') + unit) : hint;
         return hint;
       },
