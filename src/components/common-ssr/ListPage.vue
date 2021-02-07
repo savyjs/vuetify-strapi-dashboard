@@ -11,17 +11,17 @@
           <v-btn v-if="_.get(value,'deleteAll',true)" elevation="5" small class="red--text mx-3" color="white"
                  @click="deleteItems">
             <v-icon>delete</v-icon>
-            <b>حذف</b>
+            <b>{{$t("delete")}}</b>
           </v-btn>
           <v-btn v-if="_.get(value,'backBtn',true)" elevation="5" small class="warning--text" color="white"
                  @click="$router.go(-1)">
-            <b>بازگشت</b>
+            <b>{{$t("back")}}</b>
             <v-icon class="mx-1" small>arrow_back_ios</v-icon>
           </v-btn>
           <download-excel :fetch="excelData" :name="title+'.xls'" :title="title">
             <v-btn :disabled="!_.has(list,0)" v-if="_.get(value,'excel',true)" elevation="5" small
                    class="white--text mx-1" color="success">
-              دانلود اکسل
+              {{$t("download_excel")}}
               <v-icon>move_to_inbox</v-icon>
             </v-btn>
           </download-excel>
@@ -36,7 +36,7 @@
               <span>
                 <small class="success--text darken-2">
                 <v-icon>info</v-icon>
-                تعداد کل:  {{$Helper.numberFormat(length)}}
+                {{$t("total")}}:  {{$Helper.numberFormat(length)}}
                 </small>
               </span>
             </v-flex>
@@ -48,7 +48,7 @@
           <v-expansion-panel-header>
             <span>
               <v-icon class="mx-1">filter_list</v-icon>
-            فیلتر و جست و جو
+            {{$t("filter")}}
             </span>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
@@ -69,7 +69,7 @@
           <v-expansion-panel-header>
             <span>
               <v-icon class="mx-1">filter_list</v-icon>
-            فیلتر گزارش ساز
+            {{$t("report_filters")}}
             </span>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
@@ -113,6 +113,26 @@
     </v-container>
   </section>
 </template>
+<i18n>
+  {
+  "en":{
+  "delete":"delete",
+  "back":"back",
+  "download_excel":"download excel",
+  "total": "total",
+  "filters": "search filters",
+  "report_filters": "report filters"
+  },
+  "fa":{
+  "delete":"حذف",
+  "back":"برگشت",
+  "download_excel":"دانلود اکسل",
+  "total": "تعداد کل",
+  "filters": "فیلتر جست و جو",
+  "report_filters": "فیلتر گزارش"
+  }
+  }
+</i18n>
 <script>
 
   import Filters from "./Filters";

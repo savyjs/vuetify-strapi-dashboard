@@ -28,7 +28,7 @@
           </template>
           <v-list dense>
             <v-list-item dense>
-              <v-list-item-title>فیلتر</v-list-item-title>
+              <v-list-item-title>{{$t('filters')}}</v-list-item-title>
               <v-list-item-action>
                 <v-checkbox dense></v-checkbox>
               </v-list-item-action>
@@ -71,7 +71,7 @@
           </v-row>
           <v-row v-if="_.findKey(fields,{value:'actions',expand:true})">
             <v-col>
-              <span>عملیات:</span>
+              <span>{{$t("operation")}}:</span>
 
               <template>
                 <v-tooltip bottom v-if="hasBtn('next')">
@@ -87,7 +87,7 @@
                       </Icons8>
                     </v-btn>
                   </template>
-                  <span>{{tooltipBtn('next','مرحله بعد')}}</span>
+                  <span>{{tooltipBtn('next',$t("next_step"))}}</span>
                 </v-tooltip>
                 <v-tooltip bottom v-if="hasBtn('show')">
                   <template v-slot:activator="{ on, attrs }">
@@ -101,7 +101,7 @@
                       </v-icon>
                     </v-btn>
                   </template>
-                  <span>{{tooltipBtn('show','نمایش کامل در صفحه جدید')}}</span>
+                  <span>{{tooltipBtn('show',$t("show"))}}</span>
                 </v-tooltip>
                 <v-tooltip bottom v-if="hasBtn('edit')">
                   <template v-slot:activator="{ on, attrs }">
@@ -115,7 +115,7 @@
                       </v-icon>
                     </v-btn>
                   </template>
-                  <span>{{tooltipBtn('edit','ویرایش')}}</span>
+                  <span>{{tooltipBtn('edit',$t("edit"))}}</span>
                 </v-tooltip>
                 <v-tooltip bottom v-if="hasBtn('delete')">
                   <template v-slot:activator="{ on, attrs }">
@@ -129,7 +129,7 @@
                       </v-icon>
                     </v-btn>
                   </template>
-                  <span>{{tooltipBtn('delete','حذف')}}</span>
+                  <span>{{tooltipBtn('delete',$t("delete"))}}</span>
                 </v-tooltip>
 
                 <v-tooltip bottom v-if="hasBtn('pop')">
@@ -144,7 +144,7 @@
                       </v-icon>
                     </v-btn>
                   </template>
-                  <span>{{tooltipBtn('pop','مشاهده جزئیات در پاپ آپ')}}</span>
+                  <span>{{tooltipBtn('pop',$t("pop_up"))}}</span>
                 </v-tooltip>
 
               </template>
@@ -167,7 +167,7 @@
                 </Icons8>
               </v-btn>
             </template>
-            <span>{{tooltipBtn('next','مرحله بعد')}}</span>
+            <span>{{tooltipBtn('next',$t("next_step"))}}</span>
           </v-tooltip>
           <v-tooltip bottom v-if="hasBtn('show')">
             <template v-slot:activator="{ on, attrs }">
@@ -182,7 +182,7 @@
                 </v-icon>
               </v-btn>
             </template>
-            <span>{{tooltipBtn('show','نمایش کامل در صفحه جدید')}}</span>
+            <span>{{tooltipBtn('show',$t("show"))}}</span>
           </v-tooltip>
           <v-tooltip bottom v-if="hasBtn('edit')">
             <template v-slot:activator="{ on, attrs }">
@@ -197,7 +197,7 @@
                 </v-icon>
               </v-btn>
             </template>
-            <span>{{tooltipBtn('edit','ویرایش')}}</span>
+            <span>{{tooltipBtn('edit',$t("edit"))}}</span>
           </v-tooltip>
           <v-tooltip bottom v-if="hasBtn('delete')">
             <template v-slot:activator="{ on, attrs }">
@@ -211,9 +211,8 @@
                 </v-icon>
               </v-btn>
             </template>
-            <span>{{tooltipBtn('delete','حذف')}}</span>
+            <span>{{tooltipBtn('delete',$t("delete"))}}</span>
           </v-tooltip>
-
           <v-tooltip bottom v-if="hasBtn('pop')">
             <template v-slot:activator="{ on, attrs }">
               <v-btn v-on="on" x-small v-if="hasBtn('pop')" fab icon @click="popUp(item)">
@@ -245,12 +244,24 @@
 </template>
 <i18n>
   {
-    "en":{
-      "goToPage":"go to page"
-    },
-    "fa":{
-      "goToPage": "برو به صفحه"
-    }
+  "en":{
+  "goToPage":"page",
+  "filters":"filters",
+  "operation": "operation",
+  "next_step":"next",
+  "show":"show",
+  "edit":"edit",
+  "pop_up":"open in modal"
+  },
+  "fa":{
+  "goToPage": "برو به صفحه",
+  "filters":"فیلترها",
+  "operation": "عملیات",
+  "next_step":"مرحله بعد",
+  "show":"نمایش",
+  "edit":"ویرایش",
+  "pop_up":"باز کردن در پاپ آپ"
+  }
   }
 </i18n>
 <script>

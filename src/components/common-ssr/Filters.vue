@@ -7,7 +7,7 @@
           dense
           v-model="search"
           outlined
-          label="جست و جو"
+          :label="$t('search')"
           @keydown.enter="doSearch"
           @change="doSearch"
           append-icon="search"
@@ -27,15 +27,27 @@
     <v-col cols="12" lg="12" class="text-left">
       <v-btn small color="info" @click="filter">
         <v-icon class="mx-1">search</v-icon>
-        جست و جو
+        {{$t("search")}}
       </v-btn>
       <v-btn v-if="hasReport" small color="success darken-3" @click="filter">
         <v-icon class="mx-1">move_to_inbox</v-icon>
-        گزارش
+        {{$t("report")}}
       </v-btn>
     </v-col>
   </v-row>
 </template>
+<i18n>
+  {
+  "en":{
+  "search":"search",
+  "report":"report"
+  },
+  "fa":{
+  "search":"جست و جو",
+  "report":"گزارش"
+  }
+  }
+</i18n>
 <script>
   import CommonTypesFilterField from "./CommonTypesFilterField";
 
