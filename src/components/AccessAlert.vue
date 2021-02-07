@@ -1,10 +1,25 @@
 <template>
   <v-container>
     <v-alert v-if="!canSeeThisPage" type="error">
-      شما دسترسی لازم را ندارید!
+      {{$t("permission_denied")}}
     </v-alert>
   </v-container>
 </template>
+
+<i18n>
+  {
+  "en":{
+  "permission_denied":"permission denied",
+  "can_not_get_user_accesses":"user role not found",
+  "error":"error"
+  },
+  "fa":{
+  "permission_denied":"شما دسترسی لازم را ندارید!",
+  "can_not_get_user_accesses":"دسترسی های کاربر یافت نشد",
+  "error": "خطا"
+  }
+  }
+</i18n>
 <script>
   import Vue from 'vue';
 
@@ -158,8 +173,8 @@
         } catch (e) {
           this.$swal({
             type: 'error',
-            title: 'خطا',
-            text: 'مشکلی در گرفتن دسترسی کاربر رخ داد!'
+            title: this.$t('error'),
+            text: this.$t('can_not_get_user_accesses')
           });
         }
         this.$store.commit('navigation/updateLoading', false);
