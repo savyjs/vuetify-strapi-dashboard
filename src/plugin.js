@@ -47,7 +47,6 @@ export default async (ctx, inject) => {
   // Inject it to nuxt context
   // components
 
-
   inject('vsd', moduleOptions)
   ctx.vsd = moduleOptions
 

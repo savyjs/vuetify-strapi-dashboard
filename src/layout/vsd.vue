@@ -9,7 +9,7 @@
       <Account/>
     </v-app-bar>
 
-    <v-navigation-drawer class="drawer" color="white" v-model="drawer" fixed :temporary="isMobile"  app>
+    <v-navigation-drawer class="drawer" color="white" v-model="drawer" fixed :right="isRTL" :temporary="isMobile" app>
       <v-list style="display: flex;flex-wrap: wrap;" dense>
         <v-list-item>
           <v-row>
@@ -118,7 +118,12 @@
       }
     },
     computed: {
-
+      isRTL() {
+        let isRTL = _.get(this, 'vsd.rtl', undefined);
+        let dir = _.get(this, '$i18n.localeProperties.dir', 'ltr');
+        console.log({isRTL, dir});
+        return isRTL === undefined ? dir === 'rtl' : !!isRTL;
+      },
       isMobile() {
         return this.$vuetify.breakpoint.smAndDown;
       },

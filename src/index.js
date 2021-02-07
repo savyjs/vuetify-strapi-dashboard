@@ -19,6 +19,7 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
     let listOfFiles = getFiles(path.resolve(__dirname, './components'));
 
     const options = {
+      rtl: false,
       ...moduleOptions
     }
 

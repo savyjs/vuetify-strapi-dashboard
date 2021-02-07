@@ -226,7 +226,7 @@
                 </v-icon>
               </v-btn>
             </template>
-            <span>{{tooltipBtn('pop','مشاهده جزئیات در پاپ آپ')}}</span>
+            <span>{{tooltipBtn('pop',$t('showOnPop'))}}</span>
           </v-tooltip>
           <component @reload="reload" :is="nameBtn('custom')" :item="item"/>
         </div>
