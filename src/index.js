@@ -46,7 +46,12 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
     this.addModule({
       src: "nuxt-i18n",
       options: {
-        vueI18nLoader: true
+        vueI18nLoader: true,
+        locales: [
+          {code: 'en', iso: 'en-US', dir: 'ltr'},
+          {code: 'fa', iso: 'fa-IR', dir: 'rtl'}
+        ],
+        defaultLocale: _.get(moduleOptions, 'lang', 'en'),
       }
     });
 
