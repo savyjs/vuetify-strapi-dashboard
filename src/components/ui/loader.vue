@@ -12,7 +12,7 @@
         dark
       >
         <v-card-text class="text-center">
-          در حال بارگذاری
+          {{$t("loading")}}
           <v-progress-linear
             indeterminate
             color="white"
@@ -23,7 +23,16 @@
     </v-dialog>
   </div>
 </template>
-
+<i18n>
+  {
+  "en":{
+  "loading":"loading"
+  },
+  "fa":{
+  "loading":"در حال بارگذاری"
+  }
+  }
+</i18n>
 <script>
 
   export default {
@@ -37,7 +46,7 @@
         return this.$store.state.navigation.loading;
       },
       isEnabled() {
-        return _.get(this,'C.LOADER',true)
+        return _.get(this,'vsd.config.LOADER',true)
       },
       page() {
         return this.$route.path;

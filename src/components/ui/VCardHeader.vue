@@ -7,6 +7,7 @@
       align-items: center;
       position:absolute;
       left: ${getLeft};
+      right:0;
       justify-items: ${getJustify};
       justify-content: ${getJustify};
       text-align: ${getAlign};
