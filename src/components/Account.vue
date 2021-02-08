@@ -27,38 +27,46 @@
                       />
                     </v-list-item-avatar>
              <v-list-item-content>
-                    <p class="font-12 pt-1">{{_.get(user, 'name', '')}} {{_.get(user, 'lastname', '')}} ({{_.get(user, 'username', 'نام کاربر')}})</p>
+                    <p class="font-12 pt-1">{{_.get(user, 'name', '')}} {{_.get(user, 'lastname', '')}} ({{_.get(user, 'username', $t('username'))}})</p>
                     <p class="font-12 pt-1">{{_.get(user, 'email', '')}}</p>
-                                   <small class="font-11 py-1">{{_.get(user, 'role.name', 'مدیر سیستم')}}</small>
+                                   <small class="font-11 py-1">{{_.get(user, 'role.name',$t('user'))}}</small>
            </v-list-item-content>
          </v-list-item>
           <v-divider/>
          <v-list-item to="/admin/system/profile/">
            <v-list-item-title>
              <v-icon>account_box</v-icon>
-             پروفایل من
+            {{$t('my_profile')}}
            </v-list-item-title>
          </v-list-item>
          <v-list-item to="/admin/system/profile/logout">
            <v-list-item-title>
              <v-icon>lock</v-icon>
-             خروج
+             {{$t('exit')}}
            </v-list-item-title>
          </v-list-item>
         </v-list>
     </v-menu>
   </span>
 </template>
+
+<i18n>
+  {
+  "en":{
+  "permission_denied":"permission denied",
+  "can_not_get_user_accesses":"user role not found",
+  "error":"error"
+  },
+  "fa":{
+  "permission_denied":"شما دسترسی لازم را ندارید!",
+  "can_not_get_user_accesses":"دسترسی های کاربر یافت نشد",
+  "error": "خطا"
+  }
+  }
+</i18n>
 <script>
   import _ from 'lodash'
 
-  let CONSTANTS;
-  try {
-    CONSTANTS = require('~/assets/js/constants').default;
-  } catch (e) {
-    console.warn('add constant file in module settings');
-  }
-  const DEFAULT_PHOTO = CONSTANTS.DEFAULT_PHOTO
 
   export default {
     components: {},
@@ -66,14 +74,16 @@
       return {
         menu: false,
         sms: "",
-        count: 1,
-        defaultPhoto: DEFAULT_PHOTO
+        count: 1
       }
     },
     created() {
       this._ = _;
     },
     computed: {
+      defaultPhoto() {
+        return _.get(this, 'vsd.config.DEFAULT_PHOTO', '')
+      },
       user() {
         return this.$auth.user;
       }
