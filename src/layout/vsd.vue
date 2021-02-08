@@ -91,7 +91,6 @@
   const SINGLE_TITLE = process.env.SINGLE_TITLE;
   const FOOTER_TITLE = process.env.FOOTER_TITLE;
   const envName = process.env.envName;
-  const ITEMS = CONSTANTS.ADMIN_DRAWER
   const DEFAULT_PHOTO = CONSTANTS.DEFAULT_PHOTO
 
   export default {
@@ -103,6 +102,7 @@
     },
     created() {
       this._ = _;
+      console.log(this.vsd)
     },
     data() {
       return {
@@ -110,14 +110,18 @@
         tooltip: false,
         drawer: false,
         SYSTEM_LOGO,
-        items: ITEMS,
         SHOW_USER,
         SINGLE_TITLE,
         FOOTER_TITLE,
-        defaultPhoto: DEFAULT_PHOTO
       }
     },
     computed: {
+      items() {
+        return _.get(this, 'vsd.menu.ADMIN_DRAWER', [])
+      },
+      defaultPhoto() {
+        return _.get(this, 'vsd.config.DEFAULT_PHOTO', [])
+      },
       isRTL() {
         let isRTL = _.get(this, 'vsd.rtl', undefined);
         let dir = _.get(this, '$i18n.localeProperties.dir', 'ltr');

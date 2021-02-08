@@ -9,6 +9,17 @@
     {{ text }}
   </v-alert>
 </template>
+
+<i18n>
+  {
+  "en":{
+  "unknown_error":"permission denied"
+  },
+  "fa":{
+  "unknown_error":"پیغام نامشخص"
+  }
+  }
+</i18n>
 <script>
   // import Helper from '~/assets/js/Helper.js'
   import Vue from 'vue'
@@ -19,9 +30,13 @@
       return {
         queue: [],
         alert: false,
-        text: 'پیام نامشخص',
         timeout: 30000,
         color: 'info',
+      }
+    },
+    computed: {
+      text() {
+        return this.$t("unknown_error")
       }
     },
     watch: {

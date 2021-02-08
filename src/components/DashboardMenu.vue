@@ -16,17 +16,13 @@
 </template>
 <script>
 
-  let CONSTANTS;
-  try {
-    CONSTANTS = require('~/assets/js/constants').default;
-  } catch (e) {
-    console.warn('add constant file in module settings');
-  }
-  const ITEMS = CONSTANTS.ADMIN_DASHBOARD
-
   export default {
     data() {
-      return {items: ITEMS}
+      return {}
+    }, computed: {
+      items() {
+        return _.get(this, 'vsd.menu.ADMIN_DASHBOARD', [])
+      }
     }
   }
 </script>

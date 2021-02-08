@@ -2,7 +2,7 @@
   <v-list>
     <v-list-item>
       <v-text-field v-model="search" outlined append-icon="search" dense clearable
-                    placeholder="جست و جو"></v-text-field>
+                    :placeholder="$t('search')"></v-text-field>
     </v-list-item>
     <template v-if="!showLoader" v-for="(menuItem, i) in getItems" :to="menuItem.link">
       <v-list-item v-if="!_.has(menuItem,'items[0]') " :to="menuItem.link">
@@ -45,7 +45,19 @@
     ></v-skeleton-loader>
   </v-list>
 </template>
+<i18n>
+  {
+  "en":{
+  "search":"search"
+  },
+  "fa":{
+  "search":"جست و جو"
+  }
+  }
+</i18n>
 <script>
+  import _ from 'lodash';
+
   export default {
     props: ['data', 'value', 'label', 'items'],
     data() {
@@ -53,6 +65,9 @@
         search: '',
         searchItems: [],
       }
+    },
+    created() {
+      this._ = _;
     },
     watch: {
       search(search) {
