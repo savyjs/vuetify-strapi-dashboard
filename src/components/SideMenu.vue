@@ -10,7 +10,7 @@
           <v-icon color="primary" size="15">{{ menuItem.icon }}</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title color="accent"><b class="font-13">{{ menuItem.title }}</b></v-list-item-title>
+          <v-list-item-title color="accent"><b class="font-13">{{ $t(menuItem.title) }}</b></v-list-item-title>
         </v-list-item-content>
       </v-list-item>
       <v-list-group v-else>
@@ -18,7 +18,7 @@
           <v-list-item-icon class="mx-1">
             <v-icon color="primary" size="15">{{ menuItem.icon }}</v-icon>
           </v-list-item-icon>
-          <v-list-item-title color="accent"><b class="font-13">{{ menuItem.title }}</b></v-list-item-title>
+          <v-list-item-title color="accent"><b class="font-13">{{ $t(menuItem.title) }}</b></v-list-item-title>
         </template>
         <template v-for="(item, i) in menuItem.items">
           <v-list-item
@@ -31,7 +31,7 @@
               <v-icon class="font-18 mx-0" color="primary">{{_.get(item,'icon','')}}</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
-              <v-list-item-title class="font-12 mr-5" v-text="_.get(item,'title','')"/>
+              <v-list-item-title class="font-12 mr-5" v-text="$t(_.get(item,'title',''))"/>
             </v-list-item-content>
           </v-list-item>
         </template>

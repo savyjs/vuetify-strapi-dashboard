@@ -66,17 +66,12 @@
         <Alert/>
         <AccessAlert v-model="items"/>
         <nuxt/>
+        <loader/>
+        <snackbar/>
       </v-container>
     </v-main>
-    <v-footer app dense color="blue darken-4" dark class="py-0" inset>
-      <v-row class="py-0">
-        <v-col cols="12" class="py-0 text-right px-1 pt-1">
-          <small class="font-10 pull-right pt-2 ">VSD {{FOOTER_TITLE}}</small>
-          <v-btn x-small outlined class="pull-left mb-1 mx-1 pa-1 mt-1 white--text font-10">version ۰.۵</v-btn>
-        </v-col>
-      </v-row>
-      <loader/>
-      <snackbar/>
+    <v-footer app color="blue darken-4" dark class="py-0" inset>
+      <v-btn x-small outlined class="mb-1 mx-1 pa-1 mt-1 white--text font-10">{{FOOTER_TITLE || 'VSD'}} {{VERSION}}</v-btn>
     </v-footer>
   </v-app>
 </template>
@@ -84,14 +79,11 @@
 <script>
   import _ from 'lodash'
 
-  import CONSTANTS from '~/assets/js/constants'
-
   const SYSTEM_LOGO = process.env.SYSTEM_LOGO;
   const SHOW_USER = process.env.SHOW_USER;
   const SINGLE_TITLE = process.env.SINGLE_TITLE;
   const FOOTER_TITLE = process.env.FOOTER_TITLE;
   const envName = process.env.envName;
-  const DEFAULT_PHOTO = CONSTANTS.DEFAULT_PHOTO
 
   export default {
     head() {
@@ -111,6 +103,7 @@
         drawer: false,
         SYSTEM_LOGO,
         SHOW_USER,
+        VERSION: '0.6',
         SINGLE_TITLE,
         FOOTER_TITLE,
       }
