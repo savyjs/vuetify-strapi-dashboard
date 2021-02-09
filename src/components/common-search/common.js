@@ -28,7 +28,7 @@ export default {
   },
   getCommonComputed: {
     headers() {
-      return this.Fields
+      return this.fields
     }
   },
   getCommonMounted() {

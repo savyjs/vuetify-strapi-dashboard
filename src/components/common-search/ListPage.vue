@@ -18,7 +18,7 @@
               :main="form"
               v-show="header.show"
               v-model="filter"
-              :fields="Fields"
+              :fields="fields"
               @input="doFilter"
               @search="doSearch"
             ></filters>

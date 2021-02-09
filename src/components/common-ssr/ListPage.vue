@@ -57,7 +57,7 @@
               :hasSearch="_.get(value,'searchable',true)"
               :hasReport="_.get(value,'report',false)"
               v-model="filter"
-              :fields="Fields"
+              :fields="fields"
               @input="doFilter"
               @search="doSearch"
             ></filters>
@@ -75,7 +75,7 @@
           <v-expansion-panel-content>
             <report
               v-model="report"
-              :fields="Fields"
+              :fields="fields"
               @search="doReport"
               @excel="doExcel"
             ></report>

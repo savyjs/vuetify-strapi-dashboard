@@ -24,9 +24,7 @@ export default {
   },
   created() {
     if (_.has(this, 'Fields')) {
-      this.fields = {...this.fields, ...this.Fields};
-    }else if (_.has(this, 'fields')) {
-      this.Fields = {...this.fields, ...this.Fields};
+      this.fields = (_.has(this, 'fields') && _.isArray(this.fields)) ? {...this.fields, ...this.Fields} : {...this.Fields};
     }
     this._ = _;
   },
