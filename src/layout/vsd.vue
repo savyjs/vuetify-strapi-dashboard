@@ -64,7 +64,7 @@
       <v-container>
         <breadcrumb/>
         <Alert/>
-        <AccessAlert v-model="items"/>
+        <AccessAlert :value="items"/>
         <nuxt/>
         <loader/>
         <snackbar/>

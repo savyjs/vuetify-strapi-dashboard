@@ -9,8 +9,7 @@ import options from './../../options'
 
 let customListPageHelper = require(`./strapi`).default || {};
 try {
-  const ApiHelper = options.apiHelper;
-  customListPageHelper = ApiHelper;
+  customListPageHelper = options.apiHelper;
 } catch (e) {
   console.error({e})
 }

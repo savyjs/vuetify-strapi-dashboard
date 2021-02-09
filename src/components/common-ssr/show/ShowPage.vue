@@ -13,12 +13,12 @@
             <v-flex class="pa-1 text-left">
               <v-btn v-if="_.get(main,'back',undefined)!==false" small color="warning" class="mx-4" :to="back">
                 <v-icon class="mx-1">backspace</v-icon>
-                برگشت
+                {{$t("back")}}
               </v-btn>
               <v-btn v-if="_.get(main,'editItem',true) !==false" class="px-5" small color="success"
                      :to="`${back}/edit/${value.id}`">
                 <v-icon class="mx-1">edit</v-icon>
-                ویرایش
+                {{$t("edit")}}
               </v-btn>
             </v-flex>
           </v-layout>
@@ -50,6 +50,21 @@
     </v-container>
   </section>
 </template>
+
+<i18n>
+  {
+  "en":{
+  "can_not_update":"can not update",
+  "successful":"done"
+  },
+  "fa":{
+  "back":"برگشت",
+  "edit":"ویرایش",
+  "can_not_update":"مشکلی در بروزرسانی رخ داد",
+  "successful":"با موفقیت انجام شد"
+  }
+  }
+</i18n>
 <script>
   import formHelper from './strapi';
   import CommonTypesShow from "../CommonTypesShow";
