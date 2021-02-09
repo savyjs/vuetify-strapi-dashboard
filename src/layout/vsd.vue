@@ -82,7 +82,7 @@
   "en":{
   "dashboard":"Dashboard",
   "welcome":"welcome",
-  "control_panel":"Control Panel",
+  "control_panel":"Control Panel"
   },
   "fa":{
   "dashboard":"داشبورد",
