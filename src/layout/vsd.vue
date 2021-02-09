@@ -2,7 +2,7 @@
   <v-app dark>
     <v-app-bar dark color="blue darken-3" elevation="1" app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title style="cursor: pointer" @click="$router.push('/admin')">Dashboard</v-toolbar-title>
+      <v-toolbar-title style="cursor: pointer" @click="$router.push('/admin')">{{$t("dashboard")}}</v-toolbar-title>
       <v-spacer></v-spacer>
       <Notifications/>
       <Settings/>
@@ -26,7 +26,7 @@
               <v-col cols="7" class="pt-0 mt-0">
                 <v-list-item-content>
                   <v-list-item-title class="pt-5">
-                    <small> Control Panel </small>
+                    <small> {{$t("control_panel")}} </small>
                     <p><b>{{SINGLE_TITLE}}</b></p>
                   </v-list-item-title>
                 </v-list-item-content>
@@ -71,11 +71,26 @@
       </v-container>
     </v-main>
     <v-footer app color="blue darken-4" dark class="py-0" inset>
-      <v-btn x-small outlined class="mb-1 mx-1 pa-1 mt-1 white--text font-10">{{FOOTER_TITLE || 'VSD'}} {{VERSION}}</v-btn>
+      <v-btn x-small outlined class="mb-1 mx-1 pa-1 mt-1 white--text font-10">{{FOOTER_TITLE || 'VSD'}} {{VERSION}}
+      </v-btn>
     </v-footer>
   </v-app>
 </template>
 
+<i18n>
+  {
+  "en":{
+  "dashboard":"Dashboard",
+  "welcome":"welcome",
+  "control_panel":"Control Panel",
+  },
+  "fa":{
+  "dashboard":"داشبورد",
+  "welcome":"خوش آمدید",
+  "control_panel":"کنترل پنل"
+  }
+  }
+</i18n>
 <script>
   import _ from 'lodash'
 
@@ -89,7 +104,6 @@
     head() {
       return {
         titleTemplate: '%s - ' + process.env.title,
-        title: 'Dashboard',
       }
     },
     created() {

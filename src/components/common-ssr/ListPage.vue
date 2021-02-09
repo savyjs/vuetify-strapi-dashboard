@@ -48,7 +48,7 @@
           <v-expansion-panel-header>
             <span>
               <v-icon class="mx-1">filter_list</v-icon>
-            {{$t("filter")}}
+            {{$t("filters")}}
             </span>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
