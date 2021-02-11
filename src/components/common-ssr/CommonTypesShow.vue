@@ -92,7 +92,7 @@
       :items-per-page="1000"
       :headers="_.get(field,'meta',[])"
       :items="data"
-      :no-data-text="$('empty')"
+      :no-data-text="$t('empty')"
       :no-results-text="$t('no_result')"
     >
       <template v-for="subField in _.get(field,'meta',[])" #[getField(subField)]="{header,value,item}">
