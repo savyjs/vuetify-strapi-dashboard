@@ -145,8 +145,9 @@
     },
     methods: {
       getValueList(index) {
-        let nameOfField = this.names[index];
-        let indexOfField = this.reportFields.findIndex(x => x.value == nameOfField)
+        //let nameOfField = this.names[index];
+        let indexOfField = this.names[index];
+        //let indexOfField = this.reportFields.findIndex(x => x.value == nameOfField)
         let type = _.get(this.reportFields[indexOfField], 'type', 'text');
         if (type == 'text') {
           return this.textValueList
@@ -157,13 +158,15 @@
         }
       },
       getRowFieldType(index) {
-        let nameOfField = this.names[index];
-        let indexOfField = this.reportFields.findIndex(x => x.value == nameOfField)
+        //let nameOfField = this.names[index];
+        let indexOfField = this.names[index];
+        //let indexOfField = this.reportFields.findIndex(x => x.value == nameOfField)
         return _.get(this.reportFields[indexOfField], 'type', 'text');
       },
       chargeFieldSelectType(j) {
-        let fieldName = this.names[j];
-        let index = this.fields.findIndex(item => item.value == fieldName);
+        //let fieldName = this.names[j];
+        let index = this.names[j];
+        //let index = this.fields.findIndex(item => item.value == fieldName && item.text == fieldName);
         // console.log({fieldName, index});
         if (index > -1) this.fieldAttr[j] = this.fields[index];
         if (index > -1) this.types[j] = this.getRowFieldType(j);
@@ -177,10 +180,10 @@
         this.$emit('search', this.reportData);
       },
       initiate() {
-        _.forEach(this.fields, (item) => {
+        _.forEach(this.fields, (item, index) => {
           // console.log('item:', {item});
           let text = _.get(item, 'text', null);
-          let value = _.get(item, 'value', false);
+          let value = index //this.fields.findIndex(_.get(item, 'value', false);
 
           let type = _.get(item, 'type', '');
 
