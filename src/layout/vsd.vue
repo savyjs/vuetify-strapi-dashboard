@@ -132,7 +132,7 @@
       isRTL() {
         let isRTL = _.get(this, 'vsd.rtl', undefined);
         let dir = _.get(this, '$i18n.localeProperties.dir', 'ltr');
-        console.log({isRTL, dir});
+        // console.log({isRTL, dir});
         return isRTL === undefined ? dir === 'rtl' : !!isRTL;
       },
       isMobile() {

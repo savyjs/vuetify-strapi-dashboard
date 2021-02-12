@@ -36,25 +36,26 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
         src: path.resolve(__dirname, pName),
         options
       })
-      // console.log({pName})
     }
 
     this.addModule({
       src: "nuxt-sweetalert2"
     });
+
     this.nuxt.options.store = true
     let i18nOption = _.get(this, 'nuxt.options.i18n', {});
-    // console.log(this.nuxt.options, i18nOption)
+    let i18nOptionLocales = _.get(this, 'nuxt.options.i18n.locales', {});
     this.addModule({
       src: "nuxt-i18n",
       options: {
         vueI18nLoader: true,
+        defaultLocale: _.get(moduleOptions, 'lang', 'en'),
+        ...i18nOption,
         locales: [
           {code: 'en', iso: 'en-US', dir: 'ltr'},
-          {code: 'fa', iso: 'fa-IR', dir: 'rtl'}
+          {code: 'fa', iso: 'fa-IR', dir: 'rtl'},
+          ...i18nOptionLocales
         ],
-        defaultLocale: _.get(moduleOptions, 'lang', 'en'),
-        ...i18nOption
       }
     });
 
