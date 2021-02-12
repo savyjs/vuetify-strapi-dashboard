@@ -16,7 +16,7 @@
                   </v-col>
                   <v-col cols="12">
                     <v-alert type="info">
-                      <small>{{$t('Welcome_to_VS_dashboard')}}</small>
+                      <small>{{$t('welcome_to_vs_dashboard')}}</small>
                     </v-alert>
                   </v-col>
                 </v-row>
@@ -75,7 +75,14 @@
     <Snackbar/>
   </section>
 </template>
-
+<i18n>
+  {"en":{
+  "welcome_to_vs_dashboard" : "welcome to VS dashboard"
+  },
+  "fa" : {
+  "welcome_to_vs_dashboard" : "به پنل مدیریت خوش آمدید"
+  }}
+</i18n>
 <script>
   const isNumber = v => (!isNaN(v)) || 'must be numeric'
   export default {

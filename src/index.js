@@ -42,7 +42,9 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
     this.addModule({
       src: "nuxt-sweetalert2"
     });
-
+    this.nuxt.options.store = true
+    let i18nOption = _.get(this, 'nuxt.options.i18n', {});
+    // console.log(this.nuxt.options, i18nOption)
     this.addModule({
       src: "nuxt-i18n",
       options: {
@@ -52,11 +54,24 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
           {code: 'fa', iso: 'fa-IR', dir: 'rtl'}
         ],
         defaultLocale: _.get(moduleOptions, 'lang', 'en'),
+        ...i18nOption
       }
     });
 
+    let authOptions = _.get(this, 'nuxt.options.auth', {});
     this.addModule({
-      src: "@nuxtjs/auth"
+      src: "@nuxtjs/auth",
+      options: {
+        ...authOptions
+      }
+    });
+
+    let axiosOptions = _.get(this, 'nuxt.options.axios', {});
+    this.addModule({
+      src: "@nuxtjs/axios",
+      options: {
+        ...axiosOptions
+      }
     });
 
 
