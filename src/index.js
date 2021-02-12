@@ -75,6 +75,14 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
       }
     });
 
+    let strapiOptions = _.get(this, 'nuxt.options.strapi', {});
+    this.addModule({
+      src: "@nuxtjs/strapi",
+      options: {
+        ...strapiOptions
+      }
+    });
+
 
     this.addTemplate({
       fileName: 'assets/styles.css',

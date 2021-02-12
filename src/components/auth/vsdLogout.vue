@@ -14,7 +14,7 @@
               {{$t("quit_alert")}}
             </v-alert>
             <v-btn @click="logout" color="success" class="my-5">
-              <v-icon small class="mx-2">security</v-icon>
+              <v-icon small class="mr-1">security</v-icon>
               {{$t("sure")}}
             </v-btn>
           </v-col>
@@ -26,7 +26,7 @@
 <i18n>
   {"en":{
   "logout" : "Logout",
-  "sure" : "yes",
+  "sure" : "Yes, I'm Sure",
   "quit_alert" : "Are you sure you want to logout?"
   },
   "fa" : {

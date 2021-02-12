@@ -108,7 +108,7 @@
     },
     created() {
       this._ = _;
-      console.log(this.vsd)
+      // console.log(this.vsd)
     },
     data() {
       return {

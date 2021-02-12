@@ -42,7 +42,7 @@
          <v-list-item to="/admin/system/profile/logout">
            <v-list-item-title>
              <v-icon>lock</v-icon>
-             {{$t('exit')}}
+             {{$t('logout')}}
            </v-list-item-title>
          </v-list-item>
         </v-list>
@@ -63,7 +63,7 @@
   "permission_denied":"شما دسترسی لازم را ندارید!",
   "can_not_get_user_accesses":"دسترسی های کاربر یافت نشد",
   "error": "خطا",
-  "exit": "خروج"
+  "logout": "خروج"
   }
   }
 </i18n>

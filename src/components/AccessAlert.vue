@@ -53,13 +53,16 @@
         }));
       },
       canSeeThisPage() {
-
         let path = this.$route.path;
         let MENU = _.get(this, 'vsd.menu', {})
         let menuItems = MENU.ADMIN_DRAWER;
         let menuItem = _.get(menuItems, _.deepFindKey(menuItems, {link: path}), undefined);
-        let access = this.isAllowedMenu(menuItem);
-        return access;
+        if (_.get(menuItem, 'link', '') == path) {
+          console.log({path, menuItem})
+          return this.isAllowedMenu(menuItem);
+        } else {
+          return true;
+        }
       },
     },
     watch: {
