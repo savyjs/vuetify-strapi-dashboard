@@ -61,6 +61,7 @@ import Calc from './elements/Calc'
 import BoolBtn from './elements/BoolBtn'
 import TimePicker from './elements/TimePicker'
 import VsdLogin from './auth/VsdLogin'
+import VsdLogout from './auth/vsdLogout'
 
 export default {
   Snackbar,
@@ -117,5 +118,6 @@ export default {
   ImageUploader,
   PrintPage,
   VCardHeader,
-  VsdLogin
+  VsdLogin,
+  VsdLogout
 }

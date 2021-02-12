@@ -77,6 +77,11 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
 
 
     this.addTemplate({
+      fileName: 'assets/styles.css',
+      src: path.resolve(__dirname, 'assets/styles.css')
+    })
+
+    this.addTemplate({
       fileName: 'components/index.js',
       src: path.resolve(__dirname, 'components/index.js'),
       options

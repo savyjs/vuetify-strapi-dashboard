@@ -9,6 +9,7 @@ import CommonSelectStore from './store/commonSelect'
 import * as components from "./components/index";
 
 import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loader
+import './assets/styles.css' // Ensure you are using css-loader
 import 'material-design-icons-iconfont/dist/material-design-icons.css' // Ensure you are using css-loader
 //import '@fontawesome/fontawesome-free/css/all.css'
 // import 'font-awesome/css/font-awesome.min.css';
@@ -19,8 +20,6 @@ import 'material-icons/iconfont/material-icons.css';
 const t = (val) => _.isString(val) ? val.replace(/_/g, ' ') : val
 const ComponentLibrary = {
   install(Vue, options = {}) {
-
-    // console.log(2, {options})
     try {
       Vue.component("downloadExcel", JsonExcel);
       Vue.set(Vue.prototype, '$Helper', Helper);
