@@ -50,12 +50,7 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
       options: {
         vueI18nLoader: true,
         defaultLocale: _.get(moduleOptions, 'lang', 'en'),
-        ...i18nOption,
-        locales: [
-          {code: 'en', iso: 'en-US', dir: 'ltr'},
-          {code: 'fa', iso: 'fa-IR', dir: 'rtl'},
-          ...i18nOptionLocales
-        ],
+        ...i18nOption
       }
     });
 
