@@ -48,8 +48,9 @@
     methods: {
       logout() {
         this.loading = true;
-        this.$strapi.clearToken();
-        this.$auth.logout();
+        this.$strapi.logout();
+        this.$auth.reset();
+        this.$router.push('/')
       }
     },
     computed: {

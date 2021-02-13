@@ -57,8 +57,8 @@
         let MENU = _.get(this, 'vsd.menu', {})
         let menuItems = MENU.ADMIN_DRAWER;
         let menuItem = _.get(menuItems, _.deepFindKey(menuItems, {link: path}), undefined);
+        console.log({path, menuItem, menuItems}, _.deepFindKey(menuItems, {link: path}))
         if (_.get(menuItem, 'link', '') == path) {
-          console.log({path, menuItem})
           return this.isAllowedMenu(menuItem);
         } else {
           return true;
@@ -73,9 +73,13 @@
           }
         },
         deep: true
+      },
+      canSeeThisPage(val) {
+        this.$emit('setAccess', val)
       }
     },
     async mounted() {
+      // console.log('can see page:', this.$route.path, this.canSeeThisPage)
       this.$store.commit('navigation/updateLoading', true);
       await this.initiate();
       const can = (id) => {
@@ -145,6 +149,7 @@
       isAllowedMenu(item) {
         if (_.has(item, 'permission') && _.isArray(this.myPermissions)) {
           let permission = _.get(item, 'permission', undefined);
+          console.log(permission, this.myPermissions)
           let access = _.includes(this.myPermissions, permission);
           return access;
         } else {

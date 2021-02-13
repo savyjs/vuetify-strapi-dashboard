@@ -72,7 +72,7 @@
     watch: {
       search(search) {
         let items = (this.items);
-        console.log({items});
+        // console.log({items});
         this.searchItems = [];
         _.forEach(items, (obj) => {
             let menuTitle = _.get(obj, 'title', '');

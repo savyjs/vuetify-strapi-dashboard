@@ -64,8 +64,8 @@
       <v-container>
         <breadcrumb/>
         <Alert/>
-        <AccessAlert :value="items"/>
-        <nuxt/>
+        <AccessAlert @setAccess="setAccess" v-model="items"/>
+        <nuxt v-if="hasAccess"/>
         <loader/>
         <snackbar/>
       </v-container>
@@ -112,6 +112,7 @@
     },
     data() {
       return {
+        hasAccess: true,
         envName,
         tooltip: false,
         drawer: false,
@@ -120,12 +121,10 @@
         VERSION: '0.6',
         SINGLE_TITLE,
         FOOTER_TITLE,
+        items: {}
       }
     },
     computed: {
-      items() {
-        return _.get(this, 'vsd.menu.ADMIN_DRAWER', [])
-      },
       defaultPhoto() {
         return _.get(this, 'vsd.config.DEFAULT_PHOTO', [])
       },
@@ -145,8 +144,13 @@
         return this.$auth.user
       }
     },
-    methods: {},
+    methods: {
+      setAccess(val) {
+        this.hasAccess = val;
+      }
+    },
     mounted() {
+      this.items = _.get(this, 'vsd.menu.ADMIN_DRAWER', [])
       this.drawer = !this.isMobile;
     },
     components: {},
