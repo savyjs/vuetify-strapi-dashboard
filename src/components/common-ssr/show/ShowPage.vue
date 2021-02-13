@@ -66,7 +66,7 @@
   }
 </i18n>
 <script>
-  import formHelper from './strapi';
+  import formHelper from './FormHelper';
   import CommonTypesShow from "../CommonTypesShow";
 
   export default {
