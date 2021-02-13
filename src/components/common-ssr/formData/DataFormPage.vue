@@ -103,7 +103,7 @@
 
   export default {
     props: ['value', 'isModal', 'config', 'name', 'fields', 'title', 'showBack', 'showSimple', 'headerIcon', 'resource'],
-    ...formHelper,
+    mixins:[formHelper],
     data() {
       return {
         validity: null,

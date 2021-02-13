@@ -1,6 +1,5 @@
 export default {
-  getCommonData: {},
-  getCommonMethods: {
+  methods: {
     print() {
       let config = this.config;
       let formData = this.formData;

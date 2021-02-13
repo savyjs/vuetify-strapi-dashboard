@@ -1,10 +1,11 @@
 import common from './common'
 
 export default {
-  ...common,
-  getData: {
-    ...common.getCommonData,
-    loader: false,
+  mixins: [common],
+  data() {
+    return {
+      loader: false,
+    }
   },
   mounted() {
     this.loadData();
@@ -24,7 +25,6 @@ export default {
     }
   },
   methods: {
-    ...common.getCommonMethods,
     loadData() {
       let id = _.get(this.formData, 'id', null);
       if (!id) {
