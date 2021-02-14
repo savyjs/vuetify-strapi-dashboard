@@ -1,3 +1,5 @@
+import webpack from "webpack";
+
 const fs = require('fs')
 const path = require('path')
 const _ = require('lodash')
@@ -43,6 +45,16 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
     });
 
     this.nuxt.options.store = true
+    let plugins = new webpack.ProvidePlugin({
+      _: 'lodash'
+    });
+
+    if (_.has(this.nuxt.options, 'build.plugins')) {
+      this.nuxt.options.build.plugins.push(plugins)
+    } else {
+      this.nuxt.options.build.plugins = plugins;
+    }
+
     let i18nOption = _.get(this, 'nuxt.options.i18n', {});
     let i18nOptionLocales = _.get(this, 'nuxt.options.i18n.locales', {});
     this.addModule({

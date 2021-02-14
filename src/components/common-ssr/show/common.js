@@ -15,6 +15,10 @@ export default {
     }
   },
   methods: {
+    hasPermission(field) {
+      if (_.has(field, 'permission')) return this.can(_.get(field, 'permission', null))
+      return true;
+    },
     canShow(field) {
       //console.log(_.get(field, 'show', undefined) !== false, {field})
       return _.get(field, 'show', undefined) !== false;

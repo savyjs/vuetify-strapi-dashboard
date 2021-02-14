@@ -22,10 +22,6 @@ export default {
     }
   },
   methods: {
-    hasPermission(field) {
-      if (_.has(field, 'permission')) return this.can(_.get(field, 'permission', null))
-      return true;
-    },
     loadData() {
       let id = _.get(this.formData, 'id', null);
       if (!id) return;

@@ -68,9 +68,17 @@
 <script>
   import formHelper from './FormHelper';
   import CommonTypesShow from "../CommonTypesShow";
+  import options from './../../../options'
+
+  let customListPageHelper = require(`./strapi`).default || {};
+  try {
+    customListPageHelper = options.apiShowHelper;
+  } catch (e) {
+    console.error({e})
+  }
 
   export default {
-    mixins:[formHelper],
+    mixins: [formHelper, customListPageHelper],
     props: ['value', 'main', 'name', 'fields', 'title', 'resource'],
     data() {
       return {

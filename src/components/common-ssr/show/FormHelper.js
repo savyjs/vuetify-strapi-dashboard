@@ -5,16 +5,9 @@
  * @type {{head: {}, data: {}, getCommonMounted(), getMethods: {}, getCommonComputed: {}}}
  */
 import common from './common.js'
-import options from './../../../options'
 
-let customListPageHelper = require(`./strapi`).default || {};
-try {
-  customListPageHelper = options.apiShowHelper;
-} catch (e) {
-  console.error({e})
-}
 
 export default {
-  mixins: [common, customListPageHelper],
+  mixins: [common],
   // alernative
 }
