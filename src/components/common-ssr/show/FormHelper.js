@@ -6,7 +6,6 @@
  */
 import common from './common.js'
 
-
 export default {
   mixins: [common],
   // alernative

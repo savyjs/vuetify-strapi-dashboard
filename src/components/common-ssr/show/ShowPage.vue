@@ -67,7 +67,6 @@
 </i18n>
 <script>
   import formHelper from './FormHelper';
-  import CommonTypesShow from "../CommonTypesShow";
   import options from './../../../options'
 
   let customListPageHelper = require(`./strapi`).default || {};
@@ -79,14 +78,6 @@
 
   export default {
     mixins: [formHelper, customListPageHelper],
-    props: ['value', 'main', 'name', 'fields', 'title', 'resource'],
-    data() {
-      return {
-        formData: {
-          ...this.value
-        }
-      }
-    },
-    components: {CommonTypesShow},
+    props: ['value']
   }
 </script>

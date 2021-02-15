@@ -1,4 +1,16 @@
+import _ from 'lodash'
+
 export default {
+  data() {
+    return {
+      formData: {},
+      title: "",
+      resource: "",
+      name: "",
+      fields: [],
+      ...this.value
+    }
+  },
   computed: {
     getHeaders() {
       let headers = [];
@@ -13,6 +25,9 @@ export default {
     back() {
       return this.name ? '/admin/' + this.name : './.'
     }
+  },
+  created() {
+    this._ = _;
   },
   methods: {
     hasPermission(field) {

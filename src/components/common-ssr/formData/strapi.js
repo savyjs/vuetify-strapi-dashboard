@@ -1,7 +1,4 @@
-import common from './common'
-
 export default {
-  mixins: [common],
   methods: {
     loadData() {
       let id = _.get(this.formData, 'id', null);
@@ -32,7 +29,7 @@ export default {
         response = this.$axios.$post(this.resource, formData);
       }
       response.then(res => {
-        this.$notifSuccess('با موفقیت ذخیره شد')
+        this.$notifSuccess(this.$t("success"))
         let id = _.get(res, 'id', id);
         this.formData.id = id;
         if (show && _.get(this, 'showBack', true)) this.$router.push(this.back + '/' + id);

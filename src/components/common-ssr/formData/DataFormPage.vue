@@ -14,11 +14,11 @@
               <v-flex class="pa-1 text-left">
                 <v-btn v-if="showBack!==false" small color="white" class="mx-2  warning--text" :to="back">
                   <v-icon class="mx-1">backspace</v-icon>
-                  برگشت
+                  {{$t("back")}}
                 </v-btn>
                 <v-btn :disabled="!validity" class="px-5 mx-2 success--text" small color="white" @click="save">
                   <v-icon class="mx-1">save</v-icon>
-                  ذخیره
+                  {{$t("save")}}
                 </v-btn>
               </v-flex>
             </v-layout>
@@ -34,11 +34,11 @@
               <v-flex class="pa-1 text-left">
                 <v-btn v-if="showBack!==false" small color="warning" class="mx-4" :to="back">
                   <v-icon class="mx-1">backspace</v-icon>
-                  برگشت
+                  {{$t("back")}}
                 </v-btn>
                 <v-btn class="px-5" small color="success" @click="save">
                   <v-icon class="mx-1">save</v-icon>
-                  ذخیره
+                  {{$t("save")}}
                 </v-btn>
               </v-flex>
             </v-layout>
@@ -88,7 +88,7 @@
               :color="_.get(btn,'color','success')"
               @click="doAction(btn)">
               <v-icon class="mx-1">{{_.get(btn,'icon','save')}}</v-icon>
-              {{_.get(btn,'text','ذخیره')}}
+              {{_.get(btn,'text',$t("save"))}}
             </v-btn>
           </v-flex>
         </v-layout>
@@ -96,8 +96,23 @@
     </v-card>
   </section>
 </template>
+
+<i18n>
+  {
+  "en":{
+  "back":"back",
+  "save":"save",
+  "success":"done successfully"
+  },
+  "fa":{
+  "back":"برگشت",
+  "save":"ذخیره",
+  "success":"با موفقیت ذخیره شد"
+  }
+  }
+</i18n>
 <script>
-  import formHelper from './strapi';
+  import formHelper from './FormHelper';
 
   export default {
     props: ['value'],
