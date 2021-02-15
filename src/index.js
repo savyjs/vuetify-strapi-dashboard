@@ -45,14 +45,14 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
     });
 
     this.nuxt.options.store = true
-    let plugins = new webpack.ProvidePlugin({
+    let lodashPlugin = new webpack.ProvidePlugin({
       _: 'lodash'
     });
 
-    if (_.has(this.nuxt.options, 'build.plugins')) {
-      this.nuxt.options.build.plugins.push(plugins)
+    if (_.has(this.nuxt.options, 'build.plugins') && _.isArray(this.nuxt.options.build.plugins)) {
+      this.nuxt.options.build.plugins.push(lodashPlugin)
     } else {
-      this.nuxt.options.build.plugins = plugins;
+      this.nuxt.options.build.plugins = [lodashPlugin];
     }
 
     let i18nOption = _.get(this, 'nuxt.options.i18n', {});

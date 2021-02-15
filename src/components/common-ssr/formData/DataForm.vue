@@ -24,8 +24,7 @@
 
 <script>
 
-
-  import CommonTypesField from "../CommonTypesField";
+  import _ from "lodash"
 
   export default {
     props: ['value', 'name', 'type', 'fields', 'title'],
@@ -50,6 +49,9 @@
         deep: true,
       }
     },
+    created() {
+      this._ = _;
+    },
     methods: {
       updateFormData(val) {
         this.formData = {...this.formData, ...val};
@@ -59,7 +61,6 @@
         this.$emit('input', this.formData)
         this.$emit('save', this.formData)
       },
-    },
-    components: {CommonTypesField},
+    }
   }
 </script>

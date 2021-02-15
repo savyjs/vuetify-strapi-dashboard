@@ -136,16 +136,8 @@
   }
 </i18n>
 <script>
-  import TextEditor from "../elements/TextEditor";
-  import SelectPhoto from "../elements/SelectPhoto";
-  import DateTimePicker from "../elements/dateTimePicker";
-  import DatePicker from "../elements/DatePicker";
-  import CommonSelectRelation from "../elements/SelectRelation";
-  import CommonSelectEnum from "../elements/SelectEnum";
-  import CRUD from "../elements/CRUD";
-  import LinearCRUD from "../elements/LinearCRUD";
-  import Calc from "../elements/Calc";
-  import Counter from "../elements/Counter";
+
+  import _ from 'lodash'
 
   /**
    * @value: any - this property value
@@ -243,17 +235,8 @@
         }
       }
     },
-    components: {
-      Counter,
-      Calc,
-      LinearCRUD,
-      CRUD,
-      CommonSelectEnum,
-      CommonSelectRelation,
-      DatePicker,
-      DateTimePicker,
-      SelectPhoto,
-      TextEditor
+    created() {
+      this._ = _;
     },
   }
 </script>

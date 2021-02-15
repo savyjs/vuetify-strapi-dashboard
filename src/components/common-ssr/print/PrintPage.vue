@@ -59,7 +59,7 @@
       return {
         ...this.main,
         notColons,
-        ...form$Helper.getData,
+        ...formHelper.getData,
         formData: {}
       }
     },

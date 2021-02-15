@@ -101,7 +101,7 @@
     data() {
       return {
         header: {show: true},
-        ...form$Helper.data,
+        ...formHelper.data,
         ...this.value,
       }
     },

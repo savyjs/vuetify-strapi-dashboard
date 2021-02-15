@@ -97,31 +97,10 @@
   </section>
 </template>
 <script>
-  import DataForm from "./DataForm";
   import formHelper from './strapi';
-  import VCardHeader from "../../ui/VCardHeader";
 
   export default {
-    props: ['value', 'isModal', 'config', 'name', 'fields', 'title', 'showBack', 'showSimple', 'headerIcon', 'resource'],
-    mixins:[formHelper],
-    data() {
-      return {
-        validity: null,
-        canSave: false,
-        ...form$Helper.getData,
-        formData: {
-          ...this.value
-        }
-      }
-    },
-    computed: {
-      type() {
-        return _.has(this.formData, 'id') ? 'edit' : 'create'
-      },
-      back() {
-        return '/admin/' + this.name
-      }
-    },
-    components: {VCardHeader, DataForm},
+    props: ['value'],
+    mixins: [formHelper]
   }
 </script>
