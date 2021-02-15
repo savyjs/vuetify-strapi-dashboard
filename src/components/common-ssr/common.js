@@ -1,12 +1,11 @@
 const perPage = 30
-import strapi from './strapi'
 import _ from 'lodash';
 
 export default {
-  mixins: [strapi],
   data() {
     return {
       search: '',
+      resource: '',
       report: null,
       filter: {},
       perPage,
@@ -27,6 +26,10 @@ export default {
       this.fields = (_.has(this, 'fields') && _.isArray(this.fields)) ? {...this.fields, ...this.Fields} : {...this.Fields};
     }
     this._ = _;
+  },
+  mounted() {
+    let name = _.get(this, 'api', undefined);
+    this.loadData();
   },
   methods: {
     async getAllDataBeforeMakeExcel() {

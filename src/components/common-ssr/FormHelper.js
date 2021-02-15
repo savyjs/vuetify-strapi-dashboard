@@ -7,7 +7,8 @@
 import common from './common.js'
 import options from './../../options'
 
-let customListPageHelper = require(`./strapi`).default || {};
+let strapi = require(`./strapi`).default || {};
+let customListPageHelper = {};
 try {
   customListPageHelper = options.apiListHelper;
 } catch (e) {
@@ -15,10 +16,5 @@ try {
 }
 
 export default {
-  mixins: [common, customListPageHelper],
-  // alernative
-  mounted() {
-    let name = _.get(this, 'api', undefined);
-    this.loadData();
-  }
+  mixins: [common, strapi, customListPageHelper],
 }

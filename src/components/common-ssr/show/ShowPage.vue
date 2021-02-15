@@ -67,17 +67,9 @@
 </i18n>
 <script>
   import formHelper from './FormHelper';
-  import options from './../../../options'
-
-  let customListPageHelper = require(`./strapi`).default || {};
-  try {
-    customListPageHelper = options.apiShowHelper;
-  } catch (e) {
-    console.error({e})
-  }
 
   export default {
-    mixins: [formHelper, customListPageHelper],
+    mixins: [formHelper],
     props: ['value']
   }
 </script>

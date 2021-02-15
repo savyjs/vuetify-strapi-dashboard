@@ -3,12 +3,30 @@ import _ from 'lodash'
 export default {
   data() {
     return {
+      loader: false,
       formData: {},
       title: "",
       resource: "",
       name: "",
       fields: [],
       ...this.value
+    }
+  },
+  mounted() {
+    this.loadData();
+  },
+  watch: {
+    value: {
+      handler(val) {
+        this.formData = val;
+      },
+      deep: true
+    },
+    formData: {
+      handler(val) {
+        this.$emit('input', val)
+      },
+      deep: true
     }
   },
   computed: {

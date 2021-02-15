@@ -7,7 +7,8 @@
 import common from './common.js'
 import options from './../../../options'
 
-let customListPageHelper = require(`./strapi`).default || {};
+let strapi = require(`./strapi`).default || {};
+let customListPageHelper = {};
 try {
   customListPageHelper = options.apiFormHelper;
 } catch (e) {
@@ -15,6 +16,6 @@ try {
 }
 
 export default {
-  mixins: [common, customListPageHelper],
+  mixins: [common, strapi, customListPageHelper],
   // alernative
 }

@@ -1,26 +1,4 @@
 export default {
-  data() {
-    return {
-      loader: false,
-    }
-  },
-  mounted() {
-    this.loadData();
-  },
-  watch: {
-    value: {
-      handler(val) {
-        this.formData = val;
-      },
-      deep: true
-    },
-    formData: {
-      handler(val) {
-        this.$emit('input', val)
-      },
-      deep: true
-    }
-  },
   methods: {
     loadData() {
       let id = _.get(this.formData, 'id', null);
