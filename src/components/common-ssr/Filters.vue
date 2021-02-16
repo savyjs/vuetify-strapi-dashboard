@@ -49,6 +49,7 @@
   }
 </i18n>
 <script>
+  import _ from 'lodash'
 
   export default {
     name: 'Filters',
@@ -73,6 +74,9 @@
         let filters = _.omitBy(this.data, v => (_.isBoolean(v) || _.isFinite(v)) ? false : _.isEmpty(v));
         return filters;
       }
+    },
+    created() {
+      this._ = _;
     },
     methods: {
       filter() {

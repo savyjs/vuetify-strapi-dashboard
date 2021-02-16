@@ -70,6 +70,8 @@
   </v-container>
 </template>
 <script>
+  import _ from "lodash";
+
   export default {
     name: 'Report',
     props: ['value', 'isQuery', 'hasReport', 'fields'],
@@ -115,6 +117,9 @@
         },
         deep: true
       },
+    },
+    created() {
+      this._ = _;
     },
     computed: {
       formData() {

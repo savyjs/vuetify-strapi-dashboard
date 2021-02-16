@@ -53,6 +53,8 @@
 
 <script>
 
+  import _ from "lodash";
+
   export default {
     name: 'PopUp',
     props: ['value', 'fields', 'main', 'id'],
@@ -71,6 +73,9 @@
       item() {
         return _.get(this, 'value', {});
       }
+    },
+    created() {
+      this._ = _;
     },
     methods: {
       hasPermission(field) {
