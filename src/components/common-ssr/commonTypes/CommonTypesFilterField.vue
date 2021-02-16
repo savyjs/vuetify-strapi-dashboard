@@ -63,6 +63,7 @@
    * @field: Object - filed properties
    * */
   export default {
+    name: 'CommonTypesFilterField',
     props: ['value', 'field', 'hasLabel', 'outlined'],
     data() {
       return {

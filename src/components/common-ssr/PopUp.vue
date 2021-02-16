@@ -54,6 +54,7 @@
 <script>
 
   export default {
+    name: 'PopUp',
     props: ['value', 'fields', 'main', 'id'],
     data() {
       return {}

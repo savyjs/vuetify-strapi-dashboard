@@ -13,10 +13,10 @@
   </div>
 </template>
 <script>
-  import CommonTypesShow from "./CommonTypesShow";
+
 
   export default {
-    components: {CommonTypesShow},
+    name: 'CommonTypesExpand',
     /**
      * @value: any - this property value
      * @type: String - this property type - image bool text rich ...

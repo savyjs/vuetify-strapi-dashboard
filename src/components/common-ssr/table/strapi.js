@@ -8,17 +8,17 @@ export default {
       this.loading = true;
       let filters = this.filter || {};
       let search = this.search || {};
-      let report = this.report || {};
+      let report = this.report || undefined;
       let sort = _.get(this.options, 'sortBy.0', 'id');
       let sortDESC = _.get(this.options, 'sortDesc.0', true) ? 'DESC' : 'ASC';
       let page = _.get(this.options, 'page', this.page);
       let perPage = _.get(this.options, 'itemsPerPage', this.perPage);
 
       let meta = {
-        report,
         ...filters,
         ...search
       };
+      if (report) meta.report = report;
 
       // check if this path exists
       this.$axios.$get(this.resource + '/count', {params: meta}).then(res => {
@@ -54,7 +54,6 @@ export default {
       return this.doExcel(val, true)
     },
     doReport(val, excel = false) {
-      //console.log({val})
       this.loading = true;
     },
     doSearch(val) {

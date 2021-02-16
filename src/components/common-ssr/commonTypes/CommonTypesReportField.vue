@@ -17,7 +17,7 @@
    * @field: Object - filed properties
    * */
   export default {
-    components: {CommonTypesFilterField},
+    name: 'CommonTypesReportField',
     props: ['value', 'field'],
     data() {
       return {

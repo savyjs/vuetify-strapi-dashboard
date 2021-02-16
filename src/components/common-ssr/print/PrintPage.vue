@@ -68,6 +68,7 @@
   import formHelper from './FormHelper';
 
   export default {
+    name: 'PrintPage',
     mixins: [formHelper]
   }
 </script>

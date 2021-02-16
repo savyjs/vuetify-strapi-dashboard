@@ -51,6 +51,7 @@
 <script>
 
   export default {
+    name: 'Filters',
     props: ['value', 'isQuery', 'hasSearch', 'hasReport', 'hasFilter', 'fields'],
     data() {
       return {

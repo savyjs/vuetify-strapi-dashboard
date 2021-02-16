@@ -142,6 +142,7 @@
 </i18n>
 <script>
 
+  import _ from 'lodash'
 
   /**
    * @value: any - this property value
@@ -150,6 +151,7 @@
    * @field: Object - filed properties
    * */
   export default {
+    name: 'CommonTypesShow',
     props: ['value', 'type', 'id', 'field', 'fields', 'item', 'main', 'place'],
     data() {
       return {
@@ -223,6 +225,9 @@
           }
         }
       }
+    },
+    created() {
+      this._ = _;
     },
     methods: {
       loadData() {

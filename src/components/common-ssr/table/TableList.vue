@@ -258,6 +258,7 @@
   "pop_up":"open in modal"
   },
   "fa":{
+  "$": "ریال",
   "goToPage": "برو به صفحه",
   "filters":"فیلترها",
   "operation": "عملیات",

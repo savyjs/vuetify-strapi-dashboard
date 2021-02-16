@@ -12,7 +12,7 @@ let customListPageHelper = {};
 try {
   customListPageHelper = options.apiShowHelper;
 } catch (e) {
-  console.error({e})
+  // console.error({e})
 }
 export default {
   mixins: [common, strapi, customListPageHelper],

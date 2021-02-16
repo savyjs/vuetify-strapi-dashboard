@@ -1,3 +1,5 @@
+import defaultActions from "./defaultActions";
+
 const perPage = 30
 import _ from 'lodash';
 
@@ -22,10 +24,13 @@ export default {
     }
   },
   created() {
+    this._ = _;
     if (_.has(this, 'Fields')) {
       this.fields = (_.has(this, 'fields') && _.isArray(this.fields)) ? {...this.fields, ...this.Fields} : {...this.Fields};
     }
-    this._ = _;
+    if (_.get(this, 'defaultActions', false)) {
+      this.fields.push(defaultActions);
+    }
   },
   mounted() {
     let name = _.get(this, 'api', undefined);
@@ -86,7 +91,7 @@ export default {
         return this.$Helper.numberFormat(data);
       }
       if (_.includes(['price'], type)) {
-        return this.$Helper.numberFormat(data) + ' ریال';
+        return this.$Helper.numberFormat(data) + this.$t("$");
       }
       if (_.includes(['boolEdit', 'bool'], type)) {
         return !!data ? '✅' : '❌';

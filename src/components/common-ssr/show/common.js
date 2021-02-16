@@ -5,6 +5,8 @@ export default {
     return {
       loader: false,
       showBack: true,
+      headerIcon: undefined,
+      editItem: undefined,
       formData: {},
       title: "",
       resource: "",
@@ -33,6 +35,7 @@ export default {
   computed: {
     getHeaders() {
       let headers = [];
+      console.log('fields:',this.fields);
       for (let item of this.fields) {
         if (item.show === undefined || item.show === true) headers.push(item)
       }

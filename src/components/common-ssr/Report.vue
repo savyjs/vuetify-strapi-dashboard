@@ -71,6 +71,7 @@
 </template>
 <script>
   export default {
+    name: 'Report',
     props: ['value', 'isQuery', 'hasReport', 'fields'],
     data() {
       return {

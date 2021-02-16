@@ -12,7 +12,7 @@ let customListPageHelper = {};
 try {
   customListPageHelper = options.apiListHelper;
 } catch (e) {
-  console.error({e})
+  // console.error({e})
 }
 
 export default {

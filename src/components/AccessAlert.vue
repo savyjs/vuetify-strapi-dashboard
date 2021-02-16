@@ -57,7 +57,7 @@
         let MENU = _.get(this, 'vsd.menu', {})
         let menuItems = MENU.ADMIN_DRAWER;
         let menuItem = _.get(menuItems, _.deepFindKey(menuItems, {link: path}), undefined);
-        console.log({path, menuItem, menuItems}, _.deepFindKey(menuItems, {link: path}))
+        // TODO: fix checking permissions
         if (_.get(menuItem, 'link', '') == path) {
           return this.isAllowedMenu(menuItem);
         } else {
@@ -96,7 +96,6 @@
     },
     created() {
       this._ = _;
-      // console.log('AccessAlert created');
       const can = (id) => {
         return _.includes(this.myPermissions, id);
       }
@@ -128,7 +127,6 @@
           })
           return map;
         } else {
-          // console.log({roleId});
           let res = await this.$axios.$get(resource + '/' + roleId);
           let application = _.get(res, 'role.permissions.application.controllers', {})
           let users = _.get(res, 'role.permissions.users-permissions.controllers', {})
@@ -149,7 +147,6 @@
       isAllowedMenu(item) {
         if (_.has(item, 'permission') && _.isArray(this.myPermissions)) {
           let permission = _.get(item, 'permission', undefined);
-          console.log(permission, this.myPermissions)
           let access = _.includes(this.myPermissions, permission);
           return access;
         } else {
@@ -162,7 +159,6 @@
           let role = await this.$auth.$storage.getState('role');
           let roleId = _.get(user, 'role.id', _.get(user, 'role', undefined))
           let rolePermissions = await this.$auth.$storage.getState('permissions');
-          //console.log({roleId})
 
           if (roleId && (_.has(role, 'id') || !_.isArray(rolePermissions) || true)) {
 
@@ -172,8 +168,6 @@
             await this.$auth.$storage.setState('role', role);
             this.myPermissions = await this.getRolePermissions(roleId);
             await this.$auth.$storage.setState('permissions', this.myPermissions);
-            //console.log({role, roleId, rolePermissions}, this.myPermissions)
-
           }
         } catch (e) {
           this.$swal({
