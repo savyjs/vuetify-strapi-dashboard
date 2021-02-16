@@ -18,7 +18,15 @@ export default {
         ...filters,
         ...search
       };
-      if (report) meta.report = report;
+      if (report) {
+        console.log({report})
+        let reportQuery = {};
+        let whereClauses = [];
+        let orClauses = [];
+        _.forEach(_.get(report, 'names', []), (name, index) => {
+
+        })
+      }
 
       // check if this path exists
       this.$axios.$get(this.resource + '/count', {params: meta}).then(res => {

@@ -14,7 +14,7 @@
           dense
           :label="$t('field')"
           @change="chargeFieldSelectType(j)"
-          v-model="names[j]"
+          v-model="indexes[j]"
           :items="reportFields"
         />
       </v-col>
@@ -65,7 +65,7 @@
           <v-icon class="mx-1">search</v-icon>
           {{$t("show_report")}}
         </v-btn>
-        <v-btn small right color="warning" @click="clearFilter">
+        <v-btn small right absolute color="warning" @click="clearFilter">
           <v-icon class="mx-1">close</v-icon>
           {{$t("clear")}}
         </v-btn>
@@ -117,6 +117,7 @@
     props: ['value', 'isQuery', 'hasReport', 'fields'],
     data() {
       return {
+        indexes: {},
         names: {},
         operators: {},
         fieldAttr: {},
@@ -197,8 +198,7 @@
         return false;
       },
       getValueList(index) {
-        let indexOfField = this.names[index];
-        //let indexOfField = this.reportFields.findIndex(x => x.value == nameOfField)
+        let indexOfField = this.indexes[index];
         let type = _.get(this.reportFields[indexOfField], 'type', 'text');
         if (type == 'text') {
           return this.textValueList
@@ -209,24 +209,27 @@
         }
       },
       getRowFieldType(index) {
-        let indexOfField = this.names[index];
+        let indexOfField = this.indexes[index];
         return _.get(this.reportFields[indexOfField], 'type', 'text');
       },
       chargeFieldSelectType(j) {
-        let index = this.names[j];
-        if (index > -1) this.fieldAttr[j] = this.fields[index];
-        if (index > -1) this.types[j] = this.getRowFieldType(j);
+        let index = this.indexes[j];
+        if (index > -1) {
+          this.names[j] = _.get(this.fields[index], 'value', '');
+          this.fieldAttr[j] = this.fields[index];
+          this.types[j] = this.getRowFieldType(j);
+        }
       },
       excelReportData() {
         this.$emit('excel', this.reportData);
       },
       showReportData() {
-        this.$emit('search', this.reportData);
+        this.$emit('input', this.reportData);
       },
       initiate() {
         _.forEach(this.fields, (item, index) => {
           let text = _.get(item, 'text', null);
-          let value = index //this.fields.findIndex(_.get(item, 'value', false);
+          let value = index; //this.fields.findIndex(_.get(item, 'value', false);
           let type = _.get(item, 'type', '');
           if ((_.get(item, 'numeric', false) || _.includes(['number', 'price'], type))) {
             type = 'numeric';
@@ -238,7 +241,7 @@
             type = 'text';
           }
           let isActive = _.get(item, 'reportable', true);
-          if (isActive && value && !_.includes(['actions'], value)) {
+          if (isActive && !_.includes(['actions'], _.get(item, 'value', null))) {
             this.reportFields.push({text, value, type, field: item})
           }
         })
@@ -246,14 +249,6 @@
       filter() {
         this.$emit('input', this.formData);
         return false;
-      },
-      doSearch(val) {
-        // search after 1 second's
-        setTimeout(() => {
-          if (this.search == val) {
-            this.$emit('search', this.search);
-          }
-        }, 500)
       }
     }
   }

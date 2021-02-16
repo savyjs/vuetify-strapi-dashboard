@@ -35,7 +35,7 @@
         <v-icon class="mx-1">move_to_inbox</v-icon>
         {{$t("filter")}}
       </v-btn>
-      <v-btn small class="pull-right" color="warning" @click="clearFilter">
+      <v-btn small absolute right  class="pull-right" color="warning" @click="clearFilter">
         <v-icon class="mx-1">close</v-icon>
         {{$t("clear")}}
       </v-btn>
