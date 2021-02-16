@@ -46,5 +46,10 @@ export default {
         this.loader = false;
       })
     }
+  },
+  computed: {
+    backUrl() {
+      return this.name ? '/admin/' + this.name : './.'
+    }
   }
 }

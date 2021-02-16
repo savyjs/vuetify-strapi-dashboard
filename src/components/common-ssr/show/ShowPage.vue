@@ -2,16 +2,16 @@
   <section>
     <v-container grid-list-lg>
       <v-card :loading="loader">
-        <v-card-actions class="text-left">
+        <v-card-header class="text-left">
           <v-layout wrap row class="pa-1">
             <v-flex class="pa-1 text-right">
               <v-subheader>
-                <v-icon class="mx-1">edit</v-icon>
+                <v-icon class="mx-1">{{headerIcon || 'eye'}}</v-icon>
                 {{title}}
               </v-subheader>
             </v-flex>
-            <v-flex class="pa-1 text-left">
-              <v-btn v-if="_.get(main,'back',undefined)!==false" small color="warning" class="mx-4" :to="back">
+            <v-flex class="pa-1 text-right">
+              <v-btn v-if="showBack" small color="warning" class="mx-4" :to="backUrl">
                 <v-icon class="mx-1">backspace</v-icon>
                 {{$t("back")}}
               </v-btn>
@@ -22,7 +22,7 @@
               </v-btn>
             </v-flex>
           </v-layout>
-        </v-card-actions>
+        </v-card-header>
         <v-card-text>
           <table class="oddTable">
             <tbody>

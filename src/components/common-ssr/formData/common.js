@@ -11,7 +11,7 @@ export default {
       formData: {},
       btn: {},
       showBack: true,
-      showSimple: true,
+      showSimple: false,
       isModal: false,
       ...this.value
     }

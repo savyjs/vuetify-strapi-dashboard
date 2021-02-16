@@ -56,7 +56,6 @@ export default {
     doReport(val, excel = false) {
       //console.log({val})
       this.loading = true;
-
     },
     doSearch(val) {
       this.searchText = val;
@@ -80,7 +79,7 @@ export default {
       data[property] = val;
       return this.$axios.$put(this.resource + '/' + id, data).then(res => {
         this.loadData();
-        this.$notifSuccess('با موفقیت بروز شد.')
+        this.$notifSuccess(this.$t("success"))
       }).catch(err => {
         this.$notifError(err)
       })

@@ -1,7 +1,7 @@
 export default {
   methods: {
     loadData() {
-      let id = _.get(this.formData, 'id', null);
+      let id = _.get(this.formData, 'id', undefined);
       if (!id) {
         this.canSave = true;
         return;
@@ -9,7 +9,6 @@ export default {
       this.loader = true;
       this.$axios.$get(this.resource + '/' + id).then(res => {
         this.formData = {...this.formData, ...res};
-        //console.log({res}, this.formData)
         this.canSave = true;
       }).catch(err => {
         this.$notifError(err);
@@ -19,14 +18,12 @@ export default {
     },
     save(show = false) {
       this.loader = true;
-      let formData = this.formData;
-      // console.log({formData})
-      let id = this.formData.id;
+      let id = _.get(this.formData, 'id', undefined);
       let response;
       if (id) {
-        response = this.$axios.$put(this.resource + '/' + id, formData);
+        response = this.$axios.$put(this.resource + '/' + id, this.formData);
       } else {
-        response = this.$axios.$post(this.resource, formData);
+        response = this.$axios.$post(this.resource, this.formData);
       }
       response.then(res => {
         this.$notifSuccess(this.$t("success"))

@@ -4,6 +4,7 @@ export default {
   data() {
     return {
       loader: false,
+      showBack: true,
       formData: {},
       title: "",
       resource: "",
@@ -39,9 +40,6 @@ export default {
     },
     item() {
       return _.get(this, 'value', {});
-    },
-    back() {
-      return this.name ? '/admin/' + this.name : './.'
     }
   },
   created() {
@@ -53,7 +51,6 @@ export default {
       return true;
     },
     canShow(field) {
-      //console.log(_.get(field, 'show', undefined) !== false, {field})
       return _.get(field, 'show', undefined) !== false;
     }
   }
