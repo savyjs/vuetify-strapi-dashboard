@@ -9,6 +9,7 @@
 </template>
 <script>
   import CommonTypesFilterField from "./CommonTypesFilterField";
+  import _ from "lodash";
 
   /**
    * @value: any - this property value
@@ -25,6 +26,9 @@
       }
     },
     computed: {},
+    created() {
+      this._ = _;
+    },
     watch: {
       value: {
         handler(val) {

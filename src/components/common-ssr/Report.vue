@@ -12,7 +12,7 @@
         <v-autocomplete
           outlined
           dense
-          label="فیلد"
+          :label="$t('field')"
           @change="chargeFieldSelectType(j)"
           v-model="names[j]"
           :items="reportFields"
@@ -22,14 +22,14 @@
         <v-autocomplete
           outlined
           dense
-          label="عبارت شرطی"
+          :label="$t('condition')"
           v-model="operators[j]"
           :items="getValueList(j)"
         />
       </v-col>
       <v-col>
         <common-types-report-field
-          label="مقدار"
+          :label="$t('value')"
           v-if="fieldAttr[j]"
           :field="fieldAttr[j]"
           v-model="values[j]"
@@ -38,7 +38,7 @@
           v-else
           outlined
           dense
-          label="مقدار"
+          :label="$t('value')"
           v-model="values[j]"
         />
       </v-col>
@@ -59,16 +59,52 @@
       <v-col cols="12" lg="12" class="text-left">
         <v-btn small v-if="false" color="info" @click="excelReportData">
           <v-icon class="mx-1">move_to_inbox</v-icon>
-          دریافت اکسل
+          {{$t("excel")}}
         </v-btn>
         <v-btn small color="success darken-3" @click="showReportData">
           <v-icon class="mx-1">search</v-icon>
-          نمایش گزارش
+          {{$t("show_report")}}
         </v-btn>
       </v-col>
     </v-row>
   </v-container>
 </template>
+<i18n>
+  {
+  "en":{
+  "delete":"delete",
+  "field":"field",
+  "value":"value",
+  "excel":"download excel",
+  "show_report":"show report",
+  "condition":"condition",
+  "condition":"condition",
+  "gt":"greater than",
+  "lt":"less than",
+  "eq":"equal to",
+  "ge":"greater equal",
+  "le":"less equal",
+  "ne":"not equal",
+  "include":"include"
+  },
+  "fa":{
+  "delete":"حذف",
+  "field":"فیلد",
+  "value":"مقدار",
+  "value":"مقدار",
+  "show_report":" نمایش گزارش",
+  "excel":"دریافت اکسل",
+  "condition":"عبارت شرطی",
+  "gt":"بزرگتر از",
+  "lt":"کوچکتر از",
+  "eq":"مساوی",
+  "ge":"بزرگتر مساوی",
+  "le":"کوچکتر مساوی",
+  "ne":"نابرابر",
+  "include":"شامل"
+  }
+  }
+</i18n>
 <script>
   import _ from "lodash";
 
@@ -84,23 +120,6 @@
         types: {},
         conditions: {},
         id: null,
-        allValueList: [
-          {text: "بزرگتر از", value: "gt", type: "numeric"},
-          {text: "کوچکتر از", value: "lt", type: "numeric"},
-          {text: "مساوی با", value: "eq"},
-          {text: "بزرگتر مساوی با", value: "get", type: "numeric"},
-          {text: "کوچکتر مساوی با", value: "let", type: "numeric"},
-          {text: "نابرابر با", value: "ne"},
-          {text: "شامل", value: "include"},
-        ],
-        textValueList: [
-          {text: "مساوی با", value: "eq"},
-          {text: "نابرابر با", value: "ne"},
-          {text: "شامل", value: "include"},
-        ],
-        boolValueList: [
-          {text: "مساوی با", value: "eq"},
-        ],
         filterRows: [1],
         search: '',
         report: '',
@@ -122,6 +141,29 @@
       this._ = _;
     },
     computed: {
+      allValueList() {
+        return [
+          {text: this.$t("gt"), value: "gt", type: "numeric"},
+          {text: this.$t("lt"), value: "lt", type: "numeric"},
+          {text: this.$t("eq"), value: "eq"},
+          {text: this.$t("ge"), value: "ge", type: "numeric"},
+          {text: this.$t("le"), value: "le", type: "numeric"},
+          {text: this.$t("ne"), value: "ne"},
+          {text: this.$t("include"), value: "include"},
+        ]
+      },
+      textValueList() {
+        return [
+          {text: this.$t("eq"), value: "eq"},
+          {text: this.$t("ne"), value: "ne"},
+          {text: this.$t("include"), value: "include"},
+        ]
+      },
+      boolValueList() {
+        return [
+          {text: this.$t("eq"), value: "eq"},
+        ]
+      },
       formData() {
         let filters = _.omitBy(this.data, v => (_.isBoolean(v) || _.isFinite(v)) ? false : _.isEmpty(v));
         return filters;

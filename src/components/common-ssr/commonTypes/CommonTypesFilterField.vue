@@ -55,6 +55,7 @@
 </i18n>
 <script>
 
+  import _ from 'lodash';
 
   /**
    * @value: any - this property value
@@ -86,6 +87,9 @@
       emitter(val) {
         return this.$emit('input', (_.get(this.field, 'numeric', false) || this.type == 'number') ? parseInt(val) : val);
       }
+    },
+    created() {
+      this._ = _;
     },
     watch: {
       value: {

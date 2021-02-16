@@ -3,7 +3,7 @@
     <v-card-title>
       <h3>
         <v-icon>flag</v-icon>
-        {{_.get(main,'popTitle','مشاهده سریع')}}
+        {{_.get(main,'popTitle',$t("show"))}}
       </h3>
       <v-spacer/>
       <v-btn fab icon @click="$emit('closeIt',true)" small color="error">
@@ -45,12 +45,28 @@
     <v-card-actions>
       <v-btn small color="error" @click="$emit('closeIt',true)">
         <v-icon>close</v-icon>
-        بستن
+        {{$t("close")}}
       </v-btn>
     </v-card-actions>
   </v-card>
 </template>
 
+<i18n>
+  {
+  "en":{
+  "delete":"delete",
+  "close":"close",
+  "error":"some error occurred",
+  "show":"preview item"
+  },
+  "fa":{
+  "delete":"حذف",
+  "close":"بستن",
+  "error":"مشکلی در دریافت آیدی و یا مقدار فیلد رخ داد",
+  "show":"مشاهده سریع"
+  }
+  }
+</i18n>
 <script>
 
   import _ from "lodash";
@@ -83,14 +99,14 @@
         return true;
       },
       reload() {
-        this.$emit('reload',true);
+        this.$emit('reload', true);
       },
       update(id, property, val) {
         if (id && property) {
           this.$emit('update', id, property, val);
         } else {
           console.error({id, property, val})
-          this.$notifError('مشکلی در دریافت آیدی و یا مقدار فیلد رخ داد')
+          this.$notifError(this.$t("error"))
         }
       }
     }
