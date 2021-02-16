@@ -82,7 +82,7 @@
             <report
               v-model="report"
               :fields="fields"
-              @search="doReport"
+              @input="doReport"
               @excel="doExcel"
             ></report>
           </v-expansion-panel-content>

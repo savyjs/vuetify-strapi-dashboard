@@ -20,18 +20,24 @@
       :key="field.value"
       cols="12" md="6" lg="4" @keydown.enter="filter">
       <common-types-filter-field
+        :outlined="true"
+        :has-label="true"
         :field="field"
         v-model="data[field.value]"
       />
     </v-col>
     <v-col cols="12" lg="12" class="text-left">
-      <v-btn small color="info" @click="filter">
+      <v-btn small color="info" @click="doSearch">
         <v-icon class="mx-1">search</v-icon>
         {{$t("search")}}
       </v-btn>
-      <v-btn v-if="hasReport" small color="success darken-3" @click="filter">
+      <v-btn v-if="hasFilter" small color="success darken-3" @click="filter">
         <v-icon class="mx-1">move_to_inbox</v-icon>
-        {{$t("report")}}
+        {{$t("filter")}}
+      </v-btn>
+      <v-btn small class="pull-right" color="warning" @click="clearFilter">
+        <v-icon class="mx-1">close</v-icon>
+        {{$t("clear")}}
       </v-btn>
     </v-col>
   </v-row>
@@ -40,11 +46,11 @@
   {
   "en":{
   "search":"search",
-  "report":"report"
+  "filter":"filter"
   },
   "fa":{
   "search":"جست و جو",
-  "report":"گزارش"
+  "filter":"فیلتر"
   }
   }
 </i18n>
@@ -53,7 +59,7 @@
 
   export default {
     name: 'Filters',
-    props: ['value', 'isQuery', 'hasSearch', 'hasReport', 'hasFilter', 'fields'],
+    props: ['value', 'isQuery', 'hasSearch', 'hasFilter', 'fields'],
     data() {
       return {
         id: null,
@@ -69,6 +75,7 @@
         deep: true
       },
     },
+
     computed: {
       formData() {
         let filters = _.omitBy(this.data, v => (_.isBoolean(v) || _.isFinite(v)) ? false : _.isEmpty(v));
@@ -79,8 +86,16 @@
       this._ = _;
     },
     methods: {
+      clearSearch() {
+        this.$emit('search', {});
+        return false;
+      },
+      clearFilter() {
+        this.clearSearch();
+        this.$emit('input', {});
+        return false;
+      },
       filter() {
-        console.log(1, this.formData, this.data)
         this.$emit('input', this.formData);
         return false;
       },

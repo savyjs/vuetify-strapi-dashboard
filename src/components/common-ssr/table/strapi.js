@@ -51,10 +51,14 @@ export default {
       }, 500)
     },
     doExcel(val) {
-      return this.doExcel(val, true)
+      setTimeout(() => {
+        this.loadData()
+      }, 500)
     },
     doReport(val, excel = false) {
-      this.loading = true;
+      setTimeout(() => {
+        this.loadData()
+      }, 500)
     },
     doSearch(val) {
       this.searchText = val;
