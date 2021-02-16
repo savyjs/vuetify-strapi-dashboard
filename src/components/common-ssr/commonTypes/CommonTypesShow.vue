@@ -150,7 +150,6 @@
    * @field: Object - filed properties
    * */
   export default {
-    components: {BoolBtn},
     props: ['value', 'type', 'id', 'field', 'fields', 'item', 'main', 'place'],
     data() {
       return {
