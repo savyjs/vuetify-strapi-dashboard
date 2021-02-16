@@ -10,11 +10,11 @@ import options from './../../../options'
 let strapi = require(`./strapi`).default || {};
 let customListPageHelper = {};
 try {
-  customListPageHelper = options.apiListHelper;
+  customListPageHelper = options.apiPrintHelper;
 } catch (e) {
   console.error({e})
 }
-
 export default {
   mixins: [common, strapi, customListPageHelper],
+  // alernative
 }

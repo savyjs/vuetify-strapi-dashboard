@@ -54,12 +54,7 @@
   }
 </i18n>
 <script>
-  import TextEditor from "../elements/TextEditor";
-  import SelectPhoto from "../elements/SelectPhoto";
-  import DateTimePicker from "../elements/dateTimePicker";
-  import DatePicker from "../elements/DatePicker";
-  import CommonSelectRelation from "../elements/SelectRelation";
-  import CommonSelectEnum from "../elements/SelectEnum";
+
 
   /**
    * @value: any - this property value
@@ -68,7 +63,6 @@
    * @field: Object - filed properties
    * */
   export default {
-    components: {DatePicker, DateTimePicker, SelectPhoto, TextEditor, CommonSelectRelation, CommonSelectEnum},
     props: ['value', 'field', 'hasLabel', 'outlined'],
     data() {
       return {

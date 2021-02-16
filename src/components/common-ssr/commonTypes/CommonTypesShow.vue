@@ -142,7 +142,6 @@
 </i18n>
 <script>
 
-  import BoolBtn from "../elements/BoolBtn";
 
   /**
    * @value: any - this property value

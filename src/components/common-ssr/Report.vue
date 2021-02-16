@@ -70,11 +70,7 @@
   </v-container>
 </template>
 <script>
-  import CommonTypesFilterField from "./CommonTypesFilterField";
-  import CommonTypesReportField from "./CommonTypesReportField";
-
   export default {
-    components: {CommonTypesReportField, CommonTypesFilterField},
     props: ['value', 'isQuery', 'hasReport', 'fields'],
     data() {
       return {

@@ -129,10 +129,8 @@
 
 
 <script>
-  import CommonTypesField from "../common-ssr/CommonTypesField";
 
   export default {
-    components: {'common-types-field': CommonTypesField},
     props: ['label', 'value', 'field'],
     data() {
       return {

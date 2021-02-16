@@ -15,8 +15,8 @@
                 <v-icon class="mx-1">backspace</v-icon>
                 {{$t("back")}}
               </v-btn>
-              <v-btn v-if="_.get(main,'editItem',true) !==false" class="px-5" small color="success"
-                     :to="`${back}/edit/${value.id}`">
+              <v-btn v-if="editItem" class="px-5" small color="success"
+                     :to="`${backUrl}/edit/${id}`">
                 <v-icon class="mx-1">edit</v-icon>
                 {{$t("edit")}}
               </v-btn>

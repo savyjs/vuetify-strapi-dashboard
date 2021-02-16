@@ -47,22 +47,27 @@
     </v-container>
   </section>
 </template>
-<script>
-  import formHelper from './common';
-  import CommonTypesShow from "../CommonTypesShow";
 
-  const notColons = ['label', 'linearCrud', 'crud'];
+<i18n>
+  {
+  "en":{
+  "can_not_update":"can not update",
+  "successful":"done",
+  "error":"an error occurred"
+  },
+  "fa":{
+  "back":"برگشت",
+  "edit":"ویرایش",
+  "can_not_update":"مشکلی در بروزرسانی رخ داد",
+  "successful":"با موفقیت انجام شد",
+  "error":"مشکلی رخ داد"
+  }
+  }
+</i18n>
+<script>
+  import formHelper from './FormHelper';
+
   export default {
-    props: ['value', 'main'],
-    ...formHelper,
-    data() {
-      return {
-        ...this.main,
-        notColons,
-        ...formHelper.getData,
-        formData: {}
-      }
-    },
-    components: {CommonTypesShow},
+    mixins: [formHelper]
   }
 </script>

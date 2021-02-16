@@ -265,15 +265,11 @@
   }
 </i18n>
 <script>
-  import PopUp from "./PopUp";
   import _ from "lodash";
-  import CommonTypesShow from "./CommonTypesShow";
-  import CommonTypesExpand from "./CommonTypesExpand";
 
   _.mixin(require("lodash-deep"));
   export default {
     name: 'TableList',
-    components: {CommonTypesExpand, CommonTypesShow, PopUp},
     props: ['items', 'search', 'main', 'hasSort', 'hasFilter', 'hasSearch', 'itemKey', 'length', 'showSelect', 'options', 'loading', 'name', 'fields', 'resource'],
     data() {
       return {

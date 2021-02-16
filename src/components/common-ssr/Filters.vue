@@ -49,10 +49,8 @@
   }
 </i18n>
 <script>
-  import CommonTypesFilterField from "./CommonTypesFilterField";
 
   export default {
-    components: {CommonTypesFilterField},
     props: ['value', 'isQuery', 'hasSearch', 'hasReport', 'hasFilter', 'fields'],
     data() {
       return {

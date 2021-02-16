@@ -52,10 +52,8 @@
 </template>
 
 <script>
-  import CommonTypesShow from "./CommonTypesShow";
 
   export default {
-    components: {CommonTypesShow},
     props: ['value', 'fields', 'main', 'id'],
     data() {
       return {}
