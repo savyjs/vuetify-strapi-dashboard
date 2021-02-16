@@ -250,7 +250,11 @@
   "operation": "operation",
   "next_step":"next",
   "show":"show",
+  "delete":"delete",
   "edit":"edit",
+  "cancel":"cancel",
+  "yes":"yes",
+  "confirmation":"do you want to delete item(s)?",
   "pop_up":"open in modal"
   },
   "fa":{
@@ -259,7 +263,11 @@
   "operation": "عملیات",
   "next_step":"مرحله بعد",
   "show":"نمایش",
+  "delete":"حذف",
+  "confirmation":"آیا مطمئن هستید می خواهید این مورد را حذف کنید؟",
   "edit":"ویرایش",
+  "cancel":"لغو",
+  "yes":"بله",
   "pop_up":"باز کردن در پاپ آپ"
   }
   }

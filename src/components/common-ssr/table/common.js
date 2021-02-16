@@ -46,7 +46,6 @@ export default {
       let fields = this.fields;
       await this.getAllDataBeforeMakeExcel();
       let data = this.list;
-      //console.log({data, fields});
       if (!_.isArray(data) || !_.isArray(fields)) {
         return [];
       }
@@ -61,7 +60,6 @@ export default {
           }
         }
         if (has) {
-          //console.log(row);
           final.push(row);
         }
       }
@@ -128,9 +126,7 @@ export default {
         let response = [];
         let textPath = _.get(field, 'meta.text', undefined);
         return _.map(items, (item, index) => {
-          //console.log({index, item})
           let text = _.get(item, textPath, item);
-          //console.log({text})
           return (text);
         }).toString()
       } else {
@@ -157,14 +153,14 @@ export default {
     deleteItems() {
       let ids = this.selected;
       this.$swal({
-        title: 'حذف گزینه ها',
-        text: "آیا مطمئن هستید می خواهید این موارد را حذف کنید؟",
+        title: this.$t("delete"),
+        text: this.$t("confirmation"),
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        cancelButtonText: 'لغو',
-        confirmButtonText: 'حذف کن',
+        cancelButtonText: this.$t("cancel"),
+        confirmButtonText: this.$t("yes"),
       }).then((result) => {
         if (result.value) {
           let totalItems = ids.length;
@@ -178,14 +174,14 @@ export default {
     },
     deleteItem(id) {
       this.$swal({
-        title: 'حذف',
-        text: "آیا مطمئن هستید می خواهید این مورد را حذف کنید؟",
+        title: this.$t("delete"),
+        text: this.$t("confirmation"),
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        cancelButtonText: 'لغو',
-        confirmButtonText: 'حذف کن'
+        cancelButtonText: this.$t("cancel"),
+        confirmButtonText: this.$t("yes")
       }).then((result) => {
         if (result.value) {
           this.delete(id)
