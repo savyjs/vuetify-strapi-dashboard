@@ -1,6 +1,7 @@
 import _ from 'lodash'
 
 export default {
+  props: ['value', 'id'],
   data() {
     return {
       loader: false,

@@ -17,17 +17,12 @@ export default {
   },
   mounted() {
     this.loadData();
+    console.log(this.value, this.fields);
   },
   watch: {
     value: {
       handler(val) {
-        this.formData = val;
-      },
-      deep: true
-    },
-    formData: {
-      handler(val) {
-        this.$emit('input', val)
+        _.assign(this, val);
       },
       deep: true
     }
@@ -35,7 +30,7 @@ export default {
   computed: {
     getHeaders() {
       let headers = [];
-      console.log('fields:',this.fields);
+      console.log('fields:', this.fields);
       for (let item of this.fields) {
         if (item.show === undefined || item.show === true) headers.push(item)
       }

@@ -2,7 +2,7 @@
   <section>
     <v-container grid-list-lg>
       <v-card :loading="loader">
-        <v-card-header class="text-left">
+        <v-card-header margin-right="1%" width="98%" class="text-left">
           <v-layout wrap row class="pa-1">
             <v-flex class="pa-1 text-right">
               <v-subheader>
@@ -69,7 +69,7 @@
   import formHelper from './FormHelper';
 
   export default {
-    mixins: [formHelper],
-    props: ['value']
+    props: ['value', 'id'],
+    mixins: [formHelper]
   }
 </script>

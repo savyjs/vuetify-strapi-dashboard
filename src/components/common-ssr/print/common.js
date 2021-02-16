@@ -1,7 +1,6 @@
 const notColons = ['label', 'linearCrud', 'crud'];
 
 export default {
-  props: ['value', 'main'],
   data() {
     return {
       ...this.main,

@@ -3,7 +3,7 @@
     <v-container grid-list-lg>
       <v-card :loading="loader">
         <v-form lazy-validation v-model="validity">
-          <v-card-header v-if="showSimple!==true">
+          <v-card-header margin-right="1%" width="98%" v-if="showSimple!==true">
             <v-layout  class="pa-1">
               <v-flex class="pa-1 text-left">
               <span class="px-1">

@@ -4,7 +4,7 @@
       <v-card class="my-1">
         <v-card-header :color="_.get(value,'color','primary')" margin-right="1%" width="98%" classes="pl-5">
           <h3 class="pr-5">
-            <v-icon small>{{_.get(value,'icon','archive')}}</v-icon>
+            <v-icon class="mx-1">{{headerIcon || _.get(value,'icon','archive')}}</v-icon>
             {{ title }}
           </h3>
           <v-spacer/>
@@ -38,7 +38,7 @@
         </v-card-header>
         <v-card-actions>
           <v-layout wrap row class="pa-1">
-            <v-flex xs12 md6 class="pa-1 text-right">
+            <v-flex xs12 md6 class="pa-1">
               <span>
                 <small class="success--text darken-2">
                 <v-icon>info</v-icon>

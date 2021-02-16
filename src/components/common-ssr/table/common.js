@@ -12,6 +12,7 @@ export default {
       filter: {},
       perPage,
       selected: [],
+      fields: [],
       loading: false,
       searchText: '',
       page: 1,
@@ -23,12 +24,26 @@ export default {
       ...this.value,
     }
   },
+  watch: {
+    value: {
+      handler(val) {
+        _.assign(this, val);
+      },
+      deep: true
+    },
+    formData: {
+      handler(val) {
+        this.$emit('input', val)
+      },
+      deep: true
+    }
+  },
   created() {
     this._ = _;
     if (_.has(this, 'Fields')) {
       this.fields = (_.has(this, 'fields') && _.isArray(this.fields)) ? {...this.fields, ...this.Fields} : {...this.Fields};
     }
-    if (_.get(this, 'defaultActions', false)) {
+    if (_.isArray(this.fields) && !_.includes(this.fields, defaultActions) && _.get(this, 'defaultActions', false)) {
       this.fields.push(defaultActions);
     }
   },
