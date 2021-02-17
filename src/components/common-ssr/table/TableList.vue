@@ -225,7 +225,7 @@
                 </v-icon>
               </v-btn>
             </template>
-            <span>{{tooltipBtn('pop',$t('showOnPop'))}}</span>
+            <span>{{tooltipBtn('pop',$t('pop_up'))}}</span>
           </v-tooltip>
           <component @reload="reload" :is="nameBtn('custom')" :item="item"/>
         </div>

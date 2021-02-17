@@ -95,7 +95,7 @@
     },
     methods: {
       hasPermission(field) {
-        if (_.has(field, 'permission')) return this.can(_.get(field, 'permission', null))
+        if (_.has(field, 'permission') && !!_.get(field, 'permission', undefined)) return this.can(_.get(field, 'permission', null))
         return true;
       },
       reload() {
