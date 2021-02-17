@@ -72,7 +72,6 @@
           <v-row v-if="_.findKey(fields,{value:'actions',expand:true})">
             <v-col>
               <span>{{$t("operation")}}:</span>
-
               <template>
                 <v-tooltip bottom v-if="hasBtn('next')">
                   <template v-slot:activator="{ on, attrs }">
@@ -146,13 +145,11 @@
                   </template>
                   <span>{{tooltipBtn('pop',$t("pop_up"))}}</span>
                 </v-tooltip>
-
               </template>
             </v-col>
           </v-row>
         </td>
       </template>
-
       <template v-slot:item.actions="{ item }">
         <div style="width: 150px">
           <v-tooltip bottom v-if="hasBtn('next')">
@@ -171,7 +168,6 @@
           </v-tooltip>
           <v-tooltip bottom v-if="hasBtn('show')">
             <template v-slot:activator="{ on, attrs }">
-
               <v-btn v-on="on" x-small v-if="hasBtn('show')" fab icon :to="`/admin/${name}/${item.id}`">
                 <v-icon
                   small
@@ -186,7 +182,6 @@
           </v-tooltip>
           <v-tooltip bottom v-if="hasBtn('edit')">
             <template v-slot:activator="{ on, attrs }">
-
               <v-btn v-on="on" x-small v-if="hasBtn('edit')" fab icon :to="`/admin/${name}/edit/${item.id}`">
                 <v-icon
                   small
@@ -275,8 +270,8 @@
 </i18n>
 <script>
   import _ from "lodash";
-
   _.mixin(require("lodash-deep"));
+
   export default {
     name: 'TableList',
     props: ['items', 'search', 'main', 'hasSort', 'hasFilter', 'hasSearch', 'itemKey', 'length', 'showSelect', 'options', 'loading', 'name', 'fields', 'resource'],

@@ -1,21 +1,23 @@
 <template>
   <v-row>
-    <v-col
-      v-if="hasFilter!==false && _.get(field,'filterable',undefined)!==false"
-      v-for="field in fields"
-      :key="field.value"
-      cols="12" md="6" lg="4" @keydown.enter="doFilter">
-      <common-types-filter-field
-        :outlined="true"
-        :has-label="true"
-        :field="field"
-        v-model="data[field.value]"
-      />
+    <v-col v-if="hasSearch!==false" cols="12">
+      <div>
+        <v-text-field
+          clearable
+          dense
+          v-model="search"
+          outlined
+          :label="$t('search')"
+          @keydown.enter="doSearch"
+          @change="doSearch"
+          append-icon="search"
+        />
+      </div>
     </v-col>
     <v-col cols="12" lg="12" class="text-left">
-      <v-btn v-if="hasFilter" small color="success darken-3" @click="doFilter">
-        <v-icon class="mx-1">move_to_inbox</v-icon>
-        {{$t("filter")}}
+      <v-btn small color="info" @click="doSearch">
+        <v-icon class="mx-1">search</v-icon>
+        {{$t("search")}}
       </v-btn>
       <v-btn small absolute right  class="pull-right" color="warning" @click="clear">
         <v-icon class="mx-1">close</v-icon>
@@ -40,13 +42,12 @@
   import _ from 'lodash'
 
   export default {
-    name: 'Filters',
-    props: ['value', 'isQuery', 'hasSearch', 'hasFilter', 'fields'],
+    name: 'Search',
+    props: ['value', 'isQuery', 'hasSearch', 'fields'],
     data() {
       return {
         id: null,
-        search: '',
-        data: {}
+        search: ''
       }
     },
     watch: {
@@ -62,13 +63,17 @@
     },
     methods: {
       clear() {
-        this.data =[];
-        this.$emit('input', {});
+        this.search ='';
+        this.$emit('input', "");
         return false;
       },
-      doFilter() {
-        this.$emit('input', this.data);
-        return false;
+      doSearch(val) {
+        // search after 1 second's
+        setTimeout(() => {
+          if (this.search == val) {
+            this.$emit('input', this.search);
+          }
+        }, 500)
       }
     }
   }

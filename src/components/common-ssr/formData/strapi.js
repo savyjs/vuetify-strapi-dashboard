@@ -8,7 +8,6 @@ export default {
       this.loader = true;
       this.$axios.$get(this.resource + '/' + id).then(res => {
         this.formData = {...this.formData, ...res};
-        console.log(this.formData)
         this.canSave = true;
       }).catch(err => {
         this.$notifError(err);

@@ -20,6 +20,7 @@ import CommonTypesShow from './common-ssr/CommonTypes/CommonTypesShow'
 import Filters from './common-ssr/Filters'
 import PopUp from './common-ssr/PopUp'
 import Report from './common-ssr/Report'
+import Search from './common-ssr/Search'
 
 import ShowPage from './common-ssr/show/ShowPage'
 import DataForm from './common-ssr/formData/DataForm'
@@ -81,6 +82,7 @@ export default {
   Filters,
   PopUp,
   Report,
+  Search,
   Icons8,
   loader,
   TextEditor,

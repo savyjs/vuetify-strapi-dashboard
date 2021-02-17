@@ -49,7 +49,25 @@
           </v-layout>
         </v-card-actions>
       </v-card>
-      <v-expansion-panels class="my-1" v-if="_.get(value,'filterable',true) || _.get(value,'searchable',true)">
+      <v-expansion-panels class="my-1" v-if="_.get(value,'searchable',true)">
+        <v-expansion-panel>
+          <v-expansion-panel-header>
+            <span>
+              <v-icon class="mx-1">search</v-icon>
+            {{$t("search")}}
+            </span>
+          </v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <search
+              :hasSearch="_.get(value,'searchable',true)"
+              v-model="filter"
+              :fields="fields"
+              @input="doSearch"
+            ></search>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
+      <v-expansion-panels class="my-1" v-if="_.get(value,'filterable',true)">
         <v-expansion-panel>
           <v-expansion-panel-header>
             <span>
@@ -60,12 +78,10 @@
           <v-expansion-panel-content>
             <filters
               :hasFilter="_.get(value,'filterable',true)"
-              :hasSearch="_.get(value,'searchable',true)"
               :hasReport="_.get(value,'report',false)"
               v-model="filter"
               :fields="fields"
               @input="doFilter"
-              @search="doSearch"
             ></filters>
           </v-expansion-panel-content>
         </v-expansion-panel>
@@ -74,7 +90,7 @@
         <v-expansion-panel>
           <v-expansion-panel-header>
             <span>
-              <v-icon class="mx-1">filter_list</v-icon>
+              <v-icon class="mx-1">bolt</v-icon>
             {{$t("report_filters")}}
             </span>
           </v-expansion-panel-header>
@@ -128,8 +144,9 @@
   "success":"done",
   "download_excel":"download excel",
   "total": "total",
-  "filters": "search filters",
-  "report_filters": "report filters"
+  "search": "Search",
+  "filters": "Filters",
+  "report_filters": "Report"
   },
   "fa":{
   "delete":"حذف",
@@ -138,7 +155,8 @@
   "back":"برگشت",
   "download_excel":"دانلود اکسل",
   "total": "تعداد کل",
-  "filters": "فیلتر جست و جو",
+  "search": "جست و جو",
+  "filters": "فیلتر",
   "report_filters": "فیلتر گزارش"
   }
   }

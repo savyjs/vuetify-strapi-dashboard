@@ -194,7 +194,15 @@
     },
     methods: {
       clearFilter() {
+        this.search = '';
+        this.filterRows = [1];
+        this.names = [];
+        this.types = [];
+        this.operators = [];
+        this.values = [];
+        this.conditions = [];
         this.$emit('input', {});
+        this.$emit('search', {});
         return false;
       },
       getValueList(index) {

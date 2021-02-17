@@ -22,7 +22,6 @@ export default {
       };
       let queryString = '';
       if (report) {
-        console.log({report})
         let reportQuery = {};
         let whereClauses = [];
         let orClauses = [];
@@ -94,11 +93,14 @@ export default {
     },
     doSearch(val) {
       this.searchText = val;
+      this.filter = {};
       this.search = {};
       if (val) {
         // Strapi API
-        _.forEach(this.fields, (field) => {
-          if (_.get(field, 'searchable', true)) _.set(this.search, _.get(field, 'value', 'title') + '_contains', val);
+        _.forEach(this.fields, (field, i) => {
+          if (_.get(field, 'searchable', true) && !!_.get(field, 'value', undefined)) {
+            _.set(this.search, field.value + '_contains', val);
+          }
         })
       }
 
