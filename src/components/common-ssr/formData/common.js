@@ -6,7 +6,10 @@ export default {
     return {
       loader: false,
       validity: null,
+      headerIcon: undefined,
       canSave: false,
+      resource: "",
+      title: "",
       name: "",
       fields: [],
       formData: {},

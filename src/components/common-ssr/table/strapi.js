@@ -1,6 +1,8 @@
 /**
  * you can copy this file for your custom API server and change it to fit your need.
  */
+import qs from 'qs';
+
 export default {
   methods: {
     loadData() {
@@ -18,18 +20,40 @@ export default {
         ...filters,
         ...search
       };
+      let queryString = '';
       if (report) {
         console.log({report})
         let reportQuery = {};
         let whereClauses = [];
         let orClauses = [];
-        _.forEach(_.get(report, 'names', []), (name, index) => {
-
+        _.forEach(_.get(report, 'names', []), (field, i) => {
+          let val = report.values[i];
+          let clause = {};
+          let cond = 'and';
+          let op = report.operators[i];
+          let name = field + '_' + op;
+          clause[name] = val;
+          if (i) cond = report.conditions[i - 1];
+          if (cond == 'or') {
+            orClauses.push(clause)
+          } else {
+            whereClauses.push(clause)
+          }
         })
+        reportQuery._where = {};
+        if (orClauses.length && !whereClauses.length) {
+          reportQuery._where['_or'] = orClauses;
+        } else if (orClauses.length) {
+          reportQuery._where['_or'] = [...(orClauses.map(k => [k])), whereClauses]
+        } else {
+          reportQuery._where = whereClauses;
+        }
+        queryString = '?' + qs.stringify(reportQuery);
+        console.log({reportQuery, queryString})
       }
 
       // check if this path exists
-      this.$axios.$get(this.resource + '/count', {params: meta}).then(res => {
+      this.$axios.$get(this.resource + '/count' + queryString, {params: meta}).then(res => {
         this.length = res;
       });
 
@@ -41,7 +65,7 @@ export default {
         meta._start = (page - 1) * perPage
       }
 
-      this.$axios.$get(this.resource, {params: meta}).then(res => {
+      this.$axios.$get(this.resource + queryString, {params: meta}).then(res => {
         this.list = res;
         if (this.length < 1 && res.length > 0) {
           this.length = res.length;

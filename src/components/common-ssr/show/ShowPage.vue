@@ -10,12 +10,12 @@
                 {{title}}
               </v-subheader>
             </v-flex>
-            <v-flex class="pa-1 text-right">
-              <v-btn v-if="showBack" small color="warning" class="mx-4" :to="backUrl">
+            <v-flex :class="`pa-1 ` + (vsd.rtl ? `text-left` : `text-right`)">
+              <v-btn v-if="showBack" small color="warning" class="mx-1 px-4" :to="backUrl">
                 <v-icon class="mx-1">backspace</v-icon>
                 {{$t("back")}}
               </v-btn>
-              <v-btn v-if="editItem" class="px-5" small color="success"
+              <v-btn v-if="editItem" class="mx-1 px-5" small color="success"
                      :to="`${backUrl}/edit/${id}`">
                 <v-icon class="mx-1">edit</v-icon>
                 {{$t("edit")}}

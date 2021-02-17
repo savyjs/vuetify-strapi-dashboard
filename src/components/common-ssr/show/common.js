@@ -17,7 +17,7 @@ export default {
   },
   mounted() {
     this.loadData();
-    console.log(this.value, this.fields);
+    console.log(this.value);
   },
   watch: {
     value: {
