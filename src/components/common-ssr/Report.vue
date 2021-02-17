@@ -78,6 +78,7 @@
   "en":{
   "delete":"delete",
   "field":"field",
+  "clear":"clear",
   "value":"value",
   "excel":"download excel",
   "show_report":"show report",
@@ -94,9 +95,9 @@
   "fa":{
   "delete":"حذف",
   "field":"فیلد",
+  "clear":"پاک کردن",
   "value":"مقدار",
-  "value":"مقدار",
-  "show_report":" نمایش گزارش",
+  "show_report":"جست و جو",
   "excel":"دریافت اکسل",
   "condition":"عبارت شرطی",
   "gt":"بزرگتر از",
@@ -194,7 +195,6 @@
     },
     methods: {
       clearFilter() {
-        this.search = '';
         this.filterRows = [1];
         this.names = [];
         this.types = [];
@@ -253,10 +253,6 @@
             this.reportFields.push({text, value, type, field: item})
           }
         })
-      },
-      filter() {
-        this.$emit('input', this.formData);
-        return false;
       }
     }
   }

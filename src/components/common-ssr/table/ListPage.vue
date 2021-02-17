@@ -78,7 +78,6 @@
           <v-expansion-panel-content>
             <filters
               :hasFilter="_.get(value,'filterable',true)"
-              :hasReport="_.get(value,'report',false)"
               v-model="filter"
               :fields="fields"
               @input="doFilter"

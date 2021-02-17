@@ -28,11 +28,13 @@
   {
   "en":{
   "search":"search",
+  "clear":"clear",
   "filter":"filter"
   },
   "fa":{
   "search":"جست و جو",
-  "filter":"فیلتر"
+  "filter":"فیلتر",
+  "clear":"پاک کردن"
   }
   }
 </i18n>

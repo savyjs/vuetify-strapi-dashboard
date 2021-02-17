@@ -78,24 +78,12 @@ export default {
     doFilter(val) {
       this.report = undefined;
       this.search = '';
-      // TODO: customize filter
-      setTimeout(() => {
-        this.loadData();
-      }, 500)
-    },
-    doExcel(val) {
-      this.filter = {};
-      this.search = '';
-      setTimeout(() => {
-        this.loadData()
-      }, 500)
+      this.loadData();
     },
     doReport(val, excel = false) {
       this.filter = {};
       this.search = '';
-      setTimeout(() => {
-        this.loadData()
-      }, 500)
+      this.loadData()
     },
     doSearch(val) {
       this.searchText = val;
@@ -112,11 +100,9 @@ export default {
       }
 
       // search after 1 second's
-      setTimeout(() => {
-        if (this.searchText == val) {
-          this.loadData();
-        }
-      }, 500)
+      if (this.searchText == val) {
+        this.loadData();
+      }
     },
     update(id, property, val) {
       let data = {};
