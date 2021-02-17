@@ -1,14 +1,14 @@
 export default {
   methods: {
     loadData() {
-      let id = _.get(this.formData, 'id', undefined);
+      let id = this.id;
       if (!id) {
-        this.canSave = true;
-        return;
+        return this.$notifError(this.$t("problem_id"));
       }
       this.loader = true;
       this.$axios.$get(this.resource + '/' + id).then(res => {
         this.formData = {...this.formData, ...res};
+        console.log(this.formData)
         this.canSave = true;
       }).catch(err => {
         this.$notifError(err);

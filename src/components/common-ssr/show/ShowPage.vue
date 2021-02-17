@@ -55,10 +55,12 @@
   {
   "en":{
   "can_not_update":"can not update",
+  "problem_id":"Id not found",
   "successful":"done"
   },
   "fa":{
   "back":"برگشت",
+  "problem_id":"مشکلی در پیدا کردن شناسه رخ داد",
   "edit":"ویرایش",
   "can_not_update":"مشکلی در بروزرسانی رخ داد",
   "successful":"با موفقیت انجام شد"

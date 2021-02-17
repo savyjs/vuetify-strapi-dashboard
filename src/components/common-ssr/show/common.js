@@ -17,7 +17,6 @@ export default {
   },
   mounted() {
     this.loadData();
-    console.log(this.value);
   },
   watch: {
     value: {
@@ -45,11 +44,19 @@ export default {
   },
   methods: {
     hasPermission(field) {
-      if (_.has(field, 'permission')) return this.can(_.get(field, 'permission', null))
-      return true;
+      try {
+        if (_.has(field, 'permission')) return this.can(_.get(field, 'permission', null))
+        return true;
+      } catch (e) {
+        return true;
+      }
     },
     canShow(field) {
-      return _.get(field, 'show', undefined) !== false;
+      try {
+        return _.get(field, 'show', undefined) !== false;
+      } catch (e) {
+        return true;
+      }
     }
   }
 }

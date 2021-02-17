@@ -31,7 +31,7 @@
                   {{title}}
                 </v-subheader>
               </v-flex>
-              <v-flex class="pa-1 text-right">
+              <v-flex  :class="`pa-1 ` + (vsd.rtl ? `text-left` : `text-right`)">
                 <v-btn v-if="showBack!==false" small color="warning" class="mx-4" :to="back">
                   <v-icon class="mx-1">backspace</v-icon>
                   {{$t("back")}}
@@ -100,12 +100,14 @@
 <i18n>
   {
   "en":{
+  "problem_id":"Id not found",
   "back":"back",
   "save":"save",
   "success":"done",
   "":""
   },
   "fa":{
+  "problem_id":"مشکلی در پیدا کردن شناسه رخ داد",
   "back":"برگشت",
   "save":"ذخیره",
   "success":"با موفقیت ذخیره شد"

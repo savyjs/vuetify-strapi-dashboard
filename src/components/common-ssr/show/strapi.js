@@ -1,8 +1,10 @@
 export default {
   methods: {
     loadData() {
-      let id = _.get(this, 'id', null);
-      if (!id) return;
+      let id = this.id;
+      if (!id) {
+        return this.$notifError(this.$t("problem_id"));
+      }
       this.loader = true;
       this.$axios.$get(this.resource + '/' + id).then(res => {
         this.formData = {id, ...res};
