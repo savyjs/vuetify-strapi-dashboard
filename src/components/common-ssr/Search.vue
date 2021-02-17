@@ -5,7 +5,7 @@
         <v-text-field
           clearable
           dense
-          v-model="search"
+          v-model="data"
           outlined
           :label="$t('search')"
           @keydown.enter="doSearch"
@@ -47,7 +47,7 @@
     data() {
       return {
         id: null,
-        search: ''
+        data: ''
       }
     },
     watch: {
@@ -63,15 +63,15 @@
     },
     methods: {
       clear() {
-        this.search ='';
+        this.data ='';
         this.$emit('input', "");
         return false;
       },
       doSearch(val) {
         // search after 1 second's
         setTimeout(() => {
-          if (this.search == val) {
-            this.$emit('input', this.search);
+          if (this.data == val) {
+            this.$emit('input', this.data);
           }
         }, 500)
       }

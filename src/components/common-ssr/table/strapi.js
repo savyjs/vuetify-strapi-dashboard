@@ -76,25 +76,32 @@ export default {
       })
     },
     doFilter(val) {
+      this.report = undefined;
+      this.search = '';
       // TODO: customize filter
       setTimeout(() => {
         this.loadData();
       }, 500)
     },
     doExcel(val) {
+      this.filter = {};
+      this.search = '';
       setTimeout(() => {
         this.loadData()
       }, 500)
     },
     doReport(val, excel = false) {
+      this.filter = {};
+      this.search = '';
       setTimeout(() => {
         this.loadData()
       }, 500)
     },
     doSearch(val) {
       this.searchText = val;
+      this.report = undefined;
       this.filter = {};
-      this.search = {};
+      this.search = '';
       if (val) {
         // Strapi API
         _.forEach(this.fields, (field, i) => {

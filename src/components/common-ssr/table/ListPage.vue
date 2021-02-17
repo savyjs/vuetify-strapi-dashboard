@@ -60,7 +60,7 @@
           <v-expansion-panel-content>
             <search
               :hasSearch="_.get(value,'searchable',true)"
-              v-model="filter"
+              v-model="search"
               :fields="fields"
               @input="doSearch"
             ></search>
