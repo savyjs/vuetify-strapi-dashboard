@@ -31,7 +31,6 @@
           <table class="oddTable">
             <tbody>
             <tr v-for="field in getFields" v-if="canShow(field) && hasPermission(field)">
-              {{field}}
               <td>
                 <v-icon class="mx-1 font-15 pb-1">{{_.gt(field,'icon','perm_identity')}}</v-icon>
                 {{_.get(field,'text','')}}
