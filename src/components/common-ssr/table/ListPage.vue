@@ -10,24 +10,24 @@
           <v-spacer/>
           <v-btn v-if="_.get(value,'deleteAll',true)" elevation="5" small class="red--text mx-2" color="white"
                  @click="deleteItems">
-            <v-icon class="mr-1">delete</v-icon>
+            <v-icon class="mx-1">delete</v-icon>
             <b>{{$t("delete")}}</b>
           </v-btn>
           <v-btn v-if="_.get(value,'backBtn',true)" elevation="5" small class="mx-1 warning--text"
                  color="white"
                  @click="$router.go(-1)">
-            <v-icon class="mr-1" small>arrow_back_ios</v-icon>
+            <v-icon class="mx-1" small>arrow_back_ios</v-icon>
             <b>{{$t("back")}}</b>
           </v-btn>
           <v-btn v-if="_.get(value,'newItem',true)" elevation="5" small class="mx-1 success--text"
                  color="white" :to="resource + '/create'">
-            <v-icon class="mr-1" small>add</v-icon>
+            <v-icon class="mx-1" small>add</v-icon>
             <b>{{$t("create")}}</b>
           </v-btn>
           <download-excel :fetch="excelData" :name="title+'.xls'" :title="title">
             <v-btn :disabled="!_.has(list,0)" v-if="_.get(value,'excel',true)" elevation="5" small
                    class="white--text mx-1" color="success">
-              <v-icon class="mr-1">move_to_inbox</v-icon>
+              <v-icon class="mx-1">move_to_inbox</v-icon>
               {{$t("download_excel")}}
             </v-btn>
           </download-excel>
