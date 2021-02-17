@@ -48,10 +48,10 @@
                  :label="label"/>
   </div>
   <div v-else-if="_.includes(['select'],type)">
-    <common-select-relation :rules="getRules" :hint="hint" v-model="data" :type="type" :field="field" :label="label"/>
+    <select-relation :rules="getRules" :hint="hint" v-model="data" :type="type" :field="field" :label="label"/>
   </div>
   <div v-else-if="_.includes(['enum'],type)">
-    <common-select-enum :rules="getRules" :hint="hint" v-model="data" :type="type" :field="field" :label="label"/>
+    <select-enum :rules="getRules" :hint="hint" v-model="data" :type="type" :field="field" :label="label"/>
   </div>
   <div v-else-if="_.includes(['password'],type)">
     <v-text-field :rules="getRules" :placeholder="placeholder" :type="!toggle ? 'password' : 'text'"

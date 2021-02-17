@@ -4,10 +4,10 @@
   </div>
 
   <div v-else-if="_.includes(['select'],type)">
-    <common-select-relation v-model="data" :outlined="outlined" :type="type" :field="field" :label="undefined"/>
+    <select-relation v-model="data" :outlined="outlined" :type="type" :field="field" :label="undefined"/>
   </div>
   <div v-else-if="_.includes(['enum'],type)">
-    <common-select-enum v-model="data" :outlined="outlined" :type="type" :field="field" :label="undefined"/>
+    <select-enum v-model="data" :outlined="outlined" :type="type" :field="field" :label="undefined"/>
   </div>
 
   <div v-else-if="_.includes(['price'],type)">
