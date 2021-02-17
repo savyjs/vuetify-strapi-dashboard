@@ -13,12 +13,6 @@
             <v-icon class="mx-1">delete</v-icon>
             <b>{{$t("delete")}}</b>
           </v-btn>
-          <v-btn v-if="_.get(value,'backBtn',true)" elevation="5" small class="mx-1 warning--text"
-                 color="white"
-                 @click="$router.go(-1)">
-            <v-icon class="mx-1" small>arrow_back_ios</v-icon>
-            <b>{{$t("back")}}</b>
-          </v-btn>
           <v-btn v-if="_.get(value,'newItem',true)" elevation="5" small class="mx-1 success--text"
                  color="white" :to="resource + '/create'">
             <v-icon class="mx-1" small>add</v-icon>
@@ -31,9 +25,15 @@
               {{$t("download_excel")}}
             </v-btn>
           </download-excel>
-          <v-btn fab icon v-if="_.get(value,'refresh',true)" small class="success--text mx-1" color="white"
+          <v-btn :title="$t('refresh')" fab icon v-if="_.get(value,'refresh',true)" small class="success--text mx-1"
+                 color="white"
                  @click="loadData({},{})">
             <v-icon>refresh</v-icon>
+          </v-btn>
+          <v-btn :title="$t('previous')" fab icon v-if="_.get(value,'backBtn',true)" small class="success--text mx-1"
+                 color="white"
+                 @click="$router.go(-1)">
+            <v-icon>keyboard_backspace</v-icon>
           </v-btn>
         </v-card-header>
         <v-card-actions>
@@ -142,10 +142,12 @@
   "create":"new item",
   "back":"back",
   "success":"done",
-  "download_excel":"download excel",
+  "download_excel":"excel",
   "total": "total",
   "search": "Search",
   "filters": "Filters",
+  "refresh":"refresh",
+  "previous":"previous",
   "report_filters": "Report"
   },
   "fa":{
@@ -153,7 +155,9 @@
   "success":"با موفقیت انجام شد",
   "create":"آیتم جدید",
   "back":"برگشت",
-  "download_excel":"دانلود اکسل",
+  "refresh":"بروزرسانی",
+  "previous":"قبلی",
+  "download_excel":"اکسل",
   "total": "تعداد کل",
   "search": "جست و جو",
   "filters": "فیلتر",
