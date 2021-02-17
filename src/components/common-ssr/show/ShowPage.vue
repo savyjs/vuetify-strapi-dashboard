@@ -20,13 +20,17 @@
                 <v-icon class="mx-1">edit</v-icon>
                 {{$t("edit")}}
               </v-btn>
+              <v-btn fab icon v-if="_.get(value,'refresh',true)" small class="success--text mx-1" color="white"
+                     @click="loadData">
+                <v-icon>refresh</v-icon>
+              </v-btn>
             </v-flex>
           </v-layout>
         </v-card-header>
         <v-card-text>
           <table class="oddTable">
             <tbody>
-            <tr v-for="field in getHeaders" v-if="canShow(field) && hasPermission(field)">
+            <tr v-for="field in getFields" v-if="canShow(field) && hasPermission(field)">
               <td>
                 <v-icon class="mx-1 font-15 pb-1">{{_.gt(field,'icon','perm_identity')}}</v-icon>
                 {{_.get(field,'text','')}}
@@ -37,7 +41,7 @@
                   @reload="loadData"
                   :item="formData"
                   :fields="fields"
-                  :value="_.get(item,_.get(field,'value',null),'-')"
+                  :value="_.get(formData,_.get(field,'value',null),'-')"
                   :type="_.get(field,'type',null)"
                   :field="field"
                 />
@@ -54,6 +58,8 @@
 <i18n>
   {
   "en":{
+  "back":"back",
+  "edit":"edit",
   "can_not_update":"can not update",
   "problem_id":"Id not found",
   "successful":"done"

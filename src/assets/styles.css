@@ -23,3 +23,44 @@
   direction: ltr !important;
 }
 
+.oddTable {
+  width: 100%;
+}
+
+.oddTable tr:nth-child(even) {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.oddTable tr td {
+  padding: 5px 10px 5px 10px;
+}
+
+.oddTable tr td:first-child {
+  font-weight: bold;
+  padding-left: 30px;
+}
+
+.oddContainer {
+  width: 100%;
+}
+
+.oddContainer .row:nth-child(odd) {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.oddContainer .row .col {
+  padding: 5px 10px 5px 10px;
+}
+
+.oddContainer .row .col:first-child {
+  font-weight: bold;
+  padding-left: 30px;
+}
+
+.link {
+  text-decoration: none !important;
+}
+
+.shad-card .v-card {
+  box-shadow: 0 15px 30px -8px rgba(0, 0, 0, .08);
+}

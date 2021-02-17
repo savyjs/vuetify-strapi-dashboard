@@ -27,16 +27,15 @@ export default {
     }
   },
   computed: {
-    getHeaders() {
-      let headers = [];
-      console.log('fields:', this.fields);
+    getFields() {
+      let items = [];
       for (let item of this.fields) {
-        if (item.show === undefined || item.show === true) headers.push(item)
+        if (item.show === undefined || item.show === true) items.push(item)
       }
-      return headers;
+      return items;
     },
     item() {
-      return _.get(this, 'value', {});
+      return _.get(this, 'value.formData', {});
     }
   },
   created() {
