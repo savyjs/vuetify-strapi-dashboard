@@ -1,9 +1,9 @@
 
 # VSD (Vuetify Strapi Dashboard)
 
-[![nuxt vuetify strapi dashboard](http://vsd.savy.ir/banner.png)](https://vsd.savy.ir)
+[![nuxt vuetify strapi dashboard](http://vsd.savyjs.com/banner.png)](https://vsd.savyjs.com)
 
-- [Documentation](http://vsd.savy.ir)
+- [Documentation](http://vsd.savyjs.com)
 
 ### advanced dashboard 
 - CRUD 
