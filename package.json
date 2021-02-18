@@ -66,11 +66,11 @@
     "access": "public"
   },
   "bugs": {
-    "url": "https://github.com/savyjs/vuetfiy-strapi-dashboard/issues"
+    "url": "https://github.com/savyjs/vuettfy-strapi-dashboard/issues"
   },
   "homepage": "http://vsd.savyjs.com",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/savyjs/vuetfiy-strapi-dashboard.git"
+    "url": "git+https://github.com/savyjs/vuettfy-strapi-dashboard.git"
   }
 }
