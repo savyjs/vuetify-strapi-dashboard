@@ -1,8 +1,8 @@
 {
   "name": "vuetify-strapi-dashboard",
   "description": "vuetify dashboard panel matched to strapi last version",
-  "version": "1.1.87",
-  "author": "Ehsan Afshari @savyir <savvyversa@gmail.com>",
+  "version": "1.1.88",
+  "author": "Ehsan Afshari @savyjs <savvyversa@gmail.com>",
   "license": "MIT",
   "keywords": [
     "vuetify",
@@ -66,11 +66,11 @@
     "access": "public"
   },
   "bugs": {
-    "url": "https://github.com/savyir/vuetfiy-strapi-dashboard/issues"
+    "url": "https://github.com/savyjs/vuetfiy-strapi-dashboard/issues"
   },
   "homepage": "http://vsd.savyjs.com",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/savyir/vuetfiy-strapi-dashboard.git"
+    "url": "git+https://github.com/savyjs/vuetfiy-strapi-dashboard.git"
   }
 }
