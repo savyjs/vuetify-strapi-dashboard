@@ -145,6 +145,7 @@
   "total": "total",
   "search": "Search",
   "filters": "Filters",
+  "confirmation":"do you want to delete item(s)?",
   "refresh":"refresh",
   "previous":"previous",
   "report_filters": "Report"
@@ -160,6 +161,12 @@
   "total": "تعداد کل",
   "search": "جست و جو",
   "filters": "فیلتر",
+  "edit":"ویرایش",
+  "cancel":"لغو",
+  "show":"نمایش",
+  "delete":"حذف",
+  "yes":"بله",
+  "confirmation":"آیا مطمئن هستید می خواهید این مورد را حذف کنید؟",
   "report_filters": "فیلتر گزارش"
   }
   }
