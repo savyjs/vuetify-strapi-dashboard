@@ -28,7 +28,6 @@
                       filled
                       placeholder=""
                       :label="$t('username')"
-                      counter="11"
                       autofocus
                       v-model="username"
                       v-on:keyup.enter="login"
