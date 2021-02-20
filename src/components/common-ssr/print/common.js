@@ -57,7 +57,7 @@ export default {
     canPrint(field) {
       return _.get(field, 'print', _.get(field, 'show', undefined)) !== false;
     },
-    print() {
+    print(field) {
       return _.get(field, 'print', _.get(field, 'show', undefined)) !== false;
     }
   }

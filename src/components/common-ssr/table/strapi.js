@@ -80,6 +80,9 @@ export default {
       this.search = '';
       this.loadData();
     },
+    doExcel: function (val) {
+      return this.doReport(val, true)
+    },
     doReport(val, excel = false) {
       this.filter = {};
       this.search = '';

@@ -55,13 +55,11 @@
   "en":{
   "my_profile":"profile",
   "permission_denied":"permission denied",
-  "can_not_get_user_accesses":"user role not found",
   "error":"error"
   },
   "fa":{
   "my_profile":"پروفایل کاربری",
   "permission_denied":"شما دسترسی لازم را ندارید!",
-  "can_not_get_user_accesses":"دسترسی های کاربر یافت نشد",
   "error": "خطا",
   "logout": "خروج"
   }

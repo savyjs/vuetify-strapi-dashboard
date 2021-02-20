@@ -11,11 +11,13 @@
   "en":{
   "permission_denied":"permission denied",
   "can_not_get_user_accesses":"user role not found",
+  "Forbidden":"Forbidden",
   "error":"error"
   },
   "fa":{
   "permission_denied":"شما دسترسی لازم را ندارید!",
   "can_not_get_user_accesses":"دسترسی های کاربر یافت نشد",
+  "Forbidden":"شما دسترسی لازم را ندارید",
   "error": "خطا"
   }
   }
@@ -170,10 +172,11 @@
             await this.$auth.$storage.setState('permissions', this.myPermissions);
           }
         } catch (e) {
+          console.warn({e})
           this.$swal({
             type: 'error',
             title: this.$t('error'),
-            text: this.$t('can_not_get_user_accesses')
+            text: this.$t(_.get(e,'response.data.message','can_not_get_user_accesses'))
           });
         }
         this.$store.commit('navigation/updateLoading', false);

@@ -99,6 +99,7 @@
   const SINGLE_TITLE = process.env.SINGLE_TITLE;
   const FOOTER_TITLE = process.env.FOOTER_TITLE;
   const envName = process.env.envName;
+  const VERSION = _.get(process.env, 'version', "0.66");
 
   export default {
     head() {
@@ -108,7 +109,6 @@
     },
     created() {
       this._ = _;
-      // console.log(this.vsd)
     },
     data() {
       return {
@@ -118,7 +118,7 @@
         drawer: false,
         SYSTEM_LOGO,
         SHOW_USER,
-        VERSION: '0.6',
+        VERSION,
         SINGLE_TITLE,
         FOOTER_TITLE,
         items: {}
@@ -153,7 +153,6 @@
       this.items = _.get(this, 'vsd.menu.ADMIN_DRAWER', [])
       this.drawer = !this.isMobile;
     },
-    components: {},
     middleware: ['auth']
   }
 </script>

@@ -68,8 +68,8 @@
   import formHelper from './FormHelper';
 
   export default {
-    props: ['value', 'main'],
     name: 'PrintPage',
+    props: ['value', 'main'],
     mixins: [formHelper]
   }
 </script>
