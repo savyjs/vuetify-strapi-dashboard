@@ -5,37 +5,39 @@
                     :placeholder="$t('search')"></v-text-field>
     </v-list-item>
     <template v-if="!showLoader" v-for="(menuItem, i) in getItems">
-      <v-list-item v-if="!_.has(menuItem,'items[0]') " :to="menuItem.link">
-        <v-list-item-icon class="mx-1">
-          <v-icon color="primary" size="15">{{ menuItem.icon }}</v-icon>
-        </v-list-item-icon>
-        <v-list-item-content>
-          <v-list-item-title color="accent"><b class="font-13">{{ $t(menuItem.title) }}</b></v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-      <v-list-group v-else>
-        <template v-slot:activator>
+      <template v-if="isAllowedMenu(menuItem)">
+        <v-list-item v-if="!_.has(menuItem,'items[0]') " :to="menuItem.link">
           <v-list-item-icon class="mx-1">
             <v-icon color="primary" size="15">{{ menuItem.icon }}</v-icon>
           </v-list-item-icon>
-          <v-list-item-title color="accent"><b class="font-13">{{ $t(menuItem.title) }}</b></v-list-item-title>
-        </template>
-        <template v-for="(item, i) in menuItem.items">
-          <v-list-item
-            :to="_.get(item,'link','')"
-            router
-            class="mr-1"
-            exact
-          >
-            <v-list-item-icon v-show="false">
-              <v-icon class="font-18 mx-0" color="primary">{{_.get(item,'icon','')}}</v-icon>
+          <v-list-item-content>
+            <v-list-item-title color="accent"><b class="font-13">{{ $t(menuItem.title) }}</b></v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-group v-else>
+          <template v-slot:activator>
+            <v-list-item-icon class="mx-1">
+              <v-icon color="primary" size="15">{{ menuItem.icon }}</v-icon>
             </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title class="font-12 mr-5" v-text="$t(_.get(item,'title',''))"/>
-            </v-list-item-content>
-          </v-list-item>
-        </template>
-      </v-list-group>
+            <v-list-item-title color="accent"><b class="font-13">{{ $t(menuItem.title) }}</b></v-list-item-title>
+          </template>
+          <template v-for="(item, i) in menuItem.items" v-if="isAllowedMenu(item)">
+            <v-list-item
+              :to="_.get(item,'link','')"
+              router
+              class="mr-1"
+              exact
+            >
+              <v-list-item-icon v-show="false">
+                <v-icon class="font-18 mx-0" color="primary">{{_.get(item,'icon','')}}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title class="font-12 mr-5" v-text="$t(_.get(item,'title',''))"/>
+              </v-list-item-content>
+            </v-list-item>
+          </template>
+        </v-list-group>
+      </template>
     </template>
     <v-skeleton-loader
       v-else
@@ -99,7 +101,7 @@
       },
       isAllowedMenu(item) {
         if (_.has(item, 'permission')) {
-          let permission = _.get(item, 'permission', undefined);
+          let permission = item.permission;
           return this.$can(permission);
         } else {
           return true;
@@ -107,29 +109,6 @@
       },
     },
     computed: {
-      allowedItems() {
-        let allowedItems = [];
-        let items = _.isArray(this.items) ? this.items : [];
-        for (let item of items) {
-          if (this.isAllowedMenu(item)) {
-            let subMenu = [];
-            if (_.has(item, 'items')) {
-              for (let subItem of item.items) {
-                // console.log(0,{subItem})
-                if (this.isAllowedMenu(subItem)) {
-                  // console.log(1, {subItem})
-                  subMenu.push(subItem);
-                }
-              }
-              // console.log(2)
-              item.items = subMenu;
-            }
-            // console.log(3)
-            allowedItems.push(item);
-          }
-        }
-        return allowedItems;
-      },
       showLoader() {
         return this.$store.state.navigation.loading;
       },
