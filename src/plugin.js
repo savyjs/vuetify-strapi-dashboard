@@ -11,7 +11,7 @@ import * as components from "./components/index";
 import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loader
 import './assets/styles.css' // Ensure you are using css-loader
 import 'material-design-icons-iconfont/dist/material-design-icons.css' // Ensure you are using css-loader
-//import '@fontawesome/fontawesome-free/css/all.css'
+// import '@fontawesome/fontawesome-free/css/all.css'
 // import 'font-awesome/css/font-awesome.min.css';
 import 'material-icons/iconfont/material-icons.css';
 
@@ -26,7 +26,6 @@ const ComponentLibrary = {
       Vue.set(Vue.prototype, 'vsd', moduleOptions);
       for (const componentName in components.default) {
         let component = components.default[componentName]
-        // console.log({componentName})
         try {
           Vue.component(componentName, component);
         } catch (e) {

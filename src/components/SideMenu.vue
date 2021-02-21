@@ -98,14 +98,41 @@
       goto(path) {
         return this.$router.push(path)
       },
+      isAllowedMenu(item) {
+        if (_.has(item, 'permission')) {
+          let permission = _.get(item, 'permission', undefined);
+          let access = this.$can(permission);
+          console.log({access, permission})
+          return access;
+        } else {
+          return true;
+        }
+      },
     },
     computed: {
+      allowedItems() {
+        let items = this.items;
+        return _.pickBy(_.map(items, (item) => {
+          if (this.isAllowedMenu(item)) {
+            let subMenu = [];
+            if (_.has(item, 'items')) {
+              _.map(item.items, (subitem) => {
+                if (this.isAllowedMenu(subitem)) {
+                  subMenu.push(subitem);
+                }
+              });
+              item.items = subMenu;
+            }
+            return item;
+          }
+        }));
+      },
       showLoader() {
         return this.$store.state.navigation.loading;
       },
       getItems() {
         let search = this.search || null;
-        let items = this.items;
+        let items = this.allowedItems;
         if (search && search.length > 0) {
           return this.searchItems;
         } else {

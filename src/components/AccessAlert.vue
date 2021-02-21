@@ -37,23 +37,6 @@
       }
     },
     computed: {
-      items() {
-        let items = this.value;
-        return _.pickBy(_.map(items, (item) => {
-          if (this.isAllowedMenu(item)) {
-            let subMenu = [];
-            if (_.has(item, 'items')) {
-              _.map(item.items, (subitem) => {
-                if (this.isAllowedMenu(subitem)) {
-                  subMenu.push(subitem);
-                }
-              });
-              item.items = subMenu;
-            }
-            return item;
-          }
-        }));
-      },
       canSeeThisPage() {
         let path = this.$route.path;
         let MENU = _.get(this, 'vsd.menu', {})
@@ -70,9 +53,6 @@
     watch: {
       myPermissions: {
         handler(val) {
-          if (_.isArray(val)) {
-            this.$emit('input', this.items);
-          }
         },
         deep: true
       },
@@ -86,7 +66,6 @@
       await this.initiate();
       const can = (id) => {
         let val = _.includes(this.myPermissions, id);
-        //console.log({val, id});
         return val;
       }
       Vue.set(Vue.prototype, 'can', can);
@@ -94,7 +73,6 @@
       Vue.set(Vue.prototype, 'getRolePermissions', this.getRolePermissions);
       Vue.set(Vue.prototype, '$getRolePermissions', this.getRolePermissions);
       this.$store.commit('navigation/updateLoading', false);
-
     },
     created() {
       this._ = _;
@@ -146,15 +124,6 @@
 
         }
       },
-      isAllowedMenu(item) {
-        if (_.has(item, 'permission') && _.isArray(this.myPermissions)) {
-          let permission = _.get(item, 'permission', undefined);
-          let access = _.includes(this.myPermissions, permission);
-          return access;
-        } else {
-          return true;
-        }
-      },
       async initiate() {
         try {
           let user = await this.$auth.user;
@@ -176,7 +145,7 @@
           this.$swal({
             type: 'error',
             title: this.$t('error'),
-            text: this.$t(_.get(e,'response.data.message','can_not_get_user_accesses'))
+            text: this.$t(_.get(e, 'response.data.message', 'can_not_get_user_accesses'))
           });
         }
         this.$store.commit('navigation/updateLoading', false);

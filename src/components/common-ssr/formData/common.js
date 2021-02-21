@@ -43,7 +43,7 @@ export default {
     }
   },
   mounted() {
-    this.loadData();
+    if (this.type !== 'create') this.loadData();
   },
   created() {
     this._ = _;
