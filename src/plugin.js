@@ -12,11 +12,8 @@ import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loade
 import './assets/styles.css' // Ensure you are using css-loader
 import 'material-design-icons-iconfont/dist/material-design-icons.css' // Ensure you are using css-loader
 // import '@fontawesome/fontawesome-free/css/all.css'
-// import 'font-awesome/css/font-awesome.min.css';
+import 'font-awesome/css/font-awesome.min.css';
 import 'material-icons/iconfont/material-icons.css';
-
-// const moduleOptions = <%= JSON.stringify(options) %>;
-// const mixins = require(`${moduleOptions.scheme}`).default || [];
 const t = (val) => _.isString(val) ? val.replace(/_/g, ' ') : val
 const ComponentLibrary = {
   install(Vue, options = {}) {
@@ -41,10 +38,6 @@ const ComponentLibrary = {
 
 export default async (ctx, inject) => {
 
-  // Options
-  // Inject it to nuxt context
-  // components
-
   inject('vsd', moduleOptions)
   ctx.vsd = moduleOptions
 
@@ -56,10 +49,8 @@ export default async (ctx, inject) => {
     ctx.store.registerModule('common', CommonStore)
     ctx.store.registerModule('commonSelect', CommonSelectStore)
   } catch (e) {
-    console.error({e}, 'error on loading strore')
+    console.error({e}, 'error on loading store files')
   }
-
-  // Vue.use(ComponentLibrary)
   ComponentLibrary.install(Vue);
 }
 

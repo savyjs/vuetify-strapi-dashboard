@@ -4,7 +4,7 @@
       <v-text-field v-model="search" outlined append-icon="search" dense clearable
                     :placeholder="$t('search')"></v-text-field>
     </v-list-item>
-    <template v-if="!showLoader" v-for="(menuItem, i) in getItems" :to="menuItem.link">
+    <template v-if="!showLoader" v-for="(menuItem, i) in getItems">
       <v-list-item v-if="!_.has(menuItem,'items[0]') " :to="menuItem.link">
         <v-list-item-icon class="mx-1">
           <v-icon color="primary" size="15">{{ menuItem.icon }}</v-icon>
@@ -72,7 +72,6 @@
     watch: {
       search(search) {
         let items = (this.items);
-        // console.log({items});
         this.searchItems = [];
         _.forEach(items, (obj) => {
             let menuTitle = _.get(obj, 'title', '');
@@ -101,9 +100,7 @@
       isAllowedMenu(item) {
         if (_.has(item, 'permission')) {
           let permission = _.get(item, 'permission', undefined);
-          let access = this.$can(permission);
-          console.log({access, permission})
-          return access;
+          return this.$can(permission);
         } else {
           return true;
         }
@@ -111,28 +108,34 @@
     },
     computed: {
       allowedItems() {
-        let items = this.items;
-        return _.pickBy(_.map(items, (item) => {
+        let allowedItems = [];
+        let items = _.isArray(this.items) ? this.items : [];
+        for (let item of items) {
           if (this.isAllowedMenu(item)) {
             let subMenu = [];
             if (_.has(item, 'items')) {
-              _.map(item.items, (subitem) => {
-                if (this.isAllowedMenu(subitem)) {
-                  subMenu.push(subitem);
+              for (let subItem of item.items) {
+                // console.log(0,{subItem})
+                if (this.isAllowedMenu(subItem)) {
+                  // console.log(1, {subItem})
+                  subMenu.push(subItem);
                 }
-              });
+              }
+              // console.log(2)
               item.items = subMenu;
             }
-            return item;
+            // console.log(3)
+            allowedItems.push(item);
           }
-        }));
+        }
+        return allowedItems;
       },
       showLoader() {
         return this.$store.state.navigation.loading;
       },
       getItems() {
-        let search = this.search || null;
-        let items = this.allowedItems;
+        let search = this.search || '';
+        let items = this.items;
         if (search && search.length > 0) {
           return this.searchItems;
         } else {

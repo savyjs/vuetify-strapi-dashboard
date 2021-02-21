@@ -64,7 +64,7 @@
       <v-container>
         <breadcrumb/>
         <Alert/>
-        <AccessAlert @setAccess="setAccess" v-model="items"/>
+        <AccessAlert @setAccess="setAccess"/>
         <nuxt v-if="hasAccess"/>
         <loader/>
         <snackbar/>
@@ -131,7 +131,6 @@
       isRTL() {
         let isRTL = _.get(this, 'vsd.rtl', undefined);
         let dir = _.get(this, '$i18n.localeProperties.dir', 'ltr');
-        // console.log({isRTL, dir});
         return isRTL === undefined ? dir === 'rtl' : !!isRTL;
       },
       isMobile() {

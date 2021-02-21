@@ -30,7 +30,6 @@
   const resource = 'users-permissions/roles';
   const usersPermissionsResource = 'users-permissions/permissions';
   export default {
-    props: ['value'],
     data() {
       return {
         myPermissions: undefined
@@ -42,7 +41,6 @@
         let MENU = _.get(this, 'vsd.menu', {})
         let menuItems = MENU.ADMIN_DRAWER;
         let menuItem = _.get(menuItems, _.deepFindKey(menuItems, {link: path}), undefined);
-        // TODO: fix checking permissions
         if (_.get(menuItem, 'link', '') == path) {
           return this.isAllowedMenu(menuItem);
         } else {
@@ -79,17 +77,24 @@
       const can = (id) => {
         return _.includes(this.myPermissions, id);
       }
-
       Vue.set(Vue.prototype, 'can', can);
       Vue.set(Vue.prototype, '$can', can);
       Vue.set(Vue.prototype, 'getRolePermissions', this.getRolePermissions);
       Vue.set(Vue.prototype, '$getRolePermissions', this.getRolePermissions);
     },
     methods: {
+      isAllowedMenu(item) {
+        if (_.has(item, 'permission')) {
+          let permission = _.get(item, 'permission', undefined);
+          console.log({permission, item})
+          return this.$can(permission);
+        } else {
+          return true;
+        }
+      },
       async getRolePermissions(roleId = undefined) {
         let response;
         let type;
-
         if (!roleId) {
           let res = await this.$axios.$get(usersPermissionsResource);
           let list = _.get(res, 'permissions', {});
@@ -121,7 +126,6 @@
             }
           })
           return map;
-
         }
       },
       async initiate() {
@@ -130,12 +134,9 @@
           let role = await this.$auth.$storage.getState('role');
           let roleId = _.get(user, 'role.id', _.get(user, 'role', undefined))
           let rolePermissions = await this.$auth.$storage.getState('permissions');
-
           if (roleId && (_.has(role, 'id') || !_.isArray(rolePermissions) || true)) {
-
             let user = this.$auth.user;
             let role = await this.$axios.$get(resource + '/' + roleId);
-
             await this.$auth.$storage.setState('role', role);
             this.myPermissions = await this.getRolePermissions(roleId);
             await this.$auth.$storage.setState('permissions', this.myPermissions);
@@ -147,8 +148,13 @@
             title: this.$t('error'),
             text: this.$t(_.get(e, 'response.data.message', 'can_not_get_user_accesses'))
           });
+        } finally {
+          try {
+            this.$store.commit('navigation/updateLoading', false);
+          } catch (e) {
+            console.log({e})
+          }
         }
-        this.$store.commit('navigation/updateLoading', false);
       }
     }
   }
