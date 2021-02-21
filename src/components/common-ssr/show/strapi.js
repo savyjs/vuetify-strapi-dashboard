@@ -1,7 +1,6 @@
 export default {
   methods: {
     loadData() {
-      console.log(this.getFields)
       let id = this.id;
       if (!id) {
         return this.$notifError(this.$t("problem_id"));

@@ -25,7 +25,7 @@
       :show-current="true"
       reactive
       color="primary"
-      locale="fa-ir"
+      :locale="getLocale"
       v-model="data"
       scrollable
       @input="$refs.fromDateMenu.save(data)"
@@ -35,7 +35,7 @@
 </template>
 <script>
   export default {
-    props: ['value', 'label'],
+    props: ['value', 'label', 'locale'],
     data() {
       return {
         fromDateModel: null,
@@ -44,8 +44,11 @@
       }
     },
     computed: {
+      getLocale() {
+        return _.get(this, 'locale', _.get(this.vsd, 'locale', undefined));
+      },
       jdata() {
-        return this.data ? this.$Helper.toJalaali(this.data, 'jYYYY/jM/jD') : ''
+        return this.data ? (_.get(this.vsd, 'locale', undefined) !== 'fa-IR' ? this.$Helper.toJalaali(this.data, 'jYYYY/jM/jD') : this.data) : ''
       }
     },
     watch: {

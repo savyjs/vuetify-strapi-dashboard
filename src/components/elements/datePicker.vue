@@ -28,23 +28,40 @@
       color="primary"
       first-day-of-week="6"
       reactive
-      locale="fa-ir"
+      :locale="getLocale"
       v-model="data"
       @change="$refs.fromDateMenu.save(data)"
       scrollable
     >
       <v-spacer></v-spacer>
-      <v-btn v-if="false" text color="primary" @click="fromDateModel = false">{{'لغو'}}
+      <v-btn v-if="false" text color="primary" @click="fromDateModel = false">{{$t("cancel")}}
       </v-btn>
       <v-btn v-if="false" text color="primary" @click="$refs.fromDateMenu.save(data)">
-        {{'تایید'}}
+        {{$t('ok')}}
       </v-btn>
     </v-date-picker>
   </v-menu>
 </template>
+
+<i18n>
+  {
+  "en":{
+  "cancel":"Cancel",
+  "ok":"Ok",
+  "date":"select date",
+  "clock":"select clock"
+  },
+  "fa":{
+  "cancel":"کنسل",
+  "ok":"تایید",
+  "date":"انتخاب روز",
+  "clock":"انتخاب ساعت"
+  }
+  }
+</i18n>
 <script>
   export default {
-    props: ['value', 'outlined', 'filled', 'label', 'innerIcon', 'type', 'field'],
+    props: ['value', 'locale', 'outlined', 'filled', 'label', 'innerIcon', 'type', 'field'],
     data() {
       return {
         fromDateModel: null,
@@ -56,11 +73,13 @@
       this.chargeDate()
     },
     computed: {
+      getLocale() {
+        return _.get(this, 'vsd.locale', undefined);
+      },
       jdata() {
         try {
           let d = new Date(this.data);
-          // console.log('jdata charge', this.data, {d})
-          return d && isFinite(d) && this.data ? (this.$Helper.toJalaali(this.data, 'jYYYY/jM/jD')) : '';
+          return d && isFinite(d) && this.data ? (_.get(this.vsd,'locale',undefined) !== "fa-IR" ? this.data : this.$Helper.toJalaali(this.data, 'jYYYY/jM/jD')) : '';
         } catch (e) {
           console.error({e})
         }
@@ -70,7 +89,6 @@
       chargeDate() {
         try {
           const event = new Date(this.value);
-          // console.log('data charge', this.value, {event})
           this.data = isFinite(event) ? this.value : '';
         } catch (e) {
           console.error({e})
@@ -81,7 +99,6 @@
       data(val) {
         try {
           let value = val ? this.$Helper.getDate(val) : '';
-          // console.log('data emit', {val, value})
           return this.$emit('input', value)
         } catch (e) {
           console.error({e})
@@ -89,7 +106,6 @@
       },
       value(val) {
         let value = val ? this.$Helper.getDate(val) : '';
-        // console.log('value watch', {val, value})
         this.chargeDate();
       }
     }

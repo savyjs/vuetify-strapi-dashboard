@@ -22,9 +22,22 @@
       ></v-text-field>
     </template>
     <v-time-picker @click:minute="$refs.menu.save(data)" format="ampm" color="primary" dark landscape v-model="data"
-                   label="انتخاب ساعت"/>
+                   :label="$t('clock')"/>
   </v-menu>
 </template>
+
+<i18n>
+  {
+  "en":{
+  "date":"select date",
+  "clock":"select clock"
+  },
+  "fa":{
+  "date":"انتخاب روز",
+  "clock":"انتخاب ساعت"
+  }
+  }
+</i18n>
 <script>
   export default {
     props: ['value', 'outlined', 'filled', 'label', 'innerIcon', 'type', 'field'],

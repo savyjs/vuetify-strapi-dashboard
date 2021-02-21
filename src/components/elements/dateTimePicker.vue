@@ -4,21 +4,29 @@
       <label>{{label}}</label>
     </v-col>
     <v-col sm="6">
-      <date-picker :outlined="true" v-model="date"
-                   label="انتخاب روز"/>
+      <date-picker :locale="locale" :outlined="true" v-model="date" :label="$t('date')"/>
     </v-col>
     <v-col sm="6">
-      <time-picker :outlined="true" v-model="time" label="انتخاب ساعت"/>
+      <time-picker :locale="locale" :outlined="true" v-model="time" :label="$t('clock')"/>
     </v-col>
   </v-row>
 </template>
+<i18n>
+  {
+  "en":{
+  "date":"select date",
+  "clock":"select clock"
+  },
+  "fa":{
+  "date":"انتخاب روز",
+  "clock":"انتخاب ساعت"
+  }
+  }
+</i18n>
 <script>
-  import DatePicker from "./DatePicker";
-  import TimePicker from "./TimePicker";
 
   export default {
-    components: {TimePicker, DatePicker},
-    props: ['value', 'label', 'outlined'],
+    props: ['value', 'label','locale', 'outlined'],
     data() {
       return {
         date: null,

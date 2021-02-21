@@ -4,10 +4,10 @@
       <v-card :loading="loader">
         <v-form lazy-validation v-model="validity">
           <v-card-header margin-right="1%" width="98%" v-if="showSimple!==true">
-            <v-layout  class="pa-1">
-              <v-flex class="pa-1 text-right">
+            <v-layout class="pa-1">
+              <v-flex :class="`pa-1`  + (vsd.rtl ? `text-right` : `text-left`)">
               <span class="px-1">
-                <v-icon class="mx-1">{{headerIcon || 'edit'}}</v-icon>
+                <v-icon class="mx-1">{{headerIcon || icon || 'edit'}}</v-icon>
                 {{title}}
               </span>
               </v-flex>
@@ -31,7 +31,7 @@
                   {{title}}
                 </v-subheader>
               </v-flex>
-              <v-flex  :class="`pa-1 ` + (vsd.rtl ? `text-left` : `text-right`)">
+              <v-flex :class="`pa-1 ` + (vsd.rtl ? `text-left` : `text-right`)">
                 <v-btn v-if="showBack!==false" small color="warning" class="mx-4" :to="back">
                   <v-icon class="mx-1">backspace</v-icon>
                   {{$t("back")}}
@@ -118,7 +118,7 @@
   import formHelper from './FormHelper';
 
   export default {
-    props: ['value','id'],
+    props: ['value', 'id'],
     mixins: [formHelper]
   }
 </script>
