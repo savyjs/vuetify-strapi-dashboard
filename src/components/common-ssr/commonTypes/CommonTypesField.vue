@@ -38,11 +38,27 @@
     />
   </div>
   <div v-else-if="_.includes(['dateTime'],type)">
-    <date-time-picker :rules="getRules" :locale="getLocale" :hint="hint" :type="type" :field="field" v-model="data"
-                      :label="label"/>
+    <date-time-picker
+      :use-seconds="true"
+      :filled="true" :rules="getRules" :locale="getLocale" :hint="hint" :type="type" :field="field"
+      v-model="data"
+      :label="label"/>
+  </div>
+  <div v-else-if="_.includes(['time'],type)">
+    <time-picker
+      :use-seconds="true"
+      :filled="true"
+      :rules="getRules"
+      :locale="getLocale"
+      :hint="hint"
+      :type="type"
+      :field="field"
+      v-model="data"
+      :label="label"/>
   </div>
   <div v-else-if="_.includes(['date'],type)">
-    <date-picker :rules="getRules" :hint="hint" :locale="getLocale" v-model="data" :type="type" :field="field"
+    <date-picker :filled="true" :rules="getRules" :hint="hint" :locale="getLocale" v-model="data" :type="type"
+                 :field="field"
                  :label="label"/>
   </div>
   <div v-else-if="_.includes(['jdate'],type)">

@@ -15,16 +15,29 @@
         :filled="!!filled"
         :outlined="outlined!==undefined"
         dense
-        readonly
         color="primary"
-        :value="data"
+        v-model="data"
         clearable
         class="mx-1"
         v-on="on"
       ></v-text-field>
     </template>
-    <v-time-picker @click:minute="$refs.menu.save(data)" format="ampm" color="primary" dark landscape v-model="data"
-                   :label="$t('clock')"/>
+    <v-time-picker
+      :use-seconds="useSeconds"
+      :landscape="$vuetify.breakpoint.smAndUp"
+      @click:minute="$refs.menu.save(data)"
+      format="24hr"
+      color="primary"
+      v-model="data"
+      :label="$t('clock')">
+      <v-spacer></v-spacer>
+      <v-btn text color="secondary" @click="fromDateModel = false">
+        {{$t('close')}}
+      </v-btn>
+      <v-btn text color="primary" @click="$refs.menu.save(data)">
+        {{$t('save')}}
+      </v-btn>
+    </v-time-picker>
   </v-menu>
 </template>
 
@@ -32,17 +45,21 @@
   {
   "en":{
   "date":"select date",
+  "close":"close",
+  "save":"save",
   "clock":"select clock"
   },
   "fa":{
   "date":"انتخاب روز",
+  "close":"بستن",
+  "save":"ذخیره",
   "clock":"انتخاب ساعت"
   }
   }
 </i18n>
 <script>
   export default {
-    props: ['value', 'outlined', 'filled', 'label', 'innerIcon', 'type', 'field'],
+    props: ['value', 'outlined', 'filled', 'useSeconds', 'label', 'innerIcon', 'type', 'field'],
     data() {
       return {
         fromDateModel: null,

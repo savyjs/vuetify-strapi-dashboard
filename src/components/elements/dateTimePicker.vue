@@ -4,10 +4,12 @@
       <label>{{label}}</label>
     </v-col>
     <v-col sm="6">
-      <date-picker :locale="locale" :outlined="true" v-model="date" :label="$t('date')"/>
+      <date-picker :locale="locale" :outlined="outlined" :filled="filled" v-model="date" :label="$t('date')"/>
     </v-col>
     <v-col sm="6">
-      <time-picker v-show="date" :locale="locale" :outlined="true" v-model="time" :label="$t('clock')"/>
+      <time-picker :use-seconds="useSeconds" v-show="date" :locale="locale" :outlined="outlined" :filled="filled"
+                   v-model="time"
+                   :label="$t('clock')"/>
     </v-col>
   </v-row>
 </template>
@@ -26,7 +28,7 @@
 <script>
 
   export default {
-    props: ['value', 'label','locale', 'outlined'],
+    props: ['value', 'label', 'locale', 'useSeconds', 'outlined', 'filled'],
     data() {
       return {
         date: null,
