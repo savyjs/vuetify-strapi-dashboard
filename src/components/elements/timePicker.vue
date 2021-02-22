@@ -15,6 +15,7 @@
         :filled="!!filled"
         :outlined="outlined!==undefined"
         dense
+        readonly
         color="primary"
         :value="data"
         class="mx-1"

@@ -32,10 +32,11 @@
     />
   </div>
   <div v-else-if="_.includes(['dateTime','jDateTime'],type)">
-    <date-time-picker :outlined="true" v-model="data" :label="label"/>
+    <date-time-picker :locale="getLocale" :outlined="true" v-model="data" :label="label"/>
   </div>
   <div v-else-if="_.includes(['date','jdate'],type)">
-    <date-picker :inner-icon="false" :outlined="outlined" :filled="false" v-model="data" :label="label"/>
+    <date-picker :locale="getLocale" :inner-icon="false" :outlined="outlined" :filled="false" v-model="data"
+                 :label="label"/>
   </div>
   <div v-else>
     <v-text-field v-model="data" :outlined="outlined" :filled="false" :prepend-icon="icon" dense
@@ -73,6 +74,9 @@
       }
     },
     computed: {
+      getLocale() {
+        return _.get(this.vsd, 'locale', undefined)
+      },
       type() {
         return _.get(this.field, 'type', undefined)
       },

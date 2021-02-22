@@ -17,6 +17,7 @@
         :filled="!!filled"
         :outlined="outlined!==undefined"
         dense
+        readonly
         color="primary"
         :value="jdata"
         class="mx-1"

@@ -38,13 +38,16 @@
     />
   </div>
   <div v-else-if="_.includes(['dateTime'],type)">
-    <date-time-picker :rules="getRules" :hint="hint" :type="type" :field="field" v-model="data" :label="label"/>
+    <date-time-picker :rules="getRules" :locale="getLocale" :hint="hint" :type="type" :field="field" v-model="data"
+                      :label="label"/>
   </div>
   <div v-else-if="_.includes(['date'],type)">
-    <date-picker :rules="getRules" :hint="hint" v-model="data" :type="type" :field="field" :label="label"/>
+    <date-picker :rules="getRules" :hint="hint" :locale="getLocale" v-model="data" :type="type" :field="field"
+                 :label="label"/>
   </div>
   <div v-else-if="_.includes(['jdate'],type)">
-    <date-picker :rules="getRules" :isJalali="true" :hint="hint" v-model="data" :type="type" :field="field"
+    <date-picker :rules="getRules" :isJalali="true" :locale="getLocale" :hint="hint" v-model="data" :type="type"
+                 :field="field"
                  :label="label"/>
   </div>
   <div v-else-if="_.includes(['select'],type)">
@@ -160,6 +163,9 @@
       this.data = this.initial;
     },
     computed: {
+      getLocale() {
+        return _.get(this.vsd, 'locale', undefined)
+      },
       isNumeric() {
         return !!_.get(this.field, 'numeric', _.includes(['price', 'number'], this.type));
       },

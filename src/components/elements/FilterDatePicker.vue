@@ -15,6 +15,7 @@
         :label="label"
         outlined
         dense
+        readonly
         color="primary"
         :value="jdata"
         class="mx-1"
