@@ -83,7 +83,7 @@
       jdata() {
         try {
           let d = new Date(this.data);
-          return d && isFinite(d) && this.data ? (_.get(this.vsd, 'locale', undefined) !== "fa-IR" ? this.data : this.$Helper.toJalaali(this.data, 'jYYYY/jM/jD')) : '';
+          return d && isFinite(d) && this.data ? (_.get(this.vsd, 'locale', undefined) !== "fa-ir" ? this.data : this.$Helper.toJalaali(this.data, 'jYYYY/jM/jD')) : '';
         } catch (e) {
           console.error({e})
         }

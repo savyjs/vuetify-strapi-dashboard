@@ -49,7 +49,7 @@
         return _.get(this, 'locale', _.get(this.vsd, 'locale', undefined));
       },
       jdata() {
-        return this.data ? (_.get(this.vsd, 'locale', undefined) !== 'fa-IR' ? this.$Helper.toJalaali(this.data, 'jYYYY/jM/jD') : this.data) : ''
+        return this.data ? (_.get(this.vsd, 'locale', undefined) !== 'fa-ir' ? this.$Helper.toJalaali(this.data, 'jYYYY/jM/jD') : this.data) : ''
       }
     },
     watch: {

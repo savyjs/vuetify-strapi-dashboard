@@ -6,6 +6,7 @@ export default {
     return {
       loader: false,
       validity: null,
+      icon: undefined,
       headerIcon: undefined,
       canSave: false,
       resource: "",
@@ -22,7 +23,7 @@ export default {
   },
   computed: {
     type() {
-      return _.has(this, 'formData.id') ? 'edit' : 'create'
+      return this.id ? 'edit' : 'create'
     },
     back() {
       return '/admin/' + this.name
@@ -43,7 +44,9 @@ export default {
     }
   },
   mounted() {
-    if (this.type !== 'create') this.loadData();
+    if (this.type !== 'create') {
+      this.loadData();
+    }
   },
   created() {
     this._ = _;
