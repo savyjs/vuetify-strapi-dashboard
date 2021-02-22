@@ -14,7 +14,7 @@
             <b>{{$t("delete")}}</b>
           </v-btn>
           <v-btn v-if="_.get(value,'newItem',true)" elevation="5" small class="mx-1 success--text"
-                 color="white" :to="resource + '/create'">
+                 color="white" :to="name + '/create'">
             <v-icon class="mx-1" small>add</v-icon>
             <b>{{$t("create")}}</b>
           </v-btn>

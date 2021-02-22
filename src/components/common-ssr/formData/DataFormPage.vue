@@ -58,7 +58,7 @@
               <v-flex xs12 class="pa-1 text-left">
                 <v-btn :disabled="!validity" small color="success" @click="save">
                   <v-icon class="mx-1">save</v-icon>
-                  ذخیره
+                  {{_.get(btn,'text',$t("save"))}}
                 </v-btn>
               </v-flex>
             </v-layout>

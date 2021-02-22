@@ -74,10 +74,10 @@
     {{selectValue}}
   </span>
   <span v-else-if="_.includes(['date'],type)">
-    {{$Helper.toJalaali(data,'jYYYY/jM/jD')}}
+    {{showDate(data)}}
   </span>
   <span v-else-if="_.includes(['dateTime'],type)">
-    {{$Helper.toJalaali(data)}}
+    {{showDate(data,'YYYY-M-D hh:mm')}}
   </span>
   <span v-else-if="_.includes(['jdate','jDateTime'],type)">
     {{data}}
@@ -230,6 +230,9 @@
       this._ = _;
     },
     methods: {
+      showDate(data, format = 'YYYY/M/D') {
+        return _.get(this, 'vsd.locale', undefined) === 'fa-ir' ? this.$Helper.toJalaali(data) : this.$Helper.toJalaali(data, format);
+      },
       loadData() {
         if (_.has(this.field, 'store', undefined)) {
           let name = _.get(this.field, 'store', null);
