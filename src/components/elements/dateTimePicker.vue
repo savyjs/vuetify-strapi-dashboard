@@ -7,7 +7,7 @@
       <date-picker :locale="locale" :outlined="true" v-model="date" :label="$t('date')"/>
     </v-col>
     <v-col sm="6">
-      <time-picker :locale="locale" :outlined="true" v-model="time" :label="$t('clock')"/>
+      <time-picker v-show="date" :locale="locale" :outlined="true" v-model="time" :label="$t('clock')"/>
     </v-col>
   </v-row>
 </template>

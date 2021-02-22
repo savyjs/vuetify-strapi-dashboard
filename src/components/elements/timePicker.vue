@@ -18,6 +18,7 @@
         readonly
         color="primary"
         :value="data"
+        clearable
         class="mx-1"
         v-on="on"
       ></v-text-field>

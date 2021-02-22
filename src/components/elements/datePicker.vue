@@ -22,6 +22,7 @@
         :value="jdata"
         class="mx-1"
         v-on="on"
+        clearable
       ></v-text-field>
     </template>
     <v-date-picker
@@ -35,8 +36,8 @@
       scrollable
     >
       <v-spacer></v-spacer>
-      <v-btn v-if="false" text color="primary" @click="fromDateModel = false">{{$t("cancel")}}
-      </v-btn>
+      <v-btn text color="primary" @click="makeItToday">{{$t("today")}}</v-btn>
+      <v-btn v-if="false" text color="primary" @click="fromDateModel = false">{{$t("cancel")}}</v-btn>
       <v-btn v-if="false" text color="primary" @click="$refs.fromDateMenu.save(data)">
         {{$t('ok')}}
       </v-btn>
@@ -49,12 +50,14 @@
   "en":{
   "cancel":"Cancel",
   "ok":"Ok",
+  "today":"today",
   "date":"select date",
   "clock":"select clock"
   },
   "fa":{
   "cancel":"کنسل",
   "ok":"تایید",
+  "today":"امروز",
   "date":"انتخاب روز",
   "clock":"انتخاب ساعت"
   }
@@ -80,17 +83,22 @@
       jdata() {
         try {
           let d = new Date(this.data);
-          return d && isFinite(d) && this.data ? (_.get(this.vsd,'locale',undefined) !== "fa-IR" ? this.data : this.$Helper.toJalaali(this.data, 'jYYYY/jM/jD')) : '';
+          return d && isFinite(d) && this.data ? (_.get(this.vsd, 'locale', undefined) !== "fa-IR" ? this.data : this.$Helper.toJalaali(this.data, 'jYYYY/jM/jD')) : '';
         } catch (e) {
           console.error({e})
         }
       }
     },
     methods: {
-      chargeDate() {
+      makeItToday() {
+        let today = new Date().toISOString();
+        this.chargeDate(today);
+      },
+      chargeDate(val = undefined) {
         try {
-          const event = new Date(this.value);
-          this.data = isFinite(event) ? this.value : '';
+          let value = val || this.value;
+          const event = new Date(value);
+          this.data = isFinite(event) ? value : '';
         } catch (e) {
           console.error({e})
         }
