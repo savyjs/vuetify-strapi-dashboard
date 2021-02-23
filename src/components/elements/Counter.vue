@@ -36,7 +36,7 @@
     props: ['value', 'label', 'field', 'outlined', 'icon'],
     data() {
       return {
-        data: 0,
+        data: this.value || 0,
       }
     },
     mounted() {

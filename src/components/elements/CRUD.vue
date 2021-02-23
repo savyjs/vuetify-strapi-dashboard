@@ -66,7 +66,7 @@
                                 </v-col>
                                 <v-col cols="12" lg="6">
                                   <v-text-field @keydown.enter="save" v-model="editedItem.value"
-                                                :label="$t('save')"></v-text-field>
+                                                :label="$t('value')"></v-text-field>
                                 </v-col>
                               </v-row>
                             </v-container>

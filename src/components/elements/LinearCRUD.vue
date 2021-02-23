@@ -40,11 +40,11 @@
                   </v-row>
                   <v-row v-else>
                     <v-col cols="6">
-                      <v-text-field autofocus v-model="editedItem.name" label="نام"></v-text-field>
+                      <v-text-field autofocus v-model="editedItem.name" :label="$t('name')"></v-text-field>
                     </v-col>
                     <v-col cols="6">
                       <v-text-field @keydown.enter="save" v-model="editedItem.value"
-                                    label="مقدار"></v-text-field>
+                                    :label="$t('value')"></v-text-field>
                     </v-col>
                   </v-row>
                 </v-col>
@@ -69,7 +69,7 @@
               <v-container>
                 <v-row>
                   <v-col cols="12">
-                    <v-text-field class="mx-3" v-model="search" dense label="جستجو" outlined
+                    <v-text-field class="mx-3" v-model="search" dense :label="$t('search')" outlined
                                   append-icon="search"></v-text-field>
                   </v-col>
                 </v-row>
@@ -97,7 +97,7 @@
               </v-icon>
             </template>
             <template v-slot:no-data>
-              <small>هنوز موردی اضافه نشده است.</small>
+              <small>{{$t("empty")}}}</small>
             </template>
           </v-data-table>
         </div>
@@ -105,8 +105,40 @@
     </v-card>
   </div>
 </template>
-
-
+<i18n>
+  {
+  "en":{
+  "operation":"Operation",
+  "search":"search",
+  "close":"close",
+  "new":"close",
+  "confirmation":"are you sure?",
+  "edit":"close",
+  "reload":"reload",
+  "value":"value",
+  "save":"save",
+  "empty":"empty",
+  "name":"name",
+  "new":"new item",
+  "close":"close"
+  },
+  "fa":{
+  "operation":"عملیات",
+  "search":"جست و جو",
+  "close":"لغو",
+  "new":"جدید",
+  "confirmation":"آیا مطمئن هستید که می خواهید این مورد را حذف کنید؟",
+  "empty":"هنوز موردی اضافه نشده است",
+  "edit":"ویرایش",
+  "reload":"بازنشانی",
+  "value":"مقدار",
+  "save":"ذخیره",
+  "name":"نام",
+  "new":"گزینه جدید",
+  "close":"بستن"
+  }
+  }
+</i18n>
 <script>
 
   export default {
@@ -117,16 +149,6 @@
         dialog: false,
         search: '',
         mainDialog: false,
-        defaultHeaders: [
-          {
-            text: 'نام',
-            align: 'start',
-            sortable: false,
-            value: 'name',
-          },
-          {text: 'مقدار', value: 'value', align: 'center'},
-          {text: 'عملیات', value: 'actions', align: 'left', sortable: false},
-        ],
         items: [],
         editedIndex: -1,
         addItems: [0],
@@ -139,16 +161,28 @@
     },
     computed:
       {
+        defaultHeaders() {
+          return [
+            {
+              text: this.$t('name'),
+              align: 'start',
+              sortable: false,
+              value: 'name',
+            },
+            {text: this.$t('value'), value: 'value', align: 'center'},
+            {text: this.$t('operation'), value: 'actions', align: 'left', sortable: false},
+          ]
+        },
         headers() {
           return _.has(this.field, 'meta') ? [...this.field.meta, {
-            text: 'عملیات',
+            text: $t("operation"),
             value: 'actions',
             align: 'left',
             sortable: false
           }] : this.defaultHeaders;
         },
         formTitle() {
-          return this.editedIndex === -1 ? 'جدید' : 'ویرایش'
+          return this.editedIndex === -1 ? this.$t('new') : this.$t('edit')
         },
         type() {
           return this.editedIndex === -1 ? 'create' : 'edit'
@@ -190,7 +224,7 @@
       },
       deleteItem(item) {
         const index = this.items.indexOf(item)
-        confirm('آیا مطمئن هستید که می خواهید این مورد را حذف کنید؟') && this.items.splice(index, 1)
+        confirm(this.$t('confirmation')) && this.items.splice(index, 1)
       },
       close() {
         this.editedItem = {};
@@ -208,11 +242,7 @@
         }
         this.close()
       },
-    },
-    components: {
-      // CommonTypesShow: () => import("~/components/admin/common-ssr/CommonTypesShow"),
-      // CommonTypesField: () => import("~/components/admin/common-ssr/CommonTypesField")
-    },
+    }
   }
 </script>
 <style>
