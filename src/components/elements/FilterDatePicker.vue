@@ -35,6 +35,8 @@
   </v-menu>
 </template>
 <script>
+  import _ from "lodash";
+
   export default {
     props: ['value', 'label', 'locale'],
     data() {
@@ -43,6 +45,9 @@
         fromDateMenu: null,
         data: this.value
       }
+    },
+    created() {
+      this._ = _;
     },
     computed: {
       getLocale() {

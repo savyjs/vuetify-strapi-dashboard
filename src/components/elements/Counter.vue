@@ -30,6 +30,8 @@
   </div>
 </template>
 <script>
+  import _ from 'lodash';
+
   export default {
     props: ['value', 'label', 'field', 'outlined', 'icon'],
     data() {
@@ -39,6 +41,9 @@
     },
     mounted() {
       this.data = parseInt(this.$Helper.faToEn(_.isNumber(this.value) ? this.value : (_.get(this.field, 'min', 0))));
+    },
+    created() {
+      this._ = _;
     },
     watch: {
       data: {

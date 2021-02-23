@@ -7,6 +7,8 @@
   </v-text-field>
 </template>
 <script>
+  import _ from "lodash";
+
   export default {
     props: ['value', 'formData', 'type', 'field', 'label'],
     data() {
@@ -19,6 +21,9 @@
     },
     mounted() {
       this.calculate();
+    },
+    created() {
+      this._ = _;
     },
     watch: {
       value(val) {

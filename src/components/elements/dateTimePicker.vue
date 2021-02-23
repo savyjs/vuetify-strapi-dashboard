@@ -26,6 +26,7 @@
   }
 </i18n>
 <script>
+  import _ from 'lodash';
 
   export default {
     props: ['value', 'label', 'locale', 'useSeconds', 'outlined', 'filled'],
@@ -34,6 +35,9 @@
         date: null,
         time: null
       }
+    },
+    created() {
+      this._ = _;
     },
     computed: {
       datetime() {

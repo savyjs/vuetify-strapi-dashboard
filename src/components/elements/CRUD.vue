@@ -29,7 +29,7 @@
                         <template v-slot:activator="{ on }">
                           <v-btn color="success" dark class="mb-2" v-on="on">
                             <v-icon class="mx-1">add</v-icon>
-                            گزینه جدید
+                            {{$t("new")}}
                           </v-btn>
                         </template>
                         <v-card elevation="0" tile>
@@ -62,11 +62,11 @@
                             <v-container v-else>
                               <v-row>
                                 <v-col cols="12" lg="6">
-                                  <v-text-field autofocus v-model="editedItem.name" label="نام"></v-text-field>
+                                  <v-text-field autofocus v-model="editedItem.name" :label="$t('name')"></v-text-field>
                                 </v-col>
                                 <v-col cols="12" lg="6">
                                   <v-text-field @keydown.enter="save" v-model="editedItem.value"
-                                                label="مقدار"></v-text-field>
+                                                :label="$t('save')"></v-text-field>
                                 </v-col>
                               </v-row>
                             </v-container>
@@ -75,11 +75,11 @@
                             <v-spacer></v-spacer>
                             <v-btn color="error darken-1" text @click="close">
                               <v-icon class="mx-1">close</v-icon>
-                              لغو
+                              {{$t("close")}}
                             </v-btn>
                             <v-btn color="success darken-1" @click="save">
                               <v-icon class="mx-1">save</v-icon>
-                              ذخیره
+                              {{$t("save")}}
                             </v-btn>
                           </v-card-actions>
                         </v-card>
@@ -89,7 +89,7 @@
                 </v-row>
                 <v-row>
                   <v-col cols="12">
-                    <v-text-field class="mx-3" v-model="search" dense label="جستجو" outlined
+                    <v-text-field class="mx-3" v-model="search" dense :label="$t('search')" outlined
                                   append-icon="search"></v-text-field>
                   </v-col>
                 </v-row>
@@ -111,7 +111,7 @@
               </v-icon>
             </template>
             <template v-slot:no-data>
-              <v-btn color="primary" @click="initialize"><v-icon class="mx-1">refresh</v-icon>بازنشانی</v-btn>
+              <v-btn color="primary" @click="initialize"><v-icon class="mx-1">refresh</v-icon>{{$t("reload")}}</v-btn>
             </template>
           </v-data-table>
         </div>
@@ -119,16 +119,47 @@
       <v-card-actions>
         <v-btn color="red darken-1" dark @click="mainDialog = false">
           <v-icon class="mx-1">close</v-icon>
-          بستن
+          {{$t("close")}}}
         </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
   </span>
 </template>
-
-
+<i18n>
+  {
+  "en":{
+  "operation":"Operation",
+  "search":"search",
+  "close":"close",
+  "new":"close",
+  "confirmation":"are you sure?",
+  "edit":"close",
+  "reload":"reload",
+  "value":"value",
+  "save":"save",
+  "name":"name",
+  "new":"new item",
+  "close":"close"
+  },
+  "fa":{
+  "operation":"عملیات",
+  "search":"جست و جو",
+  "close":"لغو",
+  "new":"جدید",
+  "confirmation":"آیا مطمئن هستید که می خواهید این مورد را حذف کنید؟",
+  "edit":"ویرایش",
+  "reload":"بازنشانی",
+  "value":"مقدار",
+  "save":"ذخیره",
+  "name":"نام",
+  "new":"گزینه جدید",
+  "close":"بستن"
+  }
+  }
+</i18n>
 <script>
+  import _ from 'lodash';
 
   export default {
     props: ['label', 'value', 'field'],
@@ -137,16 +168,6 @@
         dialog: false,
         search: '',
         mainDialog: false,
-        defaultHeaders: [
-          {
-            text: 'نام',
-            align: 'start',
-            sortable: false,
-            value: 'name',
-          },
-          {text: 'مقدار', value: 'value', align: 'center'},
-          {text: 'عملیات', value: 'actions', align: 'left', sortable: false},
-        ],
         items: [],
         editedIndex: -1,
         editedItem: {},
@@ -158,16 +179,28 @@
     },
     computed:
       {
+        defaultHeaders() {
+          return [
+            {
+              text: this.$t('name'),
+              align: 'start',
+              sortable: false,
+              value: 'name',
+            },
+            {text: this.$t('value'), value: 'value', align: 'center'},
+            {text: this.$t('operation'), value: 'actions', align: 'left', sortable: false},
+          ]
+        },
         headers() {
           return _.has(this.field, 'meta') ? [...this.field.meta, {
-            text: 'عملیات',
+            text: $t("operation"),
             value: 'actions',
             align: 'left',
             sortable: false
           }] : this.defaultHeaders;
         },
         formTitle() {
-          return this.editedIndex === -1 ? 'جدید' : 'ویرایش'
+          return this.editedIndex === -1 ? this.$t('new') : this.$t('edit')
         },
         type() {
           return this.editedIndex === -1 ? 'create' : 'edit'
@@ -188,6 +221,7 @@
       }
     },
     created() {
+      this._ = _;
       this.initialize()
     },
     methods: {
@@ -201,7 +235,7 @@
       },
       deleteItem(item) {
         const index = this.items.indexOf(item)
-        confirm('آیا مطمئن هستید که می خواهید این مورد را حذف کنید؟') && this.items.splice(index, 1)
+        confirm(this.$t('confirmation')) && this.items.splice(index, 1)
       },
       close() {
         this.dialog = false

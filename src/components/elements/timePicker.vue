@@ -58,6 +58,8 @@
   }
 </i18n>
 <script>
+  import _ from "lodash";
+
   export default {
     props: ['value', 'outlined', 'filled', 'useSeconds', 'label', 'innerIcon', 'type', 'field'],
     data() {
@@ -74,6 +76,9 @@
     },
     mounted() {
       this.chargeData();
+    },
+    created() {
+      this._ = _;
     },
     computed: {},
     watch: {

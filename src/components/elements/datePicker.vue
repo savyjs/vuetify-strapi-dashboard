@@ -64,6 +64,8 @@
   }
 </i18n>
 <script>
+  import _ from 'lodash'
+
   export default {
     props: ['value', 'locale', 'outlined', 'filled', 'label', 'innerIcon', 'type', 'field'],
     data() {
@@ -75,6 +77,9 @@
     },
     mounted() {
       this.chargeDate()
+    },
+    created() {
+      this._ = _;
     },
     computed: {
       getLocale() {
