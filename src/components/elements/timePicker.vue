@@ -69,7 +69,7 @@
     },
     methods: {
       chargeData() {
-        this.data = this.value;
+        this.data = this.value ? this.value.replace('.000','') : '00:00:00';
       }
     },
     mounted() {

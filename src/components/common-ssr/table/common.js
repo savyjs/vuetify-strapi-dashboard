@@ -8,6 +8,7 @@ export default {
     return {
       search: '',
       resource: '',
+      icon: undefined,
       headerIcon: undefined,
       report: null,
       filter: {},

@@ -5,6 +5,7 @@ export default {
     return {
       loader: false,
       showBack: true,
+      icon: undefined,
       headerIcon: undefined,
       editItem: undefined,
       formData: {},

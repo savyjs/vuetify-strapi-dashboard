@@ -6,7 +6,7 @@
           <v-layout wrap row class="pa-1">
             <v-flex class="pa-1 text-right">
               <v-subheader>
-                <v-icon class="mx-1">{{headerIcon || 'eye'}}</v-icon>
+                <v-icon class="mx-1">{{icon ||headerIcon || 'eye'}}</v-icon>
                 {{title}}
               </v-subheader>
             </v-flex>
