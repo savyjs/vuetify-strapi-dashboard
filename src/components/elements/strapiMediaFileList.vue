@@ -17,7 +17,7 @@
         :key="item.id"
         v-slot:default="{ active, toggle }"
       >
-        <v-img
+        <v-card
           lazy-src="/imgs/image.jpg"
           eager
           :src="baseURL + item.url"
@@ -36,13 +36,22 @@
             <v-scale-transition>
               <v-icon
                 v-if="active"
-                color="success"
+                color="white"
                 size="50"
+                class="mt-5"
                 v-text="'mdi-check'"
               ></v-icon>
+              <v-icon
+                v-else
+                color="white"
+                class="mt-5"
+                size="50"
+                v-text="'save'"
+              ></v-icon>
             </v-scale-transition>
+            <small class="text-center px-2 white--text">{{item.name}}</small>
           </v-row>
-        </v-img>
+        </v-card>
       </v-slide-item>
     </v-slide-group>
   </v-sheet>
@@ -93,7 +102,6 @@
     methods: {
       loadItems() {
         this.loading = true;
-        alert('file');
         this.$axios.$get('upload/files?_sort=id:DESC').then(res => {
           this.items = _.values(_.omitBy(res, obj => {
             return (_.startsWith(obj.mime, 'video') || _.startsWith(obj.mime, 'audio') || _.startsWith(obj.mime, 'image'))

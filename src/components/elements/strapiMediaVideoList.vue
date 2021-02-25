@@ -17,8 +17,7 @@
         :key="item.id"
         v-slot:default="{ active, toggle }"
       >
-        <v-img
-          src="/imgs/video.png"
+        <v-card
           eager
           :color="active ? 'primary' : 'grey lighten-1'"
           class="ma-1"
@@ -33,22 +32,30 @@
             align="center"
             justify="center"
           >
-             <p class="full text-center">{{_.get(item,'name','فایل صوتی')}}</p>
-            <v-scale-transition>
+              <v-scale-transition>
               <v-icon
                 v-if="active"
-                color="success"
+                color="white"
                 size="50"
+                class="mt-5"
                 v-text="'mdi-check'"
               ></v-icon>
+              <v-icon
+                v-else
+                color="white"
+                class="mt-5"
+                size="50"
+                v-text="'camera_alt'"
+              ></v-icon>
             </v-scale-transition>
+            <small class="px-2 white--text">{{item.name}}</small>
           </v-row>
-        </v-img>
+        </v-card>
       </v-slide-item>
     </v-slide-group>
   </v-sheet>
 
-     <v-container>
+     <v-container class="text-center">
       <video class="text-center justify-center align-center" style="max-width: 50%" v-if="url" controls>
        <source :src="baseURL + url">
       </video>
@@ -75,7 +82,7 @@
     },
     computed: {
       baseURL() {
-        return process.env.API_URL;
+        return this.vsd.API_URL;
       }
     },
     mounted() {

@@ -88,6 +88,7 @@ export default {
   loader,
   TextEditor,
   Sum,
+  StrapiMediaFileList,
   StrapiMediaVideoList,
   StrapiMediaPhotoList,
   StrapiMediaList,

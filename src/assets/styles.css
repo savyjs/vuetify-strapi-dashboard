@@ -64,3 +64,7 @@
 .shad-card .v-card {
   box-shadow: 0 15px 30px -8px rgba(0, 0, 0, .08);
 }
+
+.full {
+  width: 100%;
+}
