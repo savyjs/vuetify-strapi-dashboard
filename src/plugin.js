@@ -7,6 +7,7 @@ import CommonStore from './store/common'
 import Navigation from './store/navigation'
 import CommonSelectStore from './store/commonSelect'
 import * as components from "./components/index";
+import Strapi from 'strapi-sdk-javascript';
 
 import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loader
 import './assets/styles.css' // Ensure you are using css-loader
@@ -14,6 +15,7 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css' // Ensure
 // import '@fontawesome/fontawesome-free/css/all.css'
 import 'font-awesome/css/font-awesome.min.css';
 import 'material-icons/iconfont/material-icons.css';
+
 const t = (val) => _.isString(val) ? val.replace(/_/g, ' ') : val
 const ComponentLibrary = {
   install(Vue, options = {}) {
@@ -38,6 +40,9 @@ const ComponentLibrary = {
 
 export default async (ctx, inject) => {
 
+
+  const StrapiSDK = new Strapi(moduleOptions.API_URL);
+  moduleOptions.StrapiSDK = StrapiSDK
   inject('vsd', moduleOptions)
   ctx.vsd = moduleOptions
 

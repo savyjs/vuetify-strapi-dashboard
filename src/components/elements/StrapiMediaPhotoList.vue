@@ -92,7 +92,7 @@
     methods: {
       loadItems() {
         this.loading = true;
-        this.$strapi.getFiles().then(res => {
+        this.vsd.StrapiSDK.getFiles().then(res => {
           this.items = _.values(_.omitBy(res, obj => {
             //console.log({obj},obj.mime)
             return !_.startsWith(obj.mime, 'image')

@@ -22,9 +22,19 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
 
     const options = {
       rtl: false,
-      API_URL: _.get(process, 'env.API_URL', ''),
       ...moduleOptions
     }
+
+    let axiosOptions = _.get(this, 'nuxt.options.axios', {});
+    this.addModule({
+      src: "@nuxtjs/axios",
+      options: {
+        ...axiosOptions
+      }
+    });
+
+    let baseURL = _.get(this, 'nuxt.options.axios.baseURL', _.get(process, 'env.API_URL', ''));
+    moduleOptions.API_URL = baseURL;
 
     this.addPlugin({
       fileName: 'options.js',
@@ -56,50 +66,34 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
       this.nuxt.options.build.plugins = [lodashPlugin];
     }
 
-    if (!_.has(this, 'nuxt.options.i18n')) {
-      let i18nOption = _.get(this, 'nuxt.options.i18n', {});
-      let i18nOptionLocales = _.get(this, 'nuxt.options.i18n.locales', {});
-      this.addModule({
-        src: "nuxt-i18n",
-        options: {
-          vueI18nLoader: true,
-          defaultLocale: _.get(moduleOptions, 'lang', 'en'),
-          ...i18nOption
-        }
-      });
-    } else if (!_.has(this, 'nuxt.options.i18n.options.vueI18nLoader')) {
-      this.nuxt.options.i18n.options.vueI18nLoader = true;
-    }
 
-    if (!_.has(this, 'nuxt.options.auth')) {
-      let authOptions = _.get(this, 'nuxt.options.auth', {});
-      this.addModule({
-        src: "@nuxtjs/auth",
-        options: {
-          ...authOptions
-        }
-      });
-    }
+    let i18nOption = _.get(this, 'nuxt.options.i18n', {});
+    let i18nOptionLocales = _.get(this, 'nuxt.options.i18n.locales', {});
+    this.addModule({
+      src: "nuxt-i18n",
+      options: {
+        vueI18nLoader: true,
+        defaultLocale: _.get(moduleOptions, 'lang', 'en'),
+        ...i18nOption
+      }
+    });
 
-    if (!_.has(this, 'nuxt.options.axios')) {
-      let axiosOptions = _.get(this, 'nuxt.options.axios', {});
-      this.addModule({
-        src: "@nuxtjs/axios",
-        options: {
-          ...axiosOptions
-        }
-      });
-    }
+    let authOptions = _.get(this, 'nuxt.options.auth', {});
+    this.addModule({
+      src: "@nuxtjs/auth",
+      options: {
+        ...authOptions
+      }
+    });
 
-    if (!_.has(this, 'nuxt.options.strapi')) {
-      let strapiOptions = _.get(this, 'nuxt.options.strapi', {});
-      this.addModule({
-        src: "@nuxtjs/strapi",
-        options: {
-          ...strapiOptions
-        }
-      });
-    }
+
+    let strapiOptions = _.get(this, 'nuxt.options.strapi', {});
+    this.addModule({
+      src: "@nuxtjs/strapi",
+      options: {
+        ...strapiOptions
+      }
+    });
 
 
     this.addTemplate({

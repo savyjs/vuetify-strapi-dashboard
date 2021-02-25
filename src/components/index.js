@@ -25,7 +25,7 @@ import Search from './common-ssr/Search'
 import ShowPage from './common-ssr/show/ShowPage'
 import DataForm from './common-ssr/formData/DataForm'
 import DataFormPage from './common-ssr/formData/DataFormPage'
-import PrintPage from './common-ssr/print/PrintPage'
+
 
 import VCardHeader from './ui/VCardHeader'
 import Icons8 from './ui/Icons8'
@@ -118,7 +118,6 @@ export default {
   Uploader,
   photoUploader,
   ImageUploader,
-  PrintPage,
   VCardHeader,
   VsdLogin,
   VsdLogout
