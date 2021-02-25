@@ -18,9 +18,8 @@
         v-slot:default="{ active, toggle }"
       >
         <v-img
-          lazy-src="/imgs/image.jpg"
           eager
-          :src="baseURL + item.url"
+          :src="baseURL + _.get(item,'formats.thumbnail.url',item.url)"
           :color="active ? 'primary' : 'grey lighten-1'"
           class="ma-1"
           height="100"
@@ -72,6 +71,9 @@
       baseURL() {
         return this.vsd.API_URL;
       }
+    },
+    created() {
+      this._ = _;
     },
     mounted() {
       this.loadItems();
