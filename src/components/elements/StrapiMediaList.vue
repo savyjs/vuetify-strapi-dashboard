@@ -2,7 +2,7 @@
   <span>
 
     <template v-if="_.isArray(getTypes)">
-      <v-select item-text="text" item-value="value" :items="getTypes" dense label="نوع پیوست را انتخاب کنید"
+      <v-select item-text="text" item-value="value" :items="getTypes" dense :label="$t('select_type')"
                 v-model="choosedType"/>
     </template>
     <strapi-media-video-list v-if="getType=='video'" :label="label" :get-obj="getObj" :get-id="getId"
@@ -10,6 +10,8 @@
     <strapi-media-audio-list v-else-if="getType=='audio'" :label="label" :get-obj="getObj" :get-id="getId"
                              v-model="file"/>
     <strapi-media-photo-list v-else-if="getType=='photo'" :label="label" :get-obj="getObj" :get-id="getId"
+                             v-model="file"/>
+    <strapi-media-file-list v-else :label="label" :get-obj="getObj" :get-id="getId"
                              v-model="file"/>
 
     </span>
@@ -41,6 +43,7 @@
 </i18n>
 <script>
 
+  import _ from 'lodash'
   export default {
     props: ['value', 'type', 'label', 'getId', 'getObj', 'placeholder'],
     data() {
@@ -55,7 +58,8 @@
         return [
           {text: this.$t('image'), value: 'photo'},
           {text: this.$t('audio'), value: 'audio'},
-          {text: this.$t('video'), value: 'video'}
+          {text: this.$t('video'), value: 'video'},
+          {text: this.$t('files'), value: 'file'},
         ]
       },
       getTypes() {
@@ -72,6 +76,9 @@
     },
     mounted() {
       this.loadItems();
+    },
+    created() {
+      this._ = _;
     },
     watch: {
       file(val) {

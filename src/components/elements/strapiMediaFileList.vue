@@ -93,9 +93,10 @@
     methods: {
       loadItems() {
         this.loading = true;
+        alert('file');
         this.$axios.$get('upload/files?_sort=id:DESC').then(res => {
           this.items = _.values(_.omitBy(res, obj => {
-            return !_.startsWith(obj.mime, 'image')
+            return (_.startsWith(obj.mime, 'video') || _.startsWith(obj.mime, 'audio') || _.startsWith(obj.mime, 'image'))
           }));
         }).catch(err => {
           console.log({err})

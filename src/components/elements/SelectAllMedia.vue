@@ -3,7 +3,6 @@
     <label>{{label}}</label>
     <v-row>
       <v-col cols="12" sm="4">
-
         <v-overflow-btn
           v-model="from"
           class="my-2"
@@ -13,9 +12,7 @@
           item-text="text"
         ></v-overflow-btn>
       </v-col>
-
       <v-col cols="12" sm="4">
-
         <v-overflow-btn
           v-model="choosedType"
           class="my-2"
@@ -25,13 +22,23 @@
           item-text="text"
         ></v-overflow-btn>
       </v-col>
-
       <v-col cols="12" sm="12" v-if="choosedType && from">
-        <media-uploader v-if="from=='upload'" :label="label" :get-id="getId" :get-obj="getObj" :type="choosedType"
-                        v-model="file"/>
-        <strapi-media-list v-else-if="from=='gallery'" :label="label" :get-id="getId" :get-obj="getObj"
-                           :type="choosedType"
-                           v-model="file"/>
+        <media-uploader
+          v-if="from=='upload'"
+          :label="label"
+          :get-id="getId"
+          :get-obj="getObj"
+          :type="choosedType"
+          v-model="file"
+        />
+        <strapi-media-list
+          v-else-if="from=='gallery'"
+          :label="label"
+          :get-id="getId"
+          :get-obj="getObj"
+          :type="choosedType"
+          v-model="file"
+        />
       </v-col>
     </v-row>
   </div>
@@ -46,7 +53,7 @@
   "upload_success":"uploaded successfully",
   "search":"search",
   "close":"close",
-  "select_from_gallery":"انتخاب از گالری",
+  "select_from_gallery":"select from gallery",
   "image":"image",
   "audio":"audio",
   "video":"video",
@@ -70,6 +77,8 @@
   }
 </i18n>
 <script>
+  import _ from 'lodash'
+
   export default {
     props: ['value', 'label', 'type', 'getId', 'getObj'],
     data() {
@@ -79,7 +88,7 @@
         choosedType: null,
       }
     },
-    watch: {
+    computed: {
       select_from_list() {
         return [
           {text: this.$t('upload'), value: 'upload'},
@@ -94,6 +103,11 @@
           {text: this.$t('files'), value: 'file'},
         ]
       },
+    },
+    created() {
+      this._ = _;
+    },
+    watch: {
       from() {
         this.file = null
       },

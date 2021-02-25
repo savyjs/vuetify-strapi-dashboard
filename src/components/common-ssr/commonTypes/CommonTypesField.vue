@@ -8,8 +8,11 @@
   <div v-else-if="_.includes(['image'],type)">
     <select-photo :label="label" :getId="true" dense filled v-model="data"/>
   </div>
+  <div v-else-if="_.includes(['media-upload'],type)">
+    <media-uploader :type="_.get(field,'types',undefined)" :label="label" :getId="true" dense filled v-model="data"/>
+  </div>
   <div v-else-if="_.includes(['media'],type)">
-    <media-uploader :label="label" :getId="true" dense filled v-model="data"/>
+    <select-all-media :type="_.get(field,'types',undefined)" :label="label" :getId="true" dense filled v-model="data"/>
   </div>
   <div v-else-if="_.includes(['combobox'],type)">
     <v-combobox :rules="getRules" multiple chips :label="label" dense filled v-model="data"/>

@@ -15,7 +15,6 @@
     v-model="file"
   />
 
-
      <v-subheader>{{label}}</v-subheader>
       <audio style="max-width: 90%" v-if="canPlay('audio')" controls>
           <source :src="baseURL + url">

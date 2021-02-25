@@ -56,7 +56,7 @@
     </span>
 </template>
 <script>
-
+  import _ from 'lodash'
   export default {
     props: ['value', 'label', 'getId', 'getObj', 'placeholder'],
     data() {
@@ -81,13 +81,14 @@
     mounted() {
       this.loadItems();
     },
+    created() {
+      this._=_;
+    },
     watch: {
       selected(val) {
         let item = this.items[val]
         let id = this.id = _.get(item, 'id', null)
         let url = this.url = _.get(item, 'url', null)
-        // console.log(this.items, {item, id, url, val});
-
         if (_.get(this, 'getId', false)) {
           this.$emit('input', id)
         } else if (_.get(this, 'getObj', false)) {
@@ -100,7 +101,7 @@
     methods: {
       loadItems() {
         this.loading = true;
-        this.$axios.get('upload/files').then(res => {
+        this.$axios.$get('upload/files?_sort=id:DESC').then(res => {
           this.items = _.values(_.omitBy(res, obj => {
             return !_.startsWith(obj.mime, 'video')
           }));

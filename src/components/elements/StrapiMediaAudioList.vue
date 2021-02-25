@@ -102,7 +102,7 @@
         methods: {
             loadItems() {
                 this.loading = true;
-                this.$strapi.getFiles().then(res => {
+                this.$axios.$get('upload/files?_sort=id:DESC').then(res => {
                     this.items = _.values(_.omitBy(res, obj => {
                         return !_.startsWith(obj.mime, 'audio')
                     }));
