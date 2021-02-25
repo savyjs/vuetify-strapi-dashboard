@@ -14,29 +14,50 @@
 
     </span>
 </template>
+
+<i18n>
+  {
+  "en":{
+  "select_type":"select file type",
+  "select_file":"select file",
+  "upload_success":"uploaded successfully",
+  "image":"image",
+  "audio":"audio",
+  "video":"video",
+  "files":"files",
+  "close":"close"
+  },
+  "fa":{
+  "image":"فایل تصویری",
+  "audio":"فایل صوتی",
+  "video":"فایل ویدئو",
+  "files":"فایل های دیگر",
+  "select_type":"نوع فایل را مشخص کنید",
+  "select_file":" فایل را مشخص کنید",
+  "upload_success":"با موفقیت آپلود شد",
+  "close":"بستن"
+  }
+  }
+</i18n>
 <script>
 
-  import StrapiMediaVideoList from "./StrapiMediaVideoList";
-  import StrapiMediaAudioList from "./StrapiMediaAudioList";
-  import StrapiMediaPhotoList from "./StrapiMediaPhotoList";
-
   export default {
-    components: {StrapiMediaPhotoList, StrapiMediaAudioList, StrapiMediaVideoList},
     props: ['value', 'type', 'label', 'getId', 'getObj', 'placeholder'],
     data() {
       return {
         loading: false,
         file: null,
-        choosedType: null,
-        defaultTypes: [
-          {text: 'تصویر', value: 'photo'},
-          {text: 'صوت', value: 'audio'},
-          {text: 'ویدئو', value: 'video'},
-          // {text: 'فایل', value: 'file'},
-        ]
+        choosedType: null
       }
     },
     computed: {
+      defaultTypes() {
+        return [
+          {text: this.$t('image'), value: 'photo'},
+          {text: this.$t('audio'), value: 'audio'},
+          {text: this.$t('video'), value: 'video'}
+        ]
+      },
       getTypes() {
         if (!_.isArray(this.type)) return null;
         let types = _.pickBy(this.defaultTypes, (obj) => {

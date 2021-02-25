@@ -116,8 +116,7 @@
             beforeId: _.get(this.bus, 'before', null),
           }
         }
-        this.strapi.request(method, url, requestConfig).then(res => {
-          // TODO: shoud fix API
+        this.$axios.request(method, url, requestConfig).then(res => {
           this.data = res;
         }).catch(err => {
           console.log({err})

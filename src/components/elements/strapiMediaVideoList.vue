@@ -100,9 +100,8 @@
     methods: {
       loadItems() {
         this.loading = true;
-        this.$strapi.getFiles().then(res => {
+        this.$axios.get('upload/files').then(res => {
           this.items = _.values(_.omitBy(res, obj => {
-            //console.log({obj},obj.mime)
             return !_.startsWith(obj.mime, 'video')
           }));
           //console.log({res})

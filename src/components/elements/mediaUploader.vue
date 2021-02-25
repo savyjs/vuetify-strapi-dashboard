@@ -106,7 +106,6 @@
       }
     },
     computed: {
-
       defaultTypes() {
         return [
           {text: this.$t('image'), value: 'photo'},
@@ -149,7 +148,7 @@
         this.loader = true;
         let formData = new FormData();
         formData.append('files', val);
-        this.strapi.upload(formData).then(result => {
+        this.$axios.post('upload',formData).then(result => {
           let res = _.get(result, 0, {});
           this.data = res;
           this.$notifSuccess(this.$t('upload_success'))

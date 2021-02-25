@@ -34,7 +34,7 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
     });
 
     let baseURL = _.get(this, 'nuxt.options.axios.baseURL', _.get(process, 'env.API_URL', ''));
-    moduleOptions.API_URL = baseURL;
+    options.API_URL = baseURL;
 
     this.addPlugin({
       fileName: 'options.js',
