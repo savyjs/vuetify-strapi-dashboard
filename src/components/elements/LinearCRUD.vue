@@ -140,6 +140,7 @@
   }
 </i18n>
 <script>
+  import _ from 'lodash';
 
   export default {
     props: ['label', 'value', 'field'],
@@ -155,6 +156,9 @@
         editedItem: {},
         defaultItem: {},
       }
+    },
+    created() {
+      this._ = _;
     },
     mounted() {
       this.items = _.isArray(this.value) ? this.value : [];

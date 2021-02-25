@@ -8,7 +8,7 @@
           v-model="from"
           class="my-2"
           :items="select_from_list"
-          label="ذخیره سازی از"
+          :label="$t('save_from')"
           item-value="value"
           item-text="text"
         ></v-overflow-btn>
@@ -20,7 +20,7 @@
           v-model="choosedType"
           class="my-2"
           :items="select_type_list"
-          label="فرمت فایل"
+          :label="$t('file_format')"
           item-value="value"
           item-text="text"
         ></v-overflow-btn>
@@ -36,31 +36,64 @@
     </v-row>
   </div>
 </template>
+<i18n>
+  {
+  "en":{
+  "select_type":"select file type",
+  "select_file":"select file",
+  "save_from":"save from",
+  "file_format":"file format",
+  "upload_success":"uploaded successfully",
+  "search":"search",
+  "close":"close",
+  "select_from_gallery":"انتخاب از گالری",
+  "image":"image",
+  "audio":"audio",
+  "video":"video",
+  "files":"files",
+  "new":"close",
+  "close":"close"
+  },
+  "fa":{
+  "select_from_gallery":"انتخاب از گالری",
+  "save_from":"ذخیره سازی از",
+  "file_format":"فرمت فایل",
+  "image":"فایل تصویری",
+  "audio":"فایل صوتی",
+  "video":"فایل ویدئو",
+  "files":"فایل های دیگر",
+  "select_type":"نوع فایل را مشخص کنید",
+  "select_file":" فایل را مشخص کنید",
+  "upload_success":"با موفقیت آپلود شد",
+  "close":"بستن"
+  }
+  }
+</i18n>
 <script>
-  import MediaUploader from "./mediaUploader";
-  import StrapiMediaList from "./StrapiMediaList";
-
   export default {
-    components: {StrapiMediaList, MediaUploader},
     props: ['value', 'label', 'type', 'getId', 'getObj'],
     data() {
       return {
         file: null,
         from: null,
         choosedType: null,
-        select_from_list: [
-          {text: 'آپلود مستقیم', value: 'upload'},
-          {text: 'گالری', value: 'gallery'},
-        ],
-        select_type_list: [
-          {text: 'تصویر', value: 'photo'},
-          {text: 'ویدئو', value: 'video'},
-          {text: 'صوت', value: 'audio'},
-          {text: 'فایل', value: 'file'},
-        ]
       }
     },
     watch: {
+      select_from_list() {
+        return [
+          {text: this.$t('upload'), value: 'upload'},
+          {text: this.$t('select_from_gallery'), value: 'gallery'},
+        ]
+      },
+      select_type_list() {
+        return [
+          {text: this.$t('image'), value: 'photo'},
+          {text: this.$t('audio'), value: 'audio'},
+          {text: this.$t('video'), value: 'video'},
+          {text: this.$t('files'), value: 'file'},
+        ]
+      },
       from() {
         this.file = null
       },

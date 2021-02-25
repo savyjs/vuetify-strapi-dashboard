@@ -68,7 +68,7 @@
     },
     computed: {
       baseURL() {
-        return process.env.API_URL;
+        return this.vsd.API_URL;
       }
     },
     mounted() {

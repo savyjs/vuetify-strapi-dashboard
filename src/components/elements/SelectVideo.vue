@@ -27,30 +27,58 @@
 
   </div>
 </template>
+<i18n>
+  {
+  "en":{
+  "build":"build video",
+  "from_url":"download from URL",
+  "select_from_gallery":"select from gallery",
+  "upload":"upload",
+  "error":"Error",
+  "select_type":"select file type",
+  "select_file":"select file",
+  "upload_success":"uploaded successfully",
+  "close":"close"
+  },
+  "fa":{
+  "build":"ساخت ویدیو",
+  "select_from_gallery":"انتخاب از گالری",
+  "from_url":"دانلود از آدرس",
+  "upload":"آپلود",
+  "error":"خطایی رخ داد!",
+  "image":"فایل تصویری",
+  "audio":"فایل صوتی",
+  "video":"فایل ویدئو",
+  "files":"فایل های دیگر",
+  "select_type":"نوع فایل را مشخص کنید",
+  "select_file":" فایل را مشخص کنید",
+  "upload_success":"با موفقیت آپلود شد",
+  "close":"بستن"
+  }
+  }
+</i18n>
 <script>
-  import StrapiMediaPhotoList from "./StrapiMediaPhotoList";
-  import StrapiMediaVideoList from "./StrapiMediaVideoList";
-  import MediaUploader from "./mediaUploader";
 
   export default {
-    components: {MediaUploader, StrapiMediaVideoList, StrapiMediaPhotoList},
     props: ['value', 'label', 'main', 'type', 'obj', 'id', 'url'],
     data() {
       return {
         // loader
         videoMergeLoading: false,
-
         data: {},
         choose: 'build',
-        chooseListValues: [
-          {text: 'ساخت ویدیو', value: 'build'},
-          {text: 'انتخاب از گالری', value: 'gallery'},
-          {text: 'دانلود از آدرس', value: 'url'},
-          {text: 'آپلود', value: 'upload'},
-        ],
+        chooseListValues: [],
       }
     },
     computed: {
+      chooseListValues() {
+        return [
+          {text: this.$t('build'), value: 'build'},
+          {text: this.$t('select_from_gallery'), value: 'gallery'},
+          {text: this.$t('from_url'), value: 'url'},
+          {text: this.$t('upload'), value: 'upload'},
+        ]
+      },
       extUrl() {
         let url = _.get(this.data, 'url', null)
         if (url) return this.API_URL + url;
@@ -89,13 +117,12 @@
           }
         }
         this.strapi.request(method, url, requestConfig).then(res => {
-          // repsone format: file : {id , hash , url , name}
           // TODO: shoud fix API
           this.data = res;
         }).catch(err => {
           console.log({err})
           this.$swal({
-            title: 'خطایی رخ داد!',
+            title: this.$t('error'),
             text: err
           })
         }).finally(() => {

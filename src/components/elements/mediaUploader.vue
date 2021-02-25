@@ -1,7 +1,7 @@
 <template>
   <span>
     <template v-if="_.isArray(getTypes)">
-      <v-select item-text="text" item-value="value" :items="getTypes" dense label="نوع پیوست را انتخاب کنید"
+      <v-select item-text="text" item-value="value" :items="getTypes" dense :label="$t('select_type')"
                 v-model="choosedType"/>
     </template>
 
@@ -11,7 +11,7 @@
     :placeholder="placeholder || null "
     v-if="!url"
     filled
-    label="انتخاب فایل"
+    :label="$t('select_file')"
     v-model="file"
   />
 
@@ -31,7 +31,7 @@
     </v-avatar>
 
     <v-banner single-line v-if="url">
-    فایل با موفقیت آپلود شد.
+    {{$t("upload_success")}}
     <template v-slot:actions>
       <v-btn
         text
@@ -45,7 +45,55 @@
   </v-banner>
     </span>
 </template>
+
+<i18n>
+  {
+  "en":{
+  "select_type":"select file type",
+  "select_file":"select file",
+  "upload_success":"uploaded successfully",
+  "operation":"Operation",
+  "search":"search",
+  "close":"close",
+  "image":"image",
+  "audio":"audio",
+  "video":"video",
+  "files":"files",
+  "new":"close",
+  "confirmation":"are you sure?",
+  "edit":"close",
+  "reload":"reload",
+  "value":"value",
+  "save":"save",
+  "name":"name",
+  "new":"new item",
+  "close":"close"
+  },
+  "fa":{
+  "image":"فایل تصویری",
+  "audio":"فایل صوتی",
+  "video":"فایل ویدئو",
+  "files":"فایل های دیگر",
+  "select_type":"نوع فایل را مشخص کنید",
+  "select_file":" فایل را مشخص کنید",
+  "upload_success":"با موفقیت آپلود شد",
+  "operation":"عملیات",
+  "search":"جست و جو",
+  "close":"لغو",
+  "new":"جدید",
+  "confirmation":"آیا مطمئن هستید که می خواهید این مورد را حذف کنید؟",
+  "edit":"ویرایش",
+  "reload":"بازنشانی",
+  "value":"مقدار",
+  "save":"ذخیره",
+  "name":"نام",
+  "new":"گزینه جدید",
+  "close":"بستن"
+  }
+  }
+</i18n>
 <script>
+  import _ from 'lodash'
 
   export default {
     props: ['value', 'label', 'getId', 'getObj', 'type', 'types', 'placeholder'],
@@ -54,16 +102,19 @@
         choosedType: null,
         file: null,
         data: null,
-        loader: false,
-        defaultTypes: [
-          {text: 'تصویر', value: 'photo'},
-          {text: 'صوت', value: 'audio'},
-          {text: 'ویدئو', value: 'video'},
-          {text: 'فایل', value: 'file'},
-        ]
+        loader: false
       }
     },
     computed: {
+
+      defaultTypes() {
+        return [
+          {text: this.$t('image'), value: 'photo'},
+          {text: this.$t('audio'), value: 'audio'},
+          {text: this.$t('video'), value: 'video'},
+          {text: this.$t('files'), value: 'file'},
+        ]
+      },
       url() {
         return _.get(this.data, 'url', null);
       },
@@ -82,6 +133,9 @@
         return (_.isString(this.type)) ? this.type : this.choosedType;
       }
     },
+    created() {
+      this._ = _;
+    },
     mounted() {
       if (this.value) {
         if (_.has(this.value, 'id')) {
@@ -98,7 +152,7 @@
         this.strapi.upload(formData).then(result => {
           let res = _.get(result, 0, {});
           this.data = res;
-          this.$notifSuccess('با موفقیت آپلود شد')
+          this.$notifSuccess(this.$t('upload_success'))
         }).catch(err => {
           this.data = null;
           this.$notifError(err);
