@@ -1,8 +1,18 @@
 <template>
   <div>
-    <wysiwyg v-model="editor" :placeholder="'بنویسید'"/>
+    <wysiwyg v-model="editor" :placeholder="$t('write')"/>
   </div>
 </template>
+<i18n>
+  {
+  "en":{
+  "write":"write here"
+  },
+  "fa":{
+  "write": "بنویسید"
+  }
+  }
+</i18n>
 <script>
   import "vue-wysiwyg/dist/vueWysiwyg.css";
 
@@ -30,15 +40,11 @@
       startEditor() {
         this.editor = this.value;
       },
-
     },
     mounted() {
       this.startEditor();
     },
     beforeDestroy() {
-      // Always destroy your editor instance when it's no longer needed
-
-    },
-    components: {},
+    }
   }
 </script>

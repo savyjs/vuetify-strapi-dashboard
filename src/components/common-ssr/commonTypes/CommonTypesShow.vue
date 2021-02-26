@@ -4,6 +4,35 @@
   <span v-else-if="_.includes(['label'],type)"></span>
   <span v-else-if="_.includes(['rich'],type)" v-html="data"/>
   <pre v-else-if="_.includes(['json'],type)" v-html="data"/>
+  <span v-else-if="_.includes(['media'],type)" class="pa-1">
+    <audio class="full" v-if="_.get(data,'url','') && _.startsWith(_.get(data,'mime',''),'audio')" controls>
+       <source :src="baseURL + _.get(data,'url','')">
+    </audio>
+    <video class="full" v-else-if="_.get(data,'url','') && _.startsWith(_.get(data,'mime',''),'video')" controls>
+       <source :src="baseURL + _.get(data,'url','')">
+    </video>
+    <v-img v-else-if="_.get(data,'url','') && _.startsWith(_.get(data,'mime',''),'image')" contain
+           :src="baseURL + _.get(data,'url','')"/>
+    <v-btn small v-else :to="baseURL + _.get(data,'url','')">
+           {{ _.get(data,'name','') }}
+    </v-btn>
+  </span>
+  <span v-else-if="_.includes(['audio'],type)" class="pa-2">
+    <audio class="full" v-if="_.get(data,'url','')" controls>
+       <source :src="baseURL + _.get(data,'url','')">
+    </audio>
+    <audio v-else-if="_.isArray(data)" v-for="aItem in data" controls>
+       <source :src="baseURL + _.get(aItem,'url','')">
+    </audio>
+  </span>
+  <span v-else-if="_.includes(['video'],type)" class="pa-2">
+    <video v-if="!_.isArray(data)" class="full" controls>
+       <source v-if="_.get(data,'url','')" :src="baseURL + _.get(data,'url','')">
+    </video>
+    <video v-else-if="_.isArray(data)" v-for="vItem in data" class="full" controls>
+       <source :src="baseURL + _.get(vItem,'url','')">
+    </video>
+  </span>
   <span v-else-if="_.includes(['image'],type)" class="pa-2">
     <v-dialog max-width="90%" v-model="modalImg">
       <v-card>
@@ -160,6 +189,9 @@
       }
     },
     computed: {
+      baseURL() {
+        return this.vsd.API_URL;
+      },
       getId() {
         if (this.id) return this.id;
         let idPath = _.get(this.main, 'idPath', 'id');

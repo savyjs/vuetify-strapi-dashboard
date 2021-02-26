@@ -2,8 +2,11 @@
   <div v-if="_.includes(['textarea','json'],type)">
     <v-textarea :rules="getRules" :placeholder="placeholder" :hint="hint" :label="label" dense filled v-model="data"/>
   </div>
-  <div v-else-if="_.includes(['rich'],type)">
+  <div v-else-if="_.includes(['rich','editor'],type)">
     <text-editor :label="label" dense filled v-model="data"/>
+  </div>
+  <div v-else-if="_.includes(['audio'],type)">
+    <select-audio :label="label" :getId="true" dense filled v-model="data"/>
   </div>
   <div v-else-if="_.includes(['image'],type)">
     <select-photo :label="label" :getId="true" dense filled v-model="data"/>
@@ -163,6 +166,7 @@
 <script>
 
   import _ from 'lodash'
+  import SelectAudio from "../../elements/selectAudio";
 
   /**
    * @value: any - this property value
@@ -173,6 +177,7 @@
 
   export default {
     name: 'CommonTypesField',
+    components: {SelectAudio},
     props: ['value', 'formData', 'type', 'field', 'place'],
     data() {
       return {

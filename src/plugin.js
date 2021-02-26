@@ -14,11 +14,13 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css' // Ensure
 // import '@fontawesome/fontawesome-free/css/all.css'
 import 'font-awesome/css/font-awesome.min.css';
 import 'material-icons/iconfont/material-icons.css';
+import wysiwyg from "vue-wysiwyg";
 
 const t = (val) => _.isString(val) ? val.replace(/_/g, ' ') : val
 const ComponentLibrary = {
   install(Vue, options = {}) {
     try {
+      Vue.use(wysiwyg, {});
       Vue.component("downloadExcel", JsonExcel);
       Vue.set(Vue.prototype, '$Helper', Helper);
       Vue.set(Vue.prototype, 'vsd', moduleOptions);
