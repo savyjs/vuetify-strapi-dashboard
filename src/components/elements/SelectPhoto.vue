@@ -2,15 +2,15 @@
   <div>
     <v-select :items="chooseListValues" filled dense :label="label" v-model="choose"/>
     <template v-if="choose=='gallery'">
-      <strapi-media-photo-list :label="$t(label)" :getObj="getObj" :getId="getId===undefined"
-                               v-model="data"/>
+      <strapi-media-photo-list
+        type="photo" :label="$t(label)" :getObj="getObj" :getId="getId===undefined"
+        v-model="data"/>
     </template>
     <template v-if="choose=='upload'">
-      <media-uploader :label="$t(label)" :getObj="getObj" :getId="getId===undefined" v-model="data"/>
+      <media-uploader type="photo" :label="$t(label)" :getObj="getObj" :getId="getId===undefined" v-model="data"/>
     </template>
   </div>
 </template>
-
 <i18n>
   {
   "en":{

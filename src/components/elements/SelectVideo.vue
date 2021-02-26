@@ -2,7 +2,7 @@
   <div>
     <v-select :items="chooseListValues" filled dense :label="label" v-model="choose"/>
     <template v-if="choose=='gallery'">
-      <strapi-media-video-list :label="label" :getId="true"
+      <strapi-media-video-list type="video" :label="label" :getId="true"
                                v-model="data"/>
     </template>
 

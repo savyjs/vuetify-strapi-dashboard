@@ -14,23 +14,21 @@
     :label="$t('select_file')"
     v-model="file"
   />
-
-     <v-subheader>{{label}}</v-subheader>
+    <v-banner single-line v-if="url">
       <audio style="max-width: 90%" v-if="canPlay('audio')" controls>
           <source :src="baseURL + url">
-        </audio>
+      </audio>
       <video style="max-width: 90%" v-if="canPlay('video')" controls>
           <source :src="baseURL + url">
-        </video>
+      </video>
       <v-avatar
         v-if="canPlay('photo')"
         color="deep-purple darker-4"
         size="40"
-      ><v-img contain :src="baseURL + url" fab/>
-    </v-avatar>
-
-    <v-banner single-line v-if="url">
-    {{$t("upload_success")}}
+      >
+        <v-img contain :src="baseURL + url" fab/>
+      </v-avatar>
+    <span class="mx-2"> {{$t("upload_success")}}</span>
     <template v-slot:actions>
       <v-btn
         text
@@ -41,7 +39,7 @@
         <v-icon>delete</v-icon>
       </v-btn>
     </template>
-  </v-banner>
+    </v-banner>
     </span>
 </template>
 
@@ -117,7 +115,7 @@
         return _.get(this.data, 'url', null);
       },
       baseURL() {
-        return process.env.API_URL;
+        return this.vsd.API_URL;
       },
       getTypes() {
         if (!_.isArray(this.type)) return null;
@@ -147,8 +145,8 @@
         this.loader = true;
         let formData = new FormData();
         formData.append('files', val);
-        this.$axios.post('upload',formData).then(result => {
-          let res = _.get(result, 0, {});
+        this.$axios.$post('upload', formData).then(result => {
+          let res = _.get(result, 0, result);
           this.data = res;
           this.$notifSuccess(this.$t('upload_success'))
         }).catch(err => {
@@ -172,6 +170,7 @@
     },
     methods: {
       canPlay(val) {
+        console.log(this.choosedType)
         if (!_.has(this.data, 'id', null)) {
           return false;
         } else if (!this.type) {
