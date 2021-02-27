@@ -56,16 +56,8 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
     });
 
     this.nuxt.options.store = true
-    let lodashPlugin = new webpack.ProvidePlugin({
-      _: 'lodash'
-    });
 
-    if (_.has(this.nuxt.options, 'build.plugins') && _.isArray(this.nuxt.options.build.plugins)) {
-      this.nuxt.options.build.plugins.push(lodashPlugin)
-    } else {
-      this.nuxt.options.build.plugins = [lodashPlugin];
-    }
-
+    // this.nuxt.options.build.plugins = [lodashPlugin];
 
     let i18nOption = _.get(this, 'nuxt.options.i18n', {});
     let i18nOptionLocales = _.get(this, 'nuxt.options.i18n.locales', {});
@@ -102,8 +94,8 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
     })
 
     this.addTemplate({
-      fileName: 'components/index.js',
-      src: path.resolve(__dirname, 'components/index.js'),
+      fileName: 'components/component-vsd.js',
+      src: path.resolve(__dirname, 'components/component-vsd.js'),
       options
     })
 

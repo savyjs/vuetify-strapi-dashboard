@@ -6,7 +6,7 @@ import Helper from './assets/helper'
 import CommonStore from './store/common'
 import Navigation from './store/navigation'
 import CommonSelectStore from './store/commonSelect'
-import * as components from "./components/index";
+import * as components from "./components/component-vsd";
 
 import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loader
 import './assets/styles.css' // Ensure you are using css-loader
