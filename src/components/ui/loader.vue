@@ -35,6 +35,7 @@
 </i18n>
 <script>
 
+  import _ from 'lodash'
   export default {
     data() {
       return {
@@ -46,7 +47,7 @@
         return this.$store.state.navigation.loading;
       },
       isEnabled() {
-        return _.get(this,'vsd.config.LOADER',true)
+        return _.get(this, 'vsd.config.LOADER', true)
       },
       page() {
         return this.$route.path;
@@ -54,6 +55,9 @@
     },
     mounted() {
       this.dialog = true;
+    },
+    created() {
+      this._ = _;
     },
     watch: {
       page() {

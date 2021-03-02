@@ -22,6 +22,7 @@ import PopUp from './common-ssr/PopUp'
 import Report from './common-ssr/Report'
 import Search from './common-ssr/Search'
 
+import Modal from './widgets/modal'
 import ShowPage from './common-ssr/show/ShowPage'
 import DataForm from './common-ssr/formData/DataForm'
 import DataFormPage from './common-ssr/formData/DataFormPage'
@@ -64,6 +65,7 @@ import VsdLogin from './auth/VsdLogin'
 import VsdLogout from './auth/vsdLogout'
 
 export default {
+  Modal,
   Snackbar,
   SideMenu,
   Settings,
