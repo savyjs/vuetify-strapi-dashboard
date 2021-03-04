@@ -102,6 +102,11 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
     })
 
     this.addTemplate({
+      fileName: 'assets/avatar.png',
+      src: path.resolve(__dirname, 'assets/avatar.png')
+    })
+
+    this.addTemplate({
       fileName: 'assets/styles.css',
       src: path.resolve(__dirname, 'assets/styles.css')
     })
