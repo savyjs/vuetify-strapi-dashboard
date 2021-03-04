@@ -83,7 +83,7 @@
     },
     computed: {
       defaultPhoto() {
-        return _.get(this, 'vsd.config.DEFAULT_PHOTO', '')
+        return _.get(this, 'vsd.config.DEFAULT_PHOTO', require('vuetify-strapi-dashboard/src/assets/avatar.png'))
       },
       user() {
         return this.$auth.user;
