@@ -14,12 +14,12 @@
         <v-list-item>
           <v-row>
             <template>
-              <v-col cols="5" class="pt-0 mt-0">
-                <v-avatar size="80">
+              <v-col cols="3" class="pt-1 mt-2">
+                <v-avatar>
                   <v-img
                     max-width="100%"
                     contain
-                    :src="`${SYSTEM_LOGO}`"
+                    :src="SYSTEM_LOGO"
                   />
                 </v-avatar>
               </v-col>
@@ -94,7 +94,7 @@
 <script>
   import _ from 'lodash'
 
-  const SYSTEM_LOGO = process.env.SYSTEM_LOGO;
+  const SYSTEM_LOGO = _.get(process.env,'LOGO',require('vuetify-strapi-dashboard/src/assets/vsd.png')); // process.env.SYSTEM_LOGO;
   const SHOW_USER = process.env.SHOW_USER;
   const SINGLE_TITLE = process.env.SINGLE_TITLE;
   const FOOTER_TITLE = process.env.FOOTER_TITLE;
