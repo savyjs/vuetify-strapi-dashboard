@@ -28,17 +28,14 @@
     props: ['value'],
     data() {
       return {
+        text: '',
         queue: [],
         alert: false,
         timeout: 30000,
         color: 'info',
       }
     },
-    computed: {
-      text() {
-        return this.$t("unknown_error")
-      }
-    },
+    computed: {},
     watch: {
       alert(val) {
         if (val == false) {
@@ -70,8 +67,10 @@
         }
       }
     },
+    mounted: function () {
+      this.text = this.$t("unknown_error")
+    },
     created: function () {
-
       const alertError = (msg) => {
         let error = msg;
         if (_.has(error, 'response.data.message')) {
