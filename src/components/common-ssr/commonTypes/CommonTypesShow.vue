@@ -232,17 +232,18 @@
       },
       selectValue() {
         let value = this.data;
-        let isMulti = _.get(this.field, 'multi', false);
+        let isMulti = _.get(this.field, 'multiple', _.get(this.field, 'multi', false));
         let hasStore = _.get(this.field, 'store', undefined);
         if (hasStore || _.has(this.field, 'server')) {
           this.loadData();
         }
-        let list = hasStore ? _.get(this.$store.state.commonSelect, _.get(this.field, 'store', []), []) : [];
+        let list = hasStore ? _.get(this.$store.state.commonSelect, _.get(this.field, 'store', _.get(this.$store.state.commonSelect, _.get(this.field, 'server', []))), []) : [];
         let valuePath = _.get(this.field, 'path', isMulti ? undefined : _.get(this.field, 'meta.text', 'name'));
         if (isMulti) {
           let items = valuePath ? _.get(value, valuePath, []) : value;
           let response = [];
           let textPath = _.get(this.field, 'meta.text', undefined);
+          console.log({isMulti,valuePath,value,textPath,items})
           return _.map(items, (item, index) => {
             let text = _.get(item, textPath, item);
             return (text);
@@ -268,7 +269,7 @@
       loadData() {
         if (_.has(this.field, 'store', undefined)) {
           let name = _.get(this.field, 'store', null);
-          let response = this.$store.dispatch(`commonSelect/${name}`, name);
+          let response = this.$store.dispatch(`${name}`, name);
         } else if (_.has(this.field, 'server', undefined)) {
           this.$store.dispatch(`commonSelect/server`, this.field);
         }

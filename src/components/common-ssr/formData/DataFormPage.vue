@@ -12,7 +12,7 @@
               </span>
               </v-flex>
               <v-flex :class="`pa-1 ` + (vsd.rtl ? `text-left` : `text-right`)">
-                <v-btn v-if="showBack!==false" small color="white" class="mx-2  warning--text" :to="back">
+                <v-btn v-if="showBack!==false" small color="white" class="mx-2  warning--text" :to="backUrl">
                   <v-icon class="mx-1">backspace</v-icon>
                   {{$t("back")}}
                 </v-btn>

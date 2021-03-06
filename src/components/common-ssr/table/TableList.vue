@@ -76,7 +76,7 @@
                 <v-tooltip bottom v-if="hasBtn('next')">
                   <template v-slot:activator="{ on, attrs }">
                     <v-btn v-on="on" small v-if="hasBtn('next',false)" fab icon x-small
-                           :to="`/admin/${name}/${item.id}`">
+                           :to="`${name}/${item.id}`">
                       <Icons8
                         small
                         color="success"
@@ -90,7 +90,7 @@
                 </v-tooltip>
                 <v-tooltip bottom v-if="hasBtn('show')">
                   <template v-slot:activator="{ on, attrs }">
-                    <v-btn v-on="on" small v-if="hasBtn('show')" fab icon :to="`/admin/${name}/${item.id}`">
+                    <v-btn v-on="on" small v-if="hasBtn('show')" fab icon :to="`${name}/${item.id}`">
                       <v-icon
                         small
                         color="success"
@@ -104,7 +104,7 @@
                 </v-tooltip>
                 <v-tooltip bottom v-if="hasBtn('edit')">
                   <template v-slot:activator="{ on, attrs }">
-                    <v-btn v-on="on" small v-if="hasBtn('edit')" fab icon :to="`/admin/${name}/edit/${item.id}`">
+                    <v-btn v-on="on" small v-if="hasBtn('edit')" fab icon :to="`${name}/edit/${item.id}`">
                       <v-icon
                         small
                         color="warning"
@@ -154,7 +154,7 @@
         <div style="width: 150px">
           <v-tooltip bottom v-if="hasBtn('next')">
             <template v-slot:activator="{ on, attrs }">
-              <v-btn v-on="on" x-small v-if="hasBtn('next',false)" fab icon x-small :to="`/admin/${name}/${item.id}`">
+              <v-btn v-on="on" x-small v-if="hasBtn('next',false)" fab icon x-small :to="`${name}/${item.id}`">
                 <Icons8
                   small
                   color="success"
@@ -168,7 +168,7 @@
           </v-tooltip>
           <v-tooltip bottom v-if="hasBtn('show')">
             <template v-slot:activator="{ on, attrs }">
-              <v-btn v-on="on" x-small v-if="hasBtn('show')" fab icon :to="`/admin/${name}/${item.id}`">
+              <v-btn v-on="on" x-small v-if="hasBtn('show')" fab icon :to="`${name}/${item.id}`">
                 <v-icon
                   small
                   color="success"
@@ -182,7 +182,7 @@
           </v-tooltip>
           <v-tooltip bottom v-if="hasBtn('edit')">
             <template v-slot:activator="{ on, attrs }">
-              <v-btn v-on="on" x-small v-if="hasBtn('edit')" fab icon :to="`/admin/${name}/edit/${item.id}`">
+              <v-btn v-on="on" x-small v-if="hasBtn('edit')" fab icon :to="`${name}/edit/${item.id}`">
                 <v-icon
                   small
                   color="warning"

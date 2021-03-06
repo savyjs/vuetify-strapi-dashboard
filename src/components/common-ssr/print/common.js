@@ -21,7 +21,7 @@ export default {
       return _.get(this, 'value', {});
     },
     back() {
-      return '/admin/' + this.name
+      return  this.name
     }
   },
   watch: {

@@ -2,6 +2,7 @@
  * you can copy this file for your custom API server and change it to fit your need.
  */
 import qs from 'qs';
+import _ from 'lodash';
 
 export default {
   methods: {

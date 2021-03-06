@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export default {
   methods: {
     loadData() {
@@ -50,7 +52,7 @@ export default {
   },
   computed: {
     backUrl() {
-      return this.name ? '/admin/' + this.name : './.'
+      return this.name ?  this.name : './.'
     }
   }
 }

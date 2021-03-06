@@ -1,8 +1,10 @@
+import _ from 'lodash'
 export default {
   namespaced: true,
   state: () => {
     return {
       server: {},
+      serverStatuses: {},
       roles: [],
       categories: [],
       markets: [],
@@ -20,12 +22,13 @@ export default {
       _.forEach(roles, (item) => {
         state.roles.push({value: item.id, text: item.name})
       })
-    }, updateServer(state, {res, field}) {
-      state.server[field.value] = [];
+    },
+    updateServer(state, {res, field}) {
+      state.server[field.server] = [];
       _.forEach(res, (item) => {
-        state.server[field.value].push({
-          value: _.get(item, field.meta.value, '-'),
-          text: _.get(item, field.meta.text, '-')
+        state.server[field.server].push({
+          value: _.get(item, _.get(field, 'meta.value', 'id'), '-'),
+          text: _.get(item, _.get(field, 'meta.text', 'name'), '-')
         })
       })
     },
@@ -47,16 +50,16 @@ export default {
       })
     },
     setCurrenciesInitiated(state, data) {
-        state.currenciesInitiated = data
+      state.currenciesInitiated = data
     },
     setRolesInitiated(state, data) {
-        state.rolesInitiated = data
+      state.rolesInitiated = data
     },
     setCategoriesInitiated(state, data) {
-        state.categoriesInitiated = data
+      state.categoriesInitiated = data
     },
     setMarketInitiated(state, data) {
-        state.marketInitiated = data
+      state.marketInitiated = data
     }
   },
   actions: {
@@ -83,14 +86,14 @@ export default {
       }
     },
     server: function ({commit, state}, field) {
-      if (!_.has(state.server[field.server]) || !state.server[field.server]) {
+      if (!_.has(state.serverStatuses[field.server]) || !state.serverStatuses[field.server]) {
         this.$axios.$get(field.server).then(res => {
           commit('updateServer', {res, field});
         }).catch(err => {
           console.log({err})
-          state.server[field.server] = false;
+          state.serverStatuses[field.server] = false;
         })
-        state.server[field.server] = true;
+        state.serverStatuses[field.server] = true;
       }
     },
     markets: function ({commit, state}, field) {

@@ -46,7 +46,8 @@ export default {
       this.fields = (_.has(this, 'fields') && _.isArray(this.fields)) ? {...this.fields, ...this.Fields} : {...this.Fields};
     }
     if (_.isArray(this.fields) && !_.includes(this.fields, defaultActions) && _.get(this, 'defaultActions', false)) {
-      this.fields.push(defaultActions);
+      let hasActions = this.fields.findIndex((item)=>{_.get(item,'value',_.get(item,'text','')) == 'actions'});
+      if (!hasActions) this.fields.push(defaultActions);
     }
   },
   mounted() {

@@ -25,8 +25,8 @@ export default {
     type() {
       return this.id ? 'edit' : 'create'
     },
-    back() {
-      return '/admin/' + this.name
+    backUrl() {
+      return this.name
     }
   },
   watch: {
@@ -57,7 +57,7 @@ export default {
       let formData = this.formData;
       console.log({config, formData});
       this.$store.commit('common/updatePrintFormData', {formData, config});
-      return this.$router.push(this.back + '/print')
+      return this.$router.push(this.backUrl + '/print')
     },
     doAction(btn) {
       let module = _.get(btn, 'module', undefined);
