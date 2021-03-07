@@ -1,8 +1,13 @@
 <template>
   <v-row>
-    <v-subheader>
-      {{group.title || ''}}
-    </v-subheader>
+    <v-col cols="12">
+      <v-subheader>
+        {{group.title || ''}}
+      </v-subheader>
+    </v-col>
+    <v-col cols="12">
+      <v-alert v-html="group.pre_text" type="info" v-show="_.get(group,'pre_text','')"/>
+    </v-col>
     <v-col
       v-for="element in elements"
       v-if="_.get(element,type,undefined)!==false"
@@ -19,6 +24,9 @@
         :type="type"
         :config="config"
       ></CommonProcessTypeField>
+    </v-col>
+    <v-col cols="12">
+      <v-alert v-html="group.after_text" type="info" v-show="_.get(group,'after_text','')"/>
     </v-col>
   </v-row>
 </template>

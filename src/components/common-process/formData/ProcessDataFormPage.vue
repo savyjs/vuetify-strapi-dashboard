@@ -44,7 +44,6 @@
             </v-layout>
           </v-card-actions>
           <v-card-text>
-            {{formData}}
             <form-groups
               v-model="formData"
               :type="type"
