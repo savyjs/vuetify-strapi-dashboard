@@ -1,10 +1,10 @@
-/**
- * you can copy this file for your custom API server and change it to fit your need.
- */
-import qs from 'qs';
 import _ from 'lodash';
+import qs from "qs";
 
 export default {
+  created() {
+    this._ = _;
+  },
   methods: {
     loadData() {
       // console.log('hi from strapi');
@@ -19,7 +19,8 @@ export default {
 
       let meta = {
         ...filters,
-        ...search
+        ...search,
+        form: this.formId
       };
       let queryString = '';
       if (report) {
@@ -49,10 +50,12 @@ export default {
           reportQuery._where = whereClauses;
         }
         queryString = '?' + qs.stringify(reportQuery);
+        console.log({reportQuery, queryString})
       }
 
       // check if this path exists
-      this.$axios.$get(this.resource + '/count' + queryString, {params: meta}).then(res => {
+      let url = this.vsd.builder.record;
+      this.$axios.$get(url + '/count' + queryString, {params: meta}).then(res => {
         this.length = res;
       });
 
@@ -64,7 +67,7 @@ export default {
         meta._start = (page - 1) * perPage
       }
 
-      this.$axios.$get(this.resource + queryString, {params: meta}).then(res => {
+      this.$axios.$get(url + queryString, {params: meta}).then(res => {
         this.list = res;
         if (this.length < 1 && res.length > 0) {
           this.length = res.length;
@@ -73,6 +76,31 @@ export default {
         this.$notifWarning(error);
       }).finally((res) => {
         this.loading = false;
+      })
+    },
+    loadElements() {
+      let id = this.formId;
+      let url = this.vsd.builder.form;
+      let gurl = this.vsd.builder.group;
+      this.elements = [];
+      this.$axios.$get(url + '/' + id).then(res => {
+        _.forEach(_.get(res, 'groups', []), (group) => {
+          this.$axios.$get(gurl + '/' + group.id).then(groupDetails => {
+            _.forEach(_.get(groupDetails, 'elements', []), (element) => {
+              element = {
+                text: element.title,
+                value: `data.${group.name}.${element.name}`,
+                ...element
+              }
+              console.log({group, element})
+              this.elements.push(element)
+            })
+          }).catch(gerr => {
+            console.error({gerr})
+          })
+        })
+      }).catch(err => {
+        console.error({err})
       })
     },
     doFilter(val) {
@@ -110,7 +138,8 @@ export default {
     update(id, property, val) {
       let data = {};
       data[property] = val;
-      return this.$axios.$put(this.resource + '/' + id, data).then(res => {
+      let url = this.vsd.builder.record;
+      return this.$axios.$put(url + '/' + id, data).then(res => {
         this.loadData();
         this.$notifSuccess(this.$t("success"))
       }).catch(err => {
@@ -122,7 +151,7 @@ export default {
     },
     delete(id, reload = true) {
       this.loading = true;
-      return this.$axios.$delete(this.resource + '/' + id).then(res => {
+      return this.$axios.$delete(url + '/' + id).then(res => {
         if (reload) {
           this.loadData();
         }

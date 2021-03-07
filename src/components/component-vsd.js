@@ -10,6 +10,14 @@ import Breadcrumb from './Breadcrumb'
 
 import Account from './Account'
 
+import ProcessListPage from './common-process/table/ProcessListPage'
+import ProcessDataFormPage from './common-process/formData/ProcessDataFormPage'
+import ProcessDataForm from './common-process/formData/ProcessDataForm'
+import ProcessTableList from './common-process/table/ProcessTableList'
+import FormGroups from './common-process/formData/FormGroups'
+import FormElements from './common-process/formData/FormElements'
+import CommonProcessTypeField from './common-process/commonTypes/CommonProcessTypeField'
+
 import ListPage from './common-ssr/table/ListPage'
 import TableList from './common-ssr/table/TableList'
 import CommonTypesExpand from './common-ssr/commonTypes/CommonTypesExpand'
@@ -74,7 +82,12 @@ export default {
   Breadcrumb,
   Alert,
   AccessAlert,
+  ProcessListPage,
+  ProcessDataFormPage,
+  ProcessDataForm,
+  ProcessTableList,
   ListPage,
+  CommonProcessTypeField,
   CommonTypesExpand,
   CommonTypesField,
   CommonTypesFilterField,
@@ -102,6 +115,8 @@ export default {
   MusicPlayer,
   mediaUploader,
   LinearCRUD,
+  FormGroups,
+  FormElements,
   FilterDatePicker,
   dateTimePicker,
   DatePicker,

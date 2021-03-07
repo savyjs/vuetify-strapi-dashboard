@@ -20,8 +20,15 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
   try {
     let listOfFiles = getFiles(path.resolve(__dirname, './components'));
 
+
     const options = {
       rtl: false,
+      builder:{
+        form: '/forms',
+        group: '/groups',
+        element: '/elements',
+        record: '/records',
+      },
       ...moduleOptions
     }
 
