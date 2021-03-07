@@ -76,7 +76,7 @@
                 <v-tooltip bottom v-if="hasBtn('next')">
                   <template v-slot:activator="{ on, attrs }">
                     <v-btn v-on="on" small v-if="hasBtn('next',false)" fab icon x-small
-                           :to="`${name}/${item.id}`">
+                           :to="`${path}/${item.id}`">
                       <Icons8
                         small
                         color="success"
@@ -90,7 +90,7 @@
                 </v-tooltip>
                 <v-tooltip bottom v-if="hasBtn('show')">
                   <template v-slot:activator="{ on, attrs }">
-                    <v-btn v-on="on" small v-if="hasBtn('show')" fab icon :to="`${name}/${item.id}`">
+                    <v-btn v-on="on" small v-if="hasBtn('show')" fab icon :to="`${path}/${item.id}`">
                       <v-icon
                         small
                         color="success"
@@ -104,7 +104,7 @@
                 </v-tooltip>
                 <v-tooltip bottom v-if="hasBtn('edit')">
                   <template v-slot:activator="{ on, attrs }">
-                    <v-btn v-on="on" small v-if="hasBtn('edit')" fab icon :to="`${name}/edit/${item.id}`">
+                    <v-btn v-on="on" small v-if="hasBtn('edit')" fab icon :to="`${path}/edit/${item.id}`">
                       <v-icon
                         small
                         color="warning"
@@ -154,7 +154,7 @@
         <div style="width: 150px">
           <v-tooltip bottom v-if="hasBtn('next')">
             <template v-slot:activator="{ on, attrs }">
-              <v-btn v-on="on" x-small v-if="hasBtn('next',false)" fab icon x-small :to="`${name}/${item.id}`">
+              <v-btn v-on="on" x-small v-if="hasBtn('next',false)" fab icon x-small :to="`${path}/${item.id}`">
                 <Icons8
                   small
                   color="success"
@@ -168,7 +168,7 @@
           </v-tooltip>
           <v-tooltip bottom v-if="hasBtn('show')">
             <template v-slot:activator="{ on, attrs }">
-              <v-btn v-on="on" x-small v-if="hasBtn('show')" fab icon :to="`${name}/${item.id}`">
+              <v-btn v-on="on" x-small v-if="hasBtn('show')" fab icon :to="`${path}/${item.id}`">
                 <v-icon
                   small
                   color="success"
@@ -182,7 +182,7 @@
           </v-tooltip>
           <v-tooltip bottom v-if="hasBtn('edit')">
             <template v-slot:activator="{ on, attrs }">
-              <v-btn v-on="on" x-small v-if="hasBtn('edit')" fab icon :to="`${name}/edit/${item.id}`">
+              <v-btn v-on="on" x-small v-if="hasBtn('edit')" fab icon :to="`${path}/edit/${item.id}`">
                 <v-icon
                   small
                   color="warning"
@@ -276,7 +276,7 @@
 
   export default {
     name: 'ProcessTableList',
-    props: ['items', 'elements', 'search', 'main', 'hasSort', 'hasFilter', 'hasSearch', 'itemKey', 'length', 'showSelect', 'options', 'loading', 'name', 'resource'],
+    props: ['items', 'elements', 'search', 'main', 'hasSort', 'hasFilter', 'hasSearch', 'itemKey', 'length', 'showSelect', 'options', 'loading', 'path', 'resource'],
     data() {
       return {
         showMenu: false,

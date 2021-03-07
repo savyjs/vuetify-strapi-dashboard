@@ -114,7 +114,7 @@
             :showSelect="_.get(value,'deleteAll',true)"
             :showExpand="true"
             :length="length"
-            :name="name"
+            :path="path"
             :resource="resource"
             :options="options"
             :loading="loading"
