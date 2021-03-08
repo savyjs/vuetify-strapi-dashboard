@@ -22,8 +22,9 @@
         :formData="formData"
         :element="element"
         :type="type"
+        :errors="errors"
         :config="config"
-      ></CommonProcessTypeField>
+      />
     </v-col>
     <v-col cols="12">
       <v-alert v-html="group.after_text" type="info" v-show="_.get(group,'after_text','')"/>

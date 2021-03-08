@@ -44,6 +44,15 @@ export default {
     this._ = _;
   },
   methods: {
+    validate() {
+      this.$refs.form.validate()
+    },
+    reset() {
+      this.$refs.form.reset()
+    },
+    resetValidation() {
+      this.$refs.form.resetValidation()
+    },
     doAction(btn) {
       let module = _.get(btn, 'module', undefined);
       if (module) {

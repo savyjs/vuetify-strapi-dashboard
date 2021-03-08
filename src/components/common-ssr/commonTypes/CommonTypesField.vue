@@ -1,53 +1,67 @@
 <template>
   <div v-if="_.includes(['textarea','json'],type)">
-    <v-textarea :rules="getRules" :placeholder="placeholder" :hint="hint" :label="label" dense filled v-model="data"/>
+    <v-textarea :required="_.get(field,'required',false)" :rules="getRules" :placeholder="placeholder" :hint="hint"
+                :label="label" dense filled v-model="data"/>
   </div>
   <div v-else-if="_.includes(['rich','editor'],type)">
-    <text-editor :label="label" dense filled v-model="data"/>
+    <text-editor
+      :required="_.get(field,'required',false)" :label="label" dense filled v-model="data"/>
   </div>
   <div v-else-if="_.includes(['audio'],type)">
-    <select-audio :label="label" :getId="true" dense filled v-model="data"/>
+    <select-audio
+      :required="_.get(field,'required',false)" :label="label" :getId="true" dense filled v-model="data"/>
   </div>
   <div v-else-if="_.includes(['image'],type)">
-    <select-photo :label="label" :getId="true" dense filled v-model="data"/>
+    <select-photo
+      :required="_.get(field,'required',false)" :label="label" :getId="true" dense filled v-model="data"/>
   </div>
   <div v-else-if="_.includes(['media-upload'],type)">
-    <media-uploader :type="_.get(field,'types',undefined)" :label="label" :getId="true" dense filled v-model="data"/>
+    <media-uploader
+      :required="_.get(field,'required',false)" :type="_.get(field,'types',undefined)" :label="label" :getId="true"
+      dense filled v-model="data"/>
   </div>
   <div v-else-if="_.includes(['media'],type)">
-    <select-all-media :type="_.get(field,'types',undefined)" :label="label" :getId="true" dense filled v-model="data"/>
+    <select-all-media
+      :required="_.get(field,'required',false)" :type="_.get(field,'types',undefined)" :label="label" :getId="true"
+      dense filled v-model="data"/>
   </div>
   <div v-else-if="_.includes(['combobox'],type)">
-    <v-combobox :rules="getRules" multiple chips :label="label" dense filled v-model="data"/>
+    <v-combobox
+      :required="_.get(field,'required',false)" :rules="getRules" multiple chips :label="label" dense filled
+      v-model="data"/>
   </div>
   <div v-else-if="_.includes(['bool'],type)">
-    <v-checkbox :rules="getRules" v-model="data" dense filled :label="label"/>
+    <v-checkbox
+      :required="_.get(field,'required',false)" :rules="getRules" v-model="data" dense filled :label="label"/>
   </div>
   <div v-else-if="_.includes(['price'],type)">
-    <v-text-field :rules="getRules"
-                  :placeholder="placeholder"
-                  v-model="data"
-                  persistent-hint
-                  :hint="hint"
-                  :label="label"
-                  dense
-                  ref="data"
-                  filled
+    <v-text-field
+      :required="_.get(field,'required',false)" :rules="getRules"
+      :placeholder="placeholder"
+      v-model="data"
+      persistent-hint
+      :hint="hint"
+      :label="label"
+      dense
+      ref="data"
+      filled
     />
   </div>
   <div v-else-if="_.includes(['number'],type)">
-    <v-text-field :rules="getRules" :placeholder="placeholder"
-                  persistent-hint
-                  :hint="hint"
-                  :label="label"
-                  dense
-                  ref="data"
-                  filled
-                  v-model="data"
+    <v-text-field
+      :required="_.get(field,'required',false)" :rules="getRules" :placeholder="placeholder"
+      persistent-hint
+      :hint="hint"
+      :label="label"
+      dense
+      ref="data"
+      filled
+      v-model="data"
     />
   </div>
   <div v-else-if="_.includes(['dateTime'],type)">
     <date-time-picker
+      :required="_.get(field,'required',false)"
       :use-seconds="true"
       :filled="true" :rules="getRules" :locale="getLocale" :hint="hint" :type="type" :field="field"
       v-model="data"
@@ -55,6 +69,7 @@
   </div>
   <div v-else-if="_.includes(['time'],type)">
     <time-picker
+      :required="_.get(field,'required',false)"
       :use-seconds="true"
       :filled="true"
       :rules="getRules"
@@ -66,25 +81,35 @@
       :label="label"/>
   </div>
   <div v-else-if="_.includes(['date'],type)">
-    <date-picker :filled="true" :rules="getRules" :hint="hint" :locale="getLocale" v-model="data" :type="type"
-                 :field="field"
-                 :label="label"/>
+    <date-picker
+      :required="_.get(field,'required',false)" :filled="true" :rules="getRules" :hint="hint" :locale="getLocale"
+      v-model="data" :type="type"
+      :field="field"
+      :label="label"/>
   </div>
   <div v-else-if="_.includes(['jdate'],type)">
-    <date-picker :rules="getRules" :isJalali="true" :locale="getLocale" :hint="hint" v-model="data" :type="type"
-                 :field="field"
-                 :label="label"/>
+    <date-picker
+      :required="_.get(field,'required',false)" :rules="getRules" :isJalali="true" :locale="getLocale" :hint="hint"
+      v-model="data" :type="type"
+      :field="field"
+      :label="label"/>
   </div>
   <div v-else-if="_.includes(['select'],type)">
-    <select-relation :rules="getRules" :hint="hint" v-model="data" :type="type" :field="field" :label="label"/>
+    <select-relation
+      :required="_.get(field,'required',false)" :rules="getRules" :hint="hint" v-model="data" :type="type"
+      :field="field" :label="label"/>
   </div>
   <div v-else-if="_.includes(['enum'],type)">
-    <select-enum :rules="getRules" :hint="hint" v-model="data" :type="type" :field="field" :label="label"/>
+    <select-enum
+      :required="_.get(field,'required',false)" :rules="getRules" :hint="hint" v-model="data" :type="type"
+      :field="field" :label="label"/>
   </div>
   <div v-else-if="_.includes(['password'],type)">
-    <v-text-field :rules="getRules" :placeholder="placeholder" :type="!toggle ? 'password' : 'text'"
-                  @input="(val)=>data=val ?val: undefined" filled dense
-                  :label="label">
+    <v-text-field
+      :required="_.get(field,'required',false)" :rules="getRules" :placeholder="placeholder"
+      :type="!toggle ? 'password' : 'text'"
+      @input="(val)=>data=val ?val: undefined" filled dense
+      :label="label">
       <template v-if="toggle" v-slot:append>
         <v-btn icon class="mb-1" @click="toggle=!toggle">
           <v-icon>visibility_off</v-icon>
@@ -99,6 +124,7 @@
   </div>
   <div v-else-if="type=='crud'">
     <CRUD
+      :required="_.get(field,'required',false)"
       @updateFormData="updateFormData"
       :formData="formData"
       v-model="data"
@@ -110,6 +136,7 @@
   </div>
   <div v-else-if="type=='linearCrud'">
     <LinearCRUD
+      :required="_.get(field,'required',false)"
       @updateFormData="updateFormData"
       :formData="formData"
       v-model="data"
@@ -120,8 +147,9 @@
     ></LinearCRUD>
   </div>
   <div v-else-if="_.includes(['calc'],type)">
-    <calc :rules="getRules" @updateFormData="updateFormData"
-          :formData="formData" :hint="hint" v-model="data" :type="type" :field="field" :label="label"/>
+    <calc
+      :required="_.get(field,'required',false)" :rules="getRules" @updateFormData="updateFormData"
+      :formData="formData" :hint="hint" v-model="data" :type="type" :field="field" :label="label"/>
   </div>
   <div v-else-if="_.includes(['label'],type)">
     <v-subheader>
@@ -131,11 +159,14 @@
     <v-divider v-if="hasDivider"/>
   </div>
   <div v-else-if="_.includes(['counter'],type)">
-    <counter :rules="getRules" :outlined="false" v-model="data" :type="type" :label="label" :icon="icon"
-             :field="field"/>
+    <counter
+      :required="_.get(field,'required',false)" :rules="getRules" :outlined="false" v-model="data" :type="type"
+      :label="label" :icon="icon"
+      :field="field"/>
   </div>
   <div v-else-if="_.includes(['custom'],type)">
     <component
+      :required="_.get(field,'required',false)"
       :is="_.get(field,'meta.component',undefined)"
       :outlined="false"
       v-model="data" :rules="getRules"
@@ -148,7 +179,8 @@
       :field="field"></component>
   </div>
   <div v-else>
-    <v-text-field :rules="getRules" :placeholder="placeholder" persistent-hint :hint="hint" v-model="data" filled dense
+    <v-text-field :required="_.get(field,'required',false)" :rules="getRules" :placeholder="placeholder" persistent-hint
+                  :hint="hint" v-model="data" filled dense
                   :label="label"/>
   </div>
 </template>

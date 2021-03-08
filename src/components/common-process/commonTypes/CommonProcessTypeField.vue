@@ -1,12 +1,20 @@
 <template>
   <div>
-    <CommonTypesField
-      :formData="formData"
-      :field="field"
-      @updateFormData="updateFormData"
-      :type="element.type"
-      v-model="data"
-    ></CommonTypesField>
+    <validation-provider
+      v-slot="{ errors }"
+      name="data"
+      :rules="rules"
+    >
+      {{errors}}
+      <CommonTypesField
+        :formData="formData"
+        :field="field"
+        :errors="errors"
+        @updateFormData="updateFormData"
+        :type="element.type"
+        v-model="data"
+      ></CommonTypesField>
+    </validation-provider>
   </div>
 </template>
 <script>
@@ -24,6 +32,9 @@
       this._ = _;
     },
     computed: {
+      rules(){
+        return 'required|email'
+      },
       field() {
         return {
           text: this.element.title,

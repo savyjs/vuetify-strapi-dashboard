@@ -25,7 +25,7 @@
                        striped
                        :value="titlePage*100/totalPages"
     ></v-progress-linear>
-    <div v-for="(group,index) in groups" v-show="_.includes(getPages[page-1],group.id)" :key="index">
+    <div v-for="(group,index) in groups" v-if="_.includes(getPages[page-1],group.id)" :key="index">
       <form-elements
         v-model="formData[group.name]"
         :id="group.id"
@@ -41,16 +41,16 @@
         <v-icon>arrow_left</v-icon>
         {{$t('previous')}}
       </v-btn>
-      <v-btn depressed :loading="btnLoading" @click="next" v-if="page < totalPages" color="success">
+      <v-btn :disabled="!validity" depressed :loading="btnLoading" @click="next" v-if="page < totalPages" color="success">
         <v-icon>save</v-icon>
         <v-icon>arrow_right</v-icon>
         {{$t('next')}}
       </v-btn>
-      <v-btn depressed :loading="btnLoading" @click="next" v-if="page == totalPages" color="success">
+      <v-btn depressed :disabled="!validity" :loading="btnLoading" @click="next" v-if="page == totalPages" color="success">
         <v-icon>assignment</v-icon>
         {{$t('preview')}}
       </v-btn>
-      <v-btn depressed :loading="btnLoading" @click="next" v-if="page > totalPages" color="success">
+      <v-btn depressed :disabled="!validity" :loading="btnLoading" @click="next" v-if="page > totalPages" color="success">
         <v-icon>save</v-icon>
         {{$t('save')}}
       </v-btn>
@@ -79,7 +79,7 @@
   import _ from 'lodash'
   // this component gets form config and shows form groups
   export default {
-    props: ['value', 'type', 'config'],
+    props: ['value', 'type','validity', 'config'],
     data() {
       return {
         btnLoading: false,
@@ -139,7 +139,13 @@
       },
       next() {
         this.btnLoading = true;
+        this.$emit('validate')
         this.page++;
+        this.btnLoading = false;
+      },
+      save() {
+        this.btnLoading = true;
+        this.$emit('validate')
         this.btnLoading = false;
       },
       loadForm(config) {
