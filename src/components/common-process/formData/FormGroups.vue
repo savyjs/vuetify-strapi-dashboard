@@ -3,7 +3,7 @@
     <v-subheader>
       {{form.title || ''}}
     </v-subheader>
-    <div :class="'' + vsd.rtl ? 'rtl':'ltr'">
+    <div :class="vsd.rtl ? 'rtl':'ltr'">
       <v-row
         :class="`d-flex align-baseline justify-space-between `"
         v-model="titlePage">

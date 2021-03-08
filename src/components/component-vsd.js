@@ -12,7 +12,7 @@ import Account from './Account'
 
 import ProcessListPage from './common-process/table/ProcessListPage'
 import ProcessDataFormPage from './common-process/formData/ProcessDataFormPage'
-import ProcessDataForm from './common-process/formData/ProcessDataForm'
+// import ProcessDataForm from './common-process/formData/ProcessDataForm'
 import ProcessTableList from './common-process/table/ProcessTableList'
 import FormGroups from './common-process/formData/FormGroups'
 import FormElements from './common-process/formData/FormElements'
@@ -84,7 +84,7 @@ export default {
   AccessAlert,
   ProcessListPage,
   ProcessDataFormPage,
-  ProcessDataForm,
+  // ProcessDataForm,
   ProcessTableList,
   ListPage,
   CommonProcessTypeField,
