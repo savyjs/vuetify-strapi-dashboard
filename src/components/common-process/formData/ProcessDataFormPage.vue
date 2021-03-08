@@ -4,14 +4,15 @@
       <v-container grid-list-lg>
         <v-card :loading="loader">
           <v-card-header margin-right="1%" width="98%" v-if="showSimple!==true">
-            <v-layout :class="`pa-1 `+ vsd.rtl ? 'rtl':''">
-              <v-flex :class="`pa-1 `  + (vsd.rtl ? `text-right` : `text-left`)">
+            <v-layout :class="`pa-1 `+ (vsd.rtl ? 'rtl' : '')">
+              {{vsd.rtl}}
+              <v-flex :class="`pa-1`">
               <span class="px-1">
                 <v-icon class="mx-1">{{icon || 'edit'}}</v-icon>
                 {{title}}
               </span>
               </v-flex>
-              <v-flex :class="`pa-1 ` + (vsd.rtl ? `text-left` : `text-right`)">
+              <v-flex :class="`pa-1 `">
                 <v-btn v-if="showBack!==false" small color="white" class="mx-2  warning--text" :to="backUrl">
                   <v-icon class="mx-1">backspace</v-icon>
                   {{$t("back")}}

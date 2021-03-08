@@ -3,9 +3,9 @@
     <v-subheader>
       {{form.title || ''}}
     </v-subheader>
-    <div :class="'text-center ' + vsd.rtl ? 'rtl':'ltr'">
+    <div :class="'' + vsd.rtl ? 'rtl':'ltr'">
       <v-row
-        :class="`text-center d-flex align-baseline justify-space-between `"
+        :class="`d-flex align-baseline justify-space-between `"
         v-model="titlePage">
         <v-col class="flex-grow-1 flex-shrink-1" flat tile disabled outlined v-for="(gTitle,i) in getPageTitles"
                :key="i">
