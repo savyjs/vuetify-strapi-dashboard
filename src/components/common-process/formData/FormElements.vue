@@ -1,5 +1,5 @@
 <template>
-  <v-row>
+  <v-row :class="`d-flex `+ vsd.rtl ? 'rtl':''" >
     <v-col cols="12">
       <v-subheader>
         {{group.title || ''}}

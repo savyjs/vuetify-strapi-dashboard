@@ -3,14 +3,19 @@
     <v-subheader>
       {{form.title || ''}}
     </v-subheader>
-    <div class="text-center">
-      <v-row tile class="text-center" v-model="titlePage" mandatory>
-        <v-col tile disabled outlined v-for="(gTitle,i) in getPageTitles" :key="i">
-          <v-card height="40px" tile outlined class="d-flex justify-center align-center" :elevation="i==page-1 ? 1 : 0"
-                  :color="i==page-1 ? 'grey lighten-5' : (i<page-1 ? 'success lighten-5' : '')">
-            <v-btn absolute disabled :color="i==page-1 ? 'grey lighten-5' : (i<page-1 ? 'success lighten-3' : '')" fab
+    <div :class="'text-center ' + vsd.rtl ? 'rtl':'ltr'">
+      <v-row
+        :class="`text-center d-flex align-baseline justify-space-between `"
+        v-model="titlePage">
+        <v-col class="flex-grow-1 flex-shrink-1" flat tile disabled outlined v-for="(gTitle,i) in getPageTitles"
+               :key="i">
+          <v-card height="40px" tile outlined :dark="i==page-1" class="d-flex justify-center align-center"
+                  :elevation="i==page-1 ? 5 : 0"
+                  :color="i==page-1 ? 'warning' : (i<page-1 ? 'success lighten-5' : '')">
+            <v-btn absolute disabled :color="i==page-1 ? 'grey lighten-1' : (i<page-1 ? 'success lighten-3' : '')"
+                   fab
                    x-small
-                   class="pull-left mx-1" style="opacity: .5;left: 0">
+                   :class="` mx-2`" :style="`opacity: .5;` + vsd.rtl ? `right:0` : 'left:0' ">
               <b>{{parseInt(i)+1}}</b>
             </v-btn>
             <v-icon v-if="false" class="mx-1">info</v-icon>
@@ -20,7 +25,6 @@
       </v-row>
     </div>
     <v-progress-linear class="my-5" v-if="totalPages > 1"
-                       :reverse="vsd.rtl"
                        :buffer-value="page*100/totalPages"
                        color="success"
                        stream
@@ -38,20 +42,20 @@
           :config="config"
         />
       </div>
-      <v-card class="d-flex justify-space-around py-5" tile flat>
+      <v-card :class="`d-flex justify-space-around py-5 ` + vsd.rtl ? 'rtl':''" tile flat>
         <v-btn depressed :disabled="btnLoading" v-if="page > totalPages" @click="reset(previous)" color="warning">
           <v-icon>edit</v-icon>
           {{$t('reset')}}
         </v-btn>
         <v-btn depressed :disabled="btnLoading" v-if="page > 1 && page <= totalPages" @click="previous" color="warning">
-          <v-icon>arrow_left</v-icon>
+          <v-icon>{{vsd.rtl ? "arrow_right" : "arrow_left"}}</v-icon>
           {{$t('previous')}}
         </v-btn>
         <v-btn @click="handleSubmit(next)" :disabled="!validity" depressed :loading="btnLoading"
                v-if="page < totalPages"
                color="success">
           <v-icon>save</v-icon>
-          <v-icon>arrow_right</v-icon>
+          <v-icon>{{vsd.rtl ? "arrow_left" : "arrow_right"}}</v-icon>
           {{$t('next')}}
         </v-btn>
         <v-btn depressed :disabled="!validity" :loading="btnLoading" @click="next" v-if="page == totalPages"
