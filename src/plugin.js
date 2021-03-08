@@ -7,8 +7,7 @@ import CommonStore from './store/common'
 import Navigation from './store/navigation'
 import CommonSelectStore from './store/commonSelect'
 import * as components from "./components/component-vsd";
-import { ValidationProvider, extend } from 'vee-validate';
-
+import {ValidationProvider, ValidationObserver, extend, localize} from 'vee-validate/dist/vee-validate.full.esm';
 import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loader
 import './assets/styles.css' // Ensure you are using css-loader
 import 'material-design-icons-iconfont/dist/material-design-icons.css' // Ensure you are using css-loader
@@ -16,13 +15,20 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css' // Ensure
 import 'font-awesome/css/font-awesome.min.css';
 import 'material-icons/iconfont/material-icons.css';
 import wysiwyg from "vue-wysiwyg";
-
+function loadLocale(code) {
+  return import(`vee-validate/dist/locale/${code}.json`).then(locale => {
+    localize(code, locale);
+  });
+}
 const t = (val) => _.isString(val) ? val.replace(/_/g, ' ') : val
 const ComponentLibrary = {
   install(Vue, options = {}) {
     try {
       Vue.use(wysiwyg, {});
       Vue.component('ValidationProvider', ValidationProvider);
+      Vue.component('ValidationObserver', ValidationObserver);
+      let locale = _.get(moduleOptions, 'locale', 'en-EN').substring(0, 2)
+      loadLocale(locale)
       Vue.component("downloadExcel", JsonExcel);
       Vue.set(Vue.prototype, '$Helper', Helper);
       Vue.set(Vue.prototype, 'vsd', moduleOptions);

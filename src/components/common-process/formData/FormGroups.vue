@@ -25,36 +25,44 @@
                        striped
                        :value="titlePage*100/totalPages"
     ></v-progress-linear>
-    <div v-for="(group,index) in groups" v-if="_.includes(getPages[page-1],group.id)" :key="index">
-      <form-elements
-        v-model="formData[group.name]"
-        :id="group.id"
-        :config="config"
-      />
-    </div>
+    <validation-observer
+      ref="form"
+      v-slot="{ handleSubmit, reset ,invalid}"
+    >
+      <div v-for="(group,index) in groups" v-if="_.includes(getPages[page-1],group.id)" :key="index">
+        <form-elements
+          v-model="formData[group.name]"
+          :id="group.id"
+          :config="config"
+        />
+      </div>
     <v-card class="d-flex justify-space-around py-5" tile flat>
-      <v-btn depressed :disabled="btnLoading" v-if="page > totalPages" @click="previous" color="warning">
+      <v-btn depressed :disabled="btnLoading" v-if="page > totalPages" @click="reset(previous)" color="warning">
         <v-icon>edit</v-icon>
-        {{$t('edit')}}
+        {{$t('reset')}}
       </v-btn>
       <v-btn depressed :disabled="btnLoading" v-if="page > 1 && page <= totalPages" @click="previous" color="warning">
         <v-icon>arrow_left</v-icon>
         {{$t('previous')}}
       </v-btn>
-      <v-btn :disabled="!validity" depressed :loading="btnLoading" @click="next" v-if="page < totalPages" color="success">
+      <v-btn @click="handleSubmit(next)" :disabled="!validity" depressed :loading="btnLoading" v-if="page < totalPages"
+             color="success">
         <v-icon>save</v-icon>
         <v-icon>arrow_right</v-icon>
         {{$t('next')}}
       </v-btn>
-      <v-btn depressed :disabled="!validity" :loading="btnLoading" @click="next" v-if="page == totalPages" color="success">
+      <v-btn depressed :disabled="!validity" :loading="btnLoading" @click="next" v-if="page == totalPages"
+             color="success">
         <v-icon>assignment</v-icon>
         {{$t('preview')}}
       </v-btn>
-      <v-btn depressed :disabled="!validity" :loading="btnLoading" @click="next" v-if="page > totalPages" color="success">
+      <v-btn depressed :disabled="!validity" :loading="btnLoading" @click="next" v-if="page > totalPages"
+             color="success">
         <v-icon>save</v-icon>
         {{$t('save')}}
       </v-btn>
     </v-card>
+    </validation-observer>
     <v-pagination
       v-show="false"
       v-model="page"
@@ -79,7 +87,7 @@
   import _ from 'lodash'
   // this component gets form config and shows form groups
   export default {
-    props: ['value', 'type','validity', 'config'],
+    props: ['value', 'type', 'validity', 'config'],
     data() {
       return {
         btnLoading: false,
@@ -139,6 +147,7 @@
       },
       next() {
         this.btnLoading = true;
+        this.$refs.form.validate()
         this.$emit('validate')
         this.page++;
         this.btnLoading = false;

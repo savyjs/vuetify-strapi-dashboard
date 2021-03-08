@@ -2,10 +2,9 @@
   <div>
     <validation-provider
       v-slot="{ errors }"
-      name="data"
+      :name="_.get(element,'title','')"
       :rules="rules"
     >
-      {{errors}}
       <CommonTypesField
         :formData="formData"
         :field="field"
@@ -32,14 +31,19 @@
       this._ = _;
     },
     computed: {
-      rules(){
-        return 'required|email'
+      rules() {
+        let rules = _.get(this.element, 'rules', "")
+        if (rules) rules = rules.split('|')
+        else rules = []
+        if (this.element.required) rules.push('required')
+        return rules.join('|')
       },
       field() {
         return {
           text: this.element.title,
           value: this.element.value,
-          ...this.element
+          ...this.element,
+          rules: undefined
         };
       }
     },

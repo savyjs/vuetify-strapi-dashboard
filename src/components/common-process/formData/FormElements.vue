@@ -18,11 +18,11 @@
       :lg="_.get(element,'lg',4)"
     >
       <CommonProcessTypeField
+        v-show="!_.get(element,'hidden',false)"
         v-model="formData[element.name]"
         :formData="formData"
         :element="element"
         :type="type"
-        :errors="errors"
         :config="config"
       />
     </v-col>

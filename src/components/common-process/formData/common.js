@@ -45,13 +45,13 @@ export default {
   },
   methods: {
     validate() {
-      this.$refs.form.validate()
+      // this.$refs.form.validate()
     },
     reset() {
-      this.$refs.form.reset()
+      // this.$refs.form.reset()
     },
     resetValidation() {
-      this.$refs.form.resetValidation()
+      // this.$refs.form.resetValidation()
     },
     doAction(btn) {
       let module = _.get(btn, 'module', undefined);

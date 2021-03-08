@@ -1,9 +1,5 @@
 <template>
-  <validation-observer
-    ref="observer"
-    v-slot="{ invalid }"
-  >
-    <v-form v-model="validity" ref="form">
+    <v-form v-model="validity">
       <section v-if="!isModal">
         <v-container grid-list-lg>
           <v-card :loading="loader">
@@ -90,7 +86,6 @@
         </v-card>
       </section>
     </v-form>
-  </validation-observer>
 </template>
 
 <i18n>
