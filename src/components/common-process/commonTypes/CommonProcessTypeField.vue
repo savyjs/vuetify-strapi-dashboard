@@ -9,9 +9,9 @@
         :formData="formData"
         :field="field"
         :errors="errors"
-        @updateFormData="updateFormData"
         :type="element.type"
         v-model="data"
+        @updateFormData="updateFormData"
       ></CommonTypesField>
     </validation-provider>
   </div>

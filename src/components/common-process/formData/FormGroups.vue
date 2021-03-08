@@ -6,10 +6,12 @@
     <div class="text-center">
       <v-row tile class="text-center" v-model="titlePage" mandatory>
         <v-col tile disabled outlined v-for="(gTitle,i) in getPageTitles" :key="i">
-          <v-card tile outlined class="py-3" :elevation="i==page-1 ? 1 : 0"
+          <v-card height="40px" tile outlined class="d-flex justify-center align-center" :elevation="i==page-1 ? 1 : 0"
                   :color="i==page-1 ? 'grey lighten-5' : (i<page-1 ? 'success lighten-5' : '')">
-            <v-btn disabled :color="i==page-1 ? 'grey lighten-5' : (i<page-1 ? 'success lighten-3' : '')" fab x-small
-                   class="pull-left mx-1">{{parseInt(i)+1}}
+            <v-btn absolute disabled :color="i==page-1 ? 'grey lighten-5' : (i<page-1 ? 'success lighten-3' : '')" fab
+                   x-small
+                   class="pull-left mx-1" style="opacity: .5;left: 0">
+              <b>{{parseInt(i)+1}}</b>
             </v-btn>
             <v-icon v-if="false" class="mx-1">info</v-icon>
             {{gTitle}}
@@ -36,32 +38,33 @@
           :config="config"
         />
       </div>
-    <v-card class="d-flex justify-space-around py-5" tile flat>
-      <v-btn depressed :disabled="btnLoading" v-if="page > totalPages" @click="reset(previous)" color="warning">
-        <v-icon>edit</v-icon>
-        {{$t('reset')}}
-      </v-btn>
-      <v-btn depressed :disabled="btnLoading" v-if="page > 1 && page <= totalPages" @click="previous" color="warning">
-        <v-icon>arrow_left</v-icon>
-        {{$t('previous')}}
-      </v-btn>
-      <v-btn @click="handleSubmit(next)" :disabled="!validity" depressed :loading="btnLoading" v-if="page < totalPages"
-             color="success">
-        <v-icon>save</v-icon>
-        <v-icon>arrow_right</v-icon>
-        {{$t('next')}}
-      </v-btn>
-      <v-btn depressed :disabled="!validity" :loading="btnLoading" @click="next" v-if="page == totalPages"
-             color="success">
-        <v-icon>assignment</v-icon>
-        {{$t('preview')}}
-      </v-btn>
-      <v-btn depressed :disabled="!validity" :loading="btnLoading" @click="next" v-if="page > totalPages"
-             color="success">
-        <v-icon>save</v-icon>
-        {{$t('save')}}
-      </v-btn>
-    </v-card>
+      <v-card class="d-flex justify-space-around py-5" tile flat>
+        <v-btn depressed :disabled="btnLoading" v-if="page > totalPages" @click="reset(previous)" color="warning">
+          <v-icon>edit</v-icon>
+          {{$t('reset')}}
+        </v-btn>
+        <v-btn depressed :disabled="btnLoading" v-if="page > 1 && page <= totalPages" @click="previous" color="warning">
+          <v-icon>arrow_left</v-icon>
+          {{$t('previous')}}
+        </v-btn>
+        <v-btn @click="handleSubmit(next)" :disabled="!validity" depressed :loading="btnLoading"
+               v-if="page < totalPages"
+               color="success">
+          <v-icon>save</v-icon>
+          <v-icon>arrow_right</v-icon>
+          {{$t('next')}}
+        </v-btn>
+        <v-btn depressed :disabled="!validity" :loading="btnLoading" @click="next" v-if="page == totalPages"
+               color="success">
+          <v-icon>assignment</v-icon>
+          {{$t('preview')}}
+        </v-btn>
+        <v-btn depressed :disabled="!validity" :loading="btnLoading" @click="next" v-if="page > totalPages"
+               color="success">
+          <v-icon>save</v-icon>
+          {{$t('save')}}
+        </v-btn>
+      </v-card>
     </validation-observer>
     <v-pagination
       v-show="false"
