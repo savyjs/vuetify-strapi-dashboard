@@ -11,6 +11,9 @@ import Breadcrumb from './Breadcrumb'
 import Account from './Account'
 
 import ProcessListPage from './common-process/table/ProcessListPage'
+import ProcessShowPage from './common-process/show/ProcessShowPage'
+import ShowGroups from './common-process/show/ShowGroups'
+import ShowElements from './common-process/show/ShowElements'
 import ProcessDataFormPage from './common-process/formData/ProcessDataFormPage'
 // import ProcessDataForm from './common-process/formData/ProcessDataForm'
 import ProcessTableList from './common-process/table/ProcessTableList'
@@ -83,6 +86,9 @@ export default {
   Alert,
   AccessAlert,
   ProcessListPage,
+  ProcessShowPage,
+  ShowGroups,
+  ShowElements,
   ProcessDataFormPage,
   // ProcessDataForm,
   ProcessTableList,

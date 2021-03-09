@@ -35,6 +35,7 @@
       ref="form"
       v-slot="{ handleSubmit, reset ,invalid}"
     >
+
       <div v-for="(group,index) in groups" v-if="_.includes(getPages[page-1],group.id)" :key="index">
         <form-elements
           v-model="formData[group.name]"
@@ -42,6 +43,12 @@
           :config="config"
         />
       </div>
+      <show-groups
+        v-if="page==totalPages+1"
+        v-model="formData"
+        :config="config"
+      >
+      </show-groups>
       <v-card :class="`full text-center d-flex justify-space-between py-5 ` + (vsd.rtl ? 'rtl':'')" tile flat>
         <v-btn depressed :disabled="btnLoading" v-if="page > totalPages" @click="previous" color="warning">
           <v-icon>edit</v-icon>
@@ -63,7 +70,7 @@
           <v-icon>assignment</v-icon>
           {{$t('preview')}}
         </v-btn>
-        <v-btn depressed :disabled="!validity" :loading="btnLoading" @click="next" v-if="page > totalPages"
+        <v-btn depressed :disabled="!validity" :loading="btnLoading" @click="save" v-if="page > totalPages"
                color="success">
           <v-icon>save</v-icon>
           {{$t('save')}}
@@ -156,12 +163,13 @@
         this.btnLoading = true;
         this.$refs.form.validate()
         this.$emit('validate')
+        if (this.config.tempSave) this.$emit('save')
         this.page++;
         this.btnLoading = false;
       },
       save() {
         this.btnLoading = true;
-        this.$emit('validate')
+        this.$emit('canSave')
         this.btnLoading = false;
       },
       loadForm(config) {
