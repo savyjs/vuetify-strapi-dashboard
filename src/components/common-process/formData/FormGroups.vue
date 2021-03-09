@@ -3,7 +3,7 @@
     <v-subheader>
       {{form.title || ''}}
     </v-subheader>
-    <div :class="vsd.rtl ? 'rtl':'ltr'">
+    <div :class="vsd.rtl ? 'rtl':''">
       <v-row
         :class="`d-flex align-baseline justify-space-between `"
         v-model="titlePage">
@@ -42,8 +42,8 @@
           :config="config"
         />
       </div>
-      <v-card :class="`d-flex justify-space-around py-5 ` + vsd.rtl ? 'rtl':''" tile flat>
-        <v-btn depressed :disabled="btnLoading" v-if="page > totalPages" @click="reset(previous)" color="warning">
+      <v-card :class="`full text-center d-flex justify-space-between py-5 ` + (vsd.rtl ? 'rtl':'')" tile flat>
+        <v-btn depressed :disabled="btnLoading" v-if="page > totalPages" @click="previous" color="warning">
           <v-icon>edit</v-icon>
           {{$t('reset')}}
         </v-btn>
