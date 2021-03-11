@@ -115,6 +115,16 @@
       :type="type"
       :field="field" :label="label"/>
   </div>
+  <div v-else-if="_.includes(['icons'],type)">
+    <select-icon
+      :required="_.get(field,'required',false)"
+      :rules="getRules"
+      :error-messages="errors"
+      :hint="hint"
+      v-model="data"
+      :type="type"
+      :field="field" :label="label"/>
+  </div>
   <div v-else-if="_.includes(['enum'],type)">
     <select-enum
       :required="_.get(field,'required',false)" :rules="getRules" :error-messages="errors" :hint="hint" v-model="data"

@@ -57,6 +57,7 @@ import StrapiMediaList from './elements/strapiMediaList'
 import StrapiMediaAudioList from './elements/strapiMediaAudioList'
 import SelectVideo from './elements/SelectVideo'
 import SelectRelation from './elements/selectRelation'
+import selectIcon from './elements/selectIcon'
 import SelectPhoto from './elements/selectPhoto'
 import SelectEnum from './elements/selectEnum'
 import SelectAudio from './elements/selectAudio'
@@ -114,6 +115,7 @@ export default {
   StrapiMediaAudioList,
   SelectVideo,
   SelectRelation,
+  selectIcon,
   SelectPhoto,
   SelectEnum,
   SelectAudio,

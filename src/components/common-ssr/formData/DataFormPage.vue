@@ -4,7 +4,7 @@
       <v-card :loading="loader">
         <v-form lazy-validation v-model="validity">
           <v-card-header margin-right="1%" width="98%" v-if="showSimple!==true">
-            <v-layout :class="`pa-1 `+ vsd.rtl ? 'rtl':''">
+            <v-layout :class="`pa-1 `+ (vsd.rtl ? 'rtl':'')">
               <v-flex :class="`pa-1 `  + (vsd.rtl ? `text-right` : `text-left`)">
               <span class="px-1">
                 <v-icon class="mx-1">{{headerIcon || icon || 'edit'}}</v-icon>

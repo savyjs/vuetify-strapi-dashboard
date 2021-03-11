@@ -102,6 +102,9 @@
   <span v-else-if="_.includes(['select'],type)">
     {{selectValue}}
   </span>
+  <span v-else-if="_.includes(['icons'],type)">
+    <v-icon :class="data" />
+  </span>
   <span v-else-if="_.includes(['date'],type)">
     {{showDate(data)}}
   </span>
