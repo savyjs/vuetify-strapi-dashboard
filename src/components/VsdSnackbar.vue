@@ -17,7 +17,6 @@
   import _ from 'lodash'
 
   export default {
-    name: 'Snackbar',
     props: ['value'],
     data() {
       return {

@@ -2,7 +2,7 @@
   <v-app>
     <v-main>
       <nuxt/>
-      <Snackbar/>
+      <VsdSnackbar/>
     </v-main>
   </v-app>
 </template>

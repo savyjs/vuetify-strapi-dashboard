@@ -1,20 +1,21 @@
-import AccessAlert from './AccessAlert'
-import Notifications from './Notifications'
-import Alert from './Alert'
-import Snackbar from './Snackbar'
+import VsdAccessAlert from './VsdAccessAlert'
+import VsdNotifications from './VsdNotifications'
+import VsdAlert from './VsdAlert'
+import VsdSnackbar from './VsdSnackbar'
 
-import SideMenu from './SideMenu'
-import Settings from './Settings'
-import DashboardMenu from './DashboardMenu'
-import Breadcrumb from './Breadcrumb'
+import VsdSideMenu from './VsdSideMenu'
+import VsdSettings from './VsdSettings'
+import VsdDashboardMenu from './VsdDashboardMenu'
+import VsdBreadcrumb from './VsdBreadcrumb'
 
-import Account from './Account'
+import VsdAccount from './VsdAccount'
 
 import ProcessListPage from './common-process/table/ProcessListPage'
 import ProcessShowPage from './common-process/show/ProcessShowPage'
 import ShowGroups from './common-process/show/ShowGroups'
 import ShowElements from './common-process/show/ShowElements'
 import ProcessDataFormPage from './common-process/formData/ProcessDataFormPage'
+
 // import ProcessDataForm from './common-process/formData/ProcessDataForm'
 import ProcessTableList from './common-process/table/ProcessTableList'
 import FormGroups from './common-process/formData/FormGroups'
@@ -38,9 +39,9 @@ import ShowPage from './common-ssr/show/ShowPage'
 import DataForm from './common-ssr/formData/DataForm'
 import DataFormPage from './common-ssr/formData/DataFormPage'
 
-import VCardHeader from './ui/VCardHeader'
-import Icons8 from './ui/Icons8'
-import loader from './ui/loader'
+import VsdVCardHeader from './ui/VsdVCardHeader'
+import VsdIcons8 from './ui/VsdIcons8'
+import Vsdloader from './ui/Vsdloader'
 
 import videoUploader from './elements/old/videoUploader'
 import audioUploader from './elements/old/audioUploader'
@@ -76,22 +77,30 @@ import TimePicker from './elements/timePicker'
 import VsdLogin from './auth/VsdLogin'
 import VsdLogout from './auth/vsdLogout'
 
+import VsdCrmSupport from './crm/VsdCrmSupport'
+import VsdCrmSideBoxesActive from './crm/VsdCrmSideBoxesActive'
+import VsdCrmSideBoxes from './crm/VsdCrmSideBoxes'
+import VsdCrmAccount from './crm/VsdCrmAccount'
+
 export default {
+  VsdCrmSupport,
+  VsdCrmSideBoxesActive,
+  VsdCrmSideBoxes,
+  VsdCrmAccount,
   Modal,
-  Snackbar,
-  SideMenu,
-  Settings,
-  Notifications,
-  DashboardMenu,
-  Breadcrumb,
-  Alert,
-  AccessAlert,
+  VsdSnackbar,
+  VsdSideMenu,
+  VsdSettings,
+  VsdNotifications,
+  VsdDashboardMenu,
+  VsdBreadcrumb,
+  VsdAlert,
+  VsdAccessAlert,
   ProcessListPage,
   ProcessShowPage,
   ShowGroups,
   ShowElements,
   ProcessDataFormPage,
-  // ProcessDataForm,
   ProcessTableList,
   ListPage,
   CommonProcessTypeField,
@@ -104,8 +113,8 @@ export default {
   PopUp,
   Report,
   Search,
-  Icons8,
-  loader,
+  VsdIcons8,
+  Vsdloader,
   TextEditor,
   Sum,
   StrapiMediaFileList,
@@ -133,7 +142,7 @@ export default {
   Calc,
   BoolBtn,
   TimePicker,
-  Account,
+  VsdAccount,
   TableList,
   ShowPage,
   DataForm,
@@ -143,7 +152,7 @@ export default {
   Uploader,
   photoUploader,
   ImageUploader,
-  VCardHeader,
+  VsdVCardHeader,
   VsdLogin,
   VsdLogout
 }

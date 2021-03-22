@@ -71,7 +71,6 @@
         </v-row>
       </v-form>
     </v-container>
-    <Snackbar/>
   </section>
 </template>
 <i18n>
@@ -83,6 +82,8 @@
   }}
 </i18n>
 <script>
+
+  import _ from 'lodash'
   const isNumber = v => (!isNaN(v)) || 'must be numeric'
   export default {
     name: 'VsdLogin',

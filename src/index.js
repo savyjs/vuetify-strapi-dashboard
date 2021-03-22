@@ -20,10 +20,9 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
   try {
     let listOfFiles = getFiles(path.resolve(__dirname, './components'));
 
-
-    const options = {
+    let options = {
       rtl: false,
-      builder:{
+      builder: {
         form: '/forms',
         group: '/groups',
         element: '/elements',
@@ -66,7 +65,7 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
       });
     }
 
-    this.nuxt.options.store = true
+    _.set(this, 'nuxt.options.store', true);
 
     // this.nuxt.options.build.plugins = [lodashPlugin];
 
@@ -104,6 +103,13 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
     }
 
     this.addTemplate({
+      fileName: 'components/component-vsd.js',
+      src: path.resolve(__dirname, 'components/component-vsd.js'),
+      options
+    })
+
+
+    this.addTemplate({
       fileName: 'assets/vsd.png',
       src: path.resolve(__dirname, 'assets/vsd.png')
     })
@@ -116,12 +122,6 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
     this.addTemplate({
       fileName: 'assets/styles.css',
       src: path.resolve(__dirname, 'assets/styles.css')
-    })
-
-    this.addTemplate({
-      fileName: 'components/component-vsd.js',
-      src: path.resolve(__dirname, 'components/component-vsd.js'),
-      options
     })
 
     this.addTemplate({
@@ -162,6 +162,11 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
     this.addLayout({
       name: "vsdAuth",
       src: path.resolve(__dirname, 'layout/vsdAuth.vue'),
+    })
+
+    this.addLayout({
+      name: "vsdCrm",
+      src: path.resolve(__dirname, 'layout/vsdCrm.vue'),
     })
 
   } catch (e) {
