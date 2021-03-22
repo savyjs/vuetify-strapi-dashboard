@@ -1,9 +1,9 @@
 <template>
-  <span class="text-center mx-2">
+  <span v-if="supportLink" class="text-center mx-2">
         <v-btn
           small
           text
-          @click="menu=!menu"
+          @click="supportLink"
         >
           <v-icon small color="white">fa-support</v-icon>
           <span class="mx-1">{{$t('support')}}</span>
@@ -27,5 +27,10 @@
         count: 1,
       }
     },
+    computed: {
+      supportLink() {
+        return this.vsd.crm.support || false;
+      }
+    }
   }
 </script>

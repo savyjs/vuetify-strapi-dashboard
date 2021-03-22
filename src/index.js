@@ -22,12 +22,25 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
 
     let options = {
       rtl: false,
+      i18n: true,
       builder: {
         form: '/forms',
         group: '/groups',
         element: '/elements',
         record: '/records',
       },
+      crm: {
+        home: '/crm',
+        support: '/crm/ticket/new',
+        menu: {}
+      },
+      apiListHelper: {},
+      apiShowHelper: {},
+      apiFormHelper: {},
+      config: {},
+      settings: {},
+      menu: {},
+      validations: {},
       ...moduleOptions
     }
 
