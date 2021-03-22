@@ -67,8 +67,6 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
 
     _.set(this, 'nuxt.options.store', true);
 
-    // this.nuxt.options.build.plugins = [lodashPlugin];
-
     if (_.get(options, 'i18n', true)) {
       let i18nOption = _.get(this, 'nuxt.options.i18n', {});
       let i18nOptionLocales = _.get(this, 'nuxt.options.i18n.locales', {});
@@ -149,8 +147,8 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
     })
 
     this.addPlugin({
-      fileName: 'plugin.js',
-      src: path.resolve(__dirname, 'plugin.js'),
+      fileName: 'VsdPlugin.js',
+      src: path.resolve(__dirname, 'VsdPlugin.js'),
       options
     })
 

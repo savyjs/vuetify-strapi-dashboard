@@ -7,13 +7,21 @@
                 width="100%" height="100%">
           <div>
             <v-icon class="icon font-25">{{item.icon}}</v-icon>
-            <p class="font-12">{{item.title}}</p>
+            <p class="font-12">{{$t(item.title)}}</p>
           </div>
         </v-card>
       </v-responsive>
     </v-flex>
   </v-layout>
 </template>
+<i18n>
+  {"en":{
+  "logout" : "Logout"
+  },
+  "fa" : {
+  "logout" : "خروج"
+  }}
+</i18n>
 <script>
   export default {
     props: ['value', 'items'],

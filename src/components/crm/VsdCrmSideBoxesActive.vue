@@ -12,19 +12,25 @@
           width="100%"
           height="100%">
           <div>
-
             <v-scroll-x-transition>
               <v-icon v-show="active" class="caretBox">fa-caret-right</v-icon>
             </v-scroll-x-transition>
             <v-icon class="icon font-25">{{item.icon}}</v-icon>
-            <p class="font-12">{{item.title}}</p>
-
+            <p class="font-12">{{$t(item.title)}}</p>
           </div>
         </v-card>
       </v-responsive>
     </v-item>
   </v-item-group>
 </template>
+<i18n>
+  {"en":{
+  "logout" : "Logout"
+  },
+  "fa" : {
+  "logout" : "خروج"
+  }}
+</i18n>
 <script>
   export default {
     props: ['value', 'items'],

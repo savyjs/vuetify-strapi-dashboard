@@ -6,10 +6,18 @@
           @click="menu=!menu"
         >
           <v-icon small color="white">fa-support</v-icon>
-          <span class="mx-1">پشتیبانی</span>
+          <span class="mx-1">{{$t('support')}}</span>
           </v-btn>
   </span>
 </template>
+<i18n>
+  {"en":{
+  "support" : "Support"
+  },
+  "fa" : {
+  "support" : "پشتیبانی"
+  }}
+</i18n>
 <script>
   export default {
     data() {

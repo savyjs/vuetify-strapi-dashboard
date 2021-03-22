@@ -14,7 +14,7 @@
            @click="menu=!menu"
          >
           <v-icon small color="white">account_circle</v-icon>
-           <span class="mx-1">منوی کاربری</span>
+           <span class="mx-1">{{$t('account')}}</span>
            <v-icon small color="white">keyboard_arrow_down</v-icon>
           </v-btn>
        </template>
@@ -41,19 +41,19 @@
          <v-list-item to="/crm/profile/edit">
            <v-list-item-title>
              <v-icon>edit</v-icon>
-            ویرایش پروفایل
+           {{$t('edit_profile')}}
            </v-list-item-title>
          </v-list-item>
          <v-list-item to="/crm/profile">
            <v-list-item-title>
              <v-icon>account_box</v-icon>
-            مشاهده اطلاعات پروفایل
+            {{$t('profile_details')}}
            </v-list-item-title>
          </v-list-item>
          <v-list-item to="/crm/profile/logout">
            <v-list-item-title>
              <v-icon>lock</v-icon>
-             خروج
+             {{$t('logout')}}
            </v-list-item-title>
          </v-list-item>
         </v-list>
@@ -62,8 +62,23 @@
 
   </span>
 </template>
+<i18n>
+  {"en":{
+  "account" : "account",
+  "edit_profile" : "edit profile",
+  "profile_details" : "profile data",
+  "logout" : "Logout"
+  },
+  "fa" : {
+  "logout" : "خروج",
+  "account" : "حساب کاربری",
+  "edit_profile" : " ویرایش پروفایل",
+  "profile_details" : "مشاهده اطلاعات پروفایل"
+  }}
+</i18n>
 <script>
   import CONSTANTS from '~/assets/js/constants'
+  import _ from 'lodash'
 
   const DEFAULT_PHOTO = CONSTANTS.DEFAULT_PHOTO
 
@@ -81,6 +96,9 @@
       user() {
         return this.$auth.user
       }
+    },
+    created() {
+      this._ = _;
     },
     mounted() {
       this.checkLogin();

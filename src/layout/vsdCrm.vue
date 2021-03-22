@@ -5,7 +5,7 @@
       <v-toolbar-title style="cursor: pointer" @click="$router.push('/crm')">
         <v-img :src="logo" contain max-width="120px"/>
       </v-toolbar-title>
-      <v-spacer></v-spacer>
+      <v-spacer />
       <VsdCrmSupport/>
       <v-divider vertical/>
       <VsdNotifications/>
@@ -28,7 +28,14 @@
     </v-main>
   </v-app>
 </template>
-
+<i18n>
+  {"en":{
+  "logout" : "Logout"
+  },
+  "fa" : {
+  "logout" : "خروج"
+  }}
+</i18n>
 <script>
 
   const SYSTEM_LOGO = process.env.SYSTEM_LOGO;
@@ -49,7 +56,6 @@
       return {
         tooltip: false,
         drawer: false,
-        items: ITEMS,
         logo: CRM_LOGO,
         SYSTEM_LOGO,
         SHOW_USER,
@@ -59,6 +65,9 @@
       }
     },
     computed: {
+      items(){
+        return this.vsd.crm.menu.PANEL_DRAWER || [];
+      },
       isMobile() {
         return this.$vuetify.breakpoint.smAndDown;
       },
