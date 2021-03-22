@@ -5,7 +5,7 @@
       <v-toolbar-title style="cursor: pointer" @click="$router.push('/crm')">
         <v-img :src="logo" contain max-width="120px"/>
       </v-toolbar-title>
-      <v-spacer />
+      <v-spacer/>
       <VsdCrmSupport/>
       <v-divider vertical/>
       <VsdNotifications/>
@@ -43,8 +43,8 @@
   const SHOW_USER = process.env.SHOW_USER;
   const SINGLE_TITLE = process.env.SINGLE_TITLE;
   const FOOTER_TITLE = process.env.FOOTER_TITLE;
-  const ITEMS =  process.env.PANEL_DRAWER
-  const DEFAULT_PHOTO =  process.env.DEFAULT_PHOTO
+  const ITEMS = process.env.PANEL_DRAWER
+  const DEFAULT_PHOTO = process.env.DEFAULT_PHOTO
 
   export default {
     head() {
@@ -65,7 +65,7 @@
       }
     },
     computed: {
-      items(){
+      items() {
         return this.vsd.crm.menu.PANEL_DRAWER || [];
       },
       isMobile() {

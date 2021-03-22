@@ -4,9 +4,9 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title style="cursor: pointer" @click="$router.push('/admin')">{{$t("dashboard")}}</v-toolbar-title>
       <v-spacer></v-spacer>
-      <Notifications/>
-      <Settings/>
-      <Account/>
+      <VsdNotifications/>
+      <VsdSettings/>
+      <VsdAccount/>
     </v-app-bar>
 
     <v-navigation-drawer class="drawer" color="white" v-model="drawer" fixed :right="isRTL" :temporary="isMobile" app>
@@ -57,17 +57,17 @@
           </v-row>
         </v-list-item>
       </v-list>
-      <side-menu :items="items"/>
+      <vsd-side-menu :items="items"/>
 
     </v-navigation-drawer>
     <v-main style="background-color: rgba(0,0,0,.04)">
       <v-container>
-        <breadcrumb/>
-        <Alert/>
-        <AccessAlert @setAccess="setAccess"/>
+        <VsdBreadcrumb/>
+        <VsdAlert/>
+        <VsdAccessAlert @setAccess="setAccess"/>
         <nuxt v-if="hasAccess"/>
-        <loader/>
-        <snackbar/>
+        <Vsdloader/>
+        <VsdSnackbar/>
       </v-container>
     </v-main>
     <v-footer app color="blue darken-4" dark class="py-0" inset>
@@ -94,7 +94,7 @@
 <script>
   import _ from 'lodash'
 
-  const SYSTEM_LOGO = _.get(process.env,'LOGO',require('vuetify-strapi-dashboard/src/assets/vsd.png')); // process.env.SYSTEM_LOGO;
+  const SYSTEM_LOGO = _.get(process.env, 'LOGO', require('vuetify-strapi-dashboard/src/assets/vsd.png')); // process.env.SYSTEM_LOGO;
   const SHOW_USER = process.env.SHOW_USER;
   const SINGLE_TITLE = process.env.SINGLE_TITLE;
   const FOOTER_TITLE = process.env.FOOTER_TITLE;

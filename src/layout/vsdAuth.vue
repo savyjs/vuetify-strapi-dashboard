@@ -3,6 +3,7 @@
     <v-main>
       <nuxt/>
       <VsdSnackbar/>
+      <VsdSnackbar />
     </v-main>
   </v-app>
 </template>
