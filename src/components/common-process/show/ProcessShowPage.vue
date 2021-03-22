@@ -3,7 +3,7 @@
     <section v-if="!isModal">
       <v-container grid-list-lg>
         <v-card :loading="loader">
-          <v-card-header margin-right="1%" width="98%" v-if="showSimple!==true">
+          <vsd-v-card-header margin-right="1%" width="98%" v-if="showSimple!==true">
             <v-layout :class="`pa-1 `+ (vsd.rtl ? 'rtl' : '')">
               <v-flex :class="`pa-1 `  + (vsd.rtl ? `text-right` : `text-left`)">
               <span class="px-1">
@@ -22,7 +22,7 @@
                 </v-btn>
               </v-flex>
             </v-layout>
-          </v-card-header>
+          </vsd-v-card-header>
           <v-card-actions v-else>
             <v-layout wrap row class="pa-1">
               <v-flex class="pa-1 text-right">

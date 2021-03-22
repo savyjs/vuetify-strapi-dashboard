@@ -2,7 +2,7 @@
   <section>
     <v-container grid-list-lg>
       <v-card :loading="loader">
-        <v-card-header margin-right="1%" width="98%" >
+        <vsd-v-card-header margin-right="1%" width="98%" >
           <v-layout wrap row :class="`pa-1 `+ vsd.rtl ? 'rtl':''">
             <v-flex class="pa-1 text-right">
               <v-subheader>
@@ -26,7 +26,7 @@
               </v-btn>
             </v-flex>
           </v-layout>
-        </v-card-header>
+        </vsd-v-card-header>
         <v-card-text>
           <table class="oddTable">
             <tbody>

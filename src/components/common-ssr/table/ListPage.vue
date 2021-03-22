@@ -2,7 +2,7 @@
   <section>
     <v-container grid-list-lg>
       <v-card class="my-1">
-        <v-card-header :color="_.get(value,'color','primary')" margin-right="1%" width="98%" :class="`px-3 `+ vsd.rtl ? 'rtl':''">
+        <vsd-v-card-header :color="_.get(value,'color','primary')" margin-right="1%" width="98%" :class="`px-3 `+ vsd.rtl ? 'rtl':''">
           <h3 class="pr-5">
             <v-icon class="mx-1">{{headerIcon || _.get(value,'icon','archive')}}</v-icon>
             {{ title }}
@@ -35,7 +35,7 @@
                  @click="$router.go(-1)">
             <v-icon>keyboard_backspace</v-icon>
           </v-btn>
-        </v-card-header>
+        </vsd-v-card-header>
         <v-card-actions>
           <v-layout wrap row class="pa-1">
             <v-flex xs12 md6 class="pa-1">
