@@ -64,7 +64,6 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
     })
 
     for (const componentName of listOfFiles) {
-      console.log({componentName});
       let pName = 'components/' + componentName;
       this.addTemplate({
         fileName: pName,
