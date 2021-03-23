@@ -229,7 +229,6 @@
 <script>
 
   import _ from 'lodash'
-  import SelectAudio from "../../elements/selectAudio";
 
   /**
    * @value: any - this property value
@@ -240,7 +239,6 @@
 
   export default {
     name: 'CommonTypesField',
-    components: {SelectAudio},
     props: ['value', 'formData', 'type', 'errors', 'field', 'place'],
     data() {
       return {

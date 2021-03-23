@@ -50,7 +50,7 @@ import photoUploader from './elements/old/photoUploader'
 import ImageUploader from './elements/old/ImageUploader'
 
 import TextEditor from './elements/textEditor'
-import Sum from './elements/Sum'
+import Sum from './elements/sum'
 import StrapiMediaFileList from './elements/strapiMediaFileList'
 import StrapiMediaVideoList from './elements/strapiMediaVideoList'
 import StrapiMediaPhotoList from './elements/strapiMediaPhotoList'

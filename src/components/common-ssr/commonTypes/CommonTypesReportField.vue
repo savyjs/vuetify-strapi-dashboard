@@ -8,7 +8,7 @@
   />
 </template>
 <script>
-  import CommonTypesFilterField from "./CommonTypesFilterField";
+
   import _ from "lodash";
 
   /**
