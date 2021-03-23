@@ -171,7 +171,7 @@ export default {
       }
     },
     doSelect(val) {
-      this.selected = val.map(item => item.id)
+      this.selected = _.map(val, (item) => item.id)
     },
     deleteItems() {
       let ids = this.selected;
@@ -188,10 +188,11 @@ export default {
         if (result.value) {
           let totalItems = ids.length;
           let i = 1;
-          _.forEach(ids, (id) => {
-            this.delete(id, i >= totalItems)
-            i++;
-          })
+          for (const id in ids) {
+            if (ids.hasOwnProperty(id)) {
+              this.delete(id,false)
+            }
+          }
         }
       })
     },

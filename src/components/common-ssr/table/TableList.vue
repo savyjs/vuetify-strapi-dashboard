@@ -270,6 +270,7 @@
 </i18n>
 <script>
   import _ from "lodash";
+
   _.mixin(require("lodash-deep"));
 
   export default {
@@ -323,8 +324,10 @@
       }
     },
     watch: {
-      selected(val) {
-        this.$emit('selected', val)
+      selected: {
+        handler(val) {
+          this.$emit('selected', val)
+        }, deep: true
       }
     },
     created() {
