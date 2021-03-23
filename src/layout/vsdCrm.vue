@@ -40,8 +40,6 @@
 </i18n>
 <script>
 
-  import VsdAlert from "../components/VsdAlert";
-  import VsdSnackbar from "../components/VsdSnackbar";
   const SYSTEM_LOGO = process.env.SYSTEM_LOGO;
   const CRM_LOGO = process.env.CRM_LOGO;
   const SHOW_USER = process.env.SHOW_USER;
@@ -51,7 +49,6 @@
   const DEFAULT_PHOTO = process.env.DEFAULT_PHOTO
 
   export default {
-    components: {VsdSnackbar, VsdAlert},
     head() {
       return {
         titleTemplate: '%s - ' + process.env.TITLE,

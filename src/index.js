@@ -79,8 +79,7 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
       });
     }
 
-    _.set(this, 'nuxt.options.store', true);
-
+    this.nuxt.options.store = true;
     if (_.get(options, 'i18n', true)) {
       let i18nOption = _.get(this, 'nuxt.options.i18n', {});
       let i18nOptionLocales = _.get(this, 'nuxt.options.i18n.locales', {});
