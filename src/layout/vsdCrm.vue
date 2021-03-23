@@ -23,7 +23,9 @@
     </v-navigation-drawer>
     <v-main style="background-color: rgba(0,0,0,.04)">
       <v-container fluid>
+        <vsd-alert />
         <nuxt/>
+        <vsd-snackbar />
       </v-container>
     </v-main>
   </v-app>
@@ -38,6 +40,8 @@
 </i18n>
 <script>
 
+  import VsdAlert from "../components/VsdAlert";
+  import VsdSnackbar from "../components/VsdSnackbar";
   const SYSTEM_LOGO = process.env.SYSTEM_LOGO;
   const CRM_LOGO = process.env.CRM_LOGO;
   const SHOW_USER = process.env.SHOW_USER;
@@ -47,6 +51,7 @@
   const DEFAULT_PHOTO = process.env.DEFAULT_PHOTO
 
   export default {
+    components: {VsdSnackbar, VsdAlert},
     head() {
       return {
         titleTemplate: '%s - ' + process.env.TITLE,
