@@ -8,14 +8,13 @@
      >
        <template v-slot:activator="{ on }">
          <v-btn
-           small
            class="font-11"
            text
+           fab
+           small
            @click="menu=!menu"
          >
-          <v-icon small color="white">account_circle</v-icon>
-           <span class="mx-1">{{$t('account')}}</span>
-           <v-icon small color="white">keyboard_arrow_down</v-icon>
+          <v-icon color="white">account_circle</v-icon>
           </v-btn>
        </template>
 
@@ -57,9 +56,7 @@
            </v-list-item-title>
          </v-list-item>
         </v-list>
-
     </v-menu>
-
   </span>
 </template>
 <i18n>

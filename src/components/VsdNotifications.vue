@@ -1,9 +1,11 @@
 <template>
   <span class="text-center mx-2">
         <v-btn
+          :loading="loader"
           text
           fab
           icon
+          small
           @click="menu=!menu"
         >
           <v-icon color="white">notifications</v-icon>
@@ -15,50 +17,76 @@
        offset-x
      >
       <v-card>
-        <v-list>
-          <v-list-item class="grey lighten-4">
-            <v-list-item-content v-for="message in messages" :key="message.title">
+          <v-card-actions>
+          <v-btn
+            :to="crmNotification"
+            text
+            class="green--text"
+            small>
+              <v-icon class="mx-1" small>list</v-icon>
+              <small>{{$t('all')}}</small>
+          </v-btn>
+          </v-card-actions>
+                        <v-divider/>
+        <v-list v-if="messages.length">
+          <v-list-item class="grey lighten-4" v-for="(message,i) in messages" :key="i">
+            <v-list-item-content>
               <v-list-item-title>
                 <v-icon small>{{icons[message.type] || icons['alert']}}</v-icon>
                 {{message.title}}</v-list-item-title>
               <v-list-item-subtitle>{{message.text}}</v-list-item-subtitle>
-            </v-list-item-content>
-
-            <v-list-item-action>
-              <v-btn
-                to="/admin/notification/show/1"
-                class="green--text"
-                icon
-                small
-              >
-                <v-icon small>input</v-icon>
+                <v-spacer/>
+                <v-btn
+                  :to="crmNotification"
+                  class="green--text"
+                  icon
+                  flat
+                  small
+                >
+                <v-icon small>check</v-icon>
               </v-btn>
-              <v-checkbox class="mt-2"/>
-            </v-list-item-action>
+            </v-list-item-content>
           </v-list-item>
         </v-list>
-
-        <v-divider></v-divider>
-
-        <v-list>
-
-          <v-list-item>
-            <v-list-item-action>
-              <v-checkbox v-model="sms" color="purple"></v-checkbox>
-            </v-list-item-action>
-            <v-list-item-title>تایید همه</v-list-item-title>
-          </v-list-item>
-        </v-list>
-
+          <div class="full font-12 text-center ma-1 grey--text lighten-1" v-else>
+              {{$t('empty')}}
+          </div>
+        <v-divider/>
         <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn outlined @click="menu = false">بستن</v-btn>
+            <v-btn class="" x-small color="success" @click="markAllRead()">
+                <v-icon small class="mx-1">check</v-icon>
+                {{$t('mark_all')}}
+            </v-btn>
+            <v-spacer/>
+            <v-btn class="" x-small color="error" @click="menu = false">
+                <v-icon small class="mx-1">close</v-icon>
+                {{$t('close')}}
+            </v-btn>
         </v-card-actions>
       </v-card>
     </v-menu>
 
   </span>
 </template>
+
+<i18n>
+  {"en":{
+  "mark_all" : "read all",
+  "close" : "close",
+  "all" : "all messages",
+  "empty" : "empty",
+  "profile_details" : "profile data",
+  "logout" : "Logout"
+  },
+  "fa" : {
+  "mark_all" : "مارک همه به عنوان خوانده شده",
+  "close" : "بستن",
+  "all" : "همه پیام ها",
+  "empty" : "هیچ پیامی نیست",
+  "edit_profile" : " ویرایش پروفایل",
+  "profile_details" : "مشاهده اطلاعات پروفایل"
+  }}
+</i18n>
 <script>
   export default {
     data() {
@@ -67,17 +95,48 @@
           error: '',
           alert: '',
         },
+        loader: false,
         menu: false,
-        sms: "",
         count: 1,
-        messages: [
-          {
-            type: 'error',
-            title: 'هشدار قطعی سیستم',
-            text: 'لطفا با مدیر سیستم تماس بگیرید. اتصال به سامانه با اختلال مواجه شده است.'
-          }
-        ]
+        messages: []
       }
     },
+    computed: {
+      crmNotification() {
+        return _.get(this.vsd, 'crm.notifications', '/crm/notifications')
+      }
+    },
+    methods: {
+      markAllRead() {
+        this.loader = true;
+        let url = _.get(this.vsd, 'crm.notificationsUrl', '/notifications') + '/read-all';
+        this.$axios.$post(url).then(res => {
+          this.messages = res;
+        }).catch(err => {
+          console.error({err})
+        }).finally(() => {
+          this.loader = false;
+        })
+      },
+      getNotifications() {
+        this.loader = true;
+        let url = _.get(this.vsd, 'crm.notificationsUrl', '/notifications?seen=0');
+        this.$axios.$get(url).then(res => {
+          this.messages = res;
+        }).catch(err => {
+          console.error({err})
+        }).finally(() => {
+          this.loader = false;
+        })
+      }
+    },
+    created() {
+      this.$nuxt.$on('updateNotifications', () => {
+        this.getNotifications();
+      })
+    },
+    mounted() {
+      this.getNotifications();
+    }
   }
 </script>

@@ -5,6 +5,17 @@
       <v-toolbar-title style="cursor: pointer" @click="$router.push('/crm')">
         <v-img :src="logo" contain max-width="120px"/>
       </v-toolbar-title>
+      <v-select
+        v-if="topMenuItems"
+        :placeholder="$t('jump_to')"
+        style="width:50px"
+        class="px-1 mx-1"
+        item-value="link"
+        item-text="title"
+        :items="topMenuItems"
+        @change="changeRoute"
+      >
+      </v-select>
       <v-spacer/>
       <VsdCrmSupport/>
       <v-divider vertical/>
@@ -23,19 +34,21 @@
     </v-navigation-drawer>
     <v-main style="background-color: rgba(0,0,0,.04)">
       <v-container fluid>
-        <vsd-alert />
+        <vsd-alert/>
         <nuxt/>
-        <vsd-snackbar />
+        <vsd-snackbar/>
       </v-container>
     </v-main>
   </v-app>
 </template>
 <i18n>
   {"en":{
-  "logout" : "Logout"
+  "logout" : "Logout",
+  "jump_to" : "switch"
   },
   "fa" : {
-  "logout" : "خروج"
+  "logout" : "خروج",
+  "jump_to" : "پرش به ..."
   }}
 </i18n>
 <script>
@@ -58,7 +71,6 @@
       return {
         tooltip: false,
         drawer: false,
-        logo: CRM_LOGO,
         SYSTEM_LOGO,
         SHOW_USER,
         SINGLE_TITLE,
@@ -67,6 +79,12 @@
       }
     },
     computed: {
+      topMenuItems() {
+        return _.get(this.vsd, 'crm.menu.PANEL_TOP_MENU', false);
+      },
+      logo() {
+        return _.get(this.vsd, 'crm.logo', CRM_LOGO)
+      },
       items() {
         return this.vsd.crm.menu.PANEL_DRAWER || [];
       },
@@ -80,11 +98,14 @@
         return _.get(this.$store.state, 'admin.profile', {})
       }
     },
-    // middleware: 'auth',
-    methods: {},
+    methods: {
+      changeRoute(link) {
+        this.$router.push(link)
+      }
+    },
     mounted() {
       this.drawer = !this.isMobile;
     },
-    // middleware: ['auth']
+    middleware: ['auth']
   }
 </script>
