@@ -170,11 +170,8 @@ export default {
         this.$store.dispatch(`commonSelect/server`, field);
       }
     },
-    doSelect(val) {
-      this.selected = _.map(val, (item) => item.id)
-    },
-    deleteItems() {
-      let ids = this.selected;
+    async deleteItems() {
+      let ids = this.$refs.tableList._data.selected.map(item => item.id)
       this.$swal({
         title: this.$t("delete"),
         text: this.$t("confirmation"),
@@ -184,13 +181,15 @@ export default {
         cancelButtonColor: '#d33',
         cancelButtonText: this.$t("cancel"),
         confirmButtonText: this.$t("yes"),
-      }).then((result) => {
+      }).then(async (result) => {
         if (result.value) {
-          let totalItems = ids.length;
-          let i = 1;
-          for (const id in ids) {
-            if (ids.hasOwnProperty(id)) {
-              this.delete(id,false)
+          if (result.value) {
+            let totalItems = ids.length;
+            for (const j in ids) {
+              if (ids.hasOwnProperty(j)) {
+                let id = ids[j];
+                await this.delete(id, j + 1 >= totalItems)
+              }
             }
           }
         }

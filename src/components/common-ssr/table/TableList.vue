@@ -16,6 +16,9 @@
       :footer-props="{
       showFirstLastPage: true,
       showCurrentPage: true,
+      itemsPerPageOptions:[
+          10,25,50,100,500,-1
+      ]
     }"
     >
       <template v-if="false" #header.id="{header}">
@@ -53,7 +56,8 @@
       <!-- value = name of field !-->
       <template v-for="field in getTableFields" #[getField(field)]="{header,value,item}">
         <small>
-          <common-types-show v-model="value" :field="header" :item="item" :fields="fields" :type="header.type"/>
+          <common-types-show v-model="value" :field="header" :item="item" :fields="fields"
+                             :type="header.type"/>
         </small>
       </template>
       <template v-slot:expanded-item="{ headers, item }">
@@ -90,7 +94,8 @@
                 </v-tooltip>
                 <v-tooltip bottom v-if="hasBtn('show')">
                   <template v-slot:activator="{ on, attrs }">
-                    <v-btn v-on="on" small v-if="hasBtn('show')" fab icon :to="`${name}/${item.id}`">
+                    <v-btn v-on="on" small v-if="hasBtn('show')" fab icon
+                           :to="`${name}/${item.id}`">
                       <v-icon
                         small
                         color="success"
@@ -104,7 +109,8 @@
                 </v-tooltip>
                 <v-tooltip bottom v-if="hasBtn('edit')">
                   <template v-slot:activator="{ on, attrs }">
-                    <v-btn v-on="on" small v-if="hasBtn('edit')" fab icon :to="`${name}/edit/${item.id}`">
+                    <v-btn v-on="on" small v-if="hasBtn('edit')" fab icon
+                           :to="`${name}/edit/${item.id}`">
                       <v-icon
                         small
                         color="warning"
@@ -118,7 +124,8 @@
                 </v-tooltip>
                 <v-tooltip bottom v-if="hasBtn('delete')">
                   <template v-slot:activator="{ on, attrs }">
-                    <v-btn v-on="on" small v-if="hasBtn('delete')" fab icon @click="deleteItem(item.id)">
+                    <v-btn v-on="on" small v-if="hasBtn('delete')" fab icon
+                           @click="deleteItem(item.id)">
                       <v-icon
                         small
                         class="mx-2"
@@ -154,7 +161,8 @@
         <div style="width: 150px">
           <v-tooltip bottom v-if="hasBtn('next')">
             <template v-slot:activator="{ on, attrs }">
-              <v-btn v-on="on" x-small v-if="hasBtn('next',false)" fab icon x-small :to="`${name}/${item.id}`">
+              <v-btn v-on="on" x-small v-if="hasBtn('next',false)" fab icon x-small
+                     :to="`${name}/${item.id}`">
                 <Icons8
                   small
                   color="success"
@@ -231,7 +239,8 @@
       eager
       :width="_.get(main,'popWidth',700)"
     >
-      <pop-up @update="update" @reload="reload" :main="main" :id="_.get(poppedItem,'id',undefined)" :fields="fields"
+      <pop-up @update="update" @reload="reload" :main="main" :id="_.get(poppedItem,'id',undefined)"
+              :fields="fields"
               @closeIt="popupStatus=false" v-if="popupStatus"
               v-model="poppedItem"/>
     </v-dialog>
@@ -275,7 +284,22 @@
 
   export default {
     name: 'TableList',
-    props: ['items', 'search', 'main', 'hasSort', 'hasFilter', 'hasSearch', 'itemKey', 'length', 'showSelect', 'options', 'loading', 'name', 'fields', 'resource'],
+    props: {
+      'items': Array,
+      'search': String,
+      'main': Object,
+      'hasSort': Boolean,
+      'hasFilter': Boolean,
+      'hasSearch': Boolean,
+      'itemKey': String,
+      'length': Number,
+      'showSelect': Boolean,
+      'options': Object,
+      'loading': Boolean,
+      'name': String,
+      'fields': Array,
+      'resource': String
+    },
     data() {
       return {
         showMenu: false,
@@ -321,13 +345,6 @@
       },
       totalItems() {
         return this.items.length || 0
-      }
-    },
-    watch: {
-      selected: {
-        handler(val) {
-          this.$emit('selected', val)
-        }, deep: true
       }
     },
     created() {

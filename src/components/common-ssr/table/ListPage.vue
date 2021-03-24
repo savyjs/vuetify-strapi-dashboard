@@ -123,7 +123,6 @@
             :main="value"
             :items="list"
             @deleteItem="deleteItem"
-            @selected="doSelect"
             @input="search"
             @update="update"
             @reload="loadData"

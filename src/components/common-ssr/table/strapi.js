@@ -120,9 +120,9 @@ export default {
     toggle(id, val) {
       return this.$strapi.update()
     },
-    delete(id, reload = true) {
+    async delete(id, reload = true) {
       this.loading = true;
-      return this.$axios.$delete(this.resource + '/' + id).then(res => {
+      return await this.$axios.$delete(this.resource + '/' + id).then(res => {
         if (reload) {
           this.loadData();
         }
