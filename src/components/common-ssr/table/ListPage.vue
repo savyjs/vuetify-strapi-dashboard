@@ -108,6 +108,7 @@
         </v-card-title>
         <v-card-text>
           <table-list
+            ref="tableList"
             :hasFilter="_.get(value,'filterable',true)"
             :hasSort="_.get(value,'sortable',true)"
             :hasSearch="_.get(value,'searchable',true)"
