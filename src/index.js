@@ -78,6 +78,16 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
       });
     }
 
+    if (_.get(options, 'socket', false)) {
+      let io = _.get(this, 'nuxt.options.io', {});
+      this.addModule({
+        src: "nuxt-socket-io",
+        options: {
+          ...io
+        }
+      });
+    }
+
     this.nuxt.options.store = true;
     if (_.get(options, 'i18n', true)) {
       let i18nOption = _.get(this, 'nuxt.options.i18n', {});

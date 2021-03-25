@@ -53,6 +53,8 @@
 </i18n>
 <script>
 
+  import _ from 'lodash'
+
   const SYSTEM_LOGO = process.env.SYSTEM_LOGO;
   const CRM_LOGO = process.env.CRM_LOGO;
   const SHOW_USER = process.env.SHOW_USER;

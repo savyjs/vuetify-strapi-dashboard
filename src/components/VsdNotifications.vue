@@ -26,18 +26,29 @@
               <v-icon class="mx-1" small>list</v-icon>
               <small>{{$t('all')}}</small>
           </v-btn>
+            <v-spacer/>
+          <v-btn
+            @click="getNotifications"
+            fab
+            icon
+            :loading="loader"
+            class="green--text"
+            small>
+              <v-icon class="mx-1" small>refresh</v-icon>
+          </v-btn>
           </v-card-actions>
                         <v-divider/>
-        <v-list v-if="messages.length">
-          <v-list-item class="grey lighten-4" v-for="(message,i) in messages" :key="i">
+        <v-list v-if="getUnreadMessages.length">
+          <v-list-item class="grey lighten-4" v-for="(message,i) in getUnreadMessages" :key="i">
             <v-list-item-content>
-              <v-list-item-title>
-                <v-icon small>{{icons[message.type] || icons['alert']}}</v-icon>
-                {{message.title}}</v-list-item-title>
-              <v-list-item-subtitle>{{message.text}}</v-list-item-subtitle>
-                <v-spacer/>
+                <small>{{message.text}}</small>
+            </v-list-item-content>
+            <v-list-item-icon>
+                <v-icon small v-if="message.type">{{icons[message.type] || icons['alert']}}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-icon>
                 <v-btn
-                  :to="crmNotification"
+                  @click="markRead(message)"
                   class="green--text"
                   icon
                   flat
@@ -45,7 +56,7 @@
                 >
                 <v-icon small>check</v-icon>
               </v-btn>
-            </v-list-item-content>
+              </v-list-item-icon>
           </v-list-item>
         </v-list>
           <div class="full font-12 text-center ma-1 grey--text lighten-1" v-else>
@@ -88,12 +99,16 @@
   }}
 </i18n>
 <script>
+  import _ from 'lodash'
+
   export default {
     data() {
       return {
         icons: {
           error: '',
+          success: '',
           alert: '',
+          info: '',
         },
         loader: false,
         menu: false,
@@ -102,6 +117,10 @@
       }
     },
     computed: {
+      getUnreadMessages() {
+        let messages = this.messages.filter(item => !item.seen);
+        return _.take(messages, 10);
+      },
       crmNotification() {
         return _.get(this.vsd, 'crm.notifications', '/crm/notifications')
       }
@@ -118,9 +137,20 @@
           this.loader = false;
         })
       },
+      markRead(message) {
+        this.loader = true;
+        let url = _.get(this.vsd, 'crm.notificationsUrl', '/notifications') + '/' + message.id;
+        this.$axios.$put(url, {seen: true}).then(res => {
+          this.markAllRead()
+        }).catch(err => {
+          console.error({err})
+        }).finally(() => {
+          this.loader = false;
+        })
+      },
       getNotifications() {
         this.loader = true;
-        let url = _.get(this.vsd, 'crm.notificationsUrl', '/notifications?seen=0');
+        let url = _.get(this.vsd, 'crm.notificationsUrl', '/notifications');
         this.$axios.$get(url).then(res => {
           this.messages = res;
         }).catch(err => {
@@ -131,6 +161,7 @@
       }
     },
     created() {
+      this._ = _;
       this.$nuxt.$on('updateNotifications', () => {
         this.getNotifications();
       })
