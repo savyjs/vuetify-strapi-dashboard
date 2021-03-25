@@ -182,16 +182,19 @@ export default {
         cancelButtonText: this.$t("cancel"),
         confirmButtonText: this.$t("yes"),
       }).then(async (result) => {
+        let deleteList = [];
         if (result.value) {
-          if (result.value) {
-            let totalItems = ids.length;
-            for (const j in ids) {
-              if (ids.hasOwnProperty(j)) {
-                let id = ids[j];
-                await this.delete(id, j + 1 >= totalItems)
-              }
+          let totalItems = ids.length;
+          for (const j in ids) {
+            if (ids.hasOwnProperty(j)) {
+              let id = ids[j];
+              deleteList.push(this.delete(id, false))
             }
           }
+          Promise.all(deleteList).then(() => {
+              this.loadData()
+            }
+          );
         }
       })
     },

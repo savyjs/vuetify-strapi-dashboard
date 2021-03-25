@@ -17,6 +17,7 @@
        offset-x
      >
       <v-card>
+        {{messageRxd}}
           <v-card-actions>
           <v-btn
             :to="crmNotification"
@@ -100,7 +101,16 @@
 </i18n>
 <script>
   import _ from 'lodash'
-
+  /*
+    import io from 'socket.io-client'
+    const socketServer = 'http://socket.savyjs.com';
+    const socket = io(socketServer, {
+      path: '/sc'
+    });
+    socket.on("connect", () => {
+      // console.log(socket.connected); // true
+    });
+  */
   export default {
     data() {
       return {
@@ -110,9 +120,11 @@
           alert: '',
           info: '',
         },
+        messageRxd: '',
         loader: false,
         menu: false,
         count: 1,
+        socket: {},
         messages: []
       }
     },
@@ -126,6 +138,19 @@
       }
     },
     methods: {
+      getMessages() {
+        /*socket.emit('join', {room: 1, username: 'abc123'}, (error) => {
+          alert('hi');
+          if (error) {
+            // alert(error);
+          } else {
+            // alert('connect');
+            socket.on('welcome', (data) => {
+              // alert(data);
+            });
+          }
+        });*/
+      },
       markAllRead() {
         this.loader = true;
         let url = _.get(this.vsd, 'crm.notificationsUrl', '/notifications') + '/read-all';
@@ -149,6 +174,7 @@
         })
       },
       getNotifications() {
+        this.getMessages();
         this.loader = true;
         let url = _.get(this.vsd, 'crm.notificationsUrl', '/notifications');
         this.$axios.$get(url).then(res => {
@@ -162,9 +188,7 @@
     },
     created() {
       this._ = _;
-      this.$nuxt.$on('updateNotifications', () => {
-        this.getNotifications();
-      })
+      this.getNotifications();
     },
     mounted() {
       this.getNotifications();
