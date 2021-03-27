@@ -74,10 +74,9 @@
   }}
 </i18n>
 <script>
-  import CONSTANTS from '~/assets/js/constants'
+
   import _ from 'lodash'
 
-  const DEFAULT_PHOTO = CONSTANTS.DEFAULT_PHOTO
 
   export default {
     components: {},
@@ -86,7 +85,7 @@
         menu: false,
         sms: "",
         count: 1,
-        defaultPhoto: DEFAULT_PHOTO
+        defaultPhoto: null
       }
     },
     computed: {
@@ -98,10 +97,7 @@
       this._ = _;
     },
     mounted() {
-      this.checkLogin();
-      setInterval(() => {
-        this.checkLogin();
-      }, 100000)
+
     },
     methods: {
       login(username, password) {

@@ -69,6 +69,9 @@
         if (_.has(item, 'to')) {
           this.$router.push(item.to)
         }
+        if (_.has(item, 'link')) {
+          this.$router.push(item.link)
+        }
       }
     }
   }
