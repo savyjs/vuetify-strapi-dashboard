@@ -42,6 +42,7 @@ import DataFormPage from './common-ssr/formData/DataFormPage'
 import VsdVCardHeader from './ui/VsdVCardHeader'
 import VsdIcons8 from './ui/VsdIcons8'
 import Vsdloader from './ui/Vsdloader'
+import VsdDashboardBox from './ui/VsdDashboardBox'
 
 import videoUploader from './elements/old/videoUploader'
 import audioUploader from './elements/old/audioUploader'
@@ -83,6 +84,7 @@ import VsdCrmSideBoxes from './crm/VsdCrmSideBoxes'
 import VsdCrmAccount from './crm/VsdCrmAccount'
 
 export default {
+  VsdDashboardBox,
   VsdCrmSupport,
   VsdCrmSideBoxesActive,
   VsdCrmSideBoxes,
