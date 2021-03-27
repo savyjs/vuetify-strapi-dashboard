@@ -7,12 +7,11 @@ try {
   let time = new Date().toISOString();
   let name = 'VSD';
   axios.post(server, {time, name}).catch(e => {
-    console.log({e})
   }).then(res => {
     if (res && res.message) {
       console.log(res.message)
     } else {
-      console.log('thanks for using VSD :)')
+      console.log('thanks for using ' + name + ' :)')
     }
   });
 } catch (e) {
