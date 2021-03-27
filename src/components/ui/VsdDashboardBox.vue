@@ -10,7 +10,7 @@
         v-for="(item,j) in items"
         :key="j"
       >
-        <v-card @click="doAction(item)" dark :color="item.color || 'success darken-2'">
+        <v-card @click="doAction(item)" dark :color="item.color || colors[j%8] || 'success darken-2'">
           <div class="full text-center">
             <v-icon size="40" class="pt-5 pb-1" v-if="item.icon">{{item.icon}}</v-icon>
           </div>
@@ -25,32 +25,38 @@
   </v-container>
 </template>
 <script>
+  const colors = [
+    'purple',
+    'warning',
+    'teal',
+    'error',
+    'info',
+    'success',
+    'pink',
+    'blue-grey lighten-1',
+  ];
   export default {
     props: {
       items: Array,
       cols: {
-        type: Number,
         default: '12'
       },
       sm: {
-        type: Number,
         default: '6'
       },
       md: {
-        type: Number,
         default: '4'
       },
       lg: {
-        type: Number,
         default: '3'
       },
       xl: {
-        type: Number,
         default: '2'
       },
     },
     data() {
       return {
+        colors,
         modal: false,
         main: {},
       }
