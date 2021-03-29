@@ -1,7 +1,7 @@
 {
   "name": "vuetify-strapi-dashboard",
   "description": "vuetify dashboard panel matched to strapi last version",
-  "version": "1.2.47",
+  "version": "1.2.48",
   "author": "Ehsan Afshari @savyjs <savvyversa@gmail.com>",
   "license": "MIT",
   "keywords": [
@@ -51,6 +51,7 @@
     "@nuxtjs/strapi": "^0.3.0",
     "font-awesome": "4.7.0",
     "lodash": "^4.17.20",
+    "axios": "^0.21.1",
     "lodash-deep": "^1.6.0",
     "markdown": "^0.5.0",
     "material-design-icons-iconfont": "^5.0.1",

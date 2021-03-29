@@ -314,6 +314,7 @@
         let items = [];
         try {
           for (let item of this.fields) {
+            item = {...item, text: this.$t(_.get(item, 'text', ''))};
             if (item.header === undefined || item.header === true) items.push(item)
           }
         } catch (e) {
