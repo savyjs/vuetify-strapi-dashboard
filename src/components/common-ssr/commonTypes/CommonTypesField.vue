@@ -292,7 +292,7 @@
         return value;
       },
       label() {
-        return _.get(this.field, 'text', '')
+        return this.$t(_.get(this.field, 'text', ''))
       },
     },
     watch: {

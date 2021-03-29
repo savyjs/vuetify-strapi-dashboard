@@ -63,7 +63,7 @@
         return _.get(this.item, 'type', 'text')
       },
       label() {
-        return _.get(this.item, 'text', 'text')
+        return this.$t(_.get(this.item, 'text', 'text'))
       },
       getValue() {
         return this.input

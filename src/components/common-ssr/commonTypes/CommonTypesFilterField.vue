@@ -84,7 +84,7 @@
         return _.get(this.field, 'icon', 'fa-pencil')
       },
       label() {
-        return this.hasLabel !== false ? _.get(this.field, 'text', '') : null;
+        return this.hasLabel !== false ? this.$t(_.get(this.field, 'text', '')) : null;
       }
     },
     methods: {

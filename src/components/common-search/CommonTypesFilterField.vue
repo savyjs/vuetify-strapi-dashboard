@@ -75,7 +75,7 @@
         return _.get(this.field, 'icon', 'fa-pencil')
       },
       label() {
-        return _.get(this.field, 'text', '')
+        return this.$t(_.get(this.field, 'text', ''))
       },
     },
     mounted() {
