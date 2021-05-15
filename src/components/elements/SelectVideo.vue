@@ -67,7 +67,6 @@
         videoMergeLoading: false,
         data: {},
         choose: 'build',
-        chooseListValues: [],
       }
     },
     computed: {
