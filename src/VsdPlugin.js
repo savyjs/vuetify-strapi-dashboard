@@ -7,7 +7,7 @@ import CommonStore from './store/common'
 import Navigation from './store/navigation'
 import CommonSelectStore from './store/commonSelect'
 import * as components from "./components/component-vsd";
-import {ValidationProvider, ValidationObserver, extend, localize} from 'vee-validate/dist/vee-validate.full.esm';
+import {ValidationProvider, ValidationObserver, extend, localize} from 'vee-validate/dist/vee-validate.js';
 import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loader
 import './assets/styles.css' // Ensure you are using css-loader
 import 'material-design-icons-iconfont/dist/material-design-icons.css' // Ensure you are using css-loader
