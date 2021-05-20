@@ -137,7 +137,6 @@
                   </template>
                   <span>{{tooltipBtn('delete',$t("delete"))}}</span>
                 </v-tooltip>
-
                 <v-tooltip bottom v-if="hasBtn('pop')">
                   <template v-slot:activator="{ on, attrs }">
                     <v-btn v-on="on" small fab icon @click="popUp(item)">

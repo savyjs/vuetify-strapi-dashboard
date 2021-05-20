@@ -83,7 +83,14 @@ import VsdCrmSideBoxesActive from './crm/VsdCrmSideBoxesActive'
 import VsdCrmSideBoxes from './crm/VsdCrmSideBoxes'
 import VsdCrmAccount from './crm/VsdCrmAccount'
 
+import RoleDataForm from './role/RoleDataForm'
+import RoleTableList from './role/RoleTableList'
+import RoleFilters from './role/RoleFilters'
+
 export default {
+  RoleDataForm,
+  RoleTableList,
+  RoleFilters,
   VsdDashboardBox,
   VsdCrmSupport,
   VsdCrmSideBoxesActive,
