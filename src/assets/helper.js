@@ -74,8 +74,8 @@ export default {
   numberFormat(num) {
     return (num && num % 1 === 0) ? num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') : num
   },
-  price(num) {
-    return num ? num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + ' ریال' : 0
+  price(num, unit = 'ریال') {
+    return num ? num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + unit : 0
   },
   showError(error, $swal, $router = null) {
     $swal({
