@@ -108,6 +108,5 @@
     mounted() {
       this.drawer = !this.isMobile;
     },
-    middleware: ['auth']
   }
 </script>
