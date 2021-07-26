@@ -34,13 +34,18 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
         support: '/crm/ticket/new',
         menu: {}
       },
+      notification: {
+        show: false,
+        url: null
+      },
       apiListHelper: {},
       apiShowHelper: {},
       apiFormHelper: {},
-      config: {},
-      settings: {},
+      config: {}, // config of vsd
+      settings: {}, // fields in settings page
       menu: {},
       validations: {},
+      notifications: null,
       ...moduleOptions
     }
 

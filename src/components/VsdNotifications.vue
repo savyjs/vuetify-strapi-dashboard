@@ -83,12 +83,12 @@
 
 <i18n>
   {"en":{
-  "mark_all" : "read all",
+  "mark_all" : "mark all as read",
   "close" : "close",
   "all" : "all messages",
   "empty" : "empty",
   "profile_details" : "profile data",
-  "logout" : "Logout"
+  "logout" : "logout"
   },
   "fa" : {
   "mark_all" : "مارک همه به عنوان خوانده شده",
@@ -134,7 +134,7 @@
         return _.take(messages, 10);
       },
       crmNotification() {
-        return _.get(this.vsd, 'crm.notifications', '/crm/notifications')
+        return _.get(this.vsd, 'notification.show', '/crm/notifications')
       }
     },
     methods: {
@@ -153,7 +153,7 @@
       },
       markAllRead() {
         this.loader = true;
-        let url = _.get(this.vsd, 'crm.notificationsUrl', '/notifications') + '/read-all';
+        let url = _.get(this.vsd, 'notification.url', '/notifications') + '/read-all';
         this.$axios.$post(url).then(res => {
           this.messages = res;
         }).catch(err => {
@@ -164,7 +164,7 @@
       },
       markRead(message) {
         this.loader = true;
-        let url = _.get(this.vsd, 'crm.notificationsUrl', '/notifications') + '/' + message.id;
+        let url = _.get(this.vsd, 'notification.url', '/notifications') + '/' + message.id;
         this.$axios.$put(url, {seen: true}).then(res => {
           this.markAllRead()
         }).catch(err => {
@@ -176,7 +176,7 @@
       getNotifications() {
         this.getMessages();
         this.loader = true;
-        let url = _.get(this.vsd, 'crm.notificationsUrl', '/notifications');
+        let url = _.get(this.vsd, 'notification.url', '/notifications');
         this.$axios.$get(url).then(res => {
           this.messages = res;
         }).catch(err => {
