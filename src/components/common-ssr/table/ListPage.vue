@@ -2,27 +2,28 @@
   <section>
     <v-container grid-list-lg>
       <v-card class="my-1">
-        <vsd-v-card-header :color="_.get(value,'color','primary')" margin-right="1%" width="98%" :class="`px-3 `+ vsd.rtl ? 'rtl':''">
+        <vsd-v-card-header :color="_.get(value,'color','primary')" margin-right="1%" width="98%"
+                           :class="`px-3 `+ (vsd.rtl ? 'rtl':'')">
           <h3 class="pr-5">
-            <v-icon class="mx-1">{{headerIcon || _.get(value,'icon','archive')}}</v-icon>
+            <v-icon class="mx-1">{{ headerIcon || _.get(value, 'icon', 'archive') }}</v-icon>
             {{ $t(title) }}
           </h3>
           <v-spacer/>
           <v-btn v-if="_.get(value,'deleteAll',true)" elevation="5" small class="red--text mx-2" color="white"
                  @click="deleteItems">
             <v-icon class="mx-1">delete</v-icon>
-            <b>{{$t("delete")}}</b>
+            <b>{{ $t("delete") }}</b>
           </v-btn>
           <v-btn v-if="_.get(value,'newItem',true)" elevation="5" small class="mx-1 success--text"
                  color="white" :to="name + '/create'">
             <v-icon class="mx-1" small>add</v-icon>
-            <b>{{$t("create")}}</b>
+            <b>{{ $t("create") }}</b>
           </v-btn>
           <download-excel :fetch="excelData" :name="title+'.xls'" :title="title">
             <v-btn :disabled="!_.has(list,0)" v-if="_.get(value,'excel',true)" elevation="5" small
                    class="white--text mx-1" color="success">
               <v-icon class="mx-1">move_to_inbox</v-icon>
-              {{$t("download_excel")}}
+              {{ $t("download_excel") }}
             </v-btn>
           </download-excel>
           <v-btn :title="$t('refresh')" fab icon v-if="_.get(value,'refresh',true)" small class="success--text mx-1"
@@ -42,7 +43,7 @@
               <span>
                 <small class="success--text darken-2">
                 <v-icon>info</v-icon>
-                {{$t("total")}}:  {{$Helper.numberFormat(length)}}
+                {{ $t("total") }}:  {{ $Helper.numberFormat(length) }}
                 </small>
               </span>
             </v-flex>
@@ -54,7 +55,7 @@
           <v-expansion-panel-header>
             <span>
               <v-icon class="mx-1">search</v-icon>
-            {{$t("search")}}
+            {{ $t("search") }}
             </span>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
@@ -72,7 +73,7 @@
           <v-expansion-panel-header>
             <span>
               <v-icon class="mx-1">filter_list</v-icon>
-            {{$t("filters")}}
+            {{ $t("filters") }}
             </span>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
@@ -90,7 +91,7 @@
           <v-expansion-panel-header>
             <span>
               <v-icon class="mx-1">bolt</v-icon>
-            {{$t("report_filters")}}
+            {{ $t("report_filters") }}
             </span>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
@@ -135,49 +136,49 @@
   </section>
 </template>
 <i18n>
-  {
-  "en":{
-  "delete":"delete",
-  "create":"new item",
-  "back":"back",
-  "success":"done",
-  "download_excel":"excel",
-  "total": "total",
-  "search": "Search",
-  "filters": "Filters",
-  "confirmation":"do you want to delete item(s)?",
-  "refresh":"refresh",
-  "previous":"previous",
-  "report_filters": "Report"
+{
+  "en": {
+    "delete": "delete",
+    "create": "new item",
+    "back": "back",
+    "success": "done",
+    "download_excel": "excel",
+    "total": "total",
+    "search": "Search",
+    "filters": "Filters",
+    "confirmation": "do you want to delete item(s)?",
+    "refresh": "refresh",
+    "previous": "previous",
+    "report_filters": "Report"
   },
-  "fa":{
-  "delete":"حذف",
-  "success":"با موفقیت انجام شد",
-  "create":"آیتم جدید",
-  "back":"برگشت",
-  "refresh":"بروزرسانی",
-  "previous":"قبلی",
-  "download_excel":"اکسل",
-  "total": "تعداد کل",
-  "search": "جست و جو",
-  "filters": "فیلتر",
-  "edit":"ویرایش",
-  "cancel":"لغو",
-  "show":"نمایش",
-  "delete":"حذف",
-  "yes":"بله",
-  "confirmation":"آیا مطمئن هستید می خواهید این مورد را حذف کنید؟",
-  "report_filters": "فیلتر گزارش"
+  "fa": {
+    "delete": "حذف",
+    "success": "با موفقیت انجام شد",
+    "create": "آیتم جدید",
+    "back": "برگشت",
+    "refresh": "بروزرسانی",
+    "previous": "قبلی",
+    "download_excel": "اکسل",
+    "total": "تعداد کل",
+    "search": "جست و جو",
+    "filters": "فیلتر",
+    "edit": "ویرایش",
+    "cancel": "لغو",
+    "show": "نمایش",
+    "delete": "حذف",
+    "yes": "بله",
+    "confirmation": "آیا مطمئن هستید می خواهید این مورد را حذف کنید؟",
+    "report_filters": "فیلتر گزارش"
   }
-  }
+}
 </i18n>
 <script>
 
-  import formHelper from "./FormHelper";
+import formHelper from "./FormHelper";
 
-  export default {
-    name: 'ListPage',
-    props: ['value'],
-    mixins: [formHelper]
-  }
+export default {
+  name: 'ListPage',
+  props: ['value'],
+  mixins: [formHelper]
+}
 </script>

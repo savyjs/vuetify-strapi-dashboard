@@ -65,10 +65,16 @@ export default {
       }
 
       this.$axios.$get(this.resource + queryString, {params: meta}).then(res => {
-        this.list = res;
-        if (this.length < 1 && res.length > 0) {
-          this.length = res.length;
+        if (!_.isArray(res) && _.has(res, 'roles')) {
+          this.list = res.roles;
+          this.length = res.roles.length;
+        } else {
+          this.list = res;
+          if (this.length < 1 && res.length > 0) {
+            this.length = res.length;
+          }
         }
+
       }).catch(error => {
         this.$notifWarning(error);
       }).finally((res) => {

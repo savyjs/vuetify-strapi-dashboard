@@ -32,7 +32,7 @@
                             outlined/>
               <v-btn @click="updateRow(item.id)" small color="success">
                 <v-icon class="mx-1">add</v-icon>
-                افزودن
+                {{$t('add')}}
               </v-btn>
             </v-col>
           </v-row>
