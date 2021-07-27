@@ -14,7 +14,7 @@
 </template>
 <script>
 
-import _ from 'lodash'
+const _ = require('lodash')
 
 export default {
   name: 'CommonTypesExpand',
@@ -27,6 +27,9 @@ export default {
   props: ['value', 'type', 'item', 'field', 'fields'],
   data() {
     return {}
+  },
+  created() {
+    this._ = _;
   },
   methods: {
     toggle(value) {
