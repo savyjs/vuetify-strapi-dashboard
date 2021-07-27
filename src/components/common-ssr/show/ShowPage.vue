@@ -3,8 +3,8 @@
     <v-container grid-list-lg>
       <v-card :loading="loader">
         <vsd-v-card-header margin-right="1%" width="98%" >
-          <v-layout wrap row :class="`pa-1 `+ vsd.rtl ? 'rtl':''">
-            <v-flex class="pa-1 text-right">
+          <v-layout :class="`pa-1 `+ (vsd.rtl ? 'rtl':'')">
+            <v-flex :class="`pa-1 `  + (vsd.rtl ? `text-right` : `text-left`)">
               <v-subheader>
                 <v-icon class="mx-1">{{icon ||headerIcon || 'eye'}}</v-icon>
                 {{title}}
