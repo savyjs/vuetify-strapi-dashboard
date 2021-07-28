@@ -4,6 +4,8 @@
     v-model="data"
     :filled="!outlined"
     :outlined="outlined"
+    :item-value="_.get(field,'meta.value','value')"
+    :item-text="_.get(field,'meta.text','text')"
     :multiple="_.get(field,'multi',_.get(field,'multiple',false))"
     dense
     :label="label"
@@ -35,9 +37,15 @@ export default {
     loadData() {
       if (_.has(this.field, 'store', undefined)) {
         let name = _.get(this.field, 'store', null);
-        this.$store.dispatch(`${name}`, name);
+        try {
+          this.$store.dispatch(`${name}`, name);
+        } catch (e) {
+        }
       } else if (_.has(this.field, 'server', undefined)) {
-        this.$store.dispatch(`commonSelect/server`, this.field);
+        try {
+          this.$store.dispatch(`commonSelect/server`, this.field);
+        } catch (e) {
+        }
       }
     }
   },

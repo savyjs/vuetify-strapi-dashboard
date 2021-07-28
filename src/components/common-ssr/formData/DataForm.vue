@@ -24,43 +24,42 @@
 
 <script>
 
-  import _ from "lodash"
+import _ from "lodash"
 
-  export default {
-    props: ['value', 'name', 'type', 'fields', 'title'],
-    data() {
-      return {
-        formData: {
-          ...this.value
-        }
-      }
-    },
-    watch: {
-      value: {
-        handler(val) {
-          this.formData = val;
-        },
-        deep: true
-      },
+export default {
+  props: ['value', 'name', 'type', 'fields', 'title'],
+  data() {
+    return {
       formData: {
-        handler(val) {
-          this.$emit('input', val)
-        },
-        deep: true,
+        ...this.value
       }
-    },
-    created() {
-      this._ = _;
-    },
-    methods: {
-      updateFormData(val) {
-        this.formData = {...this.formData, ...val};
-        console.log(3, 'got update ', val, this.formData);
-      },
-      save() {
-        this.$emit('input', this.formData)
-        this.$emit('save', this.formData)
-      },
     }
+  },
+  watch: {
+    value: {
+      handler(val) {
+        this.formData = val;
+      },
+      deep: true
+    },
+    formData: {
+      handler(val) {
+        this.$emit('input', val)
+      },
+      deep: true,
+    }
+  },
+  created() {
+    this._ = _;
+  },
+  methods: {
+    updateFormData(val) {
+      this.formData = {...this.formData, ...val};
+    },
+    save() {
+      this.$emit('input', this.formData)
+      this.$emit('save', this.formData)
+    },
   }
+}
 </script>

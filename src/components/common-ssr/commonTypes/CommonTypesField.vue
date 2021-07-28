@@ -111,9 +111,11 @@
   </div>
   <div v-else-if="_.includes(['select'],type)">
     <select-relation
-      :required="_.get(field,'required',false)" :rules="getRules" :error-messages="errors" :hint="hint" v-model="data"
+      :required="_.get(field,'required',false)" :rules="getRules" :error-messages="errors" :hint="hint"
+      v-model="data"
       :type="type"
-      :field="field" :label="label"/>
+      :field="field"
+      :label="label"/>
   </div>
   <div v-else-if="_.includes(['icons'],type)">
     <select-icon
@@ -181,8 +183,8 @@
   </div>
   <div v-else-if="_.includes(['label'],type)">
     <v-subheader>
-      <v-icon>{{icon}}</v-icon>
-      {{label}}
+      <v-icon>{{ icon }}</v-icon>
+      {{ label }}
     </v-subheader>
     <v-divider v-if="hasDivider"/>
   </div>
@@ -217,105 +219,105 @@
 </template>
 
 <i18n>
-  {
-  "en":{
-  "$":"$"
+{
+  "en": {
+    "$": "$"
   },
-  "fa":{
-  "$":"ریال"
+  "fa": {
+    "$": "ریال"
   }
-  }
+}
 </i18n>
 <script>
 
-  import _ from 'lodash'
+import _ from 'lodash'
 
-  /**
-   * @value: any - this property value
-   * @type: String - this property type - image bool text rich ...
-   * @item: Object - all properties of item
-   * @field: Object - filed properties
-   * */
+/**
+ * @value: any - this property value
+ * @type: String - this property type - image bool text rich ...
+ * @item: Object - all properties of item
+ * @field: Object - filed properties
+ * */
 
-  export default {
-    name: 'CommonTypesField',
-    props: ['value', 'formData', 'type', 'errors', 'field', 'place'],
-    data() {
-      return {
-        toggle: undefined,
-        data: this.value,
-        errorMessages: '',
-      }
+export default {
+  name: 'CommonTypesField',
+  props: ['value', 'formData', 'type', 'errors', 'field', 'place'],
+  data() {
+    return {
+      toggle: undefined,
+      data: this.value,
+      errorMessages: '',
+    }
+  },
+  mounted() {
+    this.data = this.initial;
+  },
+  computed: {
+    getLocale() {
+      return _.get(this.vsd, 'locale', undefined)
     },
-    mounted() {
-      this.data = this.initial;
+    isNumeric() {
+      return !!_.get(this.field, 'numeric', _.includes(['price', 'number'], this.type));
     },
-    computed: {
-      getLocale() {
-        return _.get(this.vsd, 'locale', undefined)
-      },
-      isNumeric() {
-        return !!_.get(this.field, 'numeric', _.includes(['price', 'number'], this.type));
-      },
-      getRules() {
-        return _.get(this.field, 'rules', undefined);
-      },
-      placeholder() {
-        return _.get(this.field, 'placeholder', undefined)
-      },
-      hint() {
-        let hint = _.get(this.field, 'hint', undefined);
-        let unit = _.get(this.field, 'unit', undefined);
-        let isNumber = _.includes(['number'], _.get(this.field, 'type', undefined));
-        let isPrice = (_.get(this.field, 'isPrice', false) || _.includes(['price'], _.get(this.field, 'type', undefined)));
-        hint = isNumber ? `${this.$Helper.numberFormat(this.data) || 0}` : hint;
-        hint = isPrice ? ((this.$Helper.numberFormat(this.data) || 0) + this.$t("$")) : hint;
-        hint = unit ? (((this.data) || '') + unit) : hint;
-        return hint;
-      },
-      icon() {
-        let icon = undefined;
-        return _.get(this.field, 'icon', undefined);
-      },
-      hasDivider() {
-        return _.get(this.field, 'divider', false);
-      },
-      initial() {
-        // check path
-        let value = _.has(this.field, 'meta.value') ? _.get(this.value, this.field.meta.value, this.value) : this.value;
-        // check initital value from store
-        if (!this.value) {
-          if (_.has(this.field, 'store') || _.has(this.field, 'server')) {
-            this.loadData();
-          }
+    getRules() {
+      return _.get(this.field, 'rules', undefined);
+    },
+    placeholder() {
+      return _.get(this.field, 'placeholder', undefined)
+    },
+    hint() {
+      let hint = _.get(this.field, 'hint', undefined);
+      let unit = _.get(this.field, 'unit', undefined);
+      let isNumber = _.includes(['number'], _.get(this.field, 'type', undefined));
+      let isPrice = (_.get(this.field, 'isPrice', false) || _.includes(['price'], _.get(this.field, 'type', undefined)));
+      hint = isNumber ? `${this.$Helper.numberFormat(this.data) || 0}` : hint;
+      hint = isPrice ? ((this.$Helper.numberFormat(this.data) || 0) + this.$t("$")) : hint;
+      hint = unit ? (((this.data) || '') + unit) : hint;
+      return hint;
+    },
+    icon() {
+      let icon = undefined;
+      return _.get(this.field, 'icon', undefined);
+    },
+    hasDivider() {
+      return _.get(this.field, 'divider', false);
+    },
+    initial() {
+      // check initial value from store
+      if (!this.value) {
+        if (_.has(this.field, 'store') || _.has(this.field, 'server')) {
+          this.loadData();
         }
-        return value;
-      },
-      label() {
-        return this.$t(_.get(this.field, 'text', ''))
-      },
-    },
-    watch: {
-      value: {
-        handler(val) {
-          this.data = this.initial;
-        },
-        deep: true
-      },
-      data: {
-        handler(val) {
-          return this.$emit('input', this.isNumeric ? parseInt(val) : val);
-        },
-        deep: true
       }
+      // check path
+      return _.has(this.field, 'meta.value') && !_.includes(this.field.type, ['store', 'server']) ? _.get(this.value, this.field.meta.value, this.value) : this.value;
     },
-    methods: {
-      updateFormData(val) {
-        this.$emit('updateFormData', val);
+    label() {
+      return this.$t(_.get(this.field, 'text', ''))
+    },
+  },
+  watch: {
+    value: {
+      handler(val) {
+        this.data = this.initial;
       },
-      loadData() {
-        if (_.has(this.field, 'store', undefined)) {
-          let name = _.get(this.field, 'store', null);
+      deep: true
+    },
+    data: {
+      handler(val) {
+        return this.$emit('input', this.isNumeric ? parseInt(val) : val);
+      },
+      deep: true
+    }
+  },
+  methods: {
+    updateFormData(val) {
+      this.$emit('updateFormData', val);
+    },
+    loadData() {
+      if (_.has(this.field, 'store', undefined)) {
+        let name = _.get(this.field, 'store', null);
+        try {
           let response = this.$store.dispatch(`commonSelect/${name}`, name);
           if (typeof response.then === 'function') {
             response.then((res) => {
@@ -324,13 +326,18 @@
           } else {
             this.data = response;
           }
-        } else if (_.has(this.field, 'server', undefined)) {
+        } catch (e) {
+        }
+      } else if (_.has(this.field, 'server', undefined)) {
+        try {
           this.$store.dispatch(`commonSelect/server`, this.field);
+        } catch (e) {
         }
       }
-    },
-    created() {
-      this._ = _;
-    },
-  }
+    }
+  },
+  created() {
+    this._ = _;
+  },
+}
 </script>
