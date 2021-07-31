@@ -13,9 +13,9 @@
       v-if="_.get(element,type,undefined)!==false"
       :key="element.value"
       :cols="_.get(element,'cols',12)"
-      :sm="_.get(element,'sm',12)"
-      :md="_.get(element,'md',6)"
-      :lg="_.get(element,'lg',4)"
+      :sm="_.get(element,'sm',undefined)"
+      :md="_.get(element,'md',undefined)"
+      :lg="_.get(element,'lg',undefined)"
     >
       <CommonProcessTypeField
         v-show="!_.get(element,'hidden',false)"

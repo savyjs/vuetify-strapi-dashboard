@@ -65,7 +65,7 @@
         <VsdBreadcrumb/>
         <VsdAlert/>
         <VsdAccessAlert @setAccess="setAccess"/>
-        <nuxt v-if="hasAccess"/>
+        <nuxt v-if="hasAccess" />
         <Vsdloader/>
         <VsdSnackbar/>
       </v-container>

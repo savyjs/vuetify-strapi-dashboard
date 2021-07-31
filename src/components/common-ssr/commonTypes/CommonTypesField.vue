@@ -19,7 +19,7 @@
       :required="_.get(field,'required',false)" :error-messages="errors" :label="label" :getId="true" dense filled
       v-model="data"/>
   </div>
-  <div v-else-if="_.includes(['media-upload'],type)">
+  <div v-else-if="_.includes(['media-upload','mediaUpload'],type)">
     <media-uploader
       :required="_.get(field,'required',false)" :error-messages="errors" :type="_.get(field,'types',undefined)"
       :label="label"
@@ -234,7 +234,34 @@ import _ from 'lodash'
 
 /**
  * @value: any - this property value
- * @type: String - this property type - image bool text rich ...
+ * @type: String - this property type
+ * list of available elements:
+ textarea
+ json
+ rich
+ editor
+ audio
+ image
+ media-upload
+ media
+ combobox
+ bool
+ price
+ number
+ dateTime
+ time
+ date
+ jdate
+ select
+ icons
+ enum
+ password
+ crud
+ linearCrud
+ calc
+ label
+ counter
+ custom
  * @item: Object - all properties of item
  * @field: Object - filed properties
  * */

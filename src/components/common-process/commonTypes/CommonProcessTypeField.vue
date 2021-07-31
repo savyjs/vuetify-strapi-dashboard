@@ -43,7 +43,8 @@
           text: this.element.title,
           value: this.element.value,
           ...this.element,
-          rules: undefined
+          ...this.element.field,
+          rules: undefined,
         };
       }
     },
