@@ -1,4 +1,5 @@
 import _ from 'lodash'
+
 export default {
   namespaced: true,
   state: () => {
@@ -20,7 +21,7 @@ export default {
     updateRoles(state, data) {
       let roles = _.cloneDeep(_.get(data, 'roles', []));
       _.forEach(roles, (item) => {
-        state.roles.push({value: item.id, text: item.name})
+        state.roles.push({value: item.id, id: item.id, text: item.name})
       })
     },
     updateServer(state, {res, field}) {
@@ -110,7 +111,6 @@ export default {
     currencies: function ({commit, state}, field) {
       if (!state.currenciesInitiated) {
         this.$axios.$post('/proxies/currencies').then(res => {
-          //console.log({res}, field.server)
           commit('updateCurrencies', {res: _.get(res, 'data', res), field});
         }).catch(err => {
           commit('setCurrenciesInitiated', false);

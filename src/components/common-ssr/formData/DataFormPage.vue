@@ -7,18 +7,18 @@
             <v-layout :class="`pa-1 `+ (vsd.rtl ? 'rtl':'')">
               <v-flex :class="`pa-1 `  + (vsd.rtl ? `text-right` : `text-left`)">
               <span class="px-1">
-                <v-icon class="mx-1">{{headerIcon || icon || 'edit'}}</v-icon>
-                {{title}}
+                <v-icon class="mx-1">{{ headerIcon || icon || 'edit' }}</v-icon>
+                {{ title }}
               </span>
               </v-flex>
               <v-flex :class="`pa-1 ` + (vsd.rtl ? `text-left` : `text-right`)">
                 <v-btn v-if="showBack!==false" small color="white" class="mx-2  warning--text" :to="backUrl">
                   <v-icon class="mx-1">backspace</v-icon>
-                  {{$t("back")}}
+                  {{ $t("back") }}
                 </v-btn>
                 <v-btn :disabled="!validity" class="px-5 mx-2 success--text" small color="white" @click="save">
                   <v-icon class="mx-1">save</v-icon>
-                  {{$t("save")}}
+                  {{ $t("save") }}
                 </v-btn>
               </v-flex>
             </v-layout>
@@ -27,18 +27,18 @@
             <v-layout wrap row class="pa-1">
               <v-flex class="pa-1 text-right">
                 <v-subheader>
-                  <v-icon class="mx-1">{{headerIcon || 'edit'}}</v-icon>
-                  {{title}}
+                  <v-icon class="mx-1">{{ headerIcon || 'edit' }}</v-icon>
+                  {{ title }}
                 </v-subheader>
               </v-flex>
               <v-flex :class="`pa-1 ` + (vsd.rtl ? `text-left` : `text-right`)">
                 <v-btn v-if="showBack!==false" small color="warning" class="mx-4" :to="back">
                   <v-icon class="mx-1">backspace</v-icon>
-                  {{$t("back")}}
+                  {{ $t("back") }}
                 </v-btn>
                 <v-btn class="px-5" small color="success" @click="save">
                   <v-icon class="mx-1">save</v-icon>
-                  {{$t("save")}}
+                  {{ $t("save") }}
                 </v-btn>
               </v-flex>
             </v-layout>
@@ -58,7 +58,7 @@
               <v-flex xs12 class="pa-1 text-left">
                 <v-btn :disabled="!validity" small color="success" @click="save">
                   <v-icon class="mx-1">save</v-icon>
-                  {{_.get(btn,'text',$t("save"))}}
+                  {{ _.get(btn, 'text', $t("save")) }}
                 </v-btn>
               </v-flex>
             </v-layout>
@@ -87,8 +87,8 @@
               class="mx-1" v-for="btn in _.get(config,'btns',[]) " :key="btn.text" large
               :color="_.get(btn,'color','success')"
               @click="doAction(btn)">
-              <v-icon class="mx-1">{{_.get(btn,'icon','save')}}</v-icon>
-              {{_.get(btn,'text',$t("save"))}}
+              <v-icon class="mx-1">{{ _.get(btn, 'icon', 'save') }}</v-icon>
+              {{ _.get(btn, 'text', $t("save")) }}
             </v-btn>
           </v-flex>
         </v-layout>
@@ -98,27 +98,27 @@
 </template>
 
 <i18n>
-  {
-  "en":{
-  "problem_id":"Id not found",
-  "back":"back",
-  "save":"save",
-  "success":"done",
-  "":""
+{
+  "en": {
+    "problem_id": "Id not found",
+    "back": "back",
+    "save": "save",
+    "success": "done",
+    "": ""
   },
-  "fa":{
-  "problem_id":"مشکلی در پیدا کردن شناسه رخ داد",
-  "back":"برگشت",
-  "save":"ذخیره",
-  "success":"با موفقیت ذخیره شد"
+  "fa": {
+    "problem_id": "مشکلی در پیدا کردن شناسه رخ داد",
+    "back": "برگشت",
+    "save": "ذخیره",
+    "success": "با موفقیت ذخیره شد"
   }
-  }
+}
 </i18n>
 <script>
-  import formHelper from './FormHelper';
+import formHelper from './FormHelper';
 
-  export default {
-    props: ['value', 'id'],
-    mixins: [formHelper]
-  }
+export default {
+  props: ['value', 'id'],
+  mixins: [formHelper]
+}
 </script>
