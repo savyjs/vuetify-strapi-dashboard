@@ -37,3 +37,6 @@ there is a lot of elements that make it easy to create flexible and advanced CRU
 - advanced report maker
 - advanced search system
 - ...
+
+## support 
+please support us with your feedback and please click on [Star](https://github.com/savyjs/vuetify-strapi-dashboard) button.
