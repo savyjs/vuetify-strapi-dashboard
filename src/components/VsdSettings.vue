@@ -15,22 +15,12 @@
        offset-x
      >
 
-
       <v-card>
 
         <v-list>
          <v-list-item to="/admin/system/profile/edit">
            <v-list-item-title>ویرایش پروفایل مدیر</v-list-item-title>
          </v-list-item>
-           <v-list-item to="/admin/gardesh/settings">
-           <v-list-item-title>تنظیمات کلی سایت</v-list-item-title>
-           </v-list-item>
-             <v-list-item to="/admin/server">
-             <v-list-item-title>تنظیمات سرور</v-list-item-title>
-             </v-list-item>
-         <v-list-item to="/admin/about-software">
-           <v-list-item-title>وضعیت نرم افزار</v-list-item-title>
-          </v-list-item>
         </v-list>
 
         <v-card-actions>
@@ -42,8 +32,9 @@
 
   </span>
 </template>
+
 <script>
-  const envName = process.env.envName;
+  const envName = process.env.envName || 'system';
   export default {
     data() {
       return {

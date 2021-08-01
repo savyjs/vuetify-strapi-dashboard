@@ -4,6 +4,7 @@
 [![nuxt vuetify strapi dashboard](http://vsd.savyjs.com/banner.png)](https://vsd.savyjs.com)
 
 - [Documentation](http://vsd.savyjs.com)
+- [Install](http://vsd.savyjs.com/setup/setup)
 
 ### advanced dashboard 
 - CRUD system (with report and search)
@@ -36,6 +37,8 @@ there is a lot of elements that make it easy to create flexible and advanced CRU
 - advanced filters
 - advanced report maker
 - advanced search system
+- automatic breadcrumb
+- notification panel
 - ...
 
 ## support 

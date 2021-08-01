@@ -1,6 +1,5 @@
 <template>
   <span class="text-center mx-2">
-
      <v-menu
        v-model="menu"
        :close-on-content-click="false"
@@ -17,7 +16,6 @@
           <v-icon color="white">account_circle</v-icon>
           </v-btn>
        </template>
-
         <v-list>
          <v-list-item>
              <v-list-item-avatar size="45">

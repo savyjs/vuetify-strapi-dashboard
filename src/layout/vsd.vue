@@ -4,8 +4,43 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title style="cursor: pointer" @click="$router.push('/admin')">{{ $t("dashboard") }}</v-toolbar-title>
       <v-spacer></v-spacer>
+      <span class="text-center mx-2">
+        <template v-for="item in navbarMenu">
+        <v-menu
+          v-if="_.isArray(_.get(item,'items',null))"
+          :close-on-content-click="false"
+          :nudge-width="200"
+          offset-x
+        >
+          <template v-slot:activator="{ on }">
+          <v-btn
+            fab
+            icon
+            :to="item.link"
+            :target="_.get(item,'target',undefined)"
+          >
+          <v-icon color="white">{{ _.get(item, 'icon', '') }}</v-icon>
+          </v-btn>
+          </template>
+        <v-list>
+         <v-list-item v-for="subItem in _.get(item,'items',null)" :to="_.get(subItem,'link',undefined)">
+           <v-list-item-title>{{ _.get(subItem, 'title', '') }}</v-list-item-title>
+         </v-list-item>
+        </v-list>
+    </v-menu>
+          <v-btn
+            v-else
+            fab
+            icon
+            :to="item.link"
+            :target="_.get(item,'target',undefined)"
+          >
+          <v-icon color="white">{{ _.get(item, 'icon', '') }}</v-icon>
+          </v-btn>
+          </template>
+  </span>
       <VsdNotifications v-if="showNotifications"/>
-      <VsdSettings/>
+      <VsdSettings v-if="showSettings"/>
       <VsdAccount/>
     </v-app-bar>
 
@@ -58,14 +93,13 @@
         </v-list-item>
       </v-list>
       <vsd-side-menu :items="items"/>
-
     </v-navigation-drawer>
     <v-main style="background-color: rgba(0,0,0,.04)">
       <v-container>
         <VsdBreadcrumb/>
         <VsdAlert/>
         <VsdAccessAlert @setAccess="setAccess"/>
-        <nuxt v-if="hasAccess" />
+        <nuxt v-if="hasAccess"/>
         <Vsdloader/>
         <VsdSnackbar/>
       </v-container>
@@ -128,6 +162,9 @@ export default {
     showNotifications() {
       return !!_.get(this.vsd, 'notifications.show', false)
     },
+    showSettings() {
+      return !!_.get(this.vsd, 'settings.show', false)
+    },
     defaultPhoto() {
       return _.get(this, 'vsd.config.DEFAULT_PHOTO', [])
     },
@@ -144,12 +181,23 @@ export default {
     },
     user() {
       return this.$auth.user
+    },
+    navbarMenu() {
+      return _.get(this, 'vsd.menu.NAVBAR', {})
     }
   },
   methods: {
     setAccess(val) {
       this.hasAccess = val;
-    }
+    },
+    isAllowedMenu(item) {
+      if (_.has(item, 'permission')) {
+        let permission = item.permission;
+        return this.$can(permission);
+      } else {
+        return true;
+      }
+    },
   },
   mounted() {
     this.items = _.get(this, 'vsd.menu.ADMIN_DRAWER', [])
