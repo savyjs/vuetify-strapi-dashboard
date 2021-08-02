@@ -1,12 +1,19 @@
 <template>
   <v-container>
     <v-card elevation="5" :loading="loading">
-      <v-card-header align="center" justify="center" margin-right="1%" width="98%" margin-left="1%" classes="pr-2">
+      <vsd-v-card-header
+        color="purple"
+        align="center"
+        justify="center"
+        margin-right="1%"
+        width="98%"
+        margin-left="1%"
+        classes="pr-2">
         <h3 class="text-center">
           <v-icon>lock</v-icon>
           {{$t("logout")}}
         </h3>
-      </v-card-header>
+      </vsd-v-card-header>
       <v-card-text style="height: 250px;align-items:center;text-align: center">
         <v-row class="text-center full" style="justify-content: center;text-align: center; align-content: center;">
           <v-col sm="8" xs="12" md="5">
@@ -36,7 +43,6 @@
   }}
 </i18n>
 <script>
-  // import VCardHeader from "~/components/admin/ui/VCardHeader";
 
   export default {
     name: 'VsdLogout',
