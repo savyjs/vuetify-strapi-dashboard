@@ -104,7 +104,6 @@
       }
     },
     async mounted() {
-      this.enableForget = _.get(this, 'vsd.ENABLE_FORGET', false);
       this.has2FAenabled = _.get(this, 'vsd.ENABLE_2FA', false);
       this.showPassword = _.get(this, 'vsd.SHOW_PASSWORD', true);
       try {
