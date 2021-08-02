@@ -45,7 +45,6 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
       settings: {}, // fields in settings page
       menu: {},
       validations: {},
-      notifications: null,
       ...moduleOptions
     }
 
