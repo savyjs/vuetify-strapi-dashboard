@@ -42,7 +42,7 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
       apiShowHelper: {},
       apiFormHelper: {},
       config: {}, // config of vsd
-      settings: {}, // fields in settings page
+      settings: {}, // fields in setting page
       menu: {},
       validations: {},
       ...moduleOptions

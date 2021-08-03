@@ -126,7 +126,7 @@
     },
     methods: {
       clearToken() {
-        this.$auth.logout();
+        this.$auth.clearToken();
         try {
           this.$strapi.clearToken();
         } catch (e) {
