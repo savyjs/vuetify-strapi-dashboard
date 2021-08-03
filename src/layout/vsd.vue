@@ -23,7 +23,7 @@
           </v-btn>
           </template>
         <v-list>
-         <v-list-item v-for="subItem in _.get(item,'items',null)" :to="_.get(subItem,'link',undefined)">
+         <v-list-item v-for="(subItem,i) in _.get(item,'items',null)" :to="_.get(subItem,'link',undefined)" :key="i">
            <v-list-item-title>{{ _.get(subItem, 'title', '') }}</v-list-item-title>
          </v-list-item>
         </v-list>
