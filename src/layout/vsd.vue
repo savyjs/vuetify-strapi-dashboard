@@ -129,6 +129,7 @@
 import _ from 'lodash'
 
 const SYSTEM_LOGO = _.get(process.env, 'LOGO', require('vuetify-strapi-dashboard/src/assets/vsd.png')); // process.env.SYSTEM_LOGO;
+const TITLE = _.get(process.env, 'TITLE', undefined); // process.env.SYSTEM_LOGO;
 const SHOW_USER = process.env.SHOW_USER;
 const SINGLE_TITLE = process.env.SINGLE_TITLE;
 const FOOTER_TITLE = process.env.FOOTER_TITLE;
@@ -137,9 +138,9 @@ const VERSION = _.get(process.env, 'version', "0.66");
 
 export default {
   head() {
-    return {
-      titleTemplate: '%s - ' + process.env.title,
-    }
+    return TITLE ? {
+      titleTemplate: '%s - ' + TITLE,
+    } : {}
   },
   created() {
     this._ = _;
