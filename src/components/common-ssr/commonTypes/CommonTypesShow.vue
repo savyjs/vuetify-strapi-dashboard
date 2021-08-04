@@ -272,7 +272,7 @@
       loadData() {
         if (_.has(this.field, 'store', undefined)) {
           let name = _.get(this.field, 'store', null);
-          let response = this.$store.dispatch(`${name}`, name);
+          let response = this.$store.dispatch(`commonSelect/${name}`, name);
         } else if (_.has(this.field, 'server', undefined)) {
           this.$store.dispatch(`commonSelect/server`, this.field);
         }
