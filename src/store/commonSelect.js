@@ -21,7 +21,7 @@ export default {
     updateRoles(state, data) {
       let roles = _.cloneDeep(_.get(data, 'roles', []));
       _.forEach(roles, (item) => {
-        state.roles.push({value: item.id, id: item.id, text: item.name})
+        state.roles.push({value: item.id, id: item.id, text: item.name, name: item.name})
       })
     },
     updateServer(state, {res, field}) {
