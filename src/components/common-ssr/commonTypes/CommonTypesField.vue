@@ -344,8 +344,9 @@ export default {
     loadData() {
       if (_.has(this.field, 'store', undefined)) {
         let name = _.get(this.field, 'store', null);
+        let isCustomStore = !!(name.search('.') || name.search('/'))
         try {
-          let response = this.$store.dispatch(`commonSelect/${name}`, name);
+          let response = isCustomStore ? this.$store.dispatch(`${name.replace('.', '/')}`, name) : this.$store.dispatch(`commonSelect/${name}`, name);
           if (typeof response.then === 'function') {
             response.then((res) => {
               this.data = res;
