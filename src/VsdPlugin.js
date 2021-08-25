@@ -4,6 +4,7 @@ import moduleOptions from './options'
 import JsonExcel from "vue-json-excel";
 import Helper from './assets/helper'
 import CommonStore from './store/common'
+import VsdStore from './store/vsd'
 import Navigation from './store/navigation'
 import CommonSelectStore from './store/commonSelect'
 import * as components from "./components/component-vsd";
@@ -58,6 +59,7 @@ export default async (ctx, inject) => {
   try {
     ctx.store.registerModule('navigation', Navigation)
     ctx.store.registerModule('common', CommonStore)
+    ctx.store.registerModule('vsd', VsdStore)
     ctx.store.registerModule('commonSelect', CommonSelectStore)
   } catch (e) {
     console.error({e}, 'error on loading store files')

@@ -1,6 +1,6 @@
 <template>
-  <v-app dark>
-    <v-app-bar dark color="blue darken-3" elevation="1" app>
+  <v-app>
+    <v-app-bar elevation="1" app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title style="cursor: pointer" @click="$router.push('/admin')">{{ $t("dashboard") }}</v-toolbar-title>
       <v-spacer></v-spacer>
@@ -19,7 +19,7 @@
             :to="item.link"
             :target="_.get(item,'target',undefined)"
           >
-          <v-icon color="white">{{ _.get(item, 'icon', '') }}</v-icon>
+          <v-icon>{{ _.get(item, 'icon', '') }}</v-icon>
           </v-btn>
           </template>
         <v-list>
@@ -43,8 +43,9 @@
       <VsdSettings v-if="showSettings"/>
       <VsdAccount/>
     </v-app-bar>
-
-    <v-navigation-drawer class="drawer" color="white" v-model="drawer" fixed :right="isRTL" :temporary="isMobile" app>
+    <v-navigation-drawer
+      class="drawer"
+      v-model="drawer" fixed :right="isRTL" :temporary="isMobile" app>
       <v-list style="display: flex;flex-wrap: wrap;" dense>
         <v-list-item>
           <v-row>
@@ -58,13 +59,21 @@
                   />
                 </v-avatar>
               </v-col>
-              <v-col cols="7" class="pt-0 mt-0">
+              <v-col cols="6" class="pt-0 mt-0">
                 <v-list-item-content>
                   <v-list-item-title class="pt-5">
                     <small> {{ $t("control_panel") }} </small>
                     <p><b>{{ SINGLE_TITLE }}</b></p>
                   </v-list-item-title>
                 </v-list-item-content>
+              </v-col>
+              <v-col cols="1">
+                <v-btn v-if="!nightMode" fab icon class="mt-1" small @click="nightMode=true">
+                  <v-icon>brightness_4</v-icon>
+                </v-btn>
+                <v-btn v-if="nightMode" icon fab class="mt-1" small @click="nightMode=false">
+                  <v-icon>brightness_high</v-icon>
+                </v-btn>
               </v-col>
             </template>
             <template v-if="SHOW_USER == 'true'">
@@ -104,7 +113,7 @@
         <VsdSnackbar/>
       </v-container>
     </v-main>
-    <v-footer app color="blue darken-4" dark class="py-0" inset>
+    <v-footer app class="py-0" inset>
       <v-btn x-small outlined class="mb-1 mx-1 pa-1 mt-1 white--text font-10">{{ FOOTER_TITLE || 'VSD' }} {{ VERSION }}
       </v-btn>
     </v-footer>
@@ -160,6 +169,14 @@ export default {
     }
   },
   computed: {
+    nightMode: {
+      get() {
+        return _.get(this.$store.state, 'vsd.nightMode', true)
+      },
+      set(val) {
+        this.$store.commit('vsd/setNightMode', {status: val, $vuetify: this.$vuetify});
+      }
+    },
     showNotifications() {
       return !!_.get(this.vsd, 'notifications.show', false)
     },

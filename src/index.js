@@ -161,6 +161,12 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
     })
 
     this.addTemplate({
+      fileName: 'store/vsd.js',
+      src: path.resolve(__dirname, 'store/vsd.js'),
+      options
+    })
+
+    this.addTemplate({
       fileName: 'store/navigation.js',
       src: path.resolve(__dirname, 'store/navigation.js'),
       options
