@@ -1,15 +1,15 @@
 <template>
-  <v-list >
-    <v-list-item >
-      <v-text-field  v-model="search"
-                     outlined append-icon="search" dense clearable
+  <v-list>
+    <v-list-item>
+      <v-text-field v-model="search"
+                    outlined append-icon="search" dense clearable
                     :placeholder="$t('search')"></v-text-field>
     </v-list-item>
     <template v-if="!showLoader" v-for="(menuItem, i) in getItems">
       <template v-if="isAllowedMenu(menuItem)">
         <v-list-item v-if="!_.has(menuItem,'items[0]') " :to="menuItem.link">
           <v-list-item-icon class="mx-1">
-            <v-icon color="primary" size="15">{{ menuItem.icon }}</v-icon>
+            <v-icon size="15">{{ menuItem.icon }}</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title><b class="font-13">{{ capitalize($t(menuItem.title)) }}</b>
@@ -19,9 +19,9 @@
         <v-list-group v-else>
           <template v-slot:activator>
             <v-list-item-icon class="mx-1">
-              <v-icon color="primary" size="15">{{ menuItem.icon }}</v-icon>
+              <v-icon size="15">{{ menuItem.icon }}</v-icon>
             </v-list-item-icon>
-            <v-list-item-title color="accent"><b class="font-13">{{ capitalize($t(menuItem.title)) }}</b>
+            <v-list-item-title><b class="font-13">{{ capitalize($t(menuItem.title)) }}</b>
             </v-list-item-title>
           </template>
           <template v-for="(item, i) in menuItem.items" v-if="isAllowedMenu(item)">
@@ -32,7 +32,7 @@
               exact
             >
               <v-list-item-icon v-show="false">
-                <v-icon class="font-18 mx-0" color="primary">{{ _.get(item, 'icon', '') }}</v-icon>
+                <v-icon class="font-18 mx-0">{{ _.get(item, 'icon', '') }}</v-icon>
               </v-list-item-icon>
               <v-list-item-content>
                 <v-list-item-title class="font-12 mr-5" v-text="capitalize($t(_.get(item,'title','')))"/>

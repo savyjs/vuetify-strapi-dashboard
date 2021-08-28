@@ -111,8 +111,11 @@
   <span v-else-if="_.includes(['dateTime'],type)">
     {{showDate(data,'YYYY-M-D hh:mm')}}
   </span>
-  <span v-else-if="_.includes(['jdate','jDateTime'],type)">
-    {{data}}
+  <span v-else-if="_.includes(['jdate'],type)">
+    {{ $Helper.isValidShamsi(data) ? data : showDate(data,'jYYYY/jM/jD')}}
+  </span>
+  <span v-else-if="_.includes(['jDateTime'],type)">
+    {{$Helper.isValidShamsi(data) ? data : showDate(data,'jYYYY/jM/jD h:mm')}}
   </span>
   <span v-else-if="_.includes(['linearCrud','crud'],type)">
     <v-data-table
@@ -151,160 +154,161 @@
 </template>
 
 <i18n>
-  {
+{
   "en":{
-  "view":"view",
-  "report":"report",
-  "image":"image",
-  "no_image":"no image",
-  "$":"$",
-  "empty":"empty",
-  "no_result":"no result"
+    "view":"view",
+    "report":"report",
+    "image":"image",
+    "no_image":"no image",
+    "$":"$",
+    "empty":"empty",
+    "no_result":"no result"
   },
   "fa":{
-  "view":"مشاهده",
-  "report":"گزارش",
-  "image":"تصویر",
-  "no_image":"بدون تصویر",
-  "$":"ریال",
-  "empty":"خالی",
-  "no_result":"بدون نتیجه"
+    "view":"مشاهده",
+    "report":"گزارش",
+    "image":"تصویر",
+    "no_image":"بدون تصویر",
+    "$":"ریال",
+    "empty":"خالی",
+    "no_result":"بدون نتیجه"
   }
-  }
+}
 </i18n>
 <script>
 
-  import _ from 'lodash'
+import _ from 'lodash'
 
-  /**
-   * @value: any - this property value
-   * @type: String - this property type - image bool text rich ...
-   * @item: Object - all properties of item
-   * @field: Object - filed properties
-   * */
-  export default {
-    name: 'CommonTypesShow',
-    props: ['value', 'type', 'id', 'field', 'fields', 'item', 'main', 'place'],
+/**
+ * @value: any - this property value
+ * @type: String - this property type - image bool text rich ...
+ * @item: Object - all properties of item
+ * @field: Object - filed properties
+ * */
+export default {
+  name: 'CommonTypesShow',
+  props: ['value', 'type', 'id', 'field', 'fields', 'item', 'main', 'place'],
+  data() {
+    return {
+      rotation: 0,
+      modalImg: false,
+    }
+  },
+  computed: {
+    baseURL() {
+      return this.vsd.API_URL;
+    },
+    getId() {
+      if (this.id) return this.id;
+      let idPath = _.get(this.main, 'idPath', 'id');
+      let value = _.get(this.item, idPath, undefined);
+      return value;
+    },
     data() {
-      return {
-        rotation: 0,
-        modalImg: false,
-      }
-    },
-    computed: {
-      baseURL() {
-        return this.vsd.API_URL;
-      },
-      getId() {
-        if (this.id) return this.id;
-        let idPath = _.get(this.main, 'idPath', 'id');
-        let value = _.get(this.item, idPath, undefined);
-        return value;
-      },
-      data() {
-        if (_.includes(['custom'], this.type)) return this.value;
-        let data = _.has(this.field, 'meta.text') ? _.get(this.value, this.field.meta.text) : this.value;
-        data = _.has(this.field, 'meta.path') ? _.get(this.value, this.field.meta.path) : this.value;
-        if (_.includes(['image'], this.type)) {
-          if (_.has(data, 'url')) {
-            return this.$apiURL + _.get(data, 'url', '');
-          } else if (_.get(this.field, 'meta.base64', false)) {
-            return data || _.get(this.field, 'defaultValue', '');
-          }
-          return data;
+      if (_.includes(['custom'], this.type)) return this.value;
+      let data = _.has(this.field, 'meta.text') ? _.get(this.value, this.field.meta.text) : this.value;
+      data = _.has(this.field, 'meta.path') ? _.get(this.value, this.field.meta.path) : this.value;
+      if (_.includes(['image'], this.type)) {
+        if (_.has(data, 'url')) {
+          return this.$apiURL + _.get(data, 'url', '');
+        } else if (_.get(this.field, 'meta.base64', false)) {
+          return data || _.get(this.field, 'defaultValue', '');
         }
-
-        if (_.includes(['linearCrud', 'crud'], this.type)) {
-          data = (_.isArray(data)) ? data : [];
-          return data;
-        }
-        data = _.has(data, 'title') ? data.title : data;
-        if (_.includes(['text', 'number'], this.type)) {
-          data = _.isArray(data) ? data.toString() : data;
-        }
-        data = data === undefined ? '' : data;
-        data = (_.get(this.field, 'isPrice', false) && _.get(this.field, 'type', 'number') != 'price') ? (this.$Helper.numberFormat(data) + this.$t("$")) : data;
-
         return data;
-      },
-      enumValue() {
-        let value = this.data;
-        let list = _.get(this.field, 'meta', []);
-        let index = _.findKey(list, {value});
-        return _.get(list, `[${index}].text`, value)
-      },
-      selectValue() {
-        let value = this.data;
-        let isMulti = _.get(this.field, 'multiple', _.get(this.field, 'multi', false));
-        let hasStore = _.get(this.field, 'store', undefined);
-        if (hasStore || _.has(this.field, 'server')) {
-          this.loadData();
-        }
-        let list = hasStore ? _.get(this.$store.state.commonSelect, _.get(this.field, 'store', _.get(this.$store.state.commonSelect, _.get(this.field, 'server', []))), []) : [];
-        let valuePath = _.get(this.field, 'path', isMulti ? undefined : _.get(this.field, 'meta.text', 'name'));
-        if (isMulti) {
-          let items = valuePath ? _.get(value, valuePath, []) : value;
-          let response = [];
-          let textPath = _.get(this.field, 'meta.text', undefined);
-          console.log({isMulti,valuePath,value,textPath,items})
-          return _.map(items, (item, index) => {
-            let text = _.get(item, textPath, item);
-            return (text);
-          }).toString()
-        } else {
-          let finalValue = _.get(value, valuePath, _.get(value, 'id', value));
-          if (hasStore) {
-            let index = _.findKey(list, {value: finalValue});
-            return _.get(list, `[${index}].text`, finalValue)
-          } else {
-            return finalValue
-          }
-        }
       }
+
+      if (_.includes(['linearCrud', 'crud'], this.type)) {
+        data = (_.isArray(data)) ? data : [];
+        return data;
+      }
+      data = _.has(data, 'title') ? data.title : data;
+      if (_.includes(['text', 'number'], this.type)) {
+        data = _.isArray(data) ? data.toString() : data;
+      }
+      data = data === undefined ? '' : data;
+      data = (_.get(this.field, 'isPrice', false) && _.get(this.field, 'type', 'number') != 'price') ? (this.$Helper.numberFormat(data) + this.$t("$")) : data;
+
+      return data;
     },
-    created() {
-      this._ = _;
+    enumValue() {
+      let value = this.data;
+      let list = _.get(this.field, 'meta', []);
+      let index = _.findKey(list, {value});
+      return _.get(list, `[${index}].text`, value)
     },
-    methods: {
-      showDate(data, format = 'YYYY/M/D') {
-        return _.get(this, 'vsd.locale', undefined) === 'fa-ir' ? this.$Helper.toJalaali(data) : this.$Helper.toJalaali(data, format);
-      },
-      loadData() {
-        if (_.has(this.field, 'store', undefined)) {
-          let name = _.get(this.field, 'store', null);
-          let response = this.$store.dispatch(`commonSelect/${name}`, name);
-        } else if (_.has(this.field, 'server', undefined)) {
-          this.$store.dispatch(`commonSelect/server`, this.field);
+    selectValue() {
+      let value = this.data;
+      let isMulti = _.get(this.field, 'multiple', _.get(this.field, 'multi', false));
+      let hasStore = _.get(this.field, 'store', undefined);
+      if (hasStore || _.has(this.field, 'server')) {
+        this.loadData();
+      }
+      let list = hasStore ? _.get(this.$store.state.commonSelect, _.get(this.field, 'store', _.get(this.$store.state.commonSelect, _.get(this.field, 'server', []))), []) : [];
+      let valuePath = _.get(this.field, 'path', isMulti ? undefined : _.get(this.field, 'meta.text', 'name'));
+      if (isMulti) {
+        let items = valuePath ? _.get(value, valuePath, []) : value;
+        let response = [];
+        let textPath = _.get(this.field, 'meta.text', undefined);
+        console.log({isMulti,valuePath,value,textPath,items})
+        return _.map(items, (item, index) => {
+          let text = _.get(item, textPath, item);
+          return (text);
+        }).toString()
+      } else {
+        let finalValue = _.get(value, valuePath, _.get(value, 'id', value));
+        if (hasStore) {
+          let index = _.findKey(list, {value: finalValue});
+          return _.get(list, `[${index}].text`, finalValue)
+        } else {
+          return finalValue
         }
-      },
-      rotatePhoto(deg) {
-        this.rotation += deg;
-      },
-      getField(header) {
-        return 'item.' + header.value;
-      },
-      update(value) {
-        let name = _.get(this.field, 'emit', _.get(this.field, 'value', undefined));
-        let id = this.getId;
-        if (this.field.edit !== undefined && name) {
-          this.$emit('update', id, name, value)
-        }
-      },
-      reload() {
-        this.$emit('reload', true)
-      },
-      openModal() {
-        this.modalImg = true;
       }
     }
+  },
+  created() {
+    this._ = _;
+  },
+  methods: {
+    showDate(data, format = undefined) {
+      if(!format) format = _.get(this.field,'meta','YYYY/M/D');
+      return _.get(this, 'vsd.locale', undefined) === 'fa-ir' ? this.$Helper.toJalaali(data) : this.$Helper.toJalaali(data, format);
+    },
+    loadData() {
+      if (_.has(this.field, 'store', undefined)) {
+        let name = _.get(this.field, 'store', null);
+        let response = this.$store.dispatch(`commonSelect/${name}`, name);
+      } else if (_.has(this.field, 'server', undefined)) {
+        this.$store.dispatch(`commonSelect/server`, this.field);
+      }
+    },
+    rotatePhoto(deg) {
+      this.rotation += deg;
+    },
+    getField(header) {
+      return 'item.' + header.value;
+    },
+    update(value) {
+      let name = _.get(this.field, 'emit', _.get(this.field, 'value', undefined));
+      let id = this.getId;
+      if (this.field.edit !== undefined && name) {
+        this.$emit('update', id, name, value)
+      }
+    },
+    reload() {
+      this.$emit('reload', true)
+    },
+    openModal() {
+      this.modalImg = true;
+    }
   }
+}
 </script>
 <style>
-  .positionRelative {
-    position: relative;
-  }
+.positionRelative {
+  position: relative;
+}
 
-  .originCenter {
-    transform-origin: center;
-  }
+.originCenter {
+  transform-origin: center;
+}
 </style>

@@ -51,6 +51,9 @@ export default {
   combineDateTime(date, time = '00:00:00') {
     return moment(date + ' ' + time, 'YYYY-MM-DD HH:mm').format("YYYY-MM-DDTHH:mm:ss") + "Z";
   },
+  isValidShamsi(date) {
+    return moment(date , 'jYYYY/jM/jD h:mm').isValid();
+  },
   getTime(datetime) {
     return moment.utc(datetime, 'YYYY-MM-DDTHH:mm:ssZ').format("HH:mm");
   },
