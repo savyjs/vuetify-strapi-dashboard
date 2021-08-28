@@ -6,7 +6,7 @@
           icon
           :to="`/admin/${envName}/settings`"
         >
-          <v-icon color="white">settings</v-icon>
+          <v-icon>settings</v-icon>
           </v-btn>
   </span>
 </template>

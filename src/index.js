@@ -22,6 +22,7 @@ export default async function VuetifyStrapiDashboardModule(moduleOptions) {
 
     let options = {
       rtl: false,
+      nightModeToggle: true,
       i18n: true,
       builder: {
         form: '/forms',

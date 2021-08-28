@@ -8,7 +8,7 @@
           small
           @click="menu=!menu"
         >
-          <v-icon color="white">notifications</v-icon>
+          <v-icon>notifications</v-icon>
           </v-btn>
      <v-menu
        v-model="menu"

@@ -7,13 +7,10 @@ export default {
     }
   },
   mutations: {
-    setNightMode(state, {status = null, $vuetify}) {
+    setNightMode(state, {status = null, $vuetify, $auth}) {
       $vuetify.theme.dark = state.nightMode = (status == null ? state.nightMode = !state.nightMode : (state.nightMode = !!status));
+      $auth.$storage.setUniversal('nightMode', !!state.nightMode)
     }
   },
-  actions: {
-    toggleNightMode: function ({commit}) {
-      commit('updateNightMode');
-    }
-  }
+  actions: {}
 }

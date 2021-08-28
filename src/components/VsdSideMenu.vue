@@ -43,7 +43,6 @@
       </template>
     </template>
     <v-skeleton-loader
-      :dark="nightMode"
       v-else
       :loading="showLoader"
       height="30"
@@ -117,14 +116,6 @@ export default {
     },
   },
   computed: {
-    nightMode: {
-      get() {
-        return _.get(this.$store.state, 'vsd.nightMode', true)
-      },
-      set(val) {
-        this.$store.commit('vsd/setNightMode', {status: val, $vuetify: this.$vuetify});
-      }
-    },
     showLoader() {
       return this.$store.state.navigation.loading;
     },

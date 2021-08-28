@@ -13,7 +13,7 @@
            icon
            @click="menu=!menu"
          >
-          <v-icon color="white">account_circle</v-icon>
+          <v-icon>account_circle</v-icon>
           </v-btn>
        </template>
         <v-list>
