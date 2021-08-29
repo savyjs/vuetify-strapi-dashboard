@@ -144,7 +144,7 @@ const SHOW_USER = process.env.SHOW_USER;
 const SINGLE_TITLE = process.env.SINGLE_TITLE;
 const FOOTER_TITLE = process.env.FOOTER_TITLE;
 const envName = process.env.envName;
-const VERSION = _.get(process.env, 'version', "0.66");
+const VERSION = _.get(process.env, 'VERSION', "0.80");
 
 export default {
   head() {
