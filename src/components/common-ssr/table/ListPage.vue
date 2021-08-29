@@ -26,12 +26,14 @@
               {{ $t("download_excel") }}
             </v-btn>
           </download-excel>
-          <v-btn :title="$t('refresh')" fab icon v-if="_.get(value,'refresh',true)" small class="success--text mx-1"
+          <v-btn :title="$t('refresh')" fab icon v-if="_.get(value,'refresh',true)" small
+                 class="mx-1"
                  color="white"
                  @click="loadData({},{})">
             <v-icon>refresh</v-icon>
           </v-btn>
-          <v-btn :title="$t('previous')" fab icon v-if="_.get(value,'backBtn',true)" small class="success--text mx-1"
+          <v-btn :title="$t('previous')" fab icon v-if="_.get(value,'backBtn',true)" small
+                 class="mx-1"
                  color="white"
                  @click="$router.go(-1)">
             <v-icon>keyboard_backspace</v-icon>
