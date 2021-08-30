@@ -59,7 +59,7 @@
               </v-card-text>
               <v-card-actions>
                 <v-btn
-                  color="green darken-1"
+                  color="info darken-1"
                   text
                   @click="dialog = false"
                 >
@@ -68,7 +68,6 @@
                 <v-spacer></v-spacer>
                 <v-btn
                   color="warning darken-1"
-                  outlined
                   @click="logout"
                 >
                   {{ $t('logout') }}
@@ -96,6 +95,7 @@
     "my_profile": "پروفایل کاربری",
     "permission_denied": "شما دسترسی لازم را ندارید!",
     "error": "خطا",
+    "close": "بستن",
     "logout": "خروج",
     "sure": "بله می خواهم خارج شوم",
     "quit_alert": "آیا مطمئنید که می خواهید از سایت خارج شوید؟"
@@ -129,11 +129,15 @@ export default {
   },
   methods: {
     logout() {
-      this.menu = false;
-      this.dialog = false;
-      this.loading = true;
-      this.$strapi.logout();
-      this.$auth.reset();
+      try {
+        this.menu = false;
+        this.dialog = false;
+        this.loading = true;
+        this.$auth.reset();
+        this.$strapi.logout();
+      } catch (e) {
+        console.warn(e)
+      }
       this.$router.push('/')
     }
   }
