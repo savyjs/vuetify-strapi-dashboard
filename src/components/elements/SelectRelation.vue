@@ -37,7 +37,7 @@ export default {
     loadData() {
       if (_.has(this.field, 'store', undefined)) {
         let name = _.get(this.field, 'store', null);
-        let isCustomStore = !!(name.search('.') || name.search('/'))
+        let isCustomStore = (name.split('.').length > 1 || name.split('/').length > 1)
         try {
           isCustomStore ? this.$store.dispatch(`${name.replace('.', '/')}`, name) : this.$store.dispatch(`commonSelect/${name}`, name);
         } catch (e) {
@@ -45,7 +45,7 @@ export default {
         }
       } else if (_.has(this.field, 'server', undefined)) {
         let name = _.get(this.field, 'server', null);
-        let isCustomStore = !!(name.search('.') || name.search('/'))
+        let isCustomStore = (name.split('.').length > 1 || name.split('/').length > 1)
         try {
           isCustomStore ? this.$store.dispatch(name.replace('.', '/'), this.field) : this.$store.dispatch(`commonSelect/server`, this.field);
         } catch (e) {
@@ -57,11 +57,11 @@ export default {
     selectItems() {
       if (_.has(this.field, 'store', undefined)) {
         let name = _.get(this.field, 'store', null);
-        let isCustomStore = !!(name.search('.') || name.search('/'))
+        let isCustomStore = (name.split('.').length > 1 || name.split('/').length > 1)
         return !isCustomStore ? _.get(this.$store.state, `commonSelect.${name}`, []) : _.get(this.$store.state, name.replace('/', '.'), []);
       } else if (_.has(this.field, 'server', undefined)) {
         let name = _.get(this.field, 'server', null);
-        let isCustomStore = !!(name.search('.') || name.search('/'))
+        let isCustomStore = (name.split('.').length > 1 || name.split('/').length > 1)
         return isCustomStore ? _.get(this.$store.state, `${name.replace('/', '.')}`, []) : this.$store.state.commonSelect.server[name] || []
       }
     }
