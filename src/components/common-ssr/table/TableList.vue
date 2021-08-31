@@ -56,7 +56,7 @@
       <!-- value = name of field !-->
       <template v-for="field in getTableFields" #[getField(field)]="{header,value,item}">
         <small>
-          <common-types-show v-model="value" :field="header" :item="item" :fields="fields"
+          <common-types-show @reload="reload" v-model="value" :field="header" :item="item" :fields="fields"
                              :type="header.type"/>
         </small>
       </template>

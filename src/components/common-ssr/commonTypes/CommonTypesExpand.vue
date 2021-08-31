@@ -9,7 +9,8 @@
   </div>
   <div v-else>
     <span v-if="_.get(field,'text',null)">{{ field.text }}: </span>
-    <common-types-show :item="item" v-if="field" :field="field" :fields="fields" :type="type" v-model="value"/>
+    <common-types-show @realod="reload" :item="item" v-if="field" :field="field" :fields="fields" :type="type"
+                       v-model="value"/>
   </div>
 </template>
 <script>
@@ -32,6 +33,9 @@ export default {
     this._ = _;
   },
   methods: {
+    reload(val) {
+      this.$emit('reload', val);
+    },
     toggle(value) {
       let name = _.get(this.field, 'value', undefined);
       let id = _.get(this.item, 'id', undefined);
