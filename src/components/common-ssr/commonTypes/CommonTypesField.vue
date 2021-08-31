@@ -206,6 +206,7 @@
       :type="type"
       :formData="formData"
       @updateFormData="updateFormData"
+      @reload="reload"
       :label="label"
       :icon="icon"
       :field="field"></component>
@@ -340,6 +341,9 @@ export default {
   methods: {
     updateFormData(val) {
       this.$emit('updateFormData', val);
+    },
+    reload(val) {
+      this.$emit('reload', val);
     },
     loadData() {
       if (_.has(this.field, 'store', undefined)) {
