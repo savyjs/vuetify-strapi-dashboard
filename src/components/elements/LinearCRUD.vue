@@ -78,7 +78,7 @@
             <!-- value = name of field !-->
             <template v-for="field in headers" #[getField(field)]="{header,value,item}">
               <small>
-                <common-types-show v-model="value" :field="header" :type="header.type"/>
+                <common-types-show v-model="value" @reload="reload" :field="header" :type="header.type"/>
               </small>
             </template>
             <template v-slot:item.actions="{ item }">
@@ -106,151 +106,152 @@
   </div>
 </template>
 <i18n>
-  {
+{
   "en":{
-  "operation":"Operation",
-  "search":"search",
-  "close":"close",
-  "new":"close",
-  "confirmation":"are you sure?",
-  "edit":"close",
-  "reload":"reload",
-  "value":"value",
-  "save":"save",
-  "empty":"empty",
-  "name":"name",
-  "new":"new item",
-  "close":"close"
+    "operation":"Operation",
+    "search":"search",
+    "close":"close",
+    "new":"close",
+    "confirmation":"are you sure?",
+    "edit":"close",
+    "reload":"reload",
+    "value":"value",
+    "save":"save",
+    "empty":"empty",
+    "name":"name",
+    "new":"new item",
+    "close":"close"
   },
   "fa":{
-  "operation":"عملیات",
-  "search":"جست و جو",
-  "close":"لغو",
-  "new":"جدید",
-  "confirmation":"آیا مطمئن هستید که می خواهید این مورد را حذف کنید؟",
-  "empty":"هنوز موردی اضافه نشده است",
-  "edit":"ویرایش",
-  "reload":"بازنشانی",
-  "value":"مقدار",
-  "save":"ذخیره",
-  "name":"نام",
-  "new":"گزینه جدید",
-  "close":"بستن"
+    "operation":"عملیات",
+    "search":"جست و جو",
+    "close":"لغو",
+    "new":"جدید",
+    "confirmation":"آیا مطمئن هستید که می خواهید این مورد را حذف کنید؟",
+    "empty":"هنوز موردی اضافه نشده است",
+    "edit":"ویرایش",
+    "reload":"بازنشانی",
+    "value":"مقدار",
+    "save":"ذخیره",
+    "name":"نام",
+    "new":"گزینه جدید",
+    "close":"بستن"
   }
-  }
+}
 </i18n>
 <script>
-  import _ from 'lodash';
+import _ from 'lodash';
 
-  export default {
-    props: ['label', 'value', 'field'],
-    data() {
-      return {
-        showNewRow: true,
-        dialog: false,
-        search: '',
-        mainDialog: false,
-        items: [],
-        editedIndex: -1,
-        addItems: [0],
-        editedItem: {},
-        defaultItem: {},
-      }
-    },
-    created() {
-      this._ = _;
-    },
-    mounted() {
-      this.items = _.isArray(this.value) ? this.value : [];
-    },
-    computed:
-      {
-        defaultHeaders() {
-          return [
-            {
-              text: this.$t('name'),
-              align: 'start',
-              sortable: false,
-              value: 'name',
-            },
-            {text: this.$t('value'), value: 'value', align: 'center'},
-            {text: this.$t('operation'), value: 'actions', align: 'left', sortable: false},
-          ]
-        },
-        headers() {
-          return _.has(this.field, 'meta') ? [...this.field.meta, {
-            text: $t("operation"),
-            value: 'actions',
-            align: 'left',
-            sortable: false
-          }] : this.defaultHeaders;
-        },
-        formTitle() {
-          return this.editedIndex === -1 ? this.$t('new') : this.$t('edit')
-        },
-        type() {
-          return this.editedIndex === -1 ? 'create' : 'edit'
-        },
-        help() {
-          return _.get(this.field, 'help', null);
-        },
-      },
-    watch: {
-      dialog(val) {
-        val || this.close()
-      },
-      items: {
-        handler(val) {
-          this.$emit('input', val)
-        },
-        deep: true
-      }
-    },
-    created() {
-      this.initialize()
-    },
-    methods: {
-      getField(header) {
-        return 'item.' + header.value;
-      },
-      addNewRow() {
-        this.addItems.push(this.addItems.length);
-      },
-      removeLast() {
-        this.addItems.pop();
-      },
-      initialize() {
-        this.items = _.get(this, 'value', []) || []
-      },
-      editItem(item) {
-        this.editedIndex = this.items.indexOf(item)
-        this.editedItem = item;
-      },
-      deleteItem(item) {
-        const index = this.items.indexOf(item)
-        confirm(this.$t('confirmation')) && this.items.splice(index, 1)
-      },
-      close() {
-        this.editedItem = {};
-        this.editedIndex = -1;
-        this.showNewRow = false;
-        setTimeout(() => {
-          this.showNewRow = true;
-        }, 1000);
-      },
-      save() {
-        if (this.editedIndex > -1) {
-          this.items[this.editedIndex] = this.editedItem;
-        } else {
-          this.items.push(this.editedItem)
-        }
-        this.close()
-      },
+export default {
+  props: ['label', 'value', 'field'],
+  data() {
+    return {
+      showNewRow: true,
+      dialog: false,
+      search: '',
+      mainDialog: false,
+      items: [],
+      editedIndex: -1,
+      addItems: [0],
+      editedItem: {},
+      defaultItem: {},
     }
+  },
+  mounted() {
+    this.items = _.isArray(this.value) ? this.value : [];
+  },
+  computed:
+    {
+      defaultHeaders() {
+        return [
+          {
+            text: this.$t('name'),
+            align: 'start',
+            sortable: false,
+            value: 'name',
+          },
+          {text: this.$t('value'), value: 'value', align: 'center'},
+          {text: this.$t('operation'), value: 'actions', align: 'left', sortable: false},
+        ]
+      },
+      headers() {
+        return _.has(this.field, 'meta') ? [...this.field.meta, {
+          text: $t("operation"),
+          value: 'actions',
+          align: 'left',
+          sortable: false
+        }] : this.defaultHeaders;
+      },
+      formTitle() {
+        return this.editedIndex === -1 ? this.$t('new') : this.$t('edit')
+      },
+      type() {
+        return this.editedIndex === -1 ? 'create' : 'edit'
+      },
+      help() {
+        return _.get(this.field, 'help', null);
+      },
+    },
+  watch: {
+    dialog(val) {
+      val || this.close()
+    },
+    items: {
+      handler(val) {
+        this.$emit('input', val)
+      },
+      deep: true
+    }
+  },
+  created() {
+    this._ = _;
+    this.initialize()
+  },
+  methods: {
+    reload(data){
+      this.$emit('reload');
+    },
+    getField(header) {
+      return 'item.' + header.value;
+    },
+    addNewRow() {
+      this.addItems.push(this.addItems.length);
+    },
+    removeLast() {
+      this.addItems.pop();
+    },
+    initialize() {
+      this.items = _.get(this, 'value', []) || []
+    },
+    editItem(item) {
+      this.editedIndex = this.items.indexOf(item)
+      this.editedItem = item;
+    },
+    deleteItem(item) {
+      const index = this.items.indexOf(item)
+      confirm(this.$t('confirmation')) && this.items.splice(index, 1)
+    },
+    close() {
+      this.editedItem = {};
+      this.editedIndex = -1;
+      this.showNewRow = false;
+      setTimeout(() => {
+        this.showNewRow = true;
+      }, 1000);
+    },
+    save() {
+      if (this.editedIndex > -1) {
+        this.items[this.editedIndex] = this.editedItem;
+      } else {
+        this.items.push(this.editedItem)
+      }
+      this.close()
+    },
   }
+}
 </script>
 <style>
-  .linearCRUDFields {
-    font-size: 10px !important;
-  }
+.linearCRUDFields {
+  font-size: 10px !important;
+}
 </style>

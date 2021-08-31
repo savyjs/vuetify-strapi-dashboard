@@ -14,7 +14,7 @@
     <v-img v-else-if="_.get(data,'url','') && _.startsWith(_.get(data,'mime',''),'image')" contain
            :src="baseURL + _.get(data,'url','')"/>
     <v-btn small v-else :to="baseURL + _.get(data,'url','')">
-           {{ _.get(data,'name','') }}
+           {{ _.get(data, 'name', '') }}
     </v-btn>
   </span>
   <span v-else-if="_.includes(['audio'],type)" class="pa-2">
@@ -39,7 +39,7 @@
         <v-card-title>
           <span>
             <v-icon>photo</v-icon>
-            {{$t('view')}}
+            {{ $t('view') }}
             </span>
           <v-spacer/>
           <v-btn fab color="error" @click="modalImg=false" small><v-icon x-small>close</v-icon></v-btn>
@@ -75,7 +75,7 @@
       :src="data"
       contain
     />
-    <span v-else>{{$t("no_image")}}</span>
+    <span v-else>{{ $t("no_image") }}</span>
   </span>
   <span v-else-if="_.includes(['bool'],type)">
     <v-icon dense color="success" v-if="data===true">check</v-icon>
@@ -88,34 +88,34 @@
     <BoolBtn :field="field" v-model="data" @update="update"/>
   </span>
   <span v-else-if="_.includes(['price'],type)">
-    {{$Helper.numberFormat(data)}} {{$t("$")}}
+    {{ $Helper.numberFormat(data) }} {{ $t("$") }}
   </span>
   <span v-else-if="_.includes(['combobox'],type)">
-    {{data}}
+    {{ data }}
   </span>
   <span v-else-if="_.includes(['number'],type)">
-    {{$Helper.numberFormat(data)}}
+    {{ $Helper.numberFormat(data) }}
   </span>
   <span v-else-if="_.includes(['enum'],type)">
-    {{enumValue}}
+    {{ enumValue }}
   </span>
   <span v-else-if="_.includes(['select'],type)">
-    {{selectValue}}
+    {{ selectValue }}
   </span>
   <span v-else-if="_.includes(['icons'],type)">
-    <v-icon :class="data" />
+    <v-icon :class="data"/>
   </span>
   <span v-else-if="_.includes(['date'],type)">
-    {{showDate(data)}}
+    {{ showDate(data) }}
   </span>
   <span v-else-if="_.includes(['dateTime'],type)">
-    {{showDate(data,'YYYY-M-D hh:mm')}}
+    {{ showDate(data, 'YYYY-M-D hh:mm') }}
   </span>
   <span v-else-if="_.includes(['jdate'],type)">
-    {{ $Helper.isValidShamsi(data) ? data : showDate(data,'jYYYY/jM/jD')}}
+    {{ $Helper.isValidShamsi(data) ? data : showDate(data, 'jYYYY/jM/jD') }}
   </span>
   <span v-else-if="_.includes(['jDateTime'],type)">
-    {{$Helper.isValidShamsi(data) ? data : showDate(data,'jYYYY/jM/jD h:mm')}}
+    {{ $Helper.isValidShamsi(data) ? data : showDate(data, 'jYYYY/jM/jD h:mm') }}
   </span>
   <span v-else-if="_.includes(['linearCrud','crud'],type)">
     <v-data-table
@@ -132,7 +132,7 @@
     >
       <template v-for="subField in _.get(field,'meta',[])" #[getField(subField)]="{header,value,item}">
         <small>
-          <common-types-show v-model="value" :field="header" :type="header.type"/>
+          <common-types-show v-model="value" @reload="reload" :field="header" :type="header.type"/>
         </small>
       </template>
     </v-data-table>
@@ -149,29 +149,29 @@
       :field="field"></component>
   </span>
   <span v-else>
-    {{data}}
+    {{ data }}
   </span>
 </template>
 
 <i18n>
 {
-  "en":{
-    "view":"view",
-    "report":"report",
-    "image":"image",
-    "no_image":"no image",
-    "$":"$",
-    "empty":"empty",
-    "no_result":"no result"
+  "en": {
+    "view": "view",
+    "report": "report",
+    "image": "image",
+    "no_image": "no image",
+    "$": "$",
+    "empty": "empty",
+    "no_result": "no result"
   },
-  "fa":{
-    "view":"مشاهده",
-    "report":"گزارش",
-    "image":"تصویر",
-    "no_image":"بدون تصویر",
-    "$":"ریال",
-    "empty":"خالی",
-    "no_result":"بدون نتیجه"
+  "fa": {
+    "view": "مشاهده",
+    "report": "گزارش",
+    "image": "تصویر",
+    "no_image": "بدون تصویر",
+    "$": "ریال",
+    "empty": "خالی",
+    "no_result": "بدون نتیجه"
   }
 }
 </i18n>
@@ -249,7 +249,7 @@ export default {
         let items = valuePath ? _.get(value, valuePath, []) : value;
         let response = [];
         let textPath = _.get(this.field, 'meta.text', undefined);
-        console.log({isMulti,valuePath,value,textPath,items})
+        console.log({isMulti, valuePath, value, textPath, items})
         return _.map(items, (item, index) => {
           let text = _.get(item, textPath, item);
           return (text);
@@ -270,7 +270,7 @@ export default {
   },
   methods: {
     showDate(data, format = undefined) {
-      if(!format) format = _.get(this.field,'meta','YYYY/M/D');
+      if (!format) format = _.get(this.field, 'meta', 'YYYY/M/D');
       return _.get(this, 'vsd.locale', undefined) === 'fa-ir' ? this.$Helper.toJalaali(data) : this.$Helper.toJalaali(data, format);
     },
     loadData() {
