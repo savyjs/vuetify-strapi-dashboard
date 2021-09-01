@@ -1,7 +1,7 @@
 <template>
-  <v-container v-if="$nuxt.isOffline">
-    <v-alert v-if="!canSeeThisPage" type="warning">
-      {{ $t("offline") }} <span>{{ loadingBars }}</span>
+  <v-container>
+    <v-alert v-show="$nuxt.isOffline" dense type="warning" outlined dismissible>
+      <div class="full text-center">{{ $t("offline") }} <span class="mx-1">{{ loadingDots }}</span></div>
     </v-alert>
   </v-container>
 </template>
@@ -9,10 +9,10 @@
 <i18n>
 {
   "en": {
-    "offline": "permission denied"
+    "offline": "can not connect to server"
   },
   "fa": {
-    "offline": "شما دسترسی لازم را ندارید!"
+    "offline": "دسترسی به سرور قطع شده است"
   }
 }
 </i18n>
@@ -56,10 +56,10 @@ export default {
   async mounted() {
     window.setInterval(() => {
       if (this.loadingDots.length > 3)
-        this.loadingDots = "";
+        this.loadingDots = ".";
       else
         this.loadingDots += ".";
-    }, 100);
+    }, 1000);
 
     // console.log('can see page:', this.$route.path, this.canSeeThisPage)
     this.$store.commit('navigation/updateLoading', true);
