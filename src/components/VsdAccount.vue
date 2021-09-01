@@ -8,6 +8,7 @@
      >
        <template v-slot:activator="{ on }">
          <v-btn
+           :color="color"
            text
            fab
            icon
@@ -107,6 +108,7 @@ import _ from 'lodash'
 
 
 export default {
+  props: ['color'],
   components: {},
   data() {
     return {
