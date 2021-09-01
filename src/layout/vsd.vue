@@ -1,8 +1,11 @@
 <template>
   <v-app>
-    <v-app-bar dark color="appbar" elevation="1" app>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title style="cursor: pointer" @click="$router.push('/admin')">{{ $t("dashboard") }}</v-toolbar-title>
+    <v-app-bar color="appbar" elevation="1" app>
+      <v-app-bar-nav-icon color="appbartext" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-toolbar-title color="appbartext" style="cursor: pointer" @click="$router.push('/admin')">{{
+          $t("dashboard")
+        }}
+      </v-toolbar-title>
       <v-spacer></v-spacer>
       <span class="text-center mx-2">
         <template v-for="item in navbarMenu">
@@ -14,6 +17,7 @@
         >
           <template v-slot:activator="{ on }">
           <v-btn
+            color="appbartext"
             fab
             icon
             :to="item.link"
@@ -24,24 +28,26 @@
           </template>
         <v-list>
          <v-list-item v-for="(subItem,i) in _.get(item,'items',null)" :to="_.get(subItem,'link',undefined)" :key="i">
-           <v-list-item-title>{{ _.get(subItem, 'title', '') }}</v-list-item-title>
+           <v-list-item-title color="appbartext">{{ _.get(subItem, 'title', '') }}</v-list-item-title>
          </v-list-item>
         </v-list>
     </v-menu>
           <v-btn
+            color="appbartext"
             v-else
             fab
             icon
             :to="item.link"
             :target="_.get(item,'target',undefined)"
           >
-          <v-icon>{{ _.get(item, 'icon', '') }}</v-icon>
+          <v-icon
+            color="appbartext">{{ _.get(item, 'icon', '') }}</v-icon>
           </v-btn>
           </template>
   </span>
-      <VsdNotifications v-if="showNotifications"/>
-      <VsdSettings v-if="showSettings"/>
-      <VsdAccount/>
+      <VsdNotifications color="appbartext" v-if="showNotifications"/>
+      <VsdSettings color="appbartext" v-if="showSettings"/>
+      <VsdAccount color="appbartext"/>
     </v-app-bar>
     <v-navigation-drawer
       color="drawer"
@@ -114,8 +120,9 @@
         <VsdSnackbar/>
       </v-container>
     </v-main>
-    <v-footer color="appbar" dark app class="py-0" inset>
-      <v-btn x-small outlined class="mb-1 mx-1 pa-1 mt-1 white--text font-10">{{ FOOTER_TITLE || 'VSD' }} {{ VERSION }}
+    <v-footer color="appbar" app class="py-0" inset>
+      <v-btn x-small outlined color="appbartext" class="mb-1 mx-1 pa-1 mt-1 font-10">{{ FOOTER_TITLE || 'VSD' }}
+        {{ VERSION }}
       </v-btn>
     </v-footer>
   </v-app>
