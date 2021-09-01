@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar color="appbar" elevation="1" app>
+    <v-app-bar dark color="appbar" elevation="1" app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title style="cursor: pointer" @click="$router.push('/admin')">{{ $t("dashboard") }}</v-toolbar-title>
       <v-spacer></v-spacer>
