@@ -115,6 +115,7 @@
         <VsdBreadcrumb/>
         <VsdAlert/>
         <VsdAccessAlert @setAccess="setAccess"/>
+        <VsdCheckOnline />
         <nuxt v-if="hasAccess"/>
         <Vsdloader/>
         <VsdSnackbar/>

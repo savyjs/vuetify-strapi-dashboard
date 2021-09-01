@@ -1,3 +1,4 @@
+import VsdCheckOnline from './VsdCheckOnline'
 import VsdAccessAlert from './VsdAccessAlert'
 import VsdNotifications from './VsdNotifications'
 import VsdAlert from './VsdAlert'
@@ -105,6 +106,7 @@ export default {
   VsdBreadcrumb,
   VsdAlert,
   VsdAccessAlert,
+  VsdCheckOnline,
   ProcessListPage,
   ProcessShowPage,
   ShowGroups,
