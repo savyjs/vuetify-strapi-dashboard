@@ -2,7 +2,7 @@
   <v-app>
     <v-app-bar color="appbar" elevation="1" app>
       <v-app-bar-nav-icon color="appbartext" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title color="appbartext" style="cursor: pointer" @click="$router.push('/admin')">{{
+      <v-toolbar-title color="appbartext" class="appbartext--text" style="cursor: pointer" @click="$router.push('/admin')">{{
           $t("dashboard")
         }}
       </v-toolbar-title>
@@ -51,7 +51,7 @@
     </v-app-bar>
     <v-navigation-drawer
       color="drawer"
-      class="drawer"
+      class="drawertext--text"
       v-model="drawer" fixed :right="isRTL" :temporary="isMobile" app>
       <v-list style="display: flex;flex-wrap: wrap;" dense>
         <v-list-item>
@@ -68,17 +68,17 @@
               </v-col>
               <v-col cols="6" class="pt-0 mt-0">
                 <v-list-item-content>
-                  <v-list-item-title class="pt-5">
+                  <v-list-item-title class="pt-5 drawertext--text">
                     <small> {{ $t("control_panel") }} </small>
                     <p><b>{{ SINGLE_TITLE }}</b></p>
                   </v-list-item-title>
                 </v-list-item-content>
               </v-col>
               <v-col cols="1" v-if="nightModeToggle">
-                <v-btn v-if="!nightMode" fab icon class="mt-1" small @click="nightMode=true">
+                <v-btn v-if="!nightMode" fab icon class="mt-1 drawertext--text" small @click="nightMode=true">
                   <v-icon>brightness_4</v-icon>
                 </v-btn>
-                <v-btn v-if="nightMode" icon fab class="mt-1" small @click="nightMode=false">
+                <v-btn v-if="nightMode" icon fab class="mt-1 drawertext--text" small @click="nightMode=false">
                   <v-icon>brightness_high</v-icon>
                 </v-btn>
               </v-col>
@@ -98,7 +98,7 @@
               </v-col>
               <v-col cols="9" class="pt-0 mt-0">
                 <v-list-item-content>
-                  <v-list-item-title>
+                  <v-list-item-title class="drawertext--text">
                     <p>{{ _.get(user, 'role.name', 'user') }}</p>
                     <small>{{ _.get(user, 'username', 'name') }} ، welcome</small>
                   </v-list-item-title>
