@@ -4,7 +4,6 @@
     :color="color"
     bottom
     app
-    absolute
     left
     :multi-line="_.get(text,'length',10) > 70"
     :timeout="timeout"
