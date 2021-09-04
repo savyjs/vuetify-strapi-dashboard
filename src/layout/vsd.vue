@@ -2,7 +2,8 @@
   <v-app>
     <v-app-bar color="appbar" elevation="1" app>
       <v-app-bar-nav-icon color="appbartext" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title color="appbartext" class="appbartext--text" style="cursor: pointer" @click="$router.push('/admin')">{{
+      <v-toolbar-title color="appbartext" class="appbartext--text" style="cursor: pointer"
+                       @click="$router.push('/admin')">{{
           $t("dashboard")
         }}
       </v-toolbar-title>
@@ -31,20 +32,21 @@
            <v-list-item-title color="appbartext">{{ _.get(subItem, 'title', '') }}</v-list-item-title>
          </v-list-item>
         </v-list>
-    </v-menu>
+        </v-menu>
           <v-btn
             color="appbartext"
             v-else
             fab
             icon
-            :to="item.link"
+            :to="_.startsWith(item.link,'http') ? undefined : item.link"
+            :href="!_.startsWith(item.link,'http') ? undefined : item.link"
             :target="_.get(item,'target',undefined)"
           >
           <v-icon
             color="appbartext">{{ _.get(item, 'icon', '') }}</v-icon>
           </v-btn>
           </template>
-  </span>
+      </span>
       <VsdNotifications color="appbartext" v-if="showNotifications"/>
       <VsdSettings color="appbartext" v-if="showSettings"/>
       <VsdAccount color="appbartext"/>
@@ -115,7 +117,7 @@
         <VsdBreadcrumb/>
         <VsdAlert/>
         <VsdAccessAlert @setAccess="setAccess"/>
-        <VsdCheckOnline v-if="$nuxt.isOffline" />
+        <VsdCheckOnline v-if="$nuxt.isOffline"/>
         <nuxt v-if="hasAccess"/>
         <Vsdloader/>
         <VsdSnackbar/>
