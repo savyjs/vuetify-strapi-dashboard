@@ -238,10 +238,16 @@
       eager
       :width="_.get(main,'popWidth',700)"
     >
-      <pop-up @update="update" @reload="reload" :main="main" :id="_.get(poppedItem,'id',undefined)"
-              :fields="fields"
-              @closeIt="popupStatus=false" v-if="popupStatus"
-              v-model="poppedItem"/>
+      <pop-up
+        @update="update"
+        @reload="reload"
+        :main="main"
+        :id="_.get(poppedItem,'id',undefined)"
+        :fields="fields"
+        @closeIt="popupStatus=false"
+        v-if="popupStatus"
+        v-model="poppedItem"
+      />
     </v-dialog>
   </div>
 </template>
@@ -407,6 +413,16 @@ export default {
     },
     reload(input) {
       this.$emit('reload', input);
+      if (this.popupStatus) {
+        this.loader = false;
+        this.$axios.$get(this.resource + '/' + _.get(this.poppedItem, 'id', undefined)).then(res => {
+          if (res) {
+            this.poppedItem = res;
+          }
+        }).finally(() => {
+          this.loader = false;
+        })
+      }
     }
   },
 }

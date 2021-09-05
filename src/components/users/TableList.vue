@@ -14,7 +14,6 @@
       :footer-props="{
       showFirstLastPage: true,
       showCurrentPage: true,
-
     }"
     >
       <template v-slot:footer.page-text="{text}">
@@ -28,7 +27,7 @@
         </v-row>
       </template>
       <template v-slot:item.created_at="{ item }">
-        {{$Helper.toJalaali(item.created_at)}}
+        {{ $Helper.toJalaali(item.created_at) }}
       </template>
       <template v-slot:expanded-item="{ headers, item }">
         <td :colspan="headers.length">
@@ -120,56 +119,56 @@
 </template>
 
 <script>
-  import PopUp from "./PopUp";
+import PopUp from "./PopUp";
 
-  export default {
-    components: {PopUp},
-    props: ['items', 'search', 'length', 'options', 'loading', 'name', 'headers', 'resource'],
-    data() {
-      return {
-        popupStatus: false,
-        poppedItem: {},
-        selected: [],
-        updateRowValue: [],
+export default {
+  components: {PopUp},
+  props: ['items', 'search', 'length', 'options', 'loading', 'name', 'headers', 'resource'],
+  data() {
+    return {
+      popupStatus: false,
+      poppedItem: {},
+      selected: [],
+      updateRowValue: [],
+    }
+  },
+  computed: {
+    totalPages() {
+      return (1 + parseInt(this.length / _.get(this.options, 'itemsPerPage', 1)));
+    },
+    doOptions: {
+      get() {
+        return this.options
+      },
+      set(val) {
+        return this.$emit('options', val)
       }
     },
-    computed: {
-      totalPages() {
-        return (1 + parseInt(this.length / _.get(this.options, 'itemsPerPage', 1)));
-      },
-      doOptions: {
-        get() {
-          return this.options
-        },
-        set(val) {
-          return this.$emit('options', val)
-        }
-      },
-      totalItems() {
-        return this.items.length || 0
-      }
+    totalItems() {
+      return this.items.length || 0
+    }
+  },
+  watch: {
+    selected(val) {
+      this.$emit('selected', val)
+    }
+  },
+  mounted() {
+  },
+  methods: {
+    popUp(item) {
+      this.poppedItem = item;
+      this.popupStatus = true;
     },
-    watch: {
-      selected(val) {
-        this.$emit('selected', val)
-      }
+    deleteItem(id) {
+      this.$emit('deleteItem', id);
     },
-    mounted() {
+    toggleBlock(id, newStatus) {
+      this.$emit('toggleBlock', id, newStatus);
     },
-    methods: {
-      popUp(item) {
-        this.poppedItem = item;
-        this.popupStatus = true;
-      },
-      deleteItem(id) {
-        this.$emit('deleteItem', id);
-      },
-      toggleBlock(id, newStatus) {
-        this.$emit('toggleBlock', id, newStatus);
-      },
-      updateRow(id, propertyName, newVal) {
-        this.$emit('updateRow', id, propertyName, newVal);
-      }
-    },
-  }
+    updateRow(id, propertyName, newVal) {
+      this.$emit('updateRow', id, propertyName, newVal);
+    }
+  },
+}
 </script>

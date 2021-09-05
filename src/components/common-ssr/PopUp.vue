@@ -99,7 +99,9 @@
         return true;
       },
       reload() {
+
         this.$emit('reload', true);
+
       },
       update(id, property, val) {
         if (id && property) {
