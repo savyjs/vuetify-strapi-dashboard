@@ -109,13 +109,13 @@
     {{ showDate(data) }}
   </span>
   <span v-else-if="_.includes(['dateTime'],type)">
-    {{ showDate(data, 'YYYY-M-D hh:mm') }}
+    {{ showDate(data, 'YYYY-M-D HH:mm') }}
   </span>
   <span v-else-if="_.includes(['jdate'],type)">
     {{ $Helper.isValidShamsi(data) ? data : showDate(data, 'jYYYY/jM/jD') }}
   </span>
   <span v-else-if="_.includes(['jDateTime'],type)">
-    {{ $Helper.isValidShamsi(data) ? data : showDate(data, 'jYYYY/jM/jD h:mm') }}
+    {{ $Helper.isValidShamsi(data) ? data : showDate(data, 'jYYYY/jM/jD HH:mm') }}
   </span>
   <span v-else-if="_.includes(['linearCrud','crud'],type)">
     <v-data-table

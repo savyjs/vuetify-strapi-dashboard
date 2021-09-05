@@ -67,8 +67,8 @@ export default {
   goToPay(amount, type = 'charge') {
     return '/payment/pay?amount=' + amount + '&type=' + type;
   },
-  toJalaali(date, toFormat = 'jYYYY/jM/jD h:mm') {
-    var m = moment(date, 'YYYY/M/D h:mm');
+  toJalaali(date, toFormat = 'jYYYY/jM/jD HH:mm') {
+    var m = moment(date, 'YYYY/M/D HH:mm');
     return date ? m.format(toFormat) : date;
   },
   getPersianMask() {
