@@ -17,8 +17,9 @@ export default {
         this.loader = false;
       })
     },
-    save(show = false) {
+    save() {
       this.loader = true;
+      let show = _.get(this, 'redirectAfterSave', false);
       let id = _.get(this.formData, 'id', undefined);
       let response;
       if (id) {
