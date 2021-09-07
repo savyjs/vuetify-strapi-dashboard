@@ -14,6 +14,7 @@
           :formData="formData"
           :field="field"
           @updateFormData="updateFormData"
+          @reload="reload"
           :type="field.type"
           v-model="formData[field.value]"
         ></CommonTypesField>
@@ -56,8 +57,12 @@ export default {
     updateFormData(val) {
       this.formData = {...this.formData, ...val};
     },
+    reload(val) {
+      this.$emit('reload', val)
+    },
     save() {
       this.$emit('input', this.formData)
+
       this.$emit('save', this.formData)
     },
   }

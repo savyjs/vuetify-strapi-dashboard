@@ -146,7 +146,8 @@
       v-model="data"
       :main="main"
       :place="place || 'show'"
-      :field="field"></component>
+      :field="field"
+    />
   </span>
   <span v-else>
     {{ data }}

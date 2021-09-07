@@ -76,6 +76,7 @@
           name="name"
           title="title"
           v-model="formData"
+          @reload="loadData"
           @save="save"
         />
       </v-card-text>
