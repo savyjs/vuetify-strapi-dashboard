@@ -153,16 +153,19 @@ export default {
       let token;
       try {
         token = await this.$recaptcha.execute('login')
+
       } catch (e) {
         console.error({e})
       }
-      if (!token) {
+
+      if (this.$recaptcha && !token) {
         return this.$swal({
           type: 'error',
           title: this.$t('error'),
           text: this.$t("recaptcha_error")
         })
       }
+
       if (this.username.length < 1 || this.password.length < 6) {
         return this.$swal({
           type: 'error',
