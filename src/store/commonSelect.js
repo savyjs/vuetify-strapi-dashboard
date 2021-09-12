@@ -27,10 +27,13 @@ export default {
     updateServer(state, {res, field}) {
       state.server[field.server] = [];
       _.forEach(res, (item) => {
-        state.server[field.server].push({
+        let obj = {
           value: _.get(item, _.get(field, 'meta.value', 'id'), '-'),
           text: _.get(item, _.get(field, 'meta.text', 'name'), '-')
-        })
+        };
+        obj[_.get(field, 'meta.value', 'value')] = _.get(item, _.get(field, 'meta.value', 'id'), '');
+        obj[_.get(field, 'meta.text', 'text')] = _.get(item, _.get(field, 'meta.text', 'id'), '');
+        state.server[field.server].push(obj)
       })
     },
     updateCategories(state, data) {
