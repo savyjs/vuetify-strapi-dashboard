@@ -244,7 +244,7 @@ export default {
       if (hasStore || _.has(this.field, 'server')) {
         this.loadData();
       }
-      let isCustomStore = (hasStore.split('.').length > 1 || hasStore.split('/').length > 1)
+      let isCustomStore = hasStore ? (hasStore.split('.').length > 1 || hasStore.split('/').length > 1) : false;
       let list = hasStore ? isCustomStore ? _.get(this.$store.state, this.field.store.replace('/', '.'), []) : (_.get(this.$store.state.commonSelect, _.get(this.field, 'store', _.get(this.$store.state.commonSelect, _.get(this.field, 'server', []))), [])) : [];
       let valuePath = _.get(this.field, 'path', isMulti ? undefined : _.get(this.field, 'meta.text', 'name'));
       if (isMulti) {

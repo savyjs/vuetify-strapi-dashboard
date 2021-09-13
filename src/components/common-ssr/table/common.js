@@ -46,7 +46,9 @@ export default {
       this.fields = (_.has(this, 'fields') && _.isArray(this.fields)) ? {...this.fields, ...this.Fields} : {...this.Fields};
     }
     if (_.isArray(this.fields) && !_.includes(this.fields, defaultActions) && _.get(this, 'defaultActions', false)) {
-      let hasActions = this.fields.findIndex((item)=>{_.get(item,'value',_.get(item,'text','')) == 'actions'});
+      let hasActions = this.fields.findIndex((item) => {
+        _.get(item, 'value', _.get(item, 'text', '')) == 'actions'
+      });
       if (!hasActions) this.fields.push(defaultActions);
     }
   },
@@ -142,8 +144,9 @@ export default {
       if (hasStore || _.has(field, 'server')) {
         this.loadSelectData();
       }
-      let list = hasStore ? _.get(this.$store.state.commonSelect, _.get(field, 'store', []), []) : [];
-      let valuePath = _.get(field, 'path', isMulti ? undefined : _.get(field, 'meta.text', 'name'));
+      let isCustomStore = hasStore ? (hasStore.split('.').length > 1 || hasStore.split('/').length > 1) : false;
+      let list = hasStore ? isCustomStore ? _.get(this.$store.state, field.store.replace('/', '.'), []) : (_.get(this.$store.state.commonSelect, _.get(field, 'store', _.get(this.$store.state.commonSelect, _.get(field, 'server', []))), [])) : [];
+      let valuePath = _.get(this.field, 'path', isMulti ? undefined : _.get(this.field, 'meta.text', 'name'));
       if (isMulti) {
         let items = valuePath ? _.get(value, valuePath, []) : value;
         let response = [];
