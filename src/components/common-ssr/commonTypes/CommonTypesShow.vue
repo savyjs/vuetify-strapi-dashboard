@@ -109,13 +109,13 @@
     {{ showDate(data) }}
   </span>
   <span v-else-if="_.includes(['dateTime'],type)">
-    {{ showDate(data, 'YYYY-M-D HH:mm') }}
+    {{ showDateTime(data) }}
   </span>
   <span v-else-if="_.includes(['jdate'],type)">
     {{ $Helper.isValidShamsi(data) ? data : showDate(data, 'jYYYY/jM/jD') }}
   </span>
   <span v-else-if="_.includes(['jDateTime'],type)">
-    {{ $Helper.isValidShamsi(data) ? data : showDate(data, 'jYYYY/jM/jD HH:mm') }}
+    {{ $Helper.isValidShamsi(data) ? data : showDateTime(data, 'jYYYY/jM/jD HH:mm') }}
   </span>
   <span v-else-if="_.includes(['linearCrud','crud'],type)">
     <v-data-table
@@ -272,8 +272,14 @@ export default {
   },
   methods: {
     showDate(data, format = undefined) {
-      if (!format) format = _.get(this.field, 'meta', 'YYYY/M/D');
-      return _.get(this, 'vsd.locale', undefined) === 'fa-ir' ? this.$Helper.toJalaali(data) : this.$Helper.toJalaali(data, format);
+      let toJalali = !!_.get(this.field, 'jalali', _.get(this, 'vsd.locale', undefined) === 'fa-ir');
+      if (!format) format = _.get(this.field, 'meta', toJalali ? 'jYYYY/jM/jD' : 'YYYY/M/D');
+      return this.$Helper.toJalaali(data, format);
+    },
+    showDateTime(data, format = undefined) {
+      let toJalali = !!_.get(this.field, 'jalali', _.get(this, 'vsd.locale', undefined) === 'fa-ir');
+      if (!format) format = _.get(this.field, 'meta', toJalali ? 'jYYYY/jM/jD HH:mm' : 'YYYY/M/D HH:mm');
+      return this.$Helper.toJalaali(data, format);
     },
     loadData() {
       if (_.has(this.field, 'store', undefined)) {
