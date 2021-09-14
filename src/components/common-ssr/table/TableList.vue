@@ -157,7 +157,7 @@
         </td>
       </template>
       <template v-slot:item.actions="{ item }">
-        <div style="width: 150px">
+        <div>
           <v-tooltip bottom v-if="hasBtn('next')">
             <template v-slot:activator="{ on, attrs }">
               <v-btn v-on="on" x-small v-if="hasBtn('next',false)" fab icon x-small
