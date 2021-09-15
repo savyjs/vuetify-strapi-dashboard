@@ -1,13 +1,17 @@
 <template>
   <section>
     <v-container grid-list-lg>
-      <v-card class="my-1">
-        <vsd-v-card-header :color="_.get(value,'color','primary')" margin-right="1%" width="98%"
+      <v-card>
+        <vsd-v-card-header margin-top="0"
+                           margin-bottom="0"
+                           :color="_.get(value,'color','primary')"
+                           margin-right="1%"
+                           width="98%"
                            :class="`px-3 `+ (vsd.rtl ? 'rtl':'')">
-          <h3 class="pr-5">
-            <v-icon class="mx-1">{{ headerIcon || _.get(value, 'icon', 'archive') }}</v-icon>
+          <h4 class="">
+            <v-icon class="mx-1" small>{{ headerIcon || _.get(value, 'icon', 'archive') }}</v-icon>
             {{ $t(title) }}
-          </h3>
+          </h4>
           <v-spacer/>
           <v-btn v-if="_.get(value,'deleteAll',true)" elevation="5" small class="red--text mx-2" color="white"
                  @click="deleteItems">
@@ -40,16 +44,15 @@
           </v-btn>
         </vsd-v-card-header>
         <v-card-actions>
-          <v-layout wrap row class="pa-1">
-            <v-flex xs12 md6 class="pa-1">
+          <v-row class="pa-1 text-left">
+            <v-col md="12" class="pa-1 px-5 justify-end align-center">
               <span>
-                <small class="success--text darken-2">
-                <v-icon>info</v-icon>
+                <small>
                 {{ $t("total") }}:  {{ $Helper.numberFormat(length) }}
                 </small>
               </span>
-            </v-flex>
-          </v-layout>
+            </v-col>
+          </v-row>
         </v-card-actions>
       </v-card>
       <v-expansion-panels class="my-1" v-if="_.get(value,'searchable',true)">
