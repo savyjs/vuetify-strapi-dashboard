@@ -16,7 +16,8 @@
                   <v-icon class="mx-1">backspace</v-icon>
                   {{ $t("back") }}
                 </v-btn>
-                <v-btn :disabled="!validity" class="px-5 mx-2 success--text" small color="white" @click="save">
+                <v-btn v-if="showSave!==false" :disabled="!validity" class="px-5 mx-2 success--text" small color="white"
+                       @click="save">
                   <v-icon class="mx-1">save</v-icon>
                   {{ $t("save") }}
                 </v-btn>
@@ -36,7 +37,7 @@
                   <v-icon class="mx-1">backspace</v-icon>
                   {{ $t("back") }}
                 </v-btn>
-                <v-btn class="px-5" small color="success" @click="save">
+                <v-btn v-if="showSave!==false" class="px-5" small color="success" @click="save">
                   <v-icon class="mx-1">save</v-icon>
                   {{ $t("save") }}
                 </v-btn>

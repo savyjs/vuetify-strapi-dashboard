@@ -16,6 +16,7 @@ export default {
       formData: {},
       btn: {},
       showBack: true,
+      showSave: true,
       showSimple: false,
       isModal: false,
       ...this.value
