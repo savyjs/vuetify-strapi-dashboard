@@ -10,7 +10,11 @@
     dense
     :label="label"
     :items="selectItems"
-  />
+  >
+    <template v-if="isServerOrStore" v-slot:append>
+      <v-icon @click="reloadData">refresh</v-icon>
+    </template>
+  </v-autocomplete>
 </template>
 <script>
 import _ from 'lodash'
@@ -35,7 +39,7 @@ export default {
       }
     },
     loadData() {
-      if (_.has(this.field, 'store', undefined)) {
+      if (_.get(this.field, 'store', undefined)) {
         let name = _.get(this.field, 'store', null);
         let isCustomStore = (name.split('.').length > 1 || name.split('/').length > 1)
         try {
@@ -43,7 +47,7 @@ export default {
         } catch (e) {
           console.error({e})
         }
-      } else if (_.has(this.field, 'server', undefined)) {
+      } else if (_.get(this.field, 'server', undefined)) {
         let name = _.get(this.field, 'server', null);
         let isCustomStore = (name.split('.').length > 1 || name.split('/').length > 1)
         try {
@@ -54,12 +58,15 @@ export default {
     }
   },
   computed: {
+    isServerOrStore() {
+      return !!_.get(this.field, 'server', _.has(this.field, 'store'));
+    },
     selectItems() {
-      if (_.has(this.field, 'store', undefined)) {
+      if (_.get(this.field, 'store', undefined)) {
         let name = _.get(this.field, 'store', null);
         let isCustomStore = (name.split('.').length > 1 || name.split('/').length > 1)
         return !isCustomStore ? _.get(this.$store.state, `commonSelect.${name}`, []) : _.get(this.$store.state, name.replace('/', '.'), []);
-      } else if (_.has(this.field, 'server', undefined)) {
+      } else if (_.get(this.field, 'server', undefined)) {
         let name = _.get(this.field, 'server', null);
         let isCustomStore = (name.split('.').length > 1 || name.split('/').length > 1)
         return isCustomStore ? _.get(this.$store.state, `${name.replace('/', '.')}`, []) : this.$store.state.commonSelect.server[name] || []
