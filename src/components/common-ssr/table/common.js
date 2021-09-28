@@ -1,6 +1,6 @@
 import defaultActions from "./defaultActions";
 
-const perPage = 30
+const perPage = 50
 import _ from 'lodash';
 
 export default {
