@@ -55,9 +55,9 @@
             />
           </v-card-text>
           <v-card-actions v-if="fields.length > 15" class="text-left">
-            <v-layout wrap row class="pa-1">
-              <v-flex xs12 class="pa-1 text-left">
-                <v-btn :disabled="!validity" small color="success" @click="save">
+            <v-layout wrap row class="pa-1" v-if="showSave!==false">
+              <v-flex xs12 class="pa-1 text-left" >
+                <v-btn  :disabled="!validity" small color="success" @click="save">
                   <v-icon class="mx-1">save</v-icon>
                   {{ _.get(btn, 'text', $t("save")) }}
                 </v-btn>
