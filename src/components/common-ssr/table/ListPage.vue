@@ -2,13 +2,14 @@
   <section>
     <v-container grid-list-lg>
       <v-card>
-        <vsd-v-card-header :margin-top="$vuetify.breakpoint.smAndDown ? '10px' : 0"
-                           :margin-bottom="$vuetify.breakpoint.smAndDown ? '20px' : 0"
-                           :color="_.get(value,'color','primary')"
-                           margin-right="1%"
-                           :height="$vuetify.breakpoint.smAndDown ? '100px' : undefined"
-                           width="98%"
-                           :class="`px-3 `+ (vsd.rtl ? 'rtl':'')">
+        <vsd-v-card-header
+          :margin-top="$vuetify.breakpoint.smAndDown ? '10px' : 0"
+          :margin-bottom="$vuetify.breakpoint.smAndDown ? '20px' : 0"
+          :color="_.get(value,'color','primary')"
+          margin-right="1%"
+          :height="$vuetify.breakpoint.smAndDown ? '100px' : undefined"
+          width="98%"
+          :class="`px-3 `+ (vsd.rtl ? 'rtl':'')">
           <v-row>
             <v-col sm="12" md="6" class="d-flex justify-start align-center">
               <h4 :class="$vuetify.breakpoint.smAndDown ? 'font-12' : ''">
@@ -50,7 +51,7 @@
           </v-row>
         </vsd-v-card-header>
         <v-card-actions>
-          <v-row class="pa-1 text-left">
+          <v-row class="pa-1 pt-2 text-left">
             <v-col md="12" class="pa-1 px-5 justify-end align-center">
               <span>
                 <small>
