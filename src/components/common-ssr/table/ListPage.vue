@@ -2,46 +2,52 @@
   <section>
     <v-container grid-list-lg>
       <v-card>
-        <vsd-v-card-header margin-top="0"
-                           margin-bottom="0"
+        <vsd-v-card-header :margin-top="$vuetify.breakpoint.smAndDown ? '10px' : 0"
+                           :margin-bottom="$vuetify.breakpoint.smAndDown ? '20px' : 0"
                            :color="_.get(value,'color','primary')"
                            margin-right="1%"
+                           :height="$vuetify.breakpoint.smAndDown ? '100px' : undefined"
                            width="98%"
                            :class="`px-3 `+ (vsd.rtl ? 'rtl':'')">
-          <h4 class="">
-            <v-icon class="mx-1" small>{{ headerIcon || _.get(value, 'icon', 'archive') }}</v-icon>
-            {{ $t(title) }}
-          </h4>
-          <v-spacer/>
-          <v-btn v-if="_.get(value,'deleteAll',true)" elevation="5" small class="red--text mx-2" color="white"
-                 @click="deleteItems">
-            <v-icon class="mx-1">delete</v-icon>
-            <b>{{ $t("delete") }}</b>
-          </v-btn>
-          <v-btn v-if="_.get(value,'newItem',true)" elevation="5" small class="mx-1 success--text"
-                 color="white" :to="name + '/create'">
-            <v-icon class="mx-1" small>add</v-icon>
-            <b>{{ $t("create") }}</b>
-          </v-btn>
-          <download-excel :fetch="excelData" :name="title+'.xls'" :title="title">
-            <v-btn :disabled="!_.has(list,0)" v-if="_.get(value,'excel',true)" elevation="5" small
-                   class="white--text mx-1" color="success">
-              <v-icon class="mx-1">move_to_inbox</v-icon>
-              {{ $t("download_excel") }}
-            </v-btn>
-          </download-excel>
-          <v-btn :title="$t('refresh')" fab icon v-if="_.get(value,'refresh',true)" small
-                 class="mx-1"
-                 color="white"
-                 @click="loadData({},{})">
-            <v-icon>refresh</v-icon>
-          </v-btn>
-          <v-btn :title="$t('previous')" fab icon v-if="_.get(value,'backBtn',true)" small
-                 class="mx-1"
-                 color="white"
-                 @click="$router.go(-1)">
-            <v-icon>keyboard_backspace</v-icon>
-          </v-btn>
+          <v-row>
+            <v-col sm="12" md="6" class="d-flex justify-start align-center">
+              <h4 :class="$vuetify.breakpoint.smAndDown ? 'font-12' : ''">
+                <v-icon class="mx-1" small>{{ headerIcon || _.get(value, 'icon', 'archive') }}</v-icon>
+                {{ $t(title) }}
+              </h4>
+            </v-col>
+            <v-col sm="12" md="6" class="d-flex justify-end align-center">
+              <v-btn v-if="_.get(value,'deleteAll',true)" elevation="5" small class="red--text mx-2" color="white"
+                     @click="deleteItems">
+                <v-icon class="mx-1">delete</v-icon>
+                <b>{{ $t("delete") }}</b>
+              </v-btn>
+              <v-btn v-if="_.get(value,'newItem',true)" elevation="5" small class="mx-1 success--text"
+                     color="white" :to="name + '/create'">
+                <v-icon class="mx-1" small>add</v-icon>
+                <b>{{ $t("create") }}</b>
+              </v-btn>
+              <download-excel :fetch="excelData" :name="title+'.xls'" :title="title">
+                <v-btn :disabled="!_.has(list,0)" v-if="_.get(value,'excel',true)" elevation="5" small
+                       class="white--text mx-1" color="success">
+                  <v-icon class="mx-1">move_to_inbox</v-icon>
+                  {{ $t("download_excel") }}
+                </v-btn>
+              </download-excel>
+              <v-btn :title="$t('refresh')" fab icon v-if="_.get(value,'refresh',true)" small
+                     class="mx-1"
+                     color="white"
+                     @click="loadData({},{})">
+                <v-icon>refresh</v-icon>
+              </v-btn>
+              <v-btn :title="$t('previous')" fab icon v-if="_.get(value,'backBtn',true)" small
+                     class="mx-1"
+                     color="white"
+                     @click="$router.go(-1)">
+                <v-icon>keyboard_backspace</v-icon>
+              </v-btn>
+            </v-col>
+          </v-row>
         </vsd-v-card-header>
         <v-card-actions>
           <v-row class="pa-1 text-left">
