@@ -273,12 +273,12 @@ export default {
   methods: {
     showDate(data, format = undefined) {
       let toJalali = !!_.get(this.field, 'jalali', _.get(this, 'vsd.locale', undefined) === 'fa-ir');
-      if (!format) format = _.get(this.field, 'meta', toJalali ? 'jYYYY/jM/jD' : 'YYYY/M/D');
+      if (!format) format = _.get(this.field, 'meta', _.get(this.field, 'format', toJalali ? 'jYYYY/jM/jD' : 'YYYY/M/D'));
       return this.$Helper.toJalaali(data, format);
     },
     showDateTime(data, format = undefined) {
       let toJalali = !!_.get(this.field, 'jalali', _.get(this, 'vsd.locale', undefined) === 'fa-ir');
-      if (!format) format = _.get(this.field, 'meta', toJalali ? 'jYYYY/jM/jD HH:mm' : 'YYYY/M/D HH:mm');
+      if (!format) format = _.get(this.field, 'meta',_.get(this.field, 'format', toJalali ? 'jYYYY/jM/jD HH:mm' : 'YYYY/M/D HH:mm'));
       return this.$Helper.toJalaali(data, format);
     },
     loadData() {

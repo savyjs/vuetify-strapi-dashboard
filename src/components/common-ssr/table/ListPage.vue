@@ -1,18 +1,18 @@
 <template>
-  <section>
-    <v-container grid-list-lg>
+  <section class="mt-0">
+    <v-container grid-list-lg class="pt-0 mt-0">
       <v-card>
         <vsd-v-card-header
-          :margin-top="$vuetify.breakpoint.smAndDown ? '10px' : 0"
-          :margin-bottom="$vuetify.breakpoint.smAndDown ? '20px' : 0"
+          :margin-top="$vuetify.breakpoint.xsAndDown ? '10px' : 0"
+          :margin-bottom="$vuetify.breakpoint.xsAndDown ? '20px' : 0"
           :color="_.get(value,'color','primary')"
           margin-right="1%"
-          :height="$vuetify.breakpoint.smAndDown ? '100px' : undefined"
+          :height="$vuetify.breakpoint.xsAndDown ? '100px' : undefined"
           width="98%"
           :class="`px-3 `+ (vsd.rtl ? 'rtl':'')">
           <v-row>
             <v-col sm="12" md="6" class="d-flex justify-start align-center">
-              <h4 :class="$vuetify.breakpoint.smAndDown ? 'font-12' : ''">
+              <h4 :class="$vuetify.breakpoint.xsAndDown ? 'font-12' : ''">
                 <v-icon class="mx-1" small>{{ headerIcon || _.get(value, 'icon', 'archive') }}</v-icon>
                 {{ $t(title) }}
               </h4>
