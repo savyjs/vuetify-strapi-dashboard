@@ -35,7 +35,8 @@
   </div>
   <div v-else-if="_.includes(['combobox'],type)">
     <v-combobox
-      :required="_.get(field,'required',false)" :rules="getRules" :error-messages="errors" multiple chips :label="label"
+      :required="_.get(field,'required',false)" :rules="getRules" :error-messages="errors" multiple chips
+      :label="label"
       dense
       filled
       v-model="data"/>
@@ -298,9 +299,8 @@ export default {
       let unit = _.get(this.field, 'unit', undefined);
       let isNumber = _.includes(['number'], _.get(this.field, 'type', undefined));
       let isPrice = (_.get(this.field, 'isPrice', false) || _.includes(['price'], _.get(this.field, 'type', undefined)));
-      hint = isNumber ? `${this.$Helper.numberFormat(this.data) || 0}` : hint;
-      hint = isPrice ? ((this.$Helper.numberFormat(this.data) || 0) + this.$t("$")) : hint;
-      hint = unit ? (((this.data) || '') + unit) : hint;
+      hint = isNumber ? `${this.$Helper.numberFormat(this.data) || 0} ${unit || ''}` : hint;
+      hint = isPrice ? (this.$Helper.price(this.data, unit) || 0) : hint;
       return hint;
     },
     icon() {
