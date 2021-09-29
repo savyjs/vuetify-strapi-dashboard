@@ -1,8 +1,8 @@
 <template>
   <section v-if="!isModal">
-    <v-container grid-list-lg class="pt-0 mt-0">
-      <v-card :loading="loader"  class="pt-0 mt-0">
-        <v-form lazy-validation v-model="validity"  class="pt-0 mt-0">
+    <v-container grid-list-lg>
+      <v-card :loading="loader">
+        <v-form lazy-validation v-model="validity" class="pt-0 mt-0">
           <vsd-v-card-header margin-top="0"
                              margin-bottom="0"
                              margin-right="1%" width="98%" v-if="showSimple!==true">
@@ -58,8 +58,8 @@
           </v-card-text>
           <v-card-actions v-if="fields.length > 15" class="text-left">
             <v-layout wrap row class="pa-1" v-if="showSave!==false">
-              <v-flex xs12 class="pa-1 text-left" >
-                <v-btn  :disabled="!validity" small color="success" @click="save">
+              <v-flex xs12 class="pa-1 text-left">
+                <v-btn :disabled="!validity" small color="success" @click="save">
                   <v-icon class="mx-1">save</v-icon>
                   {{ _.get(btn, 'text', $t("save")) }}
                 </v-btn>
