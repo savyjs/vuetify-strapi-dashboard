@@ -1,9 +1,11 @@
 <template>
   <section v-if="!isModal">
-    <v-container grid-list-lg>
-      <v-card :loading="loader">
-        <v-form lazy-validation v-model="validity">
-          <vsd-v-card-header margin-right="1%" width="98%" v-if="showSimple!==true">
+    <v-container grid-list-lg class="pt-0 mt-0">
+      <v-card :loading="loader"  class="pt-0 mt-0">
+        <v-form lazy-validation v-model="validity"  class="pt-0 mt-0">
+          <vsd-v-card-header margin-top="0"
+                             margin-bottom="0"
+                             margin-right="1%" width="98%" v-if="showSimple!==true">
             <v-layout :class="`pa-1 `+ (vsd.rtl ? 'rtl':'')">
               <v-flex :class="`pa-1 `  + (vsd.rtl ? `text-right` : `text-left`)">
               <span class="px-1">

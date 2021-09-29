@@ -2,7 +2,10 @@
   <section>
     <v-container grid-list-lg>
       <v-card :loading="loader">
-        <vsd-v-card-header margin-right="1%" width="98%">
+        <vsd-v-card-header
+          margin-top="0"
+          margin-bottom="0"
+          margin-right="1%" width="98%">
           <v-layout :class="`pa-1 `+ (vsd.rtl ? 'rtl':'')">
             <v-flex :class="`pa-1 `  + (vsd.rtl ? `text-right` : `text-left`)">
               <v-subheader>

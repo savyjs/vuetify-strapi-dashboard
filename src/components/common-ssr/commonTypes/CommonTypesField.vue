@@ -3,6 +3,7 @@
     <v-textarea :required="_.get(field,'required',false)" :rules="getRules" :error-messages="errors"
                 :placeholder="placeholder"
                 :hint="hint"
+                :height="_.get(field,'height',undefined)"
                 :label="label" dense filled v-model="data"/>
   </div>
   <div v-else-if="_.includes(['rich','editor'],type)">
