@@ -87,15 +87,15 @@
   <span v-else-if="_.includes(['boolEdit'],type)">
     <BoolBtn :field="field" v-model="data" @update="update"/>
   </span>
-  <span v-else-if="_.includes(['price'],type)">
-    {{ $Helper.numberFormat(data) }} {{ $t("$") }}
-  </span>
   <span v-else-if="_.includes(['combobox'],type)">
     {{ data }}
   </span>
-  <span v-else-if="_.includes(['number'],type)">
+  <p style="display: inline-block" class="ltr" v-else-if="_.includes(['price'],type)">
+    {{ $Helper.numberFormat(data) }} {{ $t("$") }}
+  </p>
+  <p style="display: inline-block" class="ltr" v-else-if="_.includes(['number'],type)">
     {{ $Helper.numberFormat(data) }}
-  </span>
+  </p>
   <span v-else-if="_.includes(['enum'],type)">
     {{ enumValue }}
   </span>
