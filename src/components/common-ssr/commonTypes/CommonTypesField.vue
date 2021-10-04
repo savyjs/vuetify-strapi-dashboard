@@ -334,7 +334,7 @@ export default {
     },
     data: {
       handler(val) {
-        return this.$emit('input', this.isNumeric && val != "" && val != null && val != undefined && val != NaN ? parseInt(val) : val);
+        return this.$emit('input', this.isNumeric && val != "" && val != null && val != undefined && val != NaN ? parseFloat(val) : val);
       },
       deep: true
     }

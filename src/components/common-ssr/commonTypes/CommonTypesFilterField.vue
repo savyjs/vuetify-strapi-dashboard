@@ -89,7 +89,7 @@
     },
     methods: {
       emitter(val) {
-        return this.$emit('input', (_.get(this.field, 'numeric', false) || this.type == 'number') ? parseInt(val) : val);
+        return this.$emit('input', (_.get(this.field, 'numeric', false) || this.type == 'number') ? parseFloat(val) : val);
       }
     },
     created() {

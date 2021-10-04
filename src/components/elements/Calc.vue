@@ -86,14 +86,14 @@
       multiply() {
         let total = this.values;
         let output = _.isArray(total) ? total.reduce((a, b) => a * b, 1) : 0;
-        if (!this.handy) this.data = this.isPrice ? parseInt(output) : output;
+        if (!this.handy) this.data = this.isPrice ? parseFloat(output) : output;
         this.hint = this.isPrice ? this.$Helper.price(this.data) : this.data;
         return output;
       },
       sum() {
         let total = this.values;
         let output = _.isArray(total) ? total.reduce((a, b) => a + b, 0) : 0;
-        if (!this.handy) this.data = this.isPrice ? parseInt(output) : output;
+        if (!this.handy) this.data = this.isPrice ? parseFloat(output) : output;
         this.hint = this.isPrice ? this.$Helper.price(this.data) : this.data;
         return output;
       },
@@ -106,7 +106,7 @@
         let formula = _.get(this.field, 'formula', null);
         try {
           let output = eval(formula);
-          output = this.isPrice ? parseInt(output) : output;
+          output = this.isPrice ? parseFloat(output) : output;
           this.hint = this.isPrice ? this.$Helper.price(this.data) : this.data;
           return output;
         } catch (e) {
@@ -118,12 +118,12 @@
         let total = [];
         if (_.isString(input)) {
           let item = _.get(formData, input, 0);
-          let val = parseInt(item);
+          let val = parseFloat(item);
           total.push(val);
         } else if (_.isArray(input)) {
           _.forEach(input, (path) => {
             let item = _.get(formData, path, 0);
-            let val = parseInt(item);
+            let val = parseFloat(item);
             total.push(val);
           })
         } else if (_.isPlainObject(input)) {

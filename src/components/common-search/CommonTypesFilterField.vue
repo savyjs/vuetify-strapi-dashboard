@@ -80,7 +80,7 @@
     },
     mounted() {
       if (_.includes(['number', 'counter'], this.type)) {
-        this.data = parseInt(this.$Helper.faToEn(_.isNumber(this.value) ? this.value : (_.get(this.field, 'min', 0))));
+        this.data = parseFloat(this.$Helper.faToEn(_.isNumber(this.value) ? this.value : (_.get(this.field, 'min', 0))));
       }
     },
     watch: {

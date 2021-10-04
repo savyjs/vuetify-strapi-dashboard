@@ -33,11 +33,11 @@
         _.forEach(pathes, (path) => {
           let item = _.get(this.main, path, 0);
           if (_.isArray(item)) {
-            let val = parseInt(_.get(item, path, 0));
+            let val = parseFloat(_.get(item, path, 0));
             console.log('path , item', 'val', {path, item, val})
             total = total + val;
           } else {
-            let val = parseInt(item);
+            let val = parseFloat(item);
             total = total + val;
           }
         })
