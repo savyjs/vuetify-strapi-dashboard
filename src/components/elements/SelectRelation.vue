@@ -8,6 +8,7 @@
     :item-text="_.get(field,'meta.text','text')"
     :multiple="_.get(field,'multi',_.get(field,'multiple',false))"
     dense
+    :clearable="_.get(field,'clearable',undefined)"
     :label="label"
     :items="selectItems"
   >
