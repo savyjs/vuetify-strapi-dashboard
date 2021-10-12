@@ -40,7 +40,7 @@
                 <v-icon class="mx-1 font-15 pb-1">{{ _.gt(field, 'icon', 'perm_identity') }}</v-icon>
                 {{ _.get(field, 'text', '') }}
               </td>
-              <td>
+              <td :class="_.get(field,'direction','') ? ('hasDirection ' + _.get(field,'direction','')) : undefined">
                 <common-types-show
                   @update="update"
                   @reload="loadData"

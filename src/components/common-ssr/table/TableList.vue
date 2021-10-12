@@ -55,15 +55,18 @@
 
       <!-- value = name of field !-->
       <template v-for="field in getTableFields" #[getField(field)]="{header,value,item}">
-        <small>
-          <common-types-show @reload="reload" v-model="value" :field="header" :item="item" :fields="fields"
-                             :type="header.type"/>
+        <small :class="_.get(field,'direction','') ? ('hasDirection ' + _.get(field,'direction','')) : undefined">
+          <common-types-show
+            @reload="reload" v-model="value" :field="header" :item="item" :fields="fields"
+            :type="header.type"/>
         </small>
       </template>
       <template v-slot:expanded-item="{ headers, item }">
         <td :colspan="headers.length">
           <v-row class="rtl">
-            <v-col v-for="field in fields" :key="field.value" v-if="_.get(field,'expand',undefined)===true">
+            <v-col v-for="field in fields" :key="field.value" v-if="_.get(field,'expand',undefined)===true"
+                   :class="_.get(field,'direction','') ? ('hasDirection ' + _.get(field,'direction','')) : undefined"
+            >
               <common-types-expand
                 @toggle="update"
                 :type="_.get(field,'type',undefined)"

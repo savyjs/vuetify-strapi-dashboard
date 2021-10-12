@@ -68,3 +68,13 @@
 .full {
   width: 100%;
 }
+
+td p {
+  text-align: center !important;
+  align-content: center !important;
+  vertical-align: center !important;
+}
+
+.hasDirection span, .hasDirection small {
+  display: inline-block;
+}
