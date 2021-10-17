@@ -10,8 +10,10 @@
       <v-spacer></v-spacer>
       <span class="text-center mx-2">
         <template v-for="item in navbarMenu">
+          <component :is="item.component" v-if="_.get(item,'component',false)"/>
+
         <v-menu
-          v-if="_.isArray(_.get(item,'items',null))"
+          v-else-if="_.isArray(_.get(item,'items',null))"
           :close-on-content-click="false"
           :nudge-width="200"
           offset-x
@@ -21,7 +23,9 @@
             color="appbartext"
             fab
             icon
-            :to="item.link"
+            :to="_.get(item,'to',undefined)"
+            :href="_.get(item,'link',undefined)"
+            @click="_.get(item,'unclick',undefined)"
             :target="_.get(item,'target',undefined)"
           >
           <v-icon>{{ _.get(item, 'icon', '') }}</v-icon>
