@@ -87,7 +87,12 @@ export default {
       if (_.has(item, 'permission')) {
         let permission = _.get(item, 'permission', undefined);
         console.log({permission, item})
-        return this.$can(permission);
+        try {
+          return this.$can(permission);
+        } catch (e) {
+          console.warn(e)
+          return true;
+        }
       } else {
         return true;
       }

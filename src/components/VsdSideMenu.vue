@@ -40,7 +40,8 @@
                 <v-icon class="font-18 mx-0 drawertext--text">{{ _.get(item, 'icon', '') }}</v-icon>
               </v-list-item-icon>
               <v-list-item-content>
-                <v-list-item-title class="font-12 mr-5 drawertext--text" v-text="capitalize($t(_.get(item,'title','')))"/>
+                <v-list-item-title class="font-12 mr-5 drawertext--text"
+                                   v-text="capitalize($t(_.get(item,'title','')))"/>
               </v-list-item-content>
             </v-list-item>
           </template>
@@ -115,7 +116,12 @@ export default {
     isAllowedMenu(item) {
       if (_.has(item, 'permission')) {
         let permission = item.permission;
-        return this.$can(permission);
+        try {
+          return this.$can(permission);
+        } catch (e) {
+          console.warn(e)
+          return false;
+        }
       } else {
         return true;
       }
