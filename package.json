@@ -51,6 +51,7 @@
     "@nuxtjs/storybook": "^3.3.1",
     "@nuxtjs/strapi": "^0.3.0",
     "axios": "^0.21.1",
+    "chart.js": "^3.7.0",
     "font-awesome": "^4.7.0",
     "lodash": "^4.17.20",
     "lodash-deep": "^1.6.0",
