@@ -37,8 +37,8 @@ npm manifest:
       "strapi admin ui",
       "strapi crm"
     ],
-    "main": "src/index.js",
-    "module": "src/index.js",
+    "main": "src/module.ts",
+    "module": "src/module.ts",
     "sideEffects": [
       "*.sass",
       "*.scss",
